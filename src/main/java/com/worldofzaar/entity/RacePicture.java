@@ -1,5 +1,7 @@
 package com.worldofzaar.entity;
 
+import javax.persistence.*;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Дмитрий
@@ -7,12 +9,20 @@ package com.worldofzaar.entity;
  * Time: 17:13
  * To change this template use File | Settings | File Templates.
  */
+@Entity
+@Table(name = "\"RacePictures\"")
 public class RacePicture {
-
-    Integer racePictureId;
-    Race race;
-    String picturePath;
-    Boolean isMale;
+    @Id
+    @GeneratedValue
+    @Column(name = "\"racePictureId\"")
+    private Integer racePictureId;
+    @ManyToOne
+    @JoinColumn(name = "\"raceId\"")
+    private Race race;
+    @Column(name = "\"picturePath\"")
+    private String picturePath;
+    @Column(name = "\"isMale\"")
+    private Boolean isMale;
 
     public Integer getRacePictureId() {
         return racePictureId;

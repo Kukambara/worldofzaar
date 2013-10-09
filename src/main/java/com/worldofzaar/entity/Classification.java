@@ -10,19 +10,19 @@ import javax.persistence.*;
  * To change this template use File | Settings | File Templates.
  */
 @Entity
-@Table(name = "Classifications")
+@Table(name = "\"Classifications\"")
 public class Classification {
     @Id
     @GeneratedValue
-    @Column(name = "classId")
-    Integer classificationId;
+    @Column(name = "\"classId\"")
+    private Integer classificationId;
     @ManyToOne
-    @JoinColumn(name = "raceId")
-    Race race;
-    @Column(name = "className")
-    String className;
-    @Column(name = "classInfo")
-    String classInfo;
+    @JoinColumn(name = "\"raceId\"")
+    private Race race;
+    @Column(name = "\"className\"")
+    private String className;
+    @Column(name = "\"classInfo\"")
+    private String classInfo;
 
     public Integer getClassificationId() {
         return classificationId;

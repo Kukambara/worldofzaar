@@ -10,36 +10,36 @@ import javax.persistence.*;
  * To change this template use File | Settings | File Templates.
  */
 @Entity
-@Table(name = "GameProfiles")
+@Table(name = "\"GameProfiles\"")
 public class GameProfile {
     @Id
     @GeneratedValue
-    @Column(name = "gameProfileId")
-    Integer gameProfileId;
+    @Column(name = "\"gameProfileId\"")
+    private Integer gameProfileId;
     @ManyToOne
-    @JoinColumn(name = "raceId")
-    Race race;
+    @JoinColumn(name = "\"raceId\"")
+    private Race race;
     @ManyToOne
-    @JoinColumn(name = "racePictureId")
-    RacePicture racePicture;
+    @JoinColumn(name = "\"racePictureId\"")
+    private RacePicture racePicture;
     @ManyToOne
-    @JoinColumn(name = "classId")
-    Classification classification;
+    @JoinColumn(name = "\"classId\"")
+    private Classification classification;
     @ManyToOne
-    @JoinColumn(name = "blazonId")
-    Blazon blazon;
-    @Column(name = "level")
-    Integer level;
-    @Column(name = "experience")
-    Integer experience;
-    @Column(name = "money")
-    Integer money;
-    @Column(name = "donateMoney")
-    Integer donateMoney;
-    @Column(name = "energy")
-    Integer energy;
-    @Column(name = "isMale")
-    Boolean isMale;
+    @JoinColumn(name = "\"blazonId\"")
+    private Blazon blazon;
+    @Column(name = "\"level\"")
+    private Integer level;
+    @Column(name = "\"experience\"")
+    private Integer experience;
+    @Column(name = "\"money\"")
+    private Integer money;
+    @Column(name = "\"donateMoney\"")
+    private Integer donateMoney;
+    @Column(name = "\"energy\"")
+    private Integer energy;
+    @Column(name = "\"isMale\"")
+    private Boolean isMale;
 
     public Integer getGameProfileId() {
         return gameProfileId;

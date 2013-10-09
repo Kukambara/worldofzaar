@@ -1,5 +1,7 @@
 package com.worldofzaar.entity;
 
+import javax.persistence.*;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Дмитрий
@@ -7,14 +9,24 @@ package com.worldofzaar.entity;
  * Time: 17:07
  * To change this template use File | Settings | File Templates.
  */
+@Entity
+@Table(name = "\"Users\"")
 public class User {
-
-    Integer userId;
-    String userName;
-    String userLogin;
-    String userEmail;
-    String userPassword;
-    GameProfile gameProfile;
+    @Id
+    @GeneratedValue
+    @Column(name = "\"userId\"")
+    private Integer userId;
+    @Column(name = "\"userName\"")
+    private String userName;
+    @Column(name = "\"userLogin\"")
+    private String userLogin;
+    @Column(name = "\"userEmail\"")
+    private String userEmail;
+    @Column(name = "\"userPassword\"")
+    private String userPassword;
+    @ManyToOne
+    @JoinColumn(name = "\"gameProfileId\"")
+    private GameProfile gameProfile;
 
     public Integer getUserId() {
         return userId;

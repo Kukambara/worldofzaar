@@ -1,5 +1,7 @@
 package com.worldofzaar.entity;
 
+import javax.persistence.*;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Дмитрий
@@ -7,27 +9,37 @@ package com.worldofzaar.entity;
  * Time: 17:22
  * To change this template use File | Settings | File Templates.
  */
+@Entity
+@Table(name = "\"UserCards\"")
 public class UserCard {
-
-    Integer UserCardId;
-    User userId;
-    WarriorCard warriorCard;
-    SupportCard supportCard;
+    @Id
+    @GeneratedValue
+    @Column(name = "\"userCardId\"")
+    private Integer userCardId;
+    @ManyToOne
+    @JoinColumn(name = "\"userId\"")
+    private User user;
+    @ManyToOne
+    @JoinColumn(name = "\"warriorCardId\"")
+    private WarriorCard warriorCard;
+    @ManyToOne
+    @JoinColumn(name = "\"supportCardId\"")
+    private SupportCard supportCard;
 
     public Integer getUserCardId() {
-        return UserCardId;
+        return userCardId;
     }
 
     public void setUserCardId(Integer userCardId) {
-        UserCardId = userCardId;
+        this.userCardId = userCardId;
     }
 
-    public User getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(User userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public WarriorCard getWarriorCard() {

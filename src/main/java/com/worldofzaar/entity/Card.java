@@ -10,57 +10,58 @@ import javax.persistence.*;
  * To change this template use File | Settings | File Templates.
  */
 @Entity
-@Table(name = "Cards")
+@Table(name = "\"Cards\"")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Card {
     @Id
     @GeneratedValue
-    @Column(name = "cardId")
-    Integer CardId;
-    @Column(name = "cardEnergy")
-    Integer CardEnergy;
-    @Column(name = "cardPicture")
-    String CardPicture;
+    @Column(name = "\"cardId\"")
+    private Integer cardId;
+    @Column(name = "\"cardEnergy\"")
+    private Integer cardEnergy;
+    @Column(name = "\"cardPicture\"")
+    private String cardPicture;
     @ManyToOne
-    @JoinColumn(name = "propertyId")
-    Property property;
+    @JoinColumn(name = "\"propertyId\"")
+    private Property property;
     @ManyToOne
-    @JoinColumn(name = "cardRaceId")
-    Race race;
+    @JoinColumn(name = "\"cardRaceId\"")
+    private Race race;
     @ManyToOne
-    @JoinColumn(name = "cardClassId")
-    Classification classification;
-    @Column(name = "isElite")
-    Boolean isElite;
-    @Column(name = "propertySystemString")
-    String propertySystemString;
-    @Column(name = "cardLevel")
-    Integer cardLevel;
+    @JoinColumn(name = "\"cardClassId\"")
+    private Classification classification;
+    @Column(name = "\"isElite\"")
+    private Boolean isElite;
+    @Column(name = "\"propertySystemString\"")
+    private String propertySystemString;
+    @Column(name = "\"cardLevel\"")
+    private Integer cardLevel;
     @ManyToOne
-    @JoinColumn(name = "setId")
-    Set set;
+    @JoinColumn(name = "\"setId\"")
+    private Set set;
 
     public Integer getCardId() {
-        return CardId;
+        return cardId;
     }
 
     public void setCardId(Integer cardId) {
-        CardId = cardId;
+        cardId = cardId;
     }
 
     public Integer getCardEnergy() {
-        return CardEnergy;
+        return cardEnergy;
     }
 
     public void setCardEnergy(Integer cardEnergy) {
-        CardEnergy = cardEnergy;
+        cardEnergy = cardEnergy;
     }
 
     public String getCardPicture() {
-        return CardPicture;
+        return cardPicture;
     }
 
     public void setCardPicture(String cardPicture) {
-        CardPicture = cardPicture;
+        cardPicture = cardPicture;
     }
 
     public Property getProperty() {

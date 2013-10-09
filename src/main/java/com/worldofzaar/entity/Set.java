@@ -1,5 +1,6 @@
 package com.worldofzaar.entity;
 
+import javax.persistence.*;
 import java.util.Date;
 
 /**
@@ -9,10 +10,15 @@ import java.util.Date;
  * Time: 17:27
  * To change this template use File | Settings | File Templates.
  */
+@Entity
+@Table(name = "\"Sets\"")
 public class Set {
-
-    Integer setId;
-    Date date;
+    @Id
+    @GeneratedValue
+    @Column(name = "\"setId\"")
+    private Integer setId;
+    @Column(name = "\"date\"")
+    private Date date;
 
     public Integer getSetId() {
         return setId;

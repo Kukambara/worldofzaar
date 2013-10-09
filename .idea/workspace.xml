@@ -2,64 +2,101 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0a35e82e-2d66-46cd-b401-9176992e8335" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/GameState/Picture/Symbols/HightElf/deck.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/GameState/Picture/Symbols/HightElf/supportCard.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/GameState/Picture/table.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/GameState/Picture/table_2.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/GameState/Picture/Symbols/HightElf/talon.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/GameState/js/Utils/Area.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/GameState/js/Utils/AreaImage.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/GameState/js/Utils/AreaText.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/GameState/js/Map.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/GameState/js/PlayerField.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/GameState/js/Utils/Point.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/GameState/Test.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/GameState/js/jquery-2.0.3.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/hello.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/hello.jsp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/Coalition.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/CoalitionRequest.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/worldofzaar/util/HibernateUtilActive.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/worldofzaar/util/HibernateUtilMain.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/MyGame.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/Notification.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/Request.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/UserGamesPlayer.java" />
+      <change type="MOVED" beforePath="C:\Users\Дмитрий\workspace\WorldOfZaar\src\main\java\com\worldofzaar\entity\Messages.java" afterPath="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/Message.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.ids" afterPath="$PROJECT_DIR$/.idea/dataSources.ids" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/diagram.png" afterPath="$PROJECT_DIR$/diagram.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/Auction.java" afterPath="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/Auction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/Blazon.java" afterPath="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/Blazon.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/Card.java" afterPath="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/Card.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/CardText.java" afterPath="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/CardText.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/Classification.java" afterPath="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/Classification.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/Deck.java" afterPath="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/Deck.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/DeckCard.java" afterPath="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/DeckCard.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/EngCardText.java" afterPath="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/EngCardText.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/EngPropertyText.java" afterPath="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/EngPropertyText.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/EngSetText.java" afterPath="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/EngSetText.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/Experience.java" afterPath="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/Experience.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/Friendship.java" afterPath="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/Friendship.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/GameProfile.java" afterPath="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/GameProfile.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/MasterOfDeck.java" afterPath="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/MasterOfDeck.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/Property.java" afterPath="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/Property.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/PropertyText.java" afterPath="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/PropertyText.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/Race.java" afterPath="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/Race.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/RacePicture.java" afterPath="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/RacePicture.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/RuCardText.java" afterPath="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/RuCardText.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/RuPropertyText.java" afterPath="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/RuPropertyText.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/RuSetText.java" afterPath="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/RuSetText.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/Set.java" afterPath="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/Set.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/SetText.java" afterPath="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/SetText.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/SupportCard.java" afterPath="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/SupportCard.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/User.java" afterPath="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/User.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/UserCard.java" afterPath="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/UserCard.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/WarriorCard.java" afterPath="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/WarriorCard.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WorldOfZaar.iml" afterPath="$PROJECT_DIR$/WorldOfZaar.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/hibernateActiveGame.cfg.xml" afterPath="$PROJECT_DIR$/src/main/resources/hibernateActiveGame.cfg.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/hibernateMain.cfg.xml" afterPath="$PROJECT_DIR$/src/main/resources/hibernateMain.cfg.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="WorldOfZaar.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1380393248767" ignored="false" />
+    <file path="/Dummy.txt" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1381253627635" ignored="false" />
     <file path="/hello.jsp" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1379434615912" ignored="false" />
     <file path="$USER_HOME$/IdeaProjects/DiscProject2/src/main/resources/hibernate.cfg.xml" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1379514397654" ignored="false" />
     <file path="/hibernate.cfg.xml" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1379576250353" ignored="false" />
-    <file path="/a.dummy" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1379574731326" ignored="false" />
+    <file path="/a.dummy" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1381304495707" ignored="false" />
     <file path="/hibernateActiveGame.cfg.xml" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1379576250353" ignored="false" />
-    <file path="/a.sql" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1380443165802" ignored="false" />
-    <file path="/dummy.sql" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1380443160663" ignored="false" />
+    <file path="/a.sql" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1381312803043" ignored="false" />
+    <file path="/dummy.sql" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1381312803043" ignored="false" />
     <file path="$PROJECT_DIR$/../ChampionshipManager/src/main/java/com/springapp/mvc/controllers/AuthorizationController.java" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1380373746604" ignored="false" />
     <file path="/AuthorizationController.java" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1380373740246" ignored="false" />
-    <file path="/hibernateMain.cfg.xml" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1380462920182" ignored="false" />
-    <file path="/fragment.java" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1380464855903" ignored="false" />
-    <file path="/User.java" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1380463758424" ignored="false" />
+    <file path="/hibernateMain.cfg.xml" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1381259738480" ignored="false" />
+    <file path="/fragment.java" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1381259316507" ignored="false" />
+    <file path="/User.java" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1380717039324" ignored="false" />
     <file path="/GameProfile.java" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1380468873355" ignored="false" />
-    <file path="/RacePicture.java" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1380464101058" ignored="false" />
+    <file path="/RacePicture.java" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1380714271552" ignored="false" />
     <file path="/Race.java" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1380464137531" ignored="false" />
     <file path="/Classification.java" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1380464184377" ignored="false" />
     <file path="/Blazon.java" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1380464231940" ignored="false" />
     <file path="/Friendship.java" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1380464306488" ignored="false" />
     <file path="/Messages.java" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1380464365738" ignored="false" />
     <file path="/Deck.java" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1380464407825" ignored="false" />
-    <file path="/Auction.java" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1380467845166" ignored="false" />
-    <file path="/UserCard.java" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1380464628525" ignored="false" />
+    <file path="/Auction.java" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1381259035851" ignored="false" />
+    <file path="/UserCard.java" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1380715031857" ignored="false" />
     <file path="/Card.java" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1380464819685" ignored="false" />
-    <file path="/WarriorCard.java" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1380464935100" ignored="false" />
-    <file path="/SupportCard.java" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1380464893653" ignored="false" />
+    <file path="/WarriorCard.java" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1380715150542" ignored="false" />
+    <file path="/SupportCard.java" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1381251480851" ignored="false" />
     <file path="/Set.java" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1380465940925" ignored="false" />
     <file path="/SetText.java" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1380465991698" ignored="false" />
-    <file path="/RuSetText.java" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1380466508335" ignored="false" />
-    <file path="/EngSetText.java" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1380466626807" ignored="false" />
+    <file path="/RuSetText.java" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1380714563003" ignored="false" />
+    <file path="/EngSetText.java" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1380718031194" ignored="false" />
     <file path="/Experience.java" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1380466712208" ignored="false" />
-    <file path="/DeckCard.java" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1380468517276" ignored="false" />
+    <file path="/DeckCard.java" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1380716948365" ignored="false" />
     <file path="/CardText.java" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1380468203927" ignored="false" />
-    <file path="/RuCardText.java" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1380466854272" ignored="false" />
-    <file path="/EngCardText.java" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1380466890284" ignored="false" />
+    <file path="/RuCardText.java" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1380715239669" ignored="false" />
+    <file path="/EngCardText.java" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1380717750207" ignored="false" />
     <file path="/MasterOfDeck.java" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1380466984771" ignored="false" />
     <file path="/PropertyText.java" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1380467065225" ignored="false" />
-    <file path="/EngPropertyText.java" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1380467096999" ignored="false" />
-    <file path="/RuPropertyText.java" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1380467112785" ignored="false" />
-    <file path="/Property.java" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1380467142983" ignored="false" />
+    <file path="/EngPropertyText.java" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1380717927756" ignored="false" />
+    <file path="/RuPropertyText.java" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1380714541138" ignored="false" />
+    <file path="/Property.java" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1380717001511" ignored="false" />
+    <file path="/Message.java" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1380715657513" ignored="false" />
+    <file path="/HibernateUtil.java" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1381154505381" ignored="false" />
+    <file path="/HibernateUtilActive.java" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1381154574057" ignored="false" />
+    <file path="/MyGame.java" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1381304325056" ignored="false" />
+    <file path="/CoalitionRequest.java" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1381304170713" ignored="false" />
+    <file path="/Coalition.java" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1381304036612" ignored="false" />
+    <file path="/Notification.java" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1381304401184" ignored="false" />
+    <file path="/Request.java" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1381304494145" ignored="false" />
+    <file path="/UserGamesPlayer.java" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1381304579099" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,91 +167,82 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Classification.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/Classification.java">
+      <file leaf-file-name="WarriorCard.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/WarriorCard.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="35" selection-start="378" selection-end="422" vertical-scroll-proportion="0.0">
+            <state line="26" column="36" selection-start="1211" selection-end="1211" vertical-scroll-proportion="0.45714286">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Deck.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/Deck.java">
+      <file leaf-file-name="Auction.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/Auction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="35" selection-start="348" selection-end="391" vertical-scroll-proportion="0.0">
+            <state line="18" column="38" selection-start="305" selection-end="364" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DeckCard.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/DeckCard.java">
+      <file leaf-file-name="Blazon.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/Blazon.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="0" selection-start="216" selection-end="250" vertical-scroll-proportion="0.0">
+            <state line="13" column="13" selection-start="266" selection-end="266" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EngCardText.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/EngCardText.java">
+      <file leaf-file-name="MyGame.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/MyGame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="3" selection-start="186" selection-end="186" vertical-scroll-proportion="0.0">
+            <state line="19" column="38" selection-start="372" selection-end="419" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EngPropertyText.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/EngPropertyText.java">
+      <file leaf-file-name="Notification.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/Notification.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="13" selection-start="200" selection-end="200" vertical-scroll-proportion="0.0">
+            <state line="20" column="39" selection-start="472" selection-end="472" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EngSetText.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/EngSetText.java">
+      <file leaf-file-name="UserGamesPlayer.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/UserGamesPlayer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="13" selection-start="200" selection-end="200" vertical-scroll-proportion="0.0">
+            <state line="25" column="61" selection-start="562" selection-end="562" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Experience.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/Experience.java">
+      <file leaf-file-name="Card.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/Card.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="37" selection-start="282" selection-end="341" vertical-scroll-proportion="0.0">
+            <state line="19" column="64" selection-start="453" selection-end="453" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Friendship.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/Friendship.java">
+      <file leaf-file-name="Coalition.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/Coalition.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="37" selection-start="283" selection-end="341" vertical-scroll-proportion="0.0">
+            <state line="25" column="37" selection-start="598" selection-end="598" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GameProfile.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/GameProfile.java">
+      <file leaf-file-name="Request.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/Request.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="31" selection-start="340" selection-end="340" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="workspace.xml" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+            <state line="19" column="43" selection-start="376" selection-end="423" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -244,22 +272,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
+        <option value="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/PropertyText.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/Race.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/RacePicture.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/Set.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/SetText.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/User.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/UserCard.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/WarriorCard.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/Auction.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/Blazon.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/Card.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/CardText.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/Classification.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/Deck.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/DeckCard.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/EngCardText.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/Experience.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/Friendship.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/GameProfile.java" />
-        <option value="$PROJECT_DIR$/.idea/workspace.xml" />
+        <option value="$PROJECT_DIR$/src/main/resources/hibernateMain.cfg.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/Coalition.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/CoalitionRequest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/MyGame.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/Notification.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/Request.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/UserGamesPlayer.java" />
+        <option value="dbtable:/7da91b94/eb3a79d3-7fad-4ce1-99d4-c50d578e2b2b/ddhjdfvce86276.public.Notifications" />
       </list>
     </option>
   </component>
@@ -399,6 +427,10 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GameState" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -558,7 +590,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="entity" />
+              <option name="myItemId" value="util" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -572,7 +604,23 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value=".idea" />
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="worldofzaar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="entity" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -602,6 +650,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.worldofzaar.util" />
       <recent name="" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
@@ -685,6 +734,13 @@
       <option name="PASS_PARENT_ENVS" value="true" />
       <module name="" />
       <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugSession" factoryName="Local" singleton="true">
+      <JSDebuggerConfigurationSettings>
+        <option name="engineId" value="embedded" />
+        <option name="fileUrl" />
+      </JSDebuggerConfigurationSettings>
       <method />
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
@@ -816,16 +872,36 @@
     <option name="localTasksCounter" value="5" />
     <servers />
   </component>
+  <component name="TodoView" selected-index="0">
+    <todo-panel id="selected-file">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="default-changelist">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="false" />
+    </todo-panel>
+  </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32850778" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20597652" sideWeight="0.7667411" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32850778" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33991462" sideWeight="0.71651787" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2497332" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -833,19 +909,19 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33522728" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28348213" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32497332" sideWeight="0.87053573" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20971185" sideWeight="0.7667411" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23325893" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18623266" sideWeight="0.71651787" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35787672" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33522728" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -915,116 +991,188 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/UserCard.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/Classification.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="36" selection-start="348" selection-end="348" vertical-scroll-proportion="0.0">
+        <state line="19" column="42" selection-start="394" selection-end="442" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/WarriorCard.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/CoalitionRequest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="35" selection-start="335" selection-end="335" vertical-scroll-proportion="0.0">
+        <state line="22" column="44" selection-start="543" selection-end="543" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/Property.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="13" selection-start="269" selection-end="269" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/PropertyText.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="13" selection-start="329" selection-end="329" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/RacePicture.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="13" selection-start="271" selection-end="271" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/Auction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="0" selection-start="239" selection-end="272" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state line="18" column="38" selection-start="305" selection-end="364" vertical-scroll-proportion="0.0">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/Blazon.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="35" selection-start="355" selection-end="400" vertical-scroll-proportion="0.0">
+        <state line="13" column="13" selection-start="266" selection-end="266" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/Coalition.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="37" selection-start="598" selection-end="598" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/7da91b94/eb3a79d3-7fad-4ce1-99d4-c50d578e2b2b/ddhjdfvce86276.public.Notifications">
+      <provider editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.persistence.database.editor.DatabaseTableFileEditorProvider">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/MyGame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="38" selection-start="372" selection-end="419" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/Notification.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="39" selection-start="472" selection-end="472" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/Request.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="43" selection-start="376" selection-end="423" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://DATABASE/eb3a79d3-7fad-4ce1-99d4-c50d578e2b2b.schema:ddhjdfvce86276.public">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>DATABASE</ID>
+          <OriginalElement>eb3a79d3-7fad-4ce1-99d4-c50d578e2b2b.schema:ddhjdfvce86276.public</OriginalElement>
+          <nodes>
+            <node x="" y="">eb3a79d3-7fad-4ce1-99d4-c50d578e2b2b.table:ddhjdfvce86276.public.Experiences</node>
+            <node x="" y="">eb3a79d3-7fad-4ce1-99d4-c50d578e2b2b.table:ddhjdfvce86276.public.PropertyTexts_propertyTextId_seq</node>
+            <node x="" y="">eb3a79d3-7fad-4ce1-99d4-c50d578e2b2b.table:ddhjdfvce86276.public.RuSetTexts</node>
+            <node x="" y="">eb3a79d3-7fad-4ce1-99d4-c50d578e2b2b.table:ddhjdfvce86276.public.Properties_propertyId_seq</node>
+            <node x="" y="">eb3a79d3-7fad-4ce1-99d4-c50d578e2b2b.table:ddhjdfvce86276.public.Friendships_friendshipId_seq</node>
+            <node x="" y="">eb3a79d3-7fad-4ce1-99d4-c50d578e2b2b.table:ddhjdfvce86276.public.UserCards_userCardId_seq</node>
+            <node x="" y="">eb3a79d3-7fad-4ce1-99d4-c50d578e2b2b.table:ddhjdfvce86276.public.Blazons</node>
+            <node x="" y="">eb3a79d3-7fad-4ce1-99d4-c50d578e2b2b.table:ddhjdfvce86276.public.RacePictures</node>
+            <node x="" y="">eb3a79d3-7fad-4ce1-99d4-c50d578e2b2b.table:ddhjdfvce86276.public.MasterOfDeck</node>
+            <node x="" y="">eb3a79d3-7fad-4ce1-99d4-c50d578e2b2b.table:ddhjdfvce86276.public.RacePictures_racePictureId_seq</node>
+            <node x="" y="">eb3a79d3-7fad-4ce1-99d4-c50d578e2b2b.table:ddhjdfvce86276.public.CoalitionRequests</node>
+            <node x="" y="">eb3a79d3-7fad-4ce1-99d4-c50d578e2b2b.table:ddhjdfvce86276.public.Races</node>
+            <node x="" y="">eb3a79d3-7fad-4ce1-99d4-c50d578e2b2b.table:ddhjdfvce86276.public.EngPropertyTexts</node>
+            <node x="" y="">eb3a79d3-7fad-4ce1-99d4-c50d578e2b2b.table:ddhjdfvce86276.public.MyGames_myGameId_seq</node>
+            <node x="" y="">eb3a79d3-7fad-4ce1-99d4-c50d578e2b2b.table:ddhjdfvce86276.public.Decks_deckId_seq</node>
+            <node x="" y="">eb3a79d3-7fad-4ce1-99d4-c50d578e2b2b.table:ddhjdfvce86276.public.GameProfiles</node>
+            <node x="" y="">eb3a79d3-7fad-4ce1-99d4-c50d578e2b2b.table:ddhjdfvce86276.public.SetTexts_setTextId_seq</node>
+            <node x="" y="">eb3a79d3-7fad-4ce1-99d4-c50d578e2b2b.table:ddhjdfvce86276.public.SupportCards</node>
+            <node x="" y="">eb3a79d3-7fad-4ce1-99d4-c50d578e2b2b.table:ddhjdfvce86276.public.Cards_cardId_seq</node>
+            <node x="" y="">eb3a79d3-7fad-4ce1-99d4-c50d578e2b2b.table:ddhjdfvce86276.public.RuCardTexts</node>
+            <node x="" y="">eb3a79d3-7fad-4ce1-99d4-c50d578e2b2b.table:ddhjdfvce86276.public.Decks</node>
+            <node x="" y="">eb3a79d3-7fad-4ce1-99d4-c50d578e2b2b.table:ddhjdfvce86276.public.Classifications</node>
+            <node x="" y="">eb3a79d3-7fad-4ce1-99d4-c50d578e2b2b.table:ddhjdfvce86276.public.UserGamesPlayers_userGamesPlayerId_seq</node>
+            <node x="" y="">eb3a79d3-7fad-4ce1-99d4-c50d578e2b2b.table:ddhjdfvce86276.public.MasterOfDeck_mastersCard_seq</node>
+            <node x="" y="">eb3a79d3-7fad-4ce1-99d4-c50d578e2b2b.table:ddhjdfvce86276.public.UserGamesPlayers</node>
+            <node x="" y="">eb3a79d3-7fad-4ce1-99d4-c50d578e2b2b.table:ddhjdfvce86276.public.Auctions_auctionId_seq</node>
+            <node x="" y="">eb3a79d3-7fad-4ce1-99d4-c50d578e2b2b.table:ddhjdfvce86276.public.Sets_setId_seq</node>
+            <node x="" y="">eb3a79d3-7fad-4ce1-99d4-c50d578e2b2b.table:ddhjdfvce86276.public.Experiences_experienceId_seq</node>
+            <node x="" y="">eb3a79d3-7fad-4ce1-99d4-c50d578e2b2b.table:ddhjdfvce86276.public.UserCards</node>
+            <node x="" y="">eb3a79d3-7fad-4ce1-99d4-c50d578e2b2b.table:ddhjdfvce86276.public.Users_userId_seq</node>
+            <node x="" y="">eb3a79d3-7fad-4ce1-99d4-c50d578e2b2b.table:ddhjdfvce86276.public.GameProfiles_gameProfileId_seq</node>
+            <node x="" y="">eb3a79d3-7fad-4ce1-99d4-c50d578e2b2b.table:ddhjdfvce86276.public.Properties</node>
+            <node x="" y="">eb3a79d3-7fad-4ce1-99d4-c50d578e2b2b.table:ddhjdfvce86276.public.DecksCards</node>
+            <node x="" y="">eb3a79d3-7fad-4ce1-99d4-c50d578e2b2b.table:ddhjdfvce86276.public.EngCardTexts</node>
+            <node x="" y="">eb3a79d3-7fad-4ce1-99d4-c50d578e2b2b.table:ddhjdfvce86276.public.Auctions</node>
+            <node x="" y="">eb3a79d3-7fad-4ce1-99d4-c50d578e2b2b.table:ddhjdfvce86276.public.Races_raceId_seq</node>
+            <node x="" y="">eb3a79d3-7fad-4ce1-99d4-c50d578e2b2b.table:ddhjdfvce86276.public.Cards</node>
+            <node x="" y="">eb3a79d3-7fad-4ce1-99d4-c50d578e2b2b.table:ddhjdfvce86276.public.SetTexts</node>
+            <node x="" y="">eb3a79d3-7fad-4ce1-99d4-c50d578e2b2b.table:ddhjdfvce86276.public.Coalitions</node>
+            <node x="" y="">eb3a79d3-7fad-4ce1-99d4-c50d578e2b2b.table:ddhjdfvce86276.public.Messages</node>
+            <node x="" y="">eb3a79d3-7fad-4ce1-99d4-c50d578e2b2b.table:ddhjdfvce86276.public.Sets</node>
+            <node x="" y="">eb3a79d3-7fad-4ce1-99d4-c50d578e2b2b.table:ddhjdfvce86276.public.CardTexts</node>
+            <node x="" y="">eb3a79d3-7fad-4ce1-99d4-c50d578e2b2b.table:ddhjdfvce86276.public.Classifications_classId_seq</node>
+            <node x="" y="">eb3a79d3-7fad-4ce1-99d4-c50d578e2b2b.table:ddhjdfvce86276.public.PropertyTexts</node>
+            <node x="" y="">eb3a79d3-7fad-4ce1-99d4-c50d578e2b2b.table:ddhjdfvce86276.public.Friendships</node>
+            <node x="" y="">eb3a79d3-7fad-4ce1-99d4-c50d578e2b2b.table:ddhjdfvce86276.public.CoalitionRequests_coalitionRequestId_seq</node>
+            <node x="" y="">eb3a79d3-7fad-4ce1-99d4-c50d578e2b2b.table:ddhjdfvce86276.public.Requests_requestId_seq</node>
+            <node x="" y="">eb3a79d3-7fad-4ce1-99d4-c50d578e2b2b.table:ddhjdfvce86276.public.DecksCards_decksCardId_seq</node>
+            <node x="" y="">eb3a79d3-7fad-4ce1-99d4-c50d578e2b2b.table:ddhjdfvce86276.public.Notifications</node>
+            <node x="" y="">eb3a79d3-7fad-4ce1-99d4-c50d578e2b2b.table:ddhjdfvce86276.public.Users</node>
+            <node x="" y="">eb3a79d3-7fad-4ce1-99d4-c50d578e2b2b.table:ddhjdfvce86276.public.Messages_messageId_seq</node>
+            <node x="" y="">eb3a79d3-7fad-4ce1-99d4-c50d578e2b2b.table:ddhjdfvce86276.public.RuPropertyTexts</node>
+            <node x="" y="">eb3a79d3-7fad-4ce1-99d4-c50d578e2b2b.table:ddhjdfvce86276.public.WarriorCards</node>
+            <node x="" y="">eb3a79d3-7fad-4ce1-99d4-c50d578e2b2b.table:ddhjdfvce86276.public.Notifications_notificationId_seq</node>
+            <node x="" y="">eb3a79d3-7fad-4ce1-99d4-c50d578e2b2b.table:ddhjdfvce86276.public.EngSetTexts</node>
+            <node x="" y="">eb3a79d3-7fad-4ce1-99d4-c50d578e2b2b.table:ddhjdfvce86276.public.MyGames</node>
+            <node x="" y="">eb3a79d3-7fad-4ce1-99d4-c50d578e2b2b.table:ddhjdfvce86276.public.Requests</node>
+            <node x="" y="">eb3a79d3-7fad-4ce1-99d4-c50d578e2b2b.table:ddhjdfvce86276.public.Coalitions_coalitionId_seq</node>
+            <node x="" y="">eb3a79d3-7fad-4ce1-99d4-c50d578e2b2b.table:ddhjdfvce86276.public.CardTexts_cardTextId_seq</node>
+            <node x="" y="">eb3a79d3-7fad-4ce1-99d4-c50d578e2b2b.table:ddhjdfvce86276.public.Blazons_blazonId_seq</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="0.28758256274768823" x="1877.9044556729446" y="1423.5424896646762" />
+          <SelectedNodes />
+          <Categories>
+            <Category>Key columns</Category>
+            <Category>Columns</Category>
+          </Categories>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/UserGamesPlayer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="61" selection-start="562" selection-end="562" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/Card.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="40" selection-start="463" selection-end="510" vertical-scroll-proportion="0.0">
+        <state line="19" column="64" selection-start="453" selection-end="453" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/CardText.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/WarriorCard.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="44" selection-start="363" selection-end="414" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/EngPropertyText.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="13" selection-start="200" selection-end="200" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/EngSetText.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="13" selection-start="200" selection-end="200" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/Friendship.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="37" selection-start="283" selection-end="341" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/Deck.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="35" selection-start="348" selection-end="391" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/EngCardText.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="3" selection-start="186" selection-end="186" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/DeckCard.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="0" selection-start="216" selection-end="250" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/Experience.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="37" selection-start="282" selection-end="341" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/Classification.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="35" selection-start="378" selection-end="422" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/GameProfile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="31" selection-start="340" selection-end="340" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+        <state line="26" column="36" selection-start="1211" selection-end="1211" vertical-scroll-proportion="0.45714286">
           <folding />
         </state>
       </provider>

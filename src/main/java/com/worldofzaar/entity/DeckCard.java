@@ -10,21 +10,21 @@ import javax.persistence.*;
  * To change this template use File | Settings | File Templates.
  */
 @Entity
-@Table(name = "DeckCards")
+@Table(name = "\"DecksCards\"")
 public class DeckCard {
     @Id
     @GeneratedValue
-    @Column(name = "deckCardId")
-    Integer deckCardId;
+    @Column(name = "\"decksCardId\"")
+    private Integer deckCardId;
     @ManyToOne
-    @JoinColumn(name = "deckId")
-    Deck deck;
+    @JoinColumn(name = "\"deckId\"")
+    private Deck deck;
     @ManyToOne
-    @JoinColumn(name = "warriorCardId")
-    WarriorCard warriorCard;
+    @JoinColumn(name = "\"warriorCardId\"")
+    private WarriorCard warriorCard;
     @ManyToOne
-    @JoinColumn(name = "supportCardId")
-    SupportCard supportCard;
+    @JoinColumn(name = "\"supportCardId\"")
+    private SupportCard supportCard;
 
     public Integer getDeckCardId() {
         return deckCardId;

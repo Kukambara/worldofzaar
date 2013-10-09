@@ -5,17 +5,19 @@
     <session-factory>
 
         <property name="connection.url">
-            jdbc:postgresql://ec2-107-21-120-102.compute-1.amazonaws.com:5432/ddhjdfvce86276
+            jdbc:postgresql://ec2-107-21-120-102.compute-1.amazonaws.com:5432/d6n4s86haq5a1b
         </property>
         <property name="connection.driver_class">org.postgresql.Driver</property>
         <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
-        <property name="connection.username">vatvpiaptekdsp</property>
-        <property name="connection.password">yGbkCZWQ3ShZnlkrGBSKKl3iHK</property>
+        <property name="connection.username">mmwjveejsjtqks</property>
+        <property name="connection.password">27Nh6Ei374AgWG7PVnQejPoX5J</property>
         <property name="connection.pool_size">1</property>
         <property name="current_session_context_class">thread</property>
         <property name="show_sql">true</property>
-        <property name="hbm2ddl.auto">update</property>
-        <property name="hibernate.jdbc.use_get_generated_keys">false</property>
+
+        <property name="hibernate.connection.verifyServerCertificate">false</property>
+        <property name="hibernate.connection.requireSSL">true</property>
+        <property name="hibernate.connection.autoReconnect">true</property>
 
         <!--
         <mapping class="com.springapp.mvc.entity.Company"/>

@@ -11,34 +11,34 @@ import java.util.Date;
  * To change this template use File | Settings | File Templates.
  */
 @Entity
-@Table(name = "Auctions")
+@Table(name = "\"Auctions\"")
 public class Auction {
 
     @Id
     @GeneratedValue
-    @Column(name = "auctionId")
-    Integer auctionId;
+    @Column(name = "\"auctionId\"")
+    private Integer auctionId;
     @ManyToOne
-    @JoinColumn(name = "userId")
-    User user;
-    @Column(name = "startDateTime")
-    Date startDate;
-    @Column(name = "finishDateTime")
-    Date finishDate;
-    @Column(name = "price")
-    Integer price;
-    @Column(name = "donatePrice")
-    Integer donatePrice;
-    @Column(name = "LastPrice")
-    Integer lastPrice;
-    @Column(name = "lastDonatePrice")
-    Integer lastDonatePrice;
+    @JoinColumn(name = "\"userId\"")
+    private User user;
+    @Column(name = "\"startDateTime\"")
+    private Date startDate;
+    @Column(name = "\"finishDateTime\"")
+    private Date finishDate;
+    @Column(name = "\"price\"")
+    private Integer price;
+    @Column(name = "\"donatePrice\"")
+    private Integer donatePrice;
+    @Column(name = "\"lastPriceBet\"")
+    private Integer lastPrice;
+    @Column(name = "\"lastDonateBet\"")
+    private Integer lastDonatePrice;
     @ManyToOne
-    @JoinColumn(name = "lastUserId")
-    User lastUser;
+    @JoinColumn(name = "\"lastUserId\"")
+    private User lastUser;
     @ManyToOne
-    @JoinColumn(name = "userCardId")
-    UserCard userCard;
+    @JoinColumn(name = "\"userCardId\"")
+    private UserCard userCard;
 
     public Integer getAuctionId() {
         return auctionId;

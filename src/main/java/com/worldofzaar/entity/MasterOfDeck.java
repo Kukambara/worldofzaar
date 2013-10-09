@@ -1,5 +1,7 @@
 package com.worldofzaar.entity;
 
+import javax.persistence.*;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Дмитрий
@@ -7,14 +9,26 @@ package com.worldofzaar.entity;
  * Time: 18:01
  * To change this template use File | Settings | File Templates.
  */
+@Entity
+@Table(name = "\"MasterOfDeck\"")
 public class MasterOfDeck {
 
-    Integer mastersCardId;
-    Integer cardLevel;
-    WarriorCard warriorCard;
-    SupportCard supportCard;
-    Integer price;
-    Integer donatePrice;
+    @Id
+    @GeneratedValue
+    @Column(name = "\"mastersCard\"")
+    private Integer mastersCardId;
+    @Column(name = "\"cardLevel\"")
+    private Integer cardLevel;
+    @ManyToOne
+    @JoinColumn(name = "\"warriorCardId\"")
+    private WarriorCard warriorCard;
+    @ManyToOne
+    @JoinColumn(name = "\"supportCardId\"")
+    private SupportCard supportCard;
+    @Column(name = "\"price\"")
+    private Integer price;
+    @Column(name = "\"donatePrice\"")
+    private Integer donatePrice;
 
     public Integer getMastersCardId() {
         return mastersCardId;

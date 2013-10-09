@@ -10,16 +10,16 @@ import javax.persistence.*;
  * To change this template use File | Settings | File Templates.
  */
 @Entity
-@Table(name = "Experiences")
+@Table(name = "\"Experiences\"")
 public class Experience {
     @Id
     @GeneratedValue
-    @Column(name = "experienceId")
-    Integer experienceId;
-    @Column(name = "level")
-    Integer level;
-    @Column(name = "levelExperience")
-    Integer levelExperience;
+    @Column(name = "\"experienceId\"")
+    private Integer experienceId;
+    @Column(name = "\"level\"")
+    private Integer level;
+    @Column(name = "\"levelExperience\"")
+    private Integer levelExperience;
 
     public Integer getExperienceId() {
         return experienceId;

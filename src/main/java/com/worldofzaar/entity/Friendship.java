@@ -10,18 +10,18 @@ import javax.persistence.*;
  * To change this template use File | Settings | File Templates.
  */
 @Entity
-@Table(name = "Friendships")
+@Table(name = "\"Friendships\"")
 public class Friendship {
     @Id
     @GeneratedValue
-    @Column(name = "friendshipId")
-    Integer friendshipId;
+    @Column(name = "\"friendshipId\"")
+    private Integer friendshipId;
     @ManyToOne
-    @JoinColumn(name = "userId")
-    User user;
+    @JoinColumn(name = "\"userId\"")
+    private User user;
     @ManyToOne
-    @JoinColumn(name = "friendId")
-    User friendId;
+    @JoinColumn(name = "\"friendId\"")
+    private User friendId;
 
     public Integer getFriendshipId() {
         return friendshipId;

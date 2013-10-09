@@ -1,5 +1,7 @@
 package com.worldofzaar.entity;
 
+import javax.persistence.*;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Дмитрий
@@ -7,8 +9,13 @@ package com.worldofzaar.entity;
  * Time: 17:25
  * To change this template use File | Settings | File Templates.
  */
+@Entity
+@Table(name = "\"Properties\"")
 public class Property {
-    Integer propertyId;
+    @Id
+    @GeneratedValue
+    @Column(name = "\"propertyId\"")
+    private Integer propertyId;
 
     public Integer getPropertyId() {
         return propertyId;

@@ -10,22 +10,23 @@ import javax.persistence.*;
  * To change this template use File | Settings | File Templates.
  */
 @Entity
-@Table(name = "CardTexts")
+@Table(name = "\"CardTexts\"")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class CardText {
     @Id
     @GeneratedValue
-    @Column(name = "cardTextId")
-    Integer cardTextId;
+    @Column(name = "\"cardTextId\"")
+    private Integer cardTextId;
     @ManyToOne
-    @JoinColumn(name = "warriorCardId")
-    WarriorCard warriorCard;
+    @JoinColumn(name = "\"warriorCardId\"")
+    private WarriorCard warriorCard;
     @ManyToOne
-    @JoinColumn(name = "supportCardId")
-    SupportCard supportCard;
-    @Column(name = "cardName")
-    String cardName;
-    @Column(name = "cardSlogan")
-    String cardSlogan;
+    @JoinColumn(name = "\"supportCardId\"")
+    private SupportCard supportCard;
+    @Column(name = "\"cardName\"")
+    private String cardName;
+    @Column(name = "\"cardSlogan\"")
+    private String cardSlogan;
 
     public Integer getCardTextId() {
         return cardTextId;

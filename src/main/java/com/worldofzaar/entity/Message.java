@@ -1,5 +1,7 @@
 package com.worldofzaar.entity;
 
+import javax.persistence.*;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Дмитрий
@@ -7,12 +9,21 @@ package com.worldofzaar.entity;
  * Time: 17:18
  * To change this template use File | Settings | File Templates.
  */
-public class Messages {
-
-    Integer messageId;
-    User fromUser;
-    User toUser;
-    String messageText;
+@Entity
+@Table(name = "\"Messages\"")
+public class Message {
+    @Id
+    @GeneratedValue
+    @Column(name = "\"messageId\"")
+    private Integer messageId;
+    @ManyToOne
+    @JoinColumn(name = "\"fromUserId\"")
+    private User fromUser;
+    @ManyToOne
+    @JoinColumn(name = "\"toUserId\"")
+    private User toUser;
+    @Column(name = "\"messageText\"")
+    private String messageText;
 
     public Integer getMessageId() {
         return messageId;

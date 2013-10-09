@@ -10,17 +10,17 @@ import javax.persistence.*;
  * To change this template use File | Settings | File Templates.
  */
 @Entity
-@Table(name = "Decks")
+@Table(name = "\"Decks\"")
 public class Deck {
     @Id
     @GeneratedValue
-    @Column(name = "deckId")
-    Integer deckId;
+    @Column(name = "\"deckId\"")
+    private Integer deckId;
     @ManyToOne
-    @JoinColumn(name = "userId")
-    User user;
-    @Column(name = "deckName")
-    String deckName;
+    @JoinColumn(name = "\"userId\"")
+    private User user;
+    @Column(name = "\"deckName\"")
+    private String deckName;
 
     public Integer getDeckId() {
         return deckId;

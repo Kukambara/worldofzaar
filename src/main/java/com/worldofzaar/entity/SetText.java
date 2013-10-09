@@ -1,5 +1,7 @@
 package com.worldofzaar.entity;
 
+import javax.persistence.*;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Дмитрий
@@ -7,12 +9,21 @@ package com.worldofzaar.entity;
  * Time: 17:45
  * To change this template use File | Settings | File Templates.
  */
+@Entity
+@Table(name = "\"SetTexts\"")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class SetText {
-
-    Integer setTextId;
-    String setName;
-    String setInfo;
-    Set set;
+    @Id
+    @GeneratedValue
+    @Column(name = "\"setTextId\"")
+    private Integer setTextId;
+    @Column(name = "\"setName\"")
+    private String setName;
+    @Column(name = "\"setInfo\"")
+    private String setInfo;
+    @ManyToOne
+    @JoinColumn(name = "\"setId\"")
+    private Set set;
 
     public Integer getSetTextId() {
         return setTextId;
