@@ -2312,6 +2312,9 @@
       <column name="secondHeroId" sqlType="int4" length="10" precision="0" nullable="false" jdbcType="4"/>
       <column name="gameId" sqlType="int4" length="10" precision="0" nullable="false" jdbcType="4"/>
       <primary-key name="ActiveCoalitions_pkey" columns="coalitionId"/>
+      <foreign-key name="ActiveCoalitions_gameId_fkey" columns="gameId" ref-table="Games" ref-schema="public" ref-catalog="" ref-columns="gameId" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="ActiveCoalitions_firstHeroId_fkey" columns="firstHeroId" ref-table="Heroes" ref-schema="public" ref-catalog="" ref-columns="heroId" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="ActiveCoalitions_secondHeroId_fkey" columns="secondHeroId" ref-table="Heroes" ref-schema="public" ref-catalog="" ref-columns="heroId" update-rule="3" delete-rule="3" deferrability="2"/>
     </table>
     <table name="ActiveCoalitions_coalitionId_seq" schema="public" catalog="d6n4s86haq5a1b" type="SEQUENCE">
       <column name="sequence_name" sqlType="name" length="2147483647" precision="0" nullable="false" jdbcType="12"/>
@@ -2335,6 +2338,7 @@
       <column name="isHand" sqlType="bool" length="1" precision="0" nullable="false" jdbcType="-7"/>
       <column name="position" sqlType="int4" length="10" precision="0" nullable="false" jdbcType="4"/>
       <primary-key name="ActiveDecks_pkey" columns="activeDeckId"/>
+      <foreign-key name="ActiveDecks_heroId_fkey" columns="heroId" ref-table="Heroes" ref-schema="public" ref-catalog="" ref-columns="heroId" update-rule="3" delete-rule="3" deferrability="2"/>
     </table>
     <table name="ActiveDecks_activeDeckId_seq" schema="public" catalog="d6n4s86haq5a1b" type="SEQUENCE">
       <column name="sequence_name" sqlType="name" length="2147483647" precision="0" nullable="false" jdbcType="12"/>
@@ -2352,6 +2356,7 @@
       <column name="chatId" sqlType="serial" length="10" precision="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnIkNoYXRzX2NoYXRJZF9zZXEiJzo6cmVnY2xhc3Mp" autoIncrement="true"/>
       <column name="chatInfo" sqlType="text" length="2147483647" precision="0" nullable="false" jdbcType="12"/>
       <primary-key name="Chats_pkey" columns="chatId"/>
+      <exported-key name="Games_chatId_fkey" table="Games" schema="public" catalog="d6n4s86haq5a1b" columns="chatId"/>
     </table>
     <table name="Chats_chatId_seq" schema="public" catalog="d6n4s86haq5a1b" type="SEQUENCE">
       <column name="sequence_name" sqlType="name" length="2147483647" precision="0" nullable="false" jdbcType="12"/>
@@ -2377,6 +2382,13 @@
       <column name="logId" sqlType="int4" length="10" precision="0" nullable="false" jdbcType="4"/>
       <column name="phase" sqlType="Phase" length="2147483647" precision="0" nullable="false" jdbcType="1111"/>
       <primary-key name="Games_pkey" columns="gameId"/>
+      <foreign-key name="Games_chatId_fkey" columns="chatId" ref-table="Chats" ref-schema="public" ref-catalog="" ref-columns="chatId" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="Games_fourthHeroId_fkey" columns="fourthHeroId" ref-table="Heroes" ref-schema="public" ref-catalog="" ref-columns="heroId" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="Games_thirdHeroId_fkey" columns="thirdHeroId" ref-table="Heroes" ref-schema="public" ref-catalog="" ref-columns="heroId" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="Games_secondHeroId_fkey" columns="secondHeroId" ref-table="Heroes" ref-schema="public" ref-catalog="" ref-columns="heroId" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="Games_firstHeroId_fkey" columns="firstHeroId" ref-table="Heroes" ref-schema="public" ref-catalog="" ref-columns="heroId" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="Games_logId_fkey" columns="logId" ref-table="Logs" ref-schema="public" ref-catalog="" ref-columns="logId" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="ActiveCoalitions_gameId_fkey" table="ActiveCoalitions" schema="public" catalog="d6n4s86haq5a1b" columns="gameId"/>
     </table>
     <table name="Games_gameId_seq" schema="public" catalog="d6n4s86haq5a1b" type="SEQUENCE">
       <column name="sequence_name" sqlType="name" length="2147483647" precision="0" nullable="false" jdbcType="12"/>
@@ -2397,6 +2409,10 @@
       <column name="supportCardId" sqlType="int4" length="10" precision="0" nullable="true" jdbcType="4"/>
       <column name="thirdActiveCurrentCardId" sqlType="int4" length="10" precision="0" nullable="true" jdbcType="4"/>
       <primary-key name="HeroCards_pkey" columns="heroCardsId"/>
+      <foreign-key name="HeroCards_firstActiveCurrentCardId_fkey" columns="firstActiveCurrentCardId" ref-table="WarriorCurrentCards" ref-schema="public" ref-catalog="" ref-columns="warriorCurrentCardId" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="HeroCards_secondActiveCurrentCardId_fkey" columns="secondActiveCurrentCardId" ref-table="WarriorCurrentCards" ref-schema="public" ref-catalog="" ref-columns="warriorCurrentCardId" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="HeroCards_thirdActiveCurrentCardId_fkey" columns="thirdActiveCurrentCardId" ref-table="WarriorCurrentCards" ref-schema="public" ref-catalog="" ref-columns="warriorCurrentCardId" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="Heroes_heroCardId_fkey" table="Heroes" schema="public" catalog="d6n4s86haq5a1b" columns="heroCardId"/>
     </table>
     <table name="HeroCards_heroCardsId_seq" schema="public" catalog="d6n4s86haq5a1b" type="SEQUENCE">
       <column name="sequence_name" sqlType="name" length="2147483647" precision="0" nullable="false" jdbcType="12"/>
@@ -2421,6 +2437,15 @@
       <column name="negativeEffect" sqlType="int4" length="10" precision="0" nullable="false" jdbcType="4"/>
       <column name="isActive" sqlType="bool" length="1" precision="0" nullable="false" jdbcType="-7"/>
       <primary-key name="Heroes_pkey" columns="heroId"/>
+      <foreign-key name="Heroes_heroCardId_fkey" columns="heroCardId" ref-table="HeroCards" ref-schema="public" ref-catalog="" ref-columns="heroCardsId" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="ActiveCoalitions_firstHeroId_fkey" table="ActiveCoalitions" schema="public" catalog="d6n4s86haq5a1b" columns="firstHeroId"/>
+      <exported-key name="ActiveCoalitions_secondHeroId_fkey" table="ActiveCoalitions" schema="public" catalog="d6n4s86haq5a1b" columns="secondHeroId"/>
+      <exported-key name="ActiveDecks_heroId_fkey" table="ActiveDecks" schema="public" catalog="d6n4s86haq5a1b" columns="heroId"/>
+      <exported-key name="Games_firstHeroId_fkey" table="Games" schema="public" catalog="d6n4s86haq5a1b" columns="firstHeroId"/>
+      <exported-key name="Games_fourthHeroId_fkey" table="Games" schema="public" catalog="d6n4s86haq5a1b" columns="fourthHeroId"/>
+      <exported-key name="Games_thirdHeroId_fkey" table="Games" schema="public" catalog="d6n4s86haq5a1b" columns="thirdHeroId"/>
+      <exported-key name="Games_secondHeroId_fkey" table="Games" schema="public" catalog="d6n4s86haq5a1b" columns="secondHeroId"/>
+      <exported-key name="PropertiesStacks_heroId_fkey" table="PropertiesStacks" schema="public" catalog="d6n4s86haq5a1b" columns="heroId"/>
     </table>
     <table name="Heroes_heroId_seq" schema="public" catalog="d6n4s86haq5a1b" type="SEQUENCE">
       <column name="sequence_name" sqlType="name" length="2147483647" precision="0" nullable="false" jdbcType="12"/>
@@ -2438,6 +2463,7 @@
       <column name="logId" sqlType="serial" length="10" precision="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnIkxvZ3NfbG9nSWRfc2VxIic6OnJlZ2NsYXNzKQ==" autoIncrement="true"/>
       <column name="logInfo" sqlType="text" length="2147483647" precision="0" nullable="false" jdbcType="12"/>
       <primary-key name="Logs_pkey" columns="logId"/>
+      <exported-key name="Games_logId_fkey" table="Games" schema="public" catalog="d6n4s86haq5a1b" columns="logId"/>
     </table>
     <table name="Logs_logId_seq" schema="public" catalog="d6n4s86haq5a1b" type="SEQUENCE">
       <column name="sequence_name" sqlType="name" length="2147483647" precision="0" nullable="false" jdbcType="12"/>
@@ -2458,6 +2484,7 @@
       <column name="currentSystemString" sqlType="varchar" length="300" precision="0" nullable="false" jdbcType="12"/>
       <column name="stepCount" sqlType="int4" length="10" precision="0" nullable="false" jdbcType="4"/>
       <primary-key name="PropertiesStcks_pkey" columns="stackId"/>
+      <foreign-key name="PropertiesStacks_heroId_fkey" columns="heroId" ref-table="Heroes" ref-schema="public" ref-catalog="" ref-columns="heroId" update-rule="3" delete-rule="3" deferrability="2"/>
     </table>
     <table name="PropertiesStacks_stackId_seq" schema="public" catalog="d6n4s86haq5a1b" type="SEQUENCE">
       <column name="sequence_name" sqlType="name" length="2147483647" precision="0" nullable="false" jdbcType="12"/>
@@ -2479,6 +2506,9 @@
       <column name="currentAttack" sqlType="int4" length="10" precision="0" nullable="false" jdbcType="4"/>
       <column name="stepCount" sqlType="int4" length="10" precision="0" nullable="false" jdbcType="4"/>
       <primary-key name="WarriorCurrentCards_pkey" columns="warriorCurrentCardId"/>
+      <exported-key name="HeroCards_firstActiveCurrentCardId_fkey" table="HeroCards" schema="public" catalog="d6n4s86haq5a1b" columns="firstActiveCurrentCardId"/>
+      <exported-key name="HeroCards_secondActiveCurrentCardId_fkey" table="HeroCards" schema="public" catalog="d6n4s86haq5a1b" columns="secondActiveCurrentCardId"/>
+      <exported-key name="HeroCards_thirdActiveCurrentCardId_fkey" table="HeroCards" schema="public" catalog="d6n4s86haq5a1b" columns="thirdActiveCurrentCardId"/>
     </table>
     <table name="WarriorCurrentCards_warriorCurrentCardId_seq" schema="public" catalog="d6n4s86haq5a1b" type="SEQUENCE">
       <column name="sequence_name" sqlType="name" length="2147483647" precision="0" nullable="false" jdbcType="12"/>
