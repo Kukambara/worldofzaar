@@ -23,7 +23,7 @@ public class Hero {
     private Integer userId;
     @ManyToOne
     @JoinColumn(name = "\"heroCardId\"")
-    private HeroCards heroCards;
+    private HeroCard heroCard;
     @Column(name = "\"health\"")
     private Integer health;
     @Column(name = "\"energy\"")
@@ -61,12 +61,12 @@ public class Hero {
         this.user = user;
     }
 
-    public HeroCards getHeroCards() {
-        return heroCards;
+    public HeroCard getHeroCard() {
+        return heroCard;
     }
 
-    public void setHeroCards(HeroCards heroCards) {
-        this.heroCards = heroCards;
+    public void setHeroCard(HeroCard heroCard) {
+        this.heroCard = heroCard;
     }
 
     public Integer getHealth() {
