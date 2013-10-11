@@ -1,24 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0a35e82e-2d66-46cd-b401-9176992e8335" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/worldofzaar/dao/NotificationDao.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/worldofzaar/dao/PropertyDao.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/worldofzaar/dao/PropertyStackDao.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/worldofzaar/dao/RaceDao.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/worldofzaar/dao/RacePictureDao.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/worldofzaar/dao/RequestDao.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/worldofzaar/dao/RuCardTextDao.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/worldofzaar/dao/RuPropertyTextDao.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/worldofzaar/dao/RuSetTextDao.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/worldofzaar/dao/SetDao.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/worldofzaar/dao/SetTextDao.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/worldofzaar/dao/SupportCardDao.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/worldofzaar/dao/UserCardDao.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/worldofzaar/dao/UserDao.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/worldofzaar/dao/UserGamesPlayerDao.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/worldofzaar/dao/WarriorCardDao.java" />
-    </list>
+    <list default="true" id="0a35e82e-2d66-46cd-b401-9176992e8335" name="Default" comment="" />
     <ignored path="WorldOfZaar.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/" />
