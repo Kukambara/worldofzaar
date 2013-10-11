@@ -24,7 +24,7 @@
         <mapping class="com.worldofzaar.entity.ActiveDeck"/>
         <mapping class="com.worldofzaar.entity.Chat"/>
         <mapping class="com.worldofzaar.entity.Game"/>
-        <mapping class="com.worldofzaar.entity.HeroCards"/>
+        <mapping class="com.worldofzaar.entity.HeroCard"/>
         <mapping class="com.worldofzaar.entity.Hero"/>
         <mapping class="com.worldofzaar.entity.Log"/>
         <mapping class="com.worldofzaar.entity.PropertyStack"/>
