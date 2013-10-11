@@ -19,18 +19,17 @@
         <property name="hibernate.connection.requireSSL">true</property>
         <property name="hibernate.connection.autoReconnect">true</property>
 
-        <!--
-        <mapping class="com.springapp.mvc.entity.Company"/>
-        <mapping class="com.springapp.mvc.entity.Discount"/>
-        <mapping class="com.springapp.mvc.entity.DiscountHistory"/>
-        <mapping class="com.springapp.mvc.entity.DiscountType"/>
-        <mapping class="com.springapp.mvc.entity.News"/>
-        <mapping class="com.springapp.mvc.entity.Office"/>
-        <mapping class="com.springapp.mvc.entity.Student"/>
-        <mapping class="com.springapp.mvc.entity.Worker"/>
-        <mapping class="com.springapp.mvc.entity.Owner"/>
-        <mapping class="com.springapp.mvc.entity.Good"/>
-        -->
+
+        <mapping class="com.worldofzaar.entity.ActiveCoalition"/>
+        <mapping class="com.worldofzaar.entity.ActiveDeck"/>
+        <mapping class="com.worldofzaar.entity.Chat"/>
+        <mapping class="com.worldofzaar.entity.Game"/>
+        <mapping class="com.worldofzaar.entity.HeroCards"/>
+        <mapping class="com.worldofzaar.entity.Hero"/>
+        <mapping class="com.worldofzaar.entity.Log"/>
+        <mapping class="com.worldofzaar.entity.PropertyStack"/>
+        <mapping class="com.worldofzaar.entity.ActiveWarriorCard"/>
+
 
     </session-factory>
 </hibernate-configuration>

@@ -21376,6 +21376,7 @@
       <column name="fromUserId" sqlType="int4" length="10" precision="0" nullable="false" jdbcType="4"/>
       <column name="toUserId" sqlType="int4" length="10" precision="0" nullable="false" jdbcType="4"/>
       <column name="messageText" sqlType="text" length="2147483647" precision="0" nullable="false" jdbcType="12"/>
+      <column name="isRead" sqlType="bool" length="1" precision="0" nullable="false" jdbcType="-7" def="ZmFsc2U="/>
       <primary-key name="Messages_pkey" columns="messageId"/>
       <foreign-key name="Messages_fromUserId_fkey" columns="fromUserId" ref-table="Users" ref-schema="public" ref-catalog="" ref-columns="userId" update-rule="3" delete-rule="3" deferrability="2"/>
       <foreign-key name="Messages_fromUserId_fkey1" columns="fromUserId" ref-table="Users" ref-schema="public" ref-catalog="" ref-columns="userId" update-rule="3" delete-rule="3" deferrability="2"/>
@@ -21700,11 +21701,11 @@
       <exported-key name="Coalitions_secondPlayerId_fkey" table="Coalitions" schema="public" catalog="ddhjdfvce86276" columns="secondPlayerId"/>
       <exported-key name="Coalitions_firstPlayerId_fkey" table="Coalitions" schema="public" catalog="ddhjdfvce86276" columns="firstPlayerId"/>
       <exported-key name="Decks_userId_fkey" table="Decks" schema="public" catalog="ddhjdfvce86276" columns="userId"/>
-      <exported-key name="Friendships_userId_fkey" table="Friendships" schema="public" catalog="ddhjdfvce86276" columns="userId"/>
       <exported-key name="Friendships_friendId_fkey" table="Friendships" schema="public" catalog="ddhjdfvce86276" columns="friendId"/>
+      <exported-key name="Friendships_userId_fkey" table="Friendships" schema="public" catalog="ddhjdfvce86276" columns="userId"/>
+      <exported-key name="Messages_fromUserId_fkey" table="Messages" schema="public" catalog="ddhjdfvce86276" columns="fromUserId"/>
       <exported-key name="Messages_toUserId_fkey" table="Messages" schema="public" catalog="ddhjdfvce86276" columns="toUserId"/>
       <exported-key name="Messages_fromUserId_fkey1" table="Messages" schema="public" catalog="ddhjdfvce86276" columns="fromUserId"/>
-      <exported-key name="Messages_fromUserId_fkey" table="Messages" schema="public" catalog="ddhjdfvce86276" columns="fromUserId"/>
       <exported-key name="MyGames_userId_fkey" table="MyGames" schema="public" catalog="ddhjdfvce86276" columns="userId"/>
       <exported-key name="Notifications_userId_fkey" table="Notifications" schema="public" catalog="ddhjdfvce86276" columns="userId"/>
       <exported-key name="Requests_userId_fkey" table="Requests" schema="public" catalog="ddhjdfvce86276" columns="userId"/>

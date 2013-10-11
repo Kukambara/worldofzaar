@@ -24,6 +24,8 @@ public class Message {
     private User toUser;
     @Column(name = "\"messageText\"")
     private String messageText;
+    @Column(name = "\"isRead\"")
+    private Boolean isRead;
 
     public Integer getMessageId() {
         return messageId;
@@ -55,5 +57,13 @@ public class Message {
 
     public void setMessageText(String messageText) {
         this.messageText = messageText;
+    }
+
+    public Boolean getRead() {
+        return isRead;
+    }
+
+    public void setRead(Boolean read) {
+        isRead = read;
     }
 }
