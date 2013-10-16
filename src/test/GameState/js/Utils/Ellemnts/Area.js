@@ -2,6 +2,7 @@ function Area(beginPoint, width, height) {
 	this.beginPoint = beginPoint;
 	this.width = width;
 	this.height = height;
+	var isBorder = false;
 
 	var TO_RADIANS = Math.PI / 180;
 
@@ -16,8 +17,11 @@ function Area(beginPoint, width, height) {
 		context.translate(this.x, this.y);
 		context.drawImage(image, 0, 0, this.width, this.height);
 		context.restore();*/
-
 		context.drawImage(image, this.beginPoint.x, this.beginPoint.y, this.width, this.height);
+		if(isBorder){
+			context.rect(this.beginPoint.x, this.beginPoint.y, this.width, this.height);
+			context.stroke();
+		}
 	}
 
 	this.DrawRotateBegin = function(context, rotate){
@@ -83,5 +87,20 @@ function Area(beginPoint, width, height) {
 	}
 	this.GetHorisontalPositionAfterThis = function () {
 		return new Point(this.beginPoint.x, this.beginPoint.y + this.height);
+	}
+
+	this.IsPointInArea = function (/*Point*/point) {
+		var res1 = point.x > this.beginPoint.x;
+		var res2 = point.x < this.beginPoint.x + this.width;
+		var res3 = point.y > this.beginPoint.y;
+		var res4 = point.y < this.beginPoint.y + this.height;
+		return res1 && res2 && res3 && res4;
+	}
+
+	this.OnClick = function (/*POint*/ eventPoint) {
+		if (this.IsPointInArea(eventPoint)) {
+			isBorder = !isBorder;
+			//alert("Do something");
+		}
 	}
 }
