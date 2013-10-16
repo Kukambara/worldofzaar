@@ -5,7 +5,7 @@
     <session-factory>
 
         <property name="connection.url">
-            jdbc:postgresql://ec2-107-21-120-102.compute-1.amazonaws.com:5432/ddhjdfvce86276
+            jdbc:postgresql://ec2-107-21-120-102.compute-1.amazonaws.com:5432/ddhjdfvce86276?useSSL=true
         </property>
         <property name="connection.driver_class">org.postgresql.Driver</property>
         <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
@@ -14,21 +14,51 @@
         <property name="connection.pool_size">1</property>
         <property name="current_session_context_class">thread</property>
         <property name="show_sql">true</property>
-        <property name="hbm2ddl.auto">update</property>
-        <property name="hibernate.jdbc.use_get_generated_keys">false</property>
+
+        <property name="hibernate.connection.verifyServerCertificate">false</property>
+        <property name="hibernate.connection.requireSSL">true</property>
+        <property name="hibernate.connection.autoReconnect">true</property>
 
         <!--
-        <mapping class="com.springapp.mvc.entities.Company"/>
-        <mapping class="com.springapp.mvc.entities.Discount"/>
-        <mapping class="com.springapp.mvc.entities.DiscountHistory"/>
-        <mapping class="com.springapp.mvc.entities.DiscountType"/>
-        <mapping class="com.springapp.mvc.entities.News"/>
-        <mapping class="com.springapp.mvc.entities.Office"/>
-        <mapping class="com.springapp.mvc.entities.Student"/>
-        <mapping class="com.springapp.mvc.entities.Worker"/>
-        <mapping class="com.springapp.mvc.entities.Owner"/>
-        <mapping class="com.springapp.mvc.entities.Good"/>
-        -->
+         <property name="hbm2ddl.auto">update</property>
+         <property name="hibernate.jdbc.use_get_generated_keys">false</property>
+         -->
+        <mapping class="com.worldofzaar.entity.Auction"/>
+        <mapping class="com.worldofzaar.entity.Blazon"/>
+        <mapping class="com.worldofzaar.entity.Card"/>
+        <mapping class="com.worldofzaar.entity.CardText"/>
+        <mapping class="com.worldofzaar.entity.Classification"/>
+        <mapping class="com.worldofzaar.entity.Deck"/>
+        <mapping class="com.worldofzaar.entity.DeckCard"/>
+        <mapping class="com.worldofzaar.entity.EngCardText"/>
+        <mapping class="com.worldofzaar.entity.EngPropertyText"/>
+        <mapping class="com.worldofzaar.entity.EngSetText"/>
+        <mapping class="com.worldofzaar.entity.Experience"/>
+        <mapping class="com.worldofzaar.entity.Friendship"/>
+        <mapping class="com.worldofzaar.entity.GameProfile"/>
+        <mapping class="com.worldofzaar.entity.MasterOfDeck"/>
+        <mapping class="com.worldofzaar.entity.Message"/>
+        <mapping class="com.worldofzaar.entity.Property"/>
+        <mapping class="com.worldofzaar.entity.PropertyText"/>
+        <mapping class="com.worldofzaar.entity.RacePicture"/>
+        <mapping class="com.worldofzaar.entity.Race"/>
+        <mapping class="com.worldofzaar.entity.RuCardText"/>
+        <mapping class="com.worldofzaar.entity.RuPropertyText"/>
+        <mapping class="com.worldofzaar.entity.RuSetText"/>
+        <mapping class="com.worldofzaar.entity.Set"/>
+        <mapping class="com.worldofzaar.entity.SetText"/>
+        <mapping class="com.worldofzaar.entity.SupportCard"/>
+        <mapping class="com.worldofzaar.entity.UserCard"/>
+        <mapping class="com.worldofzaar.entity.User"/>
+        <mapping class="com.worldofzaar.entity.WarriorCard"/>
+        <mapping class="com.worldofzaar.entity.Coalition"/>
+        <mapping class="com.worldofzaar.entity.CoalitionRequest"/>
+        <mapping class="com.worldofzaar.entity.MyGame"/>
+        <mapping class="com.worldofzaar.entity.Notification"/>
+        <mapping class="com.worldofzaar.entity.Request"/>
+        <mapping class="com.worldofzaar.entity.UserGamesPlayer"/>
+
+
 
     </session-factory>
 </hibernate-configuration>
