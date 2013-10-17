@@ -21034,6 +21034,25 @@
       <column name="viewowner" sqlType="name" length="2147483647" precision="0" nullable="true" jdbcType="12"/>
       <column name="definition" sqlType="text" length="2147483647" precision="0" nullable="true" jdbcType="12"/>
     </table>
+    <table name="Admins" schema="public" catalog="ddhjdfvce86276" type="TABLE">
+      <column name="adminId" sqlType="serial" length="10" precision="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnIkFkbWluc19hZG1pbklkX3NlcSInOjpyZWdjbGFzcyk=" autoIncrement="true"/>
+      <column name="webUserId" sqlType="int4" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="isApproved" sqlType="bool" length="1" precision="0" nullable="false" jdbcType="-7" def="ZmFsc2U="/>
+      <primary-key name="Admins_pkey" columns="adminId"/>
+      <foreign-key name="Admins_webUserId_fkey" columns="webUserId" ref-table="WebUsers" ref-schema="public" ref-catalog="" ref-columns="webUserId" update-rule="3" delete-rule="3" deferrability="2"/>
+    </table>
+    <table name="Admins_adminId_seq" schema="public" catalog="ddhjdfvce86276" type="SEQUENCE">
+      <column name="sequence_name" sqlType="name" length="2147483647" precision="0" nullable="false" jdbcType="12"/>
+      <column name="last_value" sqlType="int8" length="19" precision="0" nullable="false" jdbcType="-5"/>
+      <column name="start_value" sqlType="int8" length="19" precision="0" nullable="false" jdbcType="-5"/>
+      <column name="increment_by" sqlType="int8" length="19" precision="0" nullable="false" jdbcType="-5"/>
+      <column name="max_value" sqlType="int8" length="19" precision="0" nullable="false" jdbcType="-5"/>
+      <column name="min_value" sqlType="int8" length="19" precision="0" nullable="false" jdbcType="-5"/>
+      <column name="cache_value" sqlType="int8" length="19" precision="0" nullable="false" jdbcType="-5"/>
+      <column name="log_cnt" sqlType="int8" length="19" precision="0" nullable="false" jdbcType="-5"/>
+      <column name="is_cycled" sqlType="bool" length="1" precision="0" nullable="false" jdbcType="-7"/>
+      <column name="is_called" sqlType="bool" length="1" precision="0" nullable="false" jdbcType="-7"/>
+    </table>
     <table name="Auctions" schema="public" catalog="ddhjdfvce86276" type="TABLE">
       <column name="auctionId" sqlType="serial" length="10" precision="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnIkF1Y3Rpb25zX2F1Y3Rpb25JZF9zZXEiJzo6cmVnY2xhc3Mp" autoIncrement="true"/>
       <column name="userId" sqlType="int4" length="10" precision="0" nullable="false" jdbcType="4"/>
@@ -21067,6 +21086,7 @@
       <column name="blazonId" sqlType="serial" length="10" precision="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnIkJsYXpvbnNfYmxhem9uSWRfc2VxIic6OnJlZ2NsYXNzKQ==" autoIncrement="true"/>
       <column name="classId" sqlType="int4" length="10" precision="0" nullable="false" jdbcType="4"/>
       <column name="blazonPath" sqlType="varchar" length="300" precision="0" nullable="false" jdbcType="12"/>
+      <column name="clothId" sqlType="int4" length="10" precision="0" nullable="false" jdbcType="4"/>
       <primary-key name="Blazons_pkey" columns="blazonId"/>
       <foreign-key name="Blazons_classId_fkey" columns="classId" ref-table="Classifications" ref-schema="public" ref-catalog="" ref-columns="classId" update-rule="3" delete-rule="3" deferrability="2"/>
       <exported-key name="GameProfiles_blazonId_fkey" table="GameProfiles" schema="public" catalog="ddhjdfvce86276" columns="blazonId"/>
@@ -21152,6 +21172,23 @@
       <index name="unique_classId" unique="true" columns="&quot;classId&quot;"/>
     </table>
     <table name="Classifications_classId_seq" schema="public" catalog="ddhjdfvce86276" type="SEQUENCE">
+      <column name="sequence_name" sqlType="name" length="2147483647" precision="0" nullable="false" jdbcType="12"/>
+      <column name="last_value" sqlType="int8" length="19" precision="0" nullable="false" jdbcType="-5"/>
+      <column name="start_value" sqlType="int8" length="19" precision="0" nullable="false" jdbcType="-5"/>
+      <column name="increment_by" sqlType="int8" length="19" precision="0" nullable="false" jdbcType="-5"/>
+      <column name="max_value" sqlType="int8" length="19" precision="0" nullable="false" jdbcType="-5"/>
+      <column name="min_value" sqlType="int8" length="19" precision="0" nullable="false" jdbcType="-5"/>
+      <column name="cache_value" sqlType="int8" length="19" precision="0" nullable="false" jdbcType="-5"/>
+      <column name="log_cnt" sqlType="int8" length="19" precision="0" nullable="false" jdbcType="-5"/>
+      <column name="is_cycled" sqlType="bool" length="1" precision="0" nullable="false" jdbcType="-7"/>
+      <column name="is_called" sqlType="bool" length="1" precision="0" nullable="false" jdbcType="-7"/>
+    </table>
+    <table name="Clothes" schema="public" catalog="ddhjdfvce86276" type="TABLE">
+      <column name="clothId" sqlType="serial" length="10" precision="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnIkNsb3RoZXNfY2xvdGhJZF9zZXEiJzo6cmVnY2xhc3Mp" autoIncrement="true"/>
+      <column name="clothPath" sqlType="varchar" length="300" precision="0" nullable="false" jdbcType="12"/>
+      <primary-key name="Clothes_pkey" columns="clothId"/>
+    </table>
+    <table name="Clothes_clothId_seq" schema="public" catalog="ddhjdfvce86276" type="SEQUENCE">
       <column name="sequence_name" sqlType="name" length="2147483647" precision="0" nullable="false" jdbcType="12"/>
       <column name="last_value" sqlType="int8" length="19" precision="0" nullable="false" jdbcType="-5"/>
       <column name="start_value" sqlType="int8" length="19" precision="0" nullable="false" jdbcType="-5"/>
@@ -21595,6 +21632,7 @@
     <table name="Sets" schema="public" catalog="ddhjdfvce86276" type="TABLE">
       <column name="setId" sqlType="serial" length="10" precision="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnIlNldHNfc2V0SWRfc2VxIic6OnJlZ2NsYXNzKQ==" autoIncrement="true"/>
       <column name="date" sqlType="date" length="13" precision="0" nullable="false" jdbcType="91"/>
+      <column name="frontPath" sqlType="varchar" length="300" precision="0" nullable="false" jdbcType="12"/>
       <primary-key name="Sets_pkey" columns="setId"/>
       <exported-key name="Cards_setId_fkey" table="Cards" schema="public" catalog="ddhjdfvce86276" columns="setId"/>
       <exported-key name="EngSetTexts_setId_fkey" table="EngSetTexts" schema="public" catalog="ddhjdfvce86276" columns="setId"/>
@@ -21690,9 +21728,6 @@
     <table name="Users" schema="public" catalog="ddhjdfvce86276" type="TABLE">
       <column name="userId" sqlType="serial" length="10" precision="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnIlVzZXJzX3VzZXJJZF9zZXEiJzo6cmVnY2xhc3Mp" autoIncrement="true"/>
       <column name="userName" sqlType="varchar" length="20" precision="0" nullable="false" jdbcType="12"/>
-      <column name="userLogin" sqlType="varchar" length="20" precision="0" nullable="true" jdbcType="12"/>
-      <column name="userEmail" sqlType="varchar" length="30" precision="0" nullable="true" jdbcType="12"/>
-      <column name="userPassword" sqlType="varchar" length="20" precision="0" nullable="true" jdbcType="12"/>
       <column name="gameProfileId" sqlType="int4" length="10" precision="0" nullable="false" jdbcType="4"/>
       <primary-key name="Users_pkey" columns="userId"/>
       <foreign-key name="Users_gameProfileId_fkey" columns="gameProfileId" ref-table="GameProfiles" ref-schema="public" ref-catalog="" ref-columns="gameProfileId" update-rule="3" delete-rule="3" deferrability="2"/>
@@ -21704,14 +21739,15 @@
       <exported-key name="Friendships_friendId_fkey" table="Friendships" schema="public" catalog="ddhjdfvce86276" columns="friendId"/>
       <exported-key name="Friendships_userId_fkey" table="Friendships" schema="public" catalog="ddhjdfvce86276" columns="userId"/>
       <exported-key name="Messages_fromUserId_fkey" table="Messages" schema="public" catalog="ddhjdfvce86276" columns="fromUserId"/>
-      <exported-key name="Messages_toUserId_fkey" table="Messages" schema="public" catalog="ddhjdfvce86276" columns="toUserId"/>
       <exported-key name="Messages_fromUserId_fkey1" table="Messages" schema="public" catalog="ddhjdfvce86276" columns="fromUserId"/>
+      <exported-key name="Messages_toUserId_fkey" table="Messages" schema="public" catalog="ddhjdfvce86276" columns="toUserId"/>
       <exported-key name="MyGames_userId_fkey" table="MyGames" schema="public" catalog="ddhjdfvce86276" columns="userId"/>
       <exported-key name="Notifications_userId_fkey" table="Notifications" schema="public" catalog="ddhjdfvce86276" columns="userId"/>
       <exported-key name="Requests_userId_fkey" table="Requests" schema="public" catalog="ddhjdfvce86276" columns="userId"/>
       <exported-key name="UserCards_userId_fkey" table="UserCards" schema="public" catalog="ddhjdfvce86276" columns="userId"/>
       <exported-key name="UserCards_userId_fkey1" table="UserCards" schema="public" catalog="ddhjdfvce86276" columns="userId"/>
       <exported-key name="UserGamesPlayers_userId_fkey" table="UserGamesPlayers" schema="public" catalog="ddhjdfvce86276" columns="userId"/>
+      <exported-key name="WebUsers_userId_fkey" table="WebUsers" schema="public" catalog="ddhjdfvce86276" columns="userId"/>
       <index name="unique_userId" unique="true" columns="&quot;userId&quot;"/>
     </table>
     <table name="Users_userId_seq" schema="public" catalog="ddhjdfvce86276" type="SEQUENCE">
@@ -21752,6 +21788,28 @@
       <exported-key name="RuCardTexts_warriorCardId_fkey" table="RuCardTexts" schema="public" catalog="ddhjdfvce86276" columns="warriorCardId"/>
       <exported-key name="UserCards_warriorCardId_fkey" table="UserCards" schema="public" catalog="ddhjdfvce86276" columns="warriorCardId"/>
       <index name="unique_WarrCardId" unique="true" columns="&quot;cardId&quot;"/>
+    </table>
+    <table name="WebUsers" schema="public" catalog="ddhjdfvce86276" type="TABLE">
+      <column name="webUserId" sqlType="serial" length="10" precision="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnIldlYlVzZXJzX3dlYlVzZXJJZF9zZXEiJzo6cmVnY2xhc3Mp" autoIncrement="true"/>
+      <column name="webUserEmail" sqlType="varchar" length="50" precision="0" nullable="false" jdbcType="12"/>
+      <column name="isApproved" sqlType="bool" length="1" precision="0" nullable="false" jdbcType="-7" def="ZmFsc2U="/>
+      <column name="userId" sqlType="int4" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="webUserPass" sqlType="varchar" length="25" precision="0" nullable="false" jdbcType="12"/>
+      <primary-key name="WebUsers_pkey" columns="webUserId"/>
+      <foreign-key name="WebUsers_userId_fkey" columns="userId" ref-table="Users" ref-schema="public" ref-catalog="" ref-columns="userId" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="Admins_webUserId_fkey" table="Admins" schema="public" catalog="ddhjdfvce86276" columns="webUserId"/>
+    </table>
+    <table name="WebUsers_webUserId_seq" schema="public" catalog="ddhjdfvce86276" type="SEQUENCE">
+      <column name="sequence_name" sqlType="name" length="2147483647" precision="0" nullable="false" jdbcType="12"/>
+      <column name="last_value" sqlType="int8" length="19" precision="0" nullable="false" jdbcType="-5"/>
+      <column name="start_value" sqlType="int8" length="19" precision="0" nullable="false" jdbcType="-5"/>
+      <column name="increment_by" sqlType="int8" length="19" precision="0" nullable="false" jdbcType="-5"/>
+      <column name="max_value" sqlType="int8" length="19" precision="0" nullable="false" jdbcType="-5"/>
+      <column name="min_value" sqlType="int8" length="19" precision="0" nullable="false" jdbcType="-5"/>
+      <column name="cache_value" sqlType="int8" length="19" precision="0" nullable="false" jdbcType="-5"/>
+      <column name="log_cnt" sqlType="int8" length="19" precision="0" nullable="false" jdbcType="-5"/>
+      <column name="is_cycled" sqlType="bool" length="1" precision="0" nullable="false" jdbcType="-7"/>
+      <column name="is_called" sqlType="bool" length="1" precision="0" nullable="false" jdbcType="-7"/>
     </table>
     <procedure name="_pg_char_max_length" schema="information_schema" catalog="ddhjdfvce86276" type="2">
       <prototype return="true">

@@ -14,9 +14,12 @@ import java.util.Date;
 @Table(name = "\"Sets\"")
 public class Set {
     @Id
-    @GeneratedValue
+    @SequenceGenerator(name = "set_seq", sequenceName = "\"Sets_setId_seq\"", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "set_seq")
     @Column(name = "\"setId\"")
     private Integer setId;
+    @Column(name = "\"frontPath\"")
+    private String frontPath;
     @Column(name = "\"date\"")
     private Date date;
 
@@ -26,6 +29,14 @@ public class Set {
 
     public void setSetId(Integer setId) {
         this.setId = setId;
+    }
+
+    public String getFrontPath() {
+        return frontPath;
+    }
+
+    public void setFrontPath(String frontPath) {
+        this.frontPath = frontPath;
     }
 
     public Date getDate() {

@@ -15,7 +15,8 @@ import java.util.Date;
 public class Auction {
 
     @Id
-    @GeneratedValue
+    @SequenceGenerator(name = "auction_seq", sequenceName = "\"Auctions_auctionId_seq\"", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "auction_seq")
     @Column(name = "\"auctionId\"")
     private Integer auctionId;
     @ManyToOne

@@ -18,4 +18,20 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/admin/**"/>
+            <bean
+                    class="com.worldofzaar.interceptors.AdminInterceptor"/>
+        </mvc:interceptor>
+
+        <mvc:interceptor>
+            <mvc:mapping path="/game/**"/>
+            <mvc:mapping path="/profile/**"/>
+
+            <bean
+                    class="com.worldofzaar.interceptors.UserInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
 </beans>

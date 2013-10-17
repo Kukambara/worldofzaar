@@ -13,7 +13,8 @@ import javax.persistence.*;
 @Table(name = "\"Blazons\"")
 public class Blazon {
     @Id
-    @GeneratedValue
+    @SequenceGenerator(name = "blazon_seq", sequenceName = "\"Blazons_blazonId_seq\"", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "blazon_seq")
     @Column(name = "\"blazonId\"")
     private Integer blazonId;
     @ManyToOne
@@ -21,6 +22,17 @@ public class Blazon {
     private Classification classification;
     @Column(name = "\"blazonPath\"")
     private String blazonPath;
+    @ManyToOne
+    @JoinColumn(name = "\"clothId\"")
+    private Cloth cloth;
+
+    public Cloth getCloth() {
+        return cloth;
+    }
+
+    public void setCloth(Cloth cloth) {
+        this.cloth = cloth;
+    }
 
     public Integer getBlazonId() {
         return blazonId;

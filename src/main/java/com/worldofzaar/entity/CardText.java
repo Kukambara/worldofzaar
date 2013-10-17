@@ -14,7 +14,8 @@ import javax.persistence.*;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class CardText {
     @Id
-    @GeneratedValue
+    @SequenceGenerator(name = "cardText_seq", sequenceName = "\"CardTexts_cardTextId_seq\"", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cardText_seq")
     @Column(name = "\"cardTextId\"")
     private Integer cardTextId;
     @ManyToOne
