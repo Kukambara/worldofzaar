@@ -2,17 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0a35e82e-2d66-46cd-b401-9176992e8335" name="Default" comment="">
-      <change type="DELETED" beforePath="C:\Users\Дмитрий\workspace\WorldOfZaar\.idea\libraries\Maven__org_springframework_spring_aop_3_2_0_RELEASE.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Дмитрий\workspace\WorldOfZaar\.idea\libraries\Maven__org_springframework_spring_beans_3_2_0_RELEASE.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Дмитрий\workspace\WorldOfZaar\.idea\libraries\Maven__org_springframework_spring_context_3_2_0_RELEASE.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Дмитрий\workspace\WorldOfZaar\.idea\libraries\Maven__org_springframework_spring_core_3_2_0_RELEASE.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Дмитрий\workspace\WorldOfZaar\.idea\libraries\Maven__org_springframework_spring_expression_3_2_0_RELEASE.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Дмитрий\workspace\WorldOfZaar\.idea\libraries\Maven__org_springframework_spring_jdbc_3_2_0_RELEASE.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Дмитрий\workspace\WorldOfZaar\.idea\libraries\Maven__org_springframework_spring_orm_3_2_0_RELEASE.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Дмитрий\workspace\WorldOfZaar\.idea\libraries\Maven__org_springframework_spring_test_3_2_0_RELEASE.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Дмитрий\workspace\WorldOfZaar\.idea\libraries\Maven__org_springframework_spring_tx_3_2_0_RELEASE.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Дмитрий\workspace\WorldOfZaar\.idea\libraries\Maven__org_springframework_spring_web_3_2_0_RELEASE.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Дмитрий\workspace\WorldOfZaar\.idea\libraries\Maven__org_springframework_spring_webmvc_3_2_0_RELEASE.xml" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/hello.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/hello.jsp" />
     </list>
     <ignored path="WorldOfZaar.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -128,7 +118,7 @@
     <file path="E:/download/spring-websocket-portfolio-master/spring-websocket-portfolio-master/src/main/java/org/springframework/samples/portfolio/service/TradeService.java" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1381919321435" ignored="false" />
     <file path="E:/download/spring-websocket-portfolio-master/spring-websocket-portfolio-master/src/main/java/org/springframework/samples/portfolio/service/QuoteService.java" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1381919321435" ignored="false" />
     <file path="E:/download/spring-websocket-portfolio-master/spring-websocket-portfolio-master/src/main/java/org/springframework/samples/portfolio/service/Quote.java" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1381919321435" ignored="false" />
-    <file path="E:/download/spring-websocket-portfolio-master/spring-websocket-portfolio-master/.idea/workspace.xml" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1382020186510" ignored="false" />
+    <file path="E:/download/spring-websocket-portfolio-master/spring-websocket-portfolio-master/.idea/workspace.xml" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1382020448882" ignored="false" />
     <file path="E:/download/spring-websocket-portfolio-master/spring-websocket-portfolio-master/src/main/webapp/traditional/index.html" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1381919321435" ignored="false" />
     <file path="E:/download/spring-websocket-portfolio-master/spring-websocket-portfolio-master/.idea/compiler.xml" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1381919347668" ignored="false" />
     <file path="E:/download/spring-websocket-portfolio-master/spring-websocket-portfolio-master/src/main/webapp/index.html" changelist="0a35e82e-2d66-46cd-b401-9176992e8335" time="1381919321436" ignored="false" />
@@ -224,7 +214,16 @@
       <file leaf-file-name="AdminController.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/worldofzaar/controller/AdminController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="41" column="21" selection-start="1562" selection-end="1562" vertical-scroll-proportion="0.0">
+            <state line="20" column="49" selection-start="690" selection-end="690" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="hello.jsp" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/hello.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="4" column="24" selection-start="72" selection-end="72" vertical-scroll-proportion="0.11604095">
               <folding />
             </state>
           </provider>
@@ -275,19 +274,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pom.xml" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="pom.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="57" selection-start="424" selection-end="424" vertical-scroll-proportion="0.22222222">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AuthorizationController.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/worldofzaar/controller/AuthorizationController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="54" column="23" selection-start="2395" selection-end="2395" vertical-scroll-proportion="0.0">
+            <state line="16" column="26" selection-start="639" selection-end="639" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -335,7 +325,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/PropertyText.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/Race.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/RacePicture.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/Request.java" />
@@ -351,6 +340,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/Blazon.java" />
         <option value="dbtable:/7da91b94/eb3a79d3-7fad-4ce1-99d4-c50d578e2b2b/ddhjdfvce86276.public.Coalitions" />
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/hello.jsp" />
       </list>
     </option>
   </component>
@@ -1245,13 +1235,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/Set.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="96" selection-start="396" selection-end="396" vertical-scroll-proportion="0.35915494">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/worldofzaar/entity/RuPropertyText.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="19" column="13" selection-start="521" selection-end="521" vertical-scroll-proportion="0.4549296">
@@ -1290,20 +1273,6 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/worldofzaar/controller/MainController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="14" column="13" selection-start="499" selection-end="499" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/worldofzaar/controller/ActiveGameController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="13" selection-start="204" selection-end="204" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/worldofzaar/controller/AdminController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="21" selection-start="1562" selection-end="1562" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -1353,7 +1322,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="57" selection-start="424" selection-end="424" vertical-scroll-proportion="0.22222222">
+        <state line="16" column="26" selection-start="639" selection-end="639" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/worldofzaar/controller/ActiveGameController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="13" selection-start="204" selection-end="204" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/worldofzaar/controller/AdminController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="49" selection-start="690" selection-end="690" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/hello.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="24" selection-start="72" selection-end="72" vertical-scroll-proportion="0.11604095">
           <folding />
         </state>
       </provider>
