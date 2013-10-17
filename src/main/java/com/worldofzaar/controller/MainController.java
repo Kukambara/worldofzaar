@@ -26,6 +26,7 @@ public class MainController {
 
     @RequestMapping(value = "adminSignUp", method = RequestMethod.GET)
     public String getAdminSignUpPage(ModelMap model) {
+
         return "admin/signUp";
     }
 
