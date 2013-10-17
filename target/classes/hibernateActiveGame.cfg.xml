@@ -15,7 +15,7 @@
         <property name="current_session_context_class">thread</property>
         <property name="show_sql">true</property>
 
-        <property name="hibernate.connection.verifyServerCertificate">false</property>
+        <property name="hibernate.connection.sslfactory">org.postgresql.ssl.NonValidatingFactory</property>
         <property name="hibernate.connection.requireSSL">true</property>
         <property name="hibernate.connection.autoReconnect">true</property>
 

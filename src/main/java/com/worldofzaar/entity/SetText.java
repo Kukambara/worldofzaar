@@ -14,7 +14,8 @@ import javax.persistence.*;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class SetText {
     @Id
-    @GeneratedValue
+    @SequenceGenerator(name = "setText_seq", sequenceName = "\"SetTexts_setTextId_seq\"", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "setText_seq")
     @Column(name = "\"setTextId\"")
     private Integer setTextId;
     @Column(name = "\"setName\"")

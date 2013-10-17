@@ -1,8 +1,8 @@
 package com.worldofzaar.dao;
 
 import com.worldofzaar.entity.User;
-import com.worldofzaar.entity.WarriorCard;
 import com.worldofzaar.util.HibernateUtilMain;
+import org.hibernate.Query;
 import org.hibernate.Session;
 
 import java.util.List;

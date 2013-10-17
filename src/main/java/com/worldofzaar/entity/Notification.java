@@ -13,7 +13,8 @@ import javax.persistence.*;
 @Table(name = "\"Notifications\"")
 public class Notification {
     @Id
-    @GeneratedValue
+    @SequenceGenerator(name = "notification_seq", sequenceName = "\"Notifications_notificationId_seq\"", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "notification_seq")
     @Column(name = "\"notificationId\"")
     private Integer notificationId;
     @ManyToOne

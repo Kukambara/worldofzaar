@@ -14,7 +14,8 @@ import javax.persistence.*;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Card {
     @Id
-    @GeneratedValue
+    @SequenceGenerator(name = "card_seq", sequenceName = "\"Cards_cardId_seq\"", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "card_seq")
     @Column(name = "\"cardId\"")
     private Integer cardId;
     @Column(name = "\"cardEnergy\"")

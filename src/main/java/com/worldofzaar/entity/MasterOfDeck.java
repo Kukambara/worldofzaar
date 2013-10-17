@@ -14,7 +14,8 @@ import javax.persistence.*;
 public class MasterOfDeck {
 
     @Id
-    @GeneratedValue
+    @SequenceGenerator(name = "masterOfDeck_seq", sequenceName = "\"MasterOfDecks_masterCard_seq\"", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "masterOfDeck_seq")
     @Column(name = "\"mastersCard\"")
     private Integer mastersCardId;
     @Column(name = "\"cardLevel\"")

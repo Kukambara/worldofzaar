@@ -13,7 +13,8 @@ import javax.persistence.*;
 @Table(name = "\"UserGamesPlayers\"")
 public class UserGamesPlayer {
     @Id
-    @GeneratedValue
+    @SequenceGenerator(name = "userGamesPlayer_seq", sequenceName = "\"UserGamesPlayers_userGamesPlayerId_seq\"", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "userGamesPlayer_seq")
     @Column(name = "\"userGamesPlayerId\"")
     private Integer userGamesPlayerId;
     @ManyToOne

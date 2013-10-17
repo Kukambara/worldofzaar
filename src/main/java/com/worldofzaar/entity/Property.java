@@ -13,7 +13,8 @@ import javax.persistence.*;
 @Table(name = "\"Properties\"")
 public class Property {
     @Id
-    @GeneratedValue
+    @SequenceGenerator(name = "property_seq", sequenceName = "\"Properties_propertyId_seq\"", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "property_seq")
     @Column(name = "\"propertyId\"")
     private Integer propertyId;
 

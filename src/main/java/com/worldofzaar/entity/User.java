@@ -13,17 +13,12 @@ import javax.persistence.*;
 @Table(name = "\"Users\"")
 public class User {
     @Id
-    @GeneratedValue
+    @SequenceGenerator(name = "user_seq", sequenceName = "\"Users_userId_seq\"", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
     @Column(name = "\"userId\"")
     private Integer userId;
     @Column(name = "\"userName\"")
     private String userName;
-    @Column(name = "\"userLogin\"")
-    private String userLogin;
-    @Column(name = "\"userEmail\"")
-    private String userEmail;
-    @Column(name = "\"userPassword\"")
-    private String userPassword;
     @ManyToOne
     @JoinColumn(name = "\"gameProfileId\"")
     private GameProfile gameProfile;
@@ -42,30 +37,6 @@ public class User {
 
     public void setUserName(String userName) {
         this.userName = userName;
-    }
-
-    public String getUserLogin() {
-        return userLogin;
-    }
-
-    public void setUserLogin(String userLogin) {
-        this.userLogin = userLogin;
-    }
-
-    public String getUserEmail() {
-        return userEmail;
-    }
-
-    public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
-    }
-
-    public String getUserPassword() {
-        return userPassword;
-    }
-
-    public void setUserPassword(String userPassword) {
-        this.userPassword = userPassword;
     }
 
     public GameProfile getGameProfile() {

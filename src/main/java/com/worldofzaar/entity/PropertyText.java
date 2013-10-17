@@ -14,7 +14,8 @@ import javax.persistence.*;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class PropertyText {
     @Id
-    @GeneratedValue
+    @SequenceGenerator(name = "propertyText_seq", sequenceName = "\"PropertyTexts_propertyTextId_seq\"", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "propertyText_seq")
     @Column(name = "\"propertyTextId\"")
     private Integer propertyTextId;
     @ManyToOne
