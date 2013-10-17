@@ -9,6 +9,7 @@ function PlayerField() {
 
 	/*this.mainArea;
 	this.fighterArea;*/
+
 	this.fullArea;
 	this.deckArea;
 	this.talonArea;
@@ -22,7 +23,7 @@ function PlayerField() {
 
 	this.fighterCardAreas = new Array();
 
-	this.rotate = 0;
+	this.rotate = 0;	//градусы
 	this.context;
 
 	this.FighterAreasInit = function(x, y, width, height, count) {
@@ -159,5 +160,35 @@ function PlayerField() {
 		this.EArea.Draw();
 				
 		this.fullArea.DrawRotateEnd(this.context);
+	}
+	
+	this.OnClick = function (eventPoint) {
+		var eventPointTemp = new Point(eventPoint.x, eventPoint.y);
+		eventPointTemp.RotationAcrosPoint(this.fullArea.beginPoint, -this.rotate);//для востановления нужно передавать обратный угол.
+		if (this.fullArea.IsPointInArea(eventPointTemp)) {
+			eventPointTemp.MinusFromThis(this.fullArea.beginPoint)
+			for (var i = 0; i < this.fighterCardAreas.length; ++i) {
+				this.fighterCardAreas[i].OnClick(eventPointTemp);
+			}
+
+			this.deckArea.OnClick(eventPointTemp);
+			this.talonArea.OnClick(eventPointTemp);
+			this.supportCardArea.OnClick(eventPointTemp);
+		}
+	}
+
+	this.OnMouseLeave = function (eventPoint) {
+		var eventPointTemp = new Point(eventPoint.x, eventPoint.y);
+		eventPointTemp.RotationAcrosPoint(this.fullArea.beginPoint, -this.rotate);//для востановления нужно передавать обратный угол.
+		if (!this.fullArea.IsPointInArea(eventPointTemp)) {
+			eventPointTemp.MinusFromThis(this.fullArea.beginPoint)
+			for (var i = 0; i < this.fighterCardAreas.length; ++i) {
+				this.fighterCardAreas[i].OnMouseLeave(eventPointTemp);
+			}
+
+			this.deckArea.OnMouseLeave(eventPointTemp);
+			this.talonArea.OnMouseLeave(eventPointTemp);
+			this.supportCardArea.OnMouseLeave(eventPointTemp);
+		}
 	}
 }
