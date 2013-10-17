@@ -1,10 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="03072a60-e92d-4e1e-aa2a-bf0caa7a2151" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/WorldOfZaar_war_exploded.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/WorldOfZaar_war_exploded.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/hello.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/hello.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+=======
+    <list default="true" id="0a35e82e-2d66-46cd-b401-9176992e8335" name="Default" comment="">
+      <change type="DELETED" beforePath="C:\Users\Дмитрий\workspace\WorldOfZaar\.idea\libraries\Maven__org_springframework_spring_aop_3_2_0_RELEASE.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Дмитрий\workspace\WorldOfZaar\.idea\libraries\Maven__org_springframework_spring_beans_3_2_0_RELEASE.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Дмитрий\workspace\WorldOfZaar\.idea\libraries\Maven__org_springframework_spring_context_3_2_0_RELEASE.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Дмитрий\workspace\WorldOfZaar\.idea\libraries\Maven__org_springframework_spring_core_3_2_0_RELEASE.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Дмитрий\workspace\WorldOfZaar\.idea\libraries\Maven__org_springframework_spring_expression_3_2_0_RELEASE.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Дмитрий\workspace\WorldOfZaar\.idea\libraries\Maven__org_springframework_spring_jdbc_3_2_0_RELEASE.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Дмитрий\workspace\WorldOfZaar\.idea\libraries\Maven__org_springframework_spring_orm_3_2_0_RELEASE.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Дмитрий\workspace\WorldOfZaar\.idea\libraries\Maven__org_springframework_spring_test_3_2_0_RELEASE.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Дмитрий\workspace\WorldOfZaar\.idea\libraries\Maven__org_springframework_spring_tx_3_2_0_RELEASE.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Дмитрий\workspace\WorldOfZaar\.idea\libraries\Maven__org_springframework_spring_web_3_2_0_RELEASE.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Дмитрий\workspace\WorldOfZaar\.idea\libraries\Maven__org_springframework_spring_webmvc_3_2_0_RELEASE.xml" afterPath="" />
+>>>>>>> 05163f2406e8c44c2cb576f94b39ea9523271113
     </list>
     <ignored path="WorldOfZaar.iws" />
     <ignored path=".idea/workspace.xml" />
