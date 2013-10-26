@@ -15,7 +15,8 @@ import javax.persistence.*;
         @AttributeOverride(name = "propertyInfo", column = @Column(name = "\"propertyInfo\""))
 })
 @AssociationOverrides({
-        @AssociationOverride(name = "property", joinColumns = @JoinColumn(name = "\"propertyId\""))
+        @AssociationOverride(name = "supportCard", joinColumns = @JoinColumn(name = "\"supportCardId\"")),
+        @AssociationOverride(name = "warriorCard", joinColumns = @JoinColumn(name = "\"warriorCardId\""))
 })
 public class EngPropertyText extends PropertyText {
 }

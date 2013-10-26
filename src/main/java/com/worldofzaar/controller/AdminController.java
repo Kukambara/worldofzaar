@@ -6,6 +6,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * Created with IntelliJ IDEA.
@@ -49,4 +50,19 @@ public class AdminController {
         adminService.deleteAdmin(id);
         return "redirect:/admin/adminList";
     }
+
+    @RequestMapping(value = "/race/createRace", method = RequestMethod.GET)
+    public String createRace(ModelMap model) {
+        return "admin/Race/createRace";
+    }
+
+    @RequestMapping(value = "/race/createRace", method = RequestMethod.POST)
+    public String createRace(ModelMap model, @RequestParam("ruName") String ruName,
+                             @RequestParam("ruDescription") String ruDescription,
+                             @RequestParam("engName") String engName,
+                             @RequestParam("engDescription") String engDescription) {
+        return "admin/Race/raceList";
+    }
+
+
 }

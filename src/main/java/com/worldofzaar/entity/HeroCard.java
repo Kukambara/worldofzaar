@@ -16,13 +16,13 @@ public class HeroCard {
     @GeneratedValue
     @Column(name = "\"heroCardsId\"")
     private Integer heroCardsId;
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "\"firstActiveCurrentCardId\"")
     private ActiveWarriorCard firstActiveWarriorCard;
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "\"secondActiveCurrentCardId\"")
     private ActiveWarriorCard secondActiveWarriorCard;
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "\"thirdActiveCurrentCardId\"")
     private ActiveWarriorCard thirdActiveWarriorCard;
     //TODO Link object and Id

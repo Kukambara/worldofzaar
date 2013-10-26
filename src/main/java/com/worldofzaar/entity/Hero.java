@@ -21,7 +21,7 @@ public class Hero {
     private User user;
     @Column(name = "\"userId\"")
     private Integer userId;
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "\"heroCardId\"")
     private HeroCard heroCard;
     @Column(name = "\"health\"")

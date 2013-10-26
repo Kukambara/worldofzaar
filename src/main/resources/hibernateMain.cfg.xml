@@ -57,6 +57,12 @@
         <mapping class="com.worldofzaar.entity.Admin"/>
         <mapping class="com.worldofzaar.entity.WebUser"/>
         <mapping class="com.worldofzaar.entity.Cloth"/>
+        <mapping class="com.worldofzaar.entity.RaceText"/>
+        <mapping class="com.worldofzaar.entity.EngRaceText"/>
+        <mapping class="com.worldofzaar.entity.RuRaceText"/>
+        <mapping class="com.worldofzaar.entity.ClassText"/>
+        <mapping class="com.worldofzaar.entity.RuClassText"/>
+        <mapping class="com.worldofzaar.entity.EngClassText"/>
 
 
     </session-factory>

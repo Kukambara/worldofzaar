@@ -20,7 +20,7 @@ public class UserGamesPlayer {
     @ManyToOne
     @JoinColumn(name = "\"myGameId\"")
     private MyGame myGame;
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "\"userId\"")
     private User user;
 }

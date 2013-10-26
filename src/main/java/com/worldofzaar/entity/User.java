@@ -19,7 +19,7 @@ public class User {
     private Integer userId;
     @Column(name = "\"userName\"")
     private String userName;
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "\"gameProfileId\"")
     private GameProfile gameProfile;
 

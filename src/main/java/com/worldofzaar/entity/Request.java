@@ -17,7 +17,7 @@ public class Request {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "request_seq")
     @Column(name = "\"requestId\"")
     private Integer requestId;
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "\"userId\"")
     private User user;
     @Column(name = "\"countOfUsers\"")

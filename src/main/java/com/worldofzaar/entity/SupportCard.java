@@ -15,12 +15,10 @@ import javax.persistence.*;
         @AttributeOverride(name = "cardEnergy", column = @Column(name = "\"cardEnergy\"")),
         @AttributeOverride(name = "cardPicture", column = @Column(name = "\"cardPicture\"")),
         @AttributeOverride(name = "isElite", column = @Column(name = "\"isElite\"")),
-        @AttributeOverride(name = "propertySystemString", column = @Column(name = "\"propertySystemString\"")),
-        @AttributeOverride(name = "cardLevel", column = @Column(name = "\"cardLevel\""))
+        @AttributeOverride(name = "propertySystemString", column = @Column(name = "\"propertySystemString\""))
 })
 @AssociationOverrides({
         @AssociationOverride(name = "property", joinColumns = @JoinColumn(name = "\"propertyId\"")),
-        @AssociationOverride(name = "race", joinColumns = @JoinColumn(name = "\"cardRaceId\"")),
         @AssociationOverride(name = "classification", joinColumns = @JoinColumn(name = "\"cardClassId\"")),
         @AssociationOverride(name = "set", joinColumns = @JoinColumn(name = "\"setId\""))
 })

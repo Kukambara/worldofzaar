@@ -17,10 +17,6 @@ public class Race {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "race_seq")
     @Column(name = "\"raceId\"")
     private Integer raceId;
-    @Column(name = "\"raceName\"")
-    private String raceName;
-    @Column(name = "\"raceInfo\"")
-    private String raceInfo;
 
     public Integer getRaceId() {
         return raceId;
@@ -28,21 +24,5 @@ public class Race {
 
     public void setRaceId(Integer raceId) {
         this.raceId = raceId;
-    }
-
-    public String getRaceName() {
-        return raceName;
-    }
-
-    public void setRaceName(String raceName) {
-        this.raceName = raceName;
-    }
-
-    public String getRaceInfo() {
-        return raceInfo;
-    }
-
-    public void setRaceInfo(String raceInfo) {
-        this.raceInfo = raceInfo;
     }
 }

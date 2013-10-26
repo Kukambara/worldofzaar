@@ -19,7 +19,7 @@ public class Auction {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "auction_seq")
     @Column(name = "\"auctionId\"")
     private Integer auctionId;
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "\"userId\"")
     private User user;
     @Column(name = "\"startDateTime\"")
@@ -34,10 +34,10 @@ public class Auction {
     private Integer lastPrice;
     @Column(name = "\"lastDonateBet\"")
     private Integer lastDonatePrice;
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "\"lastUserId\"")
     private User lastUser;
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "\"userCardId\"")
     private UserCard userCard;
 

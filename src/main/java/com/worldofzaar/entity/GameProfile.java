@@ -18,14 +18,8 @@ public class GameProfile {
     @Column(name = "\"gameProfileId\"")
     private Integer gameProfileId;
     @ManyToOne
-    @JoinColumn(name = "\"raceId\"")
-    private Race race;
-    @ManyToOne
     @JoinColumn(name = "\"racePictureId\"")
     private RacePicture racePicture;
-    @ManyToOne
-    @JoinColumn(name = "\"classId\"")
-    private Classification classification;
     @ManyToOne
     @JoinColumn(name = "\"blazonId\"")
     private Blazon blazon;
@@ -50,28 +44,12 @@ public class GameProfile {
         this.gameProfileId = gameProfileId;
     }
 
-    public Race getRace() {
-        return race;
-    }
-
-    public void setRace(Race race) {
-        this.race = race;
-    }
-
     public RacePicture getRacePicture() {
         return racePicture;
     }
 
     public void setRacePicture(RacePicture racePicture) {
         this.racePicture = racePicture;
-    }
-
-    public Classification getClassification() {
-        return classification;
-    }
-
-    public void setClassification(Classification classification) {
-        this.classification = classification;
     }
 
     public Blazon getBlazon() {

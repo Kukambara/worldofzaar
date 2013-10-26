@@ -20,10 +20,10 @@ public class MasterOfDeck {
     private Integer mastersCardId;
     @Column(name = "\"cardLevel\"")
     private Integer cardLevel;
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "\"warriorCardId\"")
     private WarriorCard warriorCard;
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "\"supportCardId\"")
     private SupportCard supportCard;
     @Column(name = "\"price\"")

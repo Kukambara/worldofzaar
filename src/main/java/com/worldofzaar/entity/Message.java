@@ -17,10 +17,10 @@ public class Message {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "message_seq")
     @Column(name = "\"messageId\"")
     private Integer messageId;
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "\"fromUserId\"")
     private User fromUser;
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "\"toUserId\"")
     private User toUser;
     @Column(name = "\"messageText\"")

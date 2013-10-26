@@ -19,26 +19,26 @@ public class Game {
     @GeneratedValue
     @Column(name = "\"gameId\"")
     private Integer gameId;
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "\"firstHeroId\"")
     private Hero firstHero;
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "\"secondHeroId\"")
     private Hero secondHero;
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "\"thirdHeroId\"")
     private Hero thirdHero;
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "\"fourthHeroId\"")
     private Hero fourthHero;
     @Column(name = "\"bank\"")
     private Integer bank;
     @Column(name = "\"isPrivate\"")
     private Boolean isPrivate;
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "\"chatId\"")
     private Chat chat;
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "\"logId\"")
     private Log log;
     @Column(name = "\"phase\"")
