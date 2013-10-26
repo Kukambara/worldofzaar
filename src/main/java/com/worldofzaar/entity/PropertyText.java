@@ -19,8 +19,12 @@ public class PropertyText {
     @Column(name = "\"propertyTextId\"")
     private Integer propertyTextId;
     @ManyToOne
-    @JoinColumn(name = "\"propertyId\"")
-    private Property property;
+    @JoinColumn(name = "\"supportCardId\"")
+    private SupportCard supportCard;
+    @ManyToOne
+    @JoinColumn(name = "\"warriorCardId\"")
+    private WarriorCard warriorCard;
+
     @Column(name = "\"propertyInfo\"")
     private String propertyInfo;
 
@@ -32,12 +36,20 @@ public class PropertyText {
         this.propertyTextId = propertyTextId;
     }
 
-    public Property getProperty() {
-        return property;
+    public SupportCard getSupportCard() {
+        return supportCard;
     }
 
-    public void setProperty(Property property) {
-        this.property = property;
+    public void setSupportCard(SupportCard supportCard) {
+        this.supportCard = supportCard;
+    }
+
+    public WarriorCard getWarriorCard() {
+        return warriorCard;
+    }
+
+    public void setWarriorCard(WarriorCard warriorCard) {
+        this.warriorCard = warriorCard;
     }
 
     public String getPropertyInfo() {

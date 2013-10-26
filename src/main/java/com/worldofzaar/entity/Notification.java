@@ -17,10 +17,10 @@ public class Notification {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "notification_seq")
     @Column(name = "\"notificationId\"")
     private Integer notificationId;
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "\"myGameId\"")
     private MyGame myGame;
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "\"userId\"")
     private User user;
 

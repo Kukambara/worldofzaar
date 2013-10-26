@@ -22,7 +22,7 @@ public class SetText {
     private String setName;
     @Column(name = "\"setInfo\"")
     private String setInfo;
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "\"setId\"")
     private Set set;
 

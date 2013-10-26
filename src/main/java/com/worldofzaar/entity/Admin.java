@@ -17,7 +17,7 @@ public class Admin {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "admin_seq")
     @Column(name = "\"adminId\"")
     private Integer adminId;
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "\"webUserId\"")
     private WebUser webUser;
     @Column(name = "\"isApproved\"")

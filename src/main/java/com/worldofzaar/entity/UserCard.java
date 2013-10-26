@@ -20,10 +20,10 @@ public class UserCard {
     @ManyToOne
     @JoinColumn(name = "\"userId\"")
     private User user;
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "\"warriorCardId\"")
     private WarriorCard warriorCard;
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "\"supportCardId\"")
     private SupportCard supportCard;
 

@@ -26,17 +26,12 @@ public class Card {
     @JoinColumn(name = "\"propertyId\"")
     private Property property;
     @ManyToOne
-    @JoinColumn(name = "\"cardRaceId\"")
-    private Race race;
-    @ManyToOne
     @JoinColumn(name = "\"cardClassId\"")
     private Classification classification;
     @Column(name = "\"isElite\"")
     private Boolean isElite;
     @Column(name = "\"propertySystemString\"")
     private String propertySystemString;
-    @Column(name = "\"cardLevel\"")
-    private Integer cardLevel;
     @ManyToOne
     @JoinColumn(name = "\"setId\"")
     private Set set;
@@ -73,14 +68,6 @@ public class Card {
         this.property = property;
     }
 
-    public Race getRace() {
-        return race;
-    }
-
-    public void setRace(Race race) {
-        this.race = race;
-    }
-
     public Classification getClassification() {
         return classification;
     }
@@ -103,14 +90,6 @@ public class Card {
 
     public void setPropertySystemString(String propertySystemString) {
         this.propertySystemString = propertySystemString;
-    }
-
-    public Integer getCardLevel() {
-        return cardLevel;
-    }
-
-    public void setCardLevel(Integer cardLevel) {
-        this.cardLevel = cardLevel;
     }
 
     public Set getSet() {

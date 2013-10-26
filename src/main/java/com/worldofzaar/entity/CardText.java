@@ -18,10 +18,10 @@ public class CardText {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cardText_seq")
     @Column(name = "\"cardTextId\"")
     private Integer cardTextId;
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "\"warriorCardId\"")
     private WarriorCard warriorCard;
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "\"supportCardId\"")
     private SupportCard supportCard;
     @Column(name = "\"cardName\"")

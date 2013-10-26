@@ -16,13 +16,13 @@ public class ActiveCoalition {
     @GeneratedValue
     @Column(name = "\"coalitionId\"")
     private Integer coalitionId;
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "\"firstHeroId\"")
     private Hero firstHero;
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "\"secondHeroId\"")
     private Hero secondHero;
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "\"gameId\"")
     private Game game;
 

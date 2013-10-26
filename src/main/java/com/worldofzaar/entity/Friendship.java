@@ -20,7 +20,7 @@ public class Friendship {
     @ManyToOne
     @JoinColumn(name = "\"userId\"")
     private User user;
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "\"friendId\"")
     private User friendId;
 

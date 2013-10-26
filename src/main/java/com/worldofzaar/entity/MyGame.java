@@ -17,7 +17,7 @@ public class MyGame {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "myGame_seq")
     @Column(name = "\"myGameId\"")
     private Integer myGameId;
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "\"userId\"")
     private User user;
     @Column(name = "\"countOfUsers\"")

@@ -22,7 +22,7 @@ public class Blazon {
     private Classification classification;
     @Column(name = "\"blazonPath\"")
     private String blazonPath;
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "\"clothId\"")
     private Cloth cloth;
 

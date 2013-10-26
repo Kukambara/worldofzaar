@@ -17,10 +17,10 @@ public class Coalition {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "coalition_seq")
     @Column(name = "\"coalitionId\"")
     private Integer coalitionId;
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "\"firstPlayerId\"")
     private User firstPlayer;
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "\"secondPlayerId\"")
     private User secondPlayer;
 

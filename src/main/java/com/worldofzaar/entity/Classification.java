@@ -20,10 +20,6 @@ public class Classification {
     @ManyToOne
     @JoinColumn(name = "\"raceId\"")
     private Race race;
-    @Column(name = "\"className\"")
-    private String className;
-    @Column(name = "\"classInfo\"")
-    private String classInfo;
 
     public Integer getClassificationId() {
         return classificationId;
@@ -39,21 +35,5 @@ public class Classification {
 
     public void setRace(Race race) {
         this.race = race;
-    }
-
-    public String getClassName() {
-        return className;
-    }
-
-    public void setClassName(String className) {
-        this.className = className;
-    }
-
-    public String getClassInfo() {
-        return classInfo;
-    }
-
-    public void setClassInfo(String classInfo) {
-        this.classInfo = classInfo;
     }
 }

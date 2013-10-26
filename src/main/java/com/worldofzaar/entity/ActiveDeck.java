@@ -16,7 +16,7 @@ public class ActiveDeck {
     @GeneratedValue
     @Column(name = "\"activeDeckId\"")
     private Integer activeDeckId;
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "\"heroId\"")
     private Hero hero;
     //TODO Link object and Id

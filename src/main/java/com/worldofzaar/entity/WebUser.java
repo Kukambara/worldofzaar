@@ -21,7 +21,7 @@ public class WebUser {
     private String webUserEmail;
     @Column(name = "\"webUserPass\"")
     private String webUserPass;
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "\"userId\"")
     private User user;
     @Column(name = "\"isApproved\"")
