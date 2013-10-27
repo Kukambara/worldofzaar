@@ -30,4 +30,20 @@ public class SupportCardDao extends GenericDaoMain<SupportCard> {
         }
         return null;
     }
+
+    public List<Object[]> getCompositeSupportCards(String lang) {
+        try {
+
+            Session session = HibernateUtilMain.getSessionFactory().openSession();
+
+            List supportCards = (List) session.createQuery("select " +
+                    "w.cardId, w.classification,t.cardName,w.set,t.cardSlogan," +
+                    "pt.propertyInfo,w.cardPicture,w.isElite from SupportCard as w,RuCardText as t,RuPropertyText as pt where pt.supportCard.cardId = w.cardId AND t.supportCard.cardId=w.cardId").list();
+            session.close();
+            return supportCards;
+        } catch (Exception e) {
+            System.out.println("getCompositeSupportCards(lang) Error = " + e.getCause());
+        }
+        return null;
+    }
 }
