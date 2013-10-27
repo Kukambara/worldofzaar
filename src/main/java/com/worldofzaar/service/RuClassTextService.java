@@ -1,5 +1,9 @@
 package com.worldofzaar.service;
 
+import com.worldofzaar.dao.RuClassTextDao;
+import com.worldofzaar.entity.Classification;
+import com.worldofzaar.entity.RuClassText;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Дмитрий
@@ -8,4 +12,12 @@ package com.worldofzaar.service;
  * To change this template use File | Settings | File Templates.
  */
 public class RuClassTextService {
+    public void createRuClassText(Classification classification, String ruName, String ruDescription) {
+        RuClassTextDao ruClassTextDao = new RuClassTextDao();
+        RuClassText ruClassText = new RuClassText();
+        ruClassText.setClassification(classification);
+        ruClassText.setClassName(ruName);
+        ruClassText.setClassDescription(ruDescription);
+        ruClassTextDao.add(ruClassText);
+    }
 }

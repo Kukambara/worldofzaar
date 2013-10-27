@@ -7,6 +7,12 @@
     <ul class="dropdown-menu">
         <li>
             <a href="/admin/race/createRace">Create race</a>
+<<<<<<< HEAD
+        </li>
+        <li>
+            <a href="/admin/race/raceList">All races</a>
+=======
+>>>>>>> 374fabb858f6202e7464eb59895297932d925317
         </li>
         <li>
             <a href="#">Pictures</a>
@@ -20,7 +26,10 @@
     </a>
     <ul class="dropdown-menu">
         <li>
-            <a href="#">Classes</a>
+            <a href="/admin/class/createClass">Create class</a>
+        </li>
+        <li>
+            <a href="/admin/class/classList">All classes</a>
         </li>
         <li>
             <a href="#">Blazons</a>

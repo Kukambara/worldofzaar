@@ -6,10 +6,18 @@
     <thead>
     <th>Name</th>
     </thead>
+<<<<<<< HEAD
+    <tbody>
+    <c:forEach var="race" items="${races}">
+        <tr>
+            <td>
+                    ${race.raceName}
+=======
     <tbody><c:forEach var="race" items="${races}">
         <tr>
             <td>
                     ${race.name}
+>>>>>>> 374fabb858f6202e7464eb59895297932d925317
             </td>
         </tr>
     </c:forEach>

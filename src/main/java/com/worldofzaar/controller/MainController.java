@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @Controller
 @RequestMapping("/")
@@ -31,10 +32,10 @@ public class MainController {
     }
 
     @RequestMapping(value = "adminSignIn", method = RequestMethod.POST)
-    public String signIn(ModelMap model, HttpServletRequest request, @RequestParam("email") String email,
-                         @RequestParam("password") String pass) {
+    public String signIn(ModelMap model, HttpServletRequest request, HttpServletResponse response,
+                         @RequestParam("email") String email, @RequestParam("password") String pass) {
         AuthorizationService serv = new AuthorizationService();
-        if (!serv.login(email, pass, request)) {
+        if (!serv.login(email, pass, request, response)) {
             model.addAttribute(WOZConsts.SYSTEM_ERROR, "User with this email and the password was not found.");
         }
         return "redirect:/admin";
