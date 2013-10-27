@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class MasterOfDeckService {
 
-    public List<MasterOfDeck> getAllPrice(){
+    public List<MasterOfDeck> getMasterOfDeck(){
         MasterOfDeckDao masterOfDeckDao = new MasterOfDeckDao();
         return masterOfDeckDao.list();
     }

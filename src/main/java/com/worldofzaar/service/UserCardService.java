@@ -1,8 +1,10 @@
 package com.worldofzaar.service;
 
+import com.worldofzaar.adapter.UserCardAdapter;
 import com.worldofzaar.dao.UserCardDao;
 import com.worldofzaar.entity.UserCard;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,8 +16,15 @@ import java.util.List;
  */
 public class UserCardService {
 
-    public List<UserCard> getAllUserCardsById(Integer userId){
+    public List<UserCardAdapter> getAllUserCardsById(Integer userId){
         UserCardDao userCardDao = new UserCardDao();
-        return userCardDao.gelAllUserCardsById(userId);
+
+        List<UserCard> userCards = userCardDao.gelAllUserCardsById(userId);
+        List<UserCardAdapter> userCardAdapter = new ArrayList<UserCardAdapter>();
+
+        for (UserCard tmp : userCards) {
+            userCardAdapter.add(new UserCardAdapter(tmp));
+        }
+        return userCardAdapter;
     }
 }

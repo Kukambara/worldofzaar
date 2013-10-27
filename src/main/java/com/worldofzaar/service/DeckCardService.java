@@ -1,8 +1,10 @@
 package com.worldofzaar.service;
 
+import com.worldofzaar.adapter.DeckCardAdapter;
 import com.worldofzaar.dao.DeckCardDao;
 import com.worldofzaar.entity.DeckCard;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,8 +16,15 @@ import java.util.List;
  */
 public class DeckCardService {
 
-    public List<DeckCard> getDeckCardsById(Integer deckId){
-        DeckCardDao deckCards = new DeckCardDao();
-        return deckCards.getDeckCardsById(deckId);
+    public List<DeckCardAdapter> getDeckCardsById(Integer deckId){
+        DeckCardDao deckCardsDao = new DeckCardDao();
+
+        List<DeckCard> deckCards =  deckCardsDao.getDeckCardsById(deckId);
+        List<DeckCardAdapter> deckCardAdapter = new ArrayList<DeckCardAdapter>();
+
+        for (DeckCard tmp : deckCards) {
+            deckCardAdapter.add(new DeckCardAdapter(tmp));
+        }
+        return deckCardAdapter;
     }
 }

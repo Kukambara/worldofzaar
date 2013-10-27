@@ -1,7 +1,9 @@
 package com.worldofzaar.service;
 
+import com.worldofzaar.adapter.WarriorCardAdapter;
 import com.worldofzaar.dao.WarriorCardDao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,8 +15,14 @@ import java.util.List;
  */
 public class WarriorCardService {
 
-    public List<Object[]> getCompositeWarriorsCards(String lang){
+    public List<WarriorCardAdapter> getCompositeWarriorsCards(String lang){
         WarriorCardDao warriorCardDao = new WarriorCardDao();
-        return warriorCardDao.getCompositeWarriorsCards(lang);
+        List<Object[]> warriorCards = warriorCardDao.getCompositeWarriorsCards(lang);
+
+        List<WarriorCardAdapter> warriorCardAdapter = new ArrayList<WarriorCardAdapter>();
+        for(Object[] tmp: warriorCards){
+            warriorCardAdapter.add(new WarriorCardAdapter(tmp));
+        }
+        return warriorCardAdapter;
     }
 }
