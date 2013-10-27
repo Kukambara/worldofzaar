@@ -26,7 +26,7 @@ import java.util.List;
 @RequestMapping("/profile")
 public class UserController {
 
-    @RequestMapping(value = "/userDecks/{userId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/userDecks/{userId}", method = RequestMethod.POST)
     public
     @ResponseBody
     List<DeckAdapter> getUserDecks(ModelMap model, HttpServletRequest request, @PathVariable Integer userId) {
@@ -34,7 +34,7 @@ public class UserController {
         return deckService.getUserDecksById(userId);
     }
 
-    @RequestMapping(value = "/userCards/{userId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/userCards/{userId}", method = RequestMethod.POST)
     public
     @ResponseBody
     List<UserCardAdapter> getUserCards(ModelMap model, HttpServletRequest request, @PathVariable Integer userId) {
@@ -42,7 +42,7 @@ public class UserController {
         return userCardService.getAllUserCardsById(userId);
     }
 
-    @RequestMapping(value = "/deckCards/{deckId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/deckCards/{deckId}", method = RequestMethod.POST)
     public
     @ResponseBody
     List<DeckCardAdapter> getDeckCards(ModelMap model, HttpServletRequest request, @PathVariable Integer deckId) {
@@ -59,7 +59,7 @@ public class UserController {
         return masterOfDeckCustomService.getCustomMasterOfDeck("Lang");
     }
 
-    @RequestMapping(value = "/gameProfile/", method = RequestMethod.GET)
+    @RequestMapping(value = "/gameProfile/{userId}", method = RequestMethod.POST)
     public
     @ResponseBody
     GameProfile getUserProfile(ModelMap model, HttpServletRequest request, @PathVariable Integer userId) {

@@ -40,7 +40,7 @@ public class WarriorCardDao extends GenericDaoMain<WarriorCard> {
 
             List warriorCards = (List) session.createQuery("select w.cardId, w.classification,t.cardName,w.cardEnergy," +
                     "w.set,t.cardSlogan, " +
-                    "pt.propertyInfo,w.cardPicture,w.isElite,w.cardHealth, w.cardArmor,w.cardDamage from WarriorCard as w,RuCardText, as t,RuPropertyText as pt where pt.warriorCard.cardId = w.cardId AND t.warriorCard.cardId=w.cardId").list();
+                    "pt.propertyInfo,w.cardPicture,w.isElite,w.cardHealth, w.cardArmor,w.cardDamage from WarriorCard as w,RuCardText as t,RuPropertyText as pt where pt.warriorCard.cardId = w.cardId AND t.warriorCard.cardId=w.cardId").list();
             session.close();
             return warriorCards;
         } catch (Exception e) {
