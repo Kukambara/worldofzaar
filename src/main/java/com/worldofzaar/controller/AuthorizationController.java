@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * Created with IntelliJ IDEA.
@@ -22,27 +23,27 @@ import javax.servlet.http.HttpServletRequest;
 public class AuthorizationController {
 
     @RequestMapping(value = "/signIn", method = RequestMethod.POST)
-    public String signIn(ModelMap model, HttpServletRequest request, @RequestParam("email") String email,
-                         @RequestParam("password") String pass) {
+    public String signIn(ModelMap model, HttpServletResponse response, HttpServletRequest request,
+                         @RequestParam("email") String email, @RequestParam("password") String pass) {
         AuthorizationService serv = new AuthorizationService();
-        if (!serv.login(email, pass, request)) {
+        if (!serv.login(email, pass, request, response)) {
             model.addAttribute(WOZConsts.SYSTEM_ERROR, "User with this email and the password was not found.");
         }
         return "redirect:/";
     }
 
     @RequestMapping(value = "/signOut", method = RequestMethod.GET)
-    public String signOut(ModelMap model, HttpServletRequest request) {
+    public String signOut(ModelMap model, HttpServletResponse response, HttpServletRequest request) {
         AuthorizationService serv = new AuthorizationService();
-        serv.logout(request);
+        serv.logout(request, response);
         return "redirect:/";
     }
 
     @RequestMapping(value = "/confirm/{email}/{md5}", method = RequestMethod.GET)
-    public String confirmAccount(ModelMap model, HttpServletRequest request, @PathVariable String email,
-                                 @PathVariable String md5) {
+    public String confirmAccount(ModelMap model, HttpServletResponse response, HttpServletRequest request,
+                                 @PathVariable String email, @PathVariable String md5) {
         AuthorizationService serv = new AuthorizationService();
-        if (serv.confirmAccount(email, md5, request)) {
+        if (serv.confirmAccount(email, md5, request, response)) {
             model.addAttribute(WOZConsts.SYSTEM_INFO, "Your account has confirmed successfully.");
         } else
             model.addAttribute(WOZConsts.SYSTEM_ERROR, "Something wrong with confirmation.");
@@ -50,10 +51,10 @@ public class AuthorizationController {
     }
 
     @RequestMapping(value = "/confirm/{email}/{md5}/zaaradmin", method = RequestMethod.GET)
-    public String setAdminAccount(ModelMap model, HttpServletRequest request, @PathVariable String email,
-                                 @PathVariable String md5) {
+    public String setAdminAccount(ModelMap model, HttpServletRequest request, HttpServletResponse response,
+                                  @PathVariable String email, @PathVariable String md5) {
         AuthorizationService serv = new AuthorizationService();
-        if (serv.setAdminAccount(email, md5, request)) {
+        if (serv.setAdminAccount(email, md5, request, response)) {
             model.addAttribute(WOZConsts.SYSTEM_INFO, "Your account has added to Admin list");
         } else
             model.addAttribute(WOZConsts.SYSTEM_ERROR, "Something wrong with confirmation.");
@@ -82,17 +83,17 @@ public class AuthorizationController {
     public String restoreAccount(ModelMap model, @RequestParam("email") String email) {
         AuthorizationService serv = new AuthorizationService();
         if (serv.restoreAccount(email)) {
-            model.addAttribute(WOZConsts.SYSTEM_INFO, "Letter with the password has sent to your email.");
+            model.addAttribute(WOZConsts.SYSTEM_INFO, "Letter with new password has sent to your email.");
         } else {
             model.addAttribute(WOZConsts.SYSTEM_ERROR, "Email does not exist!");
             return "redirect:/restoreAccount";
         }
 
-        return "redirect:/";
+        return "redirect:/admin";
     }
 
-    @RequestMapping(value = "/restoreaccount", method = RequestMethod.GET)
+    @RequestMapping(value = "/restoreAccount", method = RequestMethod.GET)
     public String restoreAccount(ModelMap model) {
-        return "authorization/restore";
+        return "admin/restoreAccount";
     }
 }

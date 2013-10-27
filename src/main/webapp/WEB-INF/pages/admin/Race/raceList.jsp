@@ -6,10 +6,11 @@
     <thead>
     <th>Name</th>
     </thead>
-    <tbody><c:forEach var="race" items="${races}">
+    <tbody>
+    <c:forEach var="race" items="${races}">
         <tr>
             <td>
-                    ${race.name}
+                    ${race.raceName}
             </td>
         </tr>
     </c:forEach>

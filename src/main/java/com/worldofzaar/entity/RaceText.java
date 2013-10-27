@@ -19,7 +19,7 @@ public class RaceText {
     @Column(name = "\"raceTextId\"")
     private Integer raceTextId;
     @OneToOne
-    @JoinColumn(name = "\"RaceId\"")
+    @JoinColumn(name = "\"raceId\"")
     private Race race;
     @Column(name = "\"raceName\"")
     private String raceName;

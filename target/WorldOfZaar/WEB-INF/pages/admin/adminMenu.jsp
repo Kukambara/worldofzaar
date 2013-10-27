@@ -6,7 +6,10 @@
     </a>
     <ul class="dropdown-menu">
         <li>
-            <a href="/admin/createRace">Create race</a>
+            <a href="/admin/race/createRace">Create race</a>
+        </li>
+        <li>
+            <a href="/admin/race/raceList">All races</a>
         </li>
         <li>
             <a href="#">Pictures</a>
@@ -20,7 +23,10 @@
     </a>
     <ul class="dropdown-menu">
         <li>
-            <a href="#">Classes</a>
+            <a href="/admin/class/createClass">Create class</a>
+        </li>
+        <li>
+            <a href="/admin/class/classList">All classes</a>
         </li>
         <li>
             <a href="#">Blazons</a>

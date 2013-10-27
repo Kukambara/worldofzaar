@@ -19,7 +19,7 @@ public class EngClassTextDao extends GenericDaoMain<EngClassText> {
         super(new EngClassText());
     }
 
-    public List<RuRaceText> list() {
+    public List<EngClassText> list() {
         try {
             Session session = HibernateUtilMain.getSessionFactory().openSession();
             List engClass = (List) session.createQuery("from EngClassText").list();
