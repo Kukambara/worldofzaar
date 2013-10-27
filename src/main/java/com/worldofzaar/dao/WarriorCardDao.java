@@ -4,6 +4,7 @@ import com.worldofzaar.entity.ActiveCoalition;
 import com.worldofzaar.entity.WarriorCard;
 import com.worldofzaar.util.HibernateUtilActive;
 import com.worldofzaar.util.HibernateUtilMain;
+import org.hibernate.Query;
 import org.hibernate.Session;
 
 import java.util.List;
@@ -28,6 +29,22 @@ public class WarriorCardDao extends GenericDaoMain<WarriorCard> {
             return warriorCards;
         } catch (Exception e) {
             System.out.println("list() Error = " + e.getCause());
+        }
+        return null;
+    }
+
+    public List<Object[]> getCompositeWarriorsCards(String lang) {
+        try {
+
+            Session session = HibernateUtilMain.getSessionFactory().openSession();
+
+            List warriorCards = (List) session.createQuery("select w.cardId, w.classification,t.cardName,w.cardEnergy," +
+                    "w.set,t.cardSlogan, " +
+                    "pt.propertyInfo,w.cardPicture,w.isElite,w.cardHealth, w.cardArmor,w.cardDamage from WarriorCard as w,RuCardText, as t,RuPropertyText as pt where pt.warriorCard.cardId = w.cardId AND t.warriorCard.cardId=w.cardId").list();
+            session.close();
+            return warriorCards;
+        } catch (Exception e) {
+            System.out.println("getCompositeWarriorsCards(lang) Error = " + e.getCause());
         }
         return null;
     }

@@ -4,7 +4,9 @@
 <jsp:include page="../adminPageHeader.jsp"/>
 <h3>Race</h3>
 
+<form action="admin/">
 
+</form>
 <div class="container-fluid">
     <div class="row-fluid">
         <div class="span1">
@@ -30,8 +32,8 @@
         </div>
     </div>
 </div>
-<hr>
 
+<hr>
 <div class="container-fluid">
     <div class="row-fluid">
         <div class="span1">
@@ -42,7 +44,7 @@
                 <label class="control-label" for="engName">Name</label>
 
                 <div class="controls">
-                    <input type="text" id="engName" name="ruName" placeholder="Name" required>
+                    <input type="text" id="engName" name="engName" placeholder="Name" required>
                 </div>
             </div>
             <div class="control-group">

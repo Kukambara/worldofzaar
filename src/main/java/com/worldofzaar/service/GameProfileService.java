@@ -1,5 +1,8 @@
 package com.worldofzaar.service;
 
+import com.worldofzaar.dao.GameProfileDao;
+import com.worldofzaar.entity.GameProfile;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Дмитрий
@@ -8,4 +11,6 @@ package com.worldofzaar.service;
  * To change this template use File | Settings | File Templates.
  */
 public class GameProfileService {
+
+
 }

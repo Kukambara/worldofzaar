@@ -2,6 +2,7 @@ package com.worldofzaar.dao;
 
 import com.worldofzaar.entity.GameProfile;
 import com.worldofzaar.util.HibernateUtilMain;
+import org.hibernate.Query;
 import org.hibernate.Session;
 
 import java.util.List;
@@ -30,4 +31,5 @@ public class GameProfileDao extends GenericDaoMain<GameProfile> {
         }
         return null;
     }
+
 }

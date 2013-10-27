@@ -1,5 +1,6 @@
 package com.worldofzaar.dao;
 
+import com.worldofzaar.entity.GameProfile;
 import com.worldofzaar.entity.User;
 import com.worldofzaar.util.HibernateUtilMain;
 import org.hibernate.Query;
@@ -27,6 +28,20 @@ public class UserDao extends GenericDaoMain<User> {
             return users;
         } catch (Exception e) {
             System.out.println("list() Error = " + e.getCause());
+        }
+        return null;
+    }
+
+    public GameProfile getUserGameProfilesById(Integer userId) {
+        try {
+            Session session = HibernateUtilMain.getSessionFactory().openSession();
+            Query query = session.createQuery("select GameProfile from User where User.userId = :userId");
+            query.setParameter("userId", userId);
+            List<GameProfile> gameProfile = query.list();
+            session.close();
+            return gameProfile.get(0);
+        } catch (Exception e) {
+            System.out.println("getUserGameProfilesById(userId) Error = " + e.getCause());
         }
         return null;
     }

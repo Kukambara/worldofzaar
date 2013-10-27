@@ -6,7 +6,7 @@
     </a>
     <ul class="dropdown-menu">
         <li>
-            <a href="/admin/createRace">Create race</a>
+            <a href="/admin/race/createRace">Create race</a>
         </li>
         <li>
             <a href="#">Pictures</a>
