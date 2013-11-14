@@ -4,29 +4,29 @@ function Point(x, y) {
 	this.x = x ? x : 0;
 	this.y = y ? y : 0;
 
-	this.AddToThis = function(/*Point*/ secondPoint){
+	Point.prototype.AddToThis = function(/*Point*/ secondPoint){
 		this.x += secondPoint.x;
 		this.y += secondPoint.y;
 	}
 
-	this.MinusFromThis = function(/*Point*/ subtrahend/*вычитаемое*/){
+	Point.prototype.MinusFromThis = function (/*Point*/ subtrahend/*вычитаемое*/) {
 		this.x -= subtrahend.x;
 		this.y -= subtrahend.y;
 	}
 
-	this.MinusThis = function(/*Point*/ minuend/*уменьшаемое*/){
+	Point.prototype.MinusThis = function (/*Point*/ minuend/*уменьшаемое*/) {
 		this.x = minuend.x - this.x;
 		this.y = minuend.y - this.y;
 	}
 
-	this.Rotation = function (rotate) {
+	Point.prototype.Rotation = function (rotate) {
 		var x = this.x;
 		var y = this.y;
 		this.x = x * Math.cos(rotate) - y * Math.sin(rotate);
 		this.y = x * Math.sin(rotate) + y * Math.cos(rotate);
 	}
 
-	this.RotationAcrosPoint = function (/*Point*/ point, /*int*/ rotate) {
+	Point.prototype.RotationAcrosPoint = function (/*Point*/ point, /*int*/ rotate) {
 		//вычитаем из нашей точки вершину, относительно которой бкдет делаться поворот, чтобы поворот был относительно это вершины.
 		this.MinusFromThis(point);	
 		this.Rotation(rotate * TO_RADIANS);	//для востановления нужно передавать обратный угол.

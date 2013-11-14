@@ -4,13 +4,13 @@
 	var readyCallbacks = [];
 
 	// Load an image url or an array of image urls
-	function LoadByArr(urls) {
-		for (var i; i < urls.length; ++i) {
-			this.LoadByUrl(urls[i])
+	function loadByArr(urls) {
+		for (var i in urls) {
+			loadByUrl(urls[i])
 		}
 	}
 
-	function LoadByUrl(url) {
+	function loadByUrl(url) {
 		if (resourceCache[url]) {
 			return resourceCache[url];
 		}
@@ -20,7 +20,10 @@
 				resourceCache[url] = img;
 
 				if (isReady()) {
-					readyCallbacks.forEach(function (func) { func(); });
+					for (var i in readyCallbacks) {
+						readyCallbacks[i]();
+					}
+					//readyCallbacks.forEach(function (func) { func(); });
 				}
 			};
 			resourceCache[url] = false;
@@ -33,14 +36,13 @@
 	}
 
 	function isReady() {
-		var ready = true;
-		for (var k in resourceCache) {
-			if (resourceCache.hasOwnProperty(k) &&
-               !resourceCache[k]) {
-				ready = false;
+		for (var i in resourceCache) {
+			if (resourceCache.hasOwnProperty(i) &&
+               !resourceCache[i]) {
+				return false;
 			}
 		}
-		return ready;
+		return true;
 	}
 
 	function onReady(func) {
@@ -48,7 +50,8 @@
 	}
 
 	window.resources = {
-		load: load,
+		loadByUrl: loadByUrl,
+		loadByArr:loadByArr,
 		get: get,
 		onReady: onReady,
 		isReady: isReady
