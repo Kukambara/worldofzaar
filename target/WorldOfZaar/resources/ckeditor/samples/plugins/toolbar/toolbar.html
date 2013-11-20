@@ -83,7 +83,7 @@ CKEDITOR.replace( <em>'textarea_id'</em>, {
 		<h2 class="samples">Full toolbar configuration</h2>
 		<p>Below you can see editor with full toolbar, generated automatically by the editor.</p>
 		<p>
-			<strong>Note</strong>: To create editor instance with full toolbar you don't have to set anything.
+			<strong>Note</strong>: To create editor instance with full toolbar you don't have to subset anything.
 			Just leave <code>toolbar</code> and <code>toolbarGroups</code> with the default, <code>null</code> values.
 		</p>
 		<textarea cols="80" id="editorFull" name="editorFull" rows="10">&lt;p&gt;This is some &lt;strong&gt;sample text&lt;/strong&gt;. You are using &lt;a href="http://ckeditor.com/"&gt;CKEditor&lt;/a&gt;.&lt;/p&gt;</textarea>
@@ -117,7 +117,7 @@ CKEDITOR.replace( <em>'textarea_id'</em>, {
 		if ( !buttonsNames )
 			buttonsNames = createButtonsNamesHash( editor.ui.items );
 
-		// Toolbar isn't set explicitly, so it was created automatically from toolbarGroups.
+		// Toolbar isn't subset explicitly, so it was created automatically from toolbarGroups.
 		if ( !editor.config.toolbar ) {
 			output +=
 				'// Toolbar configuration generated automatically by the editor based on config.toolbarGroups.\n' +

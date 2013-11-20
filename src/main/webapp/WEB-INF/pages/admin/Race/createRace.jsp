@@ -4,7 +4,7 @@
 <jsp:include page="../adminPageHeader.jsp"/>
 <h3>Race</h3>
 
-<form action="/admin/race/createRace" method="post">
+<form action="/admin/race/create" method="post" enctype="multipart/form-data">
 
     <div class="container-fluid">
         <div class="row-fluid">
@@ -17,6 +17,16 @@
 
                     <div class="controls">
                         <input type="text" id="ruName" name="ruName" placeholder="Название" required>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="ruPicture">Название</label>
+
+                    <div class="controls">
+
+                        <input type="file" id="ruPicture" name="ruPicture" onchange="myFunc(this)" required/>
+
+                        <div id="preview_ruPicture"></div>
                     </div>
                 </div>
                 <div class="control-group">
@@ -44,6 +54,16 @@
 
                     <div class="controls">
                         <input type="text" id="engName" name="engName" placeholder="Name" required>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="engPicture">Name</label>
+
+                    <div class="controls">
+
+                        <input type="file" id="engPicture" name="engPicture" onchange="myFunc(this)" required/>
+
+                        <div id="preview_engPicture"></div>
                     </div>
                 </div>
                 <div class="control-group">

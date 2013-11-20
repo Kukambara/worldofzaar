@@ -13,7 +13,8 @@ import javax.persistence.*;
 @Table(name = "\"EngClassTexts\"")
 @AttributeOverrides({
         @AttributeOverride(name = "className", column = @Column(name = "\"className\"")),
-        @AttributeOverride(name = "classDescription", column = @Column(name = "\"classDescription\""))
+        @AttributeOverride(name = "classDescription", column = @Column(name = "\"classDescription\"")),
+        @AttributeOverride(name = "classPictureNamePath", column = @Column(name = "\"classPictureNamePath\""))
 })
 @AssociationOverrides({
         @AssociationOverride(name = "classification", joinColumns = @JoinColumn(name = "\"classId\""))

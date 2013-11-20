@@ -25,6 +25,8 @@ public class RaceText {
     private String raceName;
     @Column(name = "\"raceDescription\"")
     private String raceDescription;
+    @Column(name = "\"raceNamePicturePath\"")
+    private String raceNamePicturePath;
 
     public Integer getRaceTextId() {
         return raceTextId;
@@ -56,5 +58,13 @@ public class RaceText {
 
     public void setRaceDescription(String raceDescription) {
         this.raceDescription = raceDescription;
+    }
+
+    public String getRaceNamePicturePath() {
+        return raceNamePicturePath;
+    }
+
+    public void setRaceNamePicturePath(String raceNamePicturePath) {
+        this.raceNamePicturePath = raceNamePicturePath;
     }
 }

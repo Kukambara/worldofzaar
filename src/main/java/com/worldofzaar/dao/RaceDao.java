@@ -1,9 +1,10 @@
 package com.worldofzaar.dao;
 
 import com.worldofzaar.entity.Race;
-import com.worldofzaar.entity.WarriorCard;
 import com.worldofzaar.util.HibernateUtilMain;
+import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import java.util.List;
 
@@ -15,7 +16,7 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public class RaceDao extends GenericDaoMain<Race> {
-    public RaceDao(){
+    public RaceDao() {
         super(new Race());
     }
 
@@ -29,5 +30,20 @@ public class RaceDao extends GenericDaoMain<Race> {
             System.out.println("list() Error = " + e.getCause());
         }
         return null;
+    }
+
+    public void deleteRace(Integer raceId) {
+        Transaction tx = null;
+        try {
+            Session session = HibernateUtilMain.getSessionFactory().openSession();
+            tx = session.beginTransaction();
+            Query query = session.createQuery("delete Race where raceId = :raceId");
+            query.setParameter("raceId", raceId);
+            query.executeUpdate();
+            tx.commit();
+            session.close();
+        } catch (Exception e) {
+            System.out.println("deleteRace(raceId) Error = " + e.getCause());
+        }
     }
 }

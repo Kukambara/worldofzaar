@@ -86,7 +86,7 @@ public class AuthorizationService {
         request.getSession().removeAttribute(WOZConsts.USER_EMAIL);
         request.getSession().removeAttribute(WOZConsts.IS_ADMIN);
 
-        //Set cookie time for 0. And Write new cookie with the same names.
+        //Subset cookie time for 0. And Write new cookie with the same names.
         Cookie cookieEmail = new Cookie(WOZConsts.USER_EMAIL, null);
         cookieEmail.setMaxAge(0);
         Cookie cookiePass = new Cookie(WOZConsts.USER_PASSWORD, null);

@@ -37,6 +37,7 @@ public class UserDao extends GenericDaoMain<User> {
             Session session = HibernateUtilMain.getSessionFactory().openSession();
             Query query = session.createQuery("select GameProfile from User where User.userId = :userId");
             query.setParameter("userId", userId);
+            query.setMaxResults(1);
             List<GameProfile> gameProfile = query.list();
             session.close();
             return gameProfile.get(0);

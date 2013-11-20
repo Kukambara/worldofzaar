@@ -79,7 +79,7 @@
     <div class="content">
         <div class="row">
             <div class="login-form">
-                <h2>Sign In</h2>
+                <h2>Restore account</h2>
 
                 <form id="formLogin" action="/restoreAccount" method="post">
                     <fieldset>

@@ -20,7 +20,7 @@ import javax.persistence.*;
 @AssociationOverrides({
         @AssociationOverride(name = "property", joinColumns = @JoinColumn(name = "\"propertyId\"")),
         @AssociationOverride(name = "classification", joinColumns = @JoinColumn(name = "\"cardClassId\"")),
-        @AssociationOverride(name = "set", joinColumns = @JoinColumn(name = "\"setId\""))
+        @AssociationOverride(name = "subset", joinColumns = @JoinColumn(name = "\"subsetId\""))
 })
 public class WarriorCard extends Card {
     @Column(name = "cardArmor")

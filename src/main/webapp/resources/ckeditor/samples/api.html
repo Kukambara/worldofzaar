@@ -58,7 +58,7 @@ function SetContents() {
 	var editor = CKEDITOR.instances.editor1;
 	var value = document.getElementById( 'htmlArea' ).value;
 
-	// Set editor contents (replace current contents).
+	// Subset editor contents (replace current contents).
 	// http://docs.ckeditor.com/#!/api/CKEDITOR.editor-method-setData
 	editor.setData( value );
 }

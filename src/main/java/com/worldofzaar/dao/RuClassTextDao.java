@@ -1,9 +1,10 @@
 package com.worldofzaar.dao;
 
 import com.worldofzaar.entity.RuClassText;
-import com.worldofzaar.entity.RuRaceText;
 import com.worldofzaar.util.HibernateUtilMain;
+import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import java.util.List;
 
@@ -19,10 +20,10 @@ public class RuClassTextDao extends GenericDaoMain<RuClassText> {
         super(new RuClassText());
     }
 
-    public List<RuRaceText> list() {
+    public List<RuClassText> list() {
         try {
             Session session = HibernateUtilMain.getSessionFactory().openSession();
-            List ruClass = (List) session.createQuery("from RuRaceText").list();
+            List ruClass = (List) session.createQuery("from RuClassText").list();
             session.close();
             return ruClass;
         } catch (Exception e) {
@@ -30,4 +31,37 @@ public class RuClassTextDao extends GenericDaoMain<RuClassText> {
         }
         return null;
     }
+
+    public RuClassText getTextByClassId(Integer classId) {
+        try {
+            Session session = HibernateUtilMain.getSessionFactory().openSession();
+            Query query = session.createQuery("from RuClassText where classification.classificationId = :classId");
+            query.setParameter("classId", classId);
+            query.setMaxResults(1);
+            List text = query.list();
+            session.close();
+            if (text == null)
+                return null;
+            else
+                return (RuClassText) text.get(0);
+        } catch (Exception e) {
+            System.out.println(" getTextByClassId(classId) Error = " + e.getCause());
+        }
+        return null;
+    }
+    public void deleteText(Integer classId) {
+        Transaction tx = null;
+        try {
+            Session session = HibernateUtilMain.getSessionFactory().openSession();
+            tx = session.beginTransaction();
+            Query query = session.createQuery("delete RuClassText where classification.classificationId = :classId");
+            query.setParameter("classId", classId);
+            query.executeUpdate();
+            tx.commit();
+            session.close();
+        } catch (Exception e) {
+            System.out.println("deleteText(classId) Error = " + e.getCause());
+        }
+    }
+
 }

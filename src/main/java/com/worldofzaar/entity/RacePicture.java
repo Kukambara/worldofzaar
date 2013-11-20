@@ -13,7 +13,7 @@ import javax.persistence.*;
 @Table(name = "\"RacePictures\"")
 public class RacePicture {
     @Id
-    @SequenceGenerator(name = "racePicture_seq", sequenceName = "\"RacePictures_racePicture_seq\"", allocationSize = 1)
+    @SequenceGenerator(name = "racePicture_seq", sequenceName = "\"RacePictures_racePictureId_seq\"", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "racePicture_seq")
     @Column(name = "\"racePictureId\"")
     private Integer racePictureId;

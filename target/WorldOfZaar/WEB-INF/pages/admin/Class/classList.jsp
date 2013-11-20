@@ -4,13 +4,17 @@
 <jsp:include page="../adminPageHeader.jsp"/>
 <table class="table table-hover">
     <thead>
+    <th>Id</th>
     <th>Name</th>
     </thead>
     <tbody>
     <c:forEach var="classif" items="${classes}">
         <tr>
             <td>
-                    ${classif.className}
+                    ${classif.classification.classificationId}
+            </td>
+            <td>
+                <a href="/admin/class/edit/${classif.classification.classificationId}">${classif.className}</a>
             </td>
         </tr>
     </c:forEach>

@@ -33,8 +33,8 @@ public class Card {
     @Column(name = "\"propertySystemString\"")
     private String propertySystemString;
     @ManyToOne
-    @JoinColumn(name = "\"setId\"")
-    private Set set;
+    @JoinColumn(name = "\"subsetId\"")
+    private Subset subset;
 
     public Integer getCardId() {
         return cardId;
@@ -92,11 +92,11 @@ public class Card {
         this.propertySystemString = propertySystemString;
     }
 
-    public Set getSet() {
-        return set;
+    public Subset getSubset() {
+        return subset;
     }
 
-    public void setSet(Set set) {
-        this.set = set;
+    public void setSubset(Subset subset) {
+        this.subset = subset;
     }
 }

@@ -25,6 +25,8 @@ public class ClassText {
     private String className;
     @Column(name = "\"classDescription\"")
     private String classDescription;
+    @Column(name = "\"classPictureNamePath\"")
+    private String classPictureNamePath;
 
     public Integer getClassTextId() {
         return classTextId;
@@ -56,5 +58,13 @@ public class ClassText {
 
     public void setClassDescription(String classDescription) {
         this.classDescription = classDescription;
+    }
+
+    public String getClassPictureNamePath() {
+        return classPictureNamePath;
+    }
+
+    public void setClassPictureNamePath(String classPictureNamePath) {
+        this.classPictureNamePath = classPictureNamePath;
     }
 }

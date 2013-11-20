@@ -17,6 +17,10 @@ public class Property {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "property_seq")
     @Column(name = "\"propertyId\"")
     private Integer propertyId;
+    @Column(name = "\"propertyRealization\"")
+    private String propertyRealization;
+    @Column(name = "\"propertySystemDescription\"")
+    private String propertySystemDescription;
 
     public Integer getPropertyId() {
         return propertyId;
@@ -25,4 +29,35 @@ public class Property {
     public void setPropertyId(Integer propertyId) {
         this.propertyId = propertyId;
     }
+
+    public String getPropertyRealization() {
+        return propertyRealization;
+    }
+
+    public void setPropertyRealization(String propertyRealization) {
+        this.propertyRealization = propertyRealization;
+    }
+
+    public String getPropertySystemDescription() {
+        return propertySystemDescription;
+    }
+
+    public void setPropertySystemDescription(String propertySystemDescription) {
+        this.propertySystemDescription = propertySystemDescription;
+    }
+
+/*
+    *
+    * Method 1
+    *
+    * Class<?> clazz = Class.forName("java.util.Date");
+    * Object date = clazz.newInstance();
+    *
+    * Method 2
+    * Class<?> clazz = Class.forName("com.foo.MyClass");
+    * Constructor<?> constructor = clazz.getConstructor(String.class, Integer.class);
+    * Object instance = constructor.newInstance("stringparam", 42);
+    *
+    */
+
 }

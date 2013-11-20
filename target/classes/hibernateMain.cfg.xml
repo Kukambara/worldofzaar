@@ -42,7 +42,7 @@
         <mapping class="com.worldofzaar.entity.RuCardText"/>
         <mapping class="com.worldofzaar.entity.RuPropertyText"/>
         <mapping class="com.worldofzaar.entity.RuSetText"/>
-        <mapping class="com.worldofzaar.entity.Set"/>
+        <mapping class="com.worldofzaar.entity.Subset"/>
         <mapping class="com.worldofzaar.entity.SetText"/>
         <mapping class="com.worldofzaar.entity.SupportCard"/>
         <mapping class="com.worldofzaar.entity.UserCard"/>
@@ -63,6 +63,7 @@
         <mapping class="com.worldofzaar.entity.ClassText"/>
         <mapping class="com.worldofzaar.entity.RuClassText"/>
         <mapping class="com.worldofzaar.entity.EngClassText"/>
+        <mapping class="com.worldofzaar.entity.Set"/>
 
 
     </session-factory>

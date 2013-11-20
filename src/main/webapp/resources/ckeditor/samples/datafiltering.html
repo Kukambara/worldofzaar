@@ -52,7 +52,7 @@ editor.setData( '&lt;p&gt;Hello world!&lt;/p&gt;' );
 		<h3>How to configure or disable ACF?</h3>
 		<p>
 			Advanced Content Filter is enabled by default, working in "automatic mode", yet
-			it provides a set of easy rules that allow adjusting filtering rules
+			it provides a subset of easy rules that allow adjusting filtering rules
 			and disabling the entire feature when necessary. The config property
 			responsible for this feature is <code><a class="samples"
 			href="http://docs.ckeditor.com/#!/api/CKEDITOR.config-cfg-allowedContent">config.allowedContent</a></code>.
@@ -61,7 +61,7 @@ editor.setData( '&lt;p&gt;Hello world!&lt;/p&gt;' );
 			By "automatic mode" is meant that loaded plugins decide which kind
 			of content is enabled and which is not. For example, if the link
 			plugin is loaded it implies that <code>&lt;a&gt;</code> tag is
-			automatically allowed. Each plugin is given a set
+			automatically allowed. Each plugin is given a subset
 			of predefined <abbr title="Advanced Content Filter">ACF</abbr> rules
 			that control the editor until <code><a class="samples"
 			href="http://docs.ckeditor.com/#!/api/CKEDITOR.config-cfg-allowedContent">
@@ -72,7 +72,7 @@ editor.setData( '&lt;p&gt;Hello world!&lt;/p&gt;' );
 			Let's assume our intention is to restrict the editor to accept (produce) <strong>paragraphs
 			only: no attributes, no styles, no other tags</strong>.
 			With <abbr title="Advanced Content Filter">ACF</abbr>
-			this is very simple. Basically set <code><a class="samples"
+			this is very simple. Basically subset <code><a class="samples"
 			href="http://docs.ckeditor.com/#!/api/CKEDITOR.config-cfg-allowedContent">
 			config.allowedContent</a></code> to <code>'p'</code>:
 		</p>
@@ -93,7 +93,7 @@ alert( editor.getData() );
 "&lt;p&gt;Hello world!&lt;/p&gt;"
 </pre>
 		<p>
-			What happened? Since <code>config.allowedContent: 'p'</code> is set the editor assumes
+			What happened? Since <code>config.allowedContent: 'p'</code> is subset the editor assumes
 			that only plain <code>&lt;p&gt;</code> are accepted. Nothing more. This is why
 			<code>style</code> attribute and <code>&lt;em&gt;</code> tag are gone. The same
 			filtering would happen if we pasted disallowed HTML into this editor.
@@ -106,7 +106,7 @@ alert( editor.getData() );
 		<p>
 			You may, of course, want CKEditor to avoid filtering of any kind.
 			To get rid of <abbr title="Advanced Content Filter">ACF</abbr>,
-			basically set <code><a class="samples"
+			basically subset <code><a class="samples"
 			href="http://docs.ckeditor.com/#!/api/CKEDITOR.config-cfg-allowedContent">
 			config.allowedContent</a></code> to <code>true</code> like this:
 		</p>
@@ -226,7 +226,7 @@ CKEDITOR.replace( 'editor2', {
 					<code>span{!font-family}</code>, <code>span{!color}</code>,
 					<code>span(!marker)</code> - <code>&lt;span&gt;</code> tags
 					will be accepted if either <code>font-family</code> or
-					<code>color</code> style is set or <code>class="marker"</code>
+					<code>color</code> style is subset or <code>class="marker"</code>
 					is present.
 				</li>
 				<li>
@@ -326,7 +326,7 @@ CKEDITOR.replace( 'editor3', {
 		</label>
 		<div class="description">
 			<p>
-				This editor is using a custom set of plugins and buttons.
+				This editor is using a custom subset of plugins and buttons.
 			</p>
 <pre class="samples">
 CKEDITOR.replace( 'editor4', {

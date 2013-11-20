@@ -19,12 +19,33 @@ public class EngClassTextService {
         return engClassTextDao.list();
     }
 
-    public void createEngClassText(Classification classification, String engName, String engDescription) {
+    public void createText(Classification classification, String engName, String engDescription, String engPicture) {
         EngClassTextDao engClassTextDao = new EngClassTextDao();
         EngClassText engClassText = new EngClassText();
         engClassText.setClassification(classification);
         engClassText.setClassName(engName);
         engClassText.setClassDescription(engDescription);
+        engClassText.setClassPictureNamePath(engPicture);
         engClassTextDao.add(engClassText);
+    }
+
+    public void editText(Classification classification, String engName, String engDescription, String engPicture) {
+        EngClassTextDao engClassTextDao = new EngClassTextDao();
+        EngClassText engClassText = engClassTextDao.getTextByClassId(classification.getClassificationId());
+        engClassText.setClassName(engName);
+        engClassText.setClassDescription(engDescription);
+        if (!engPicture.equals(""))
+            engClassText.setClassPictureNamePath(engPicture);
+        engClassTextDao.update(engClassText);
+    }
+
+    public EngClassText getTextByClassId(Integer classId) {
+        EngClassTextDao engClassTextDao = new EngClassTextDao();
+        return engClassTextDao.getTextByClassId(classId);
+    }
+
+    public void deleteText(Integer classId) {
+        EngClassTextDao engClassTextDao = new EngClassTextDao();
+        engClassTextDao.deleteText(classId);
     }
 }

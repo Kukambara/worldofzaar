@@ -7,8 +7,11 @@
 <head>
     <link href="/resources/css/bootstrap.css" rel="stylesheet" type="text/css" media="screen">
     <link href="/resources/css/style.css" rel="stylesheet" type="text/css" media="screen">
-    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="/resources/js/jquery-1.10.2.js"></script>
     <script src="/resources/js/bootstrap.js"></script>
+    <!--<script src="/resources/js/jquery.ui.widget.js"></script>
+    <script src="/resources/js/jquery.iframe-transport.js"></script>
+    <script src="/resources/js/fileupload.js"></script>-->
     <script src="/resources/js/myjs.js"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title></title>

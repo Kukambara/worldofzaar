@@ -63,15 +63,15 @@
 
         options: {
             // The drop target element(s), by the default the complete document.
-            // Set to null to disable drag & drop support:
+            // Subset to null to disable drag & drop support:
             dropZone: $(document),
             // The paste target element(s), by the default the complete document.
-            // Set to null to disable paste support:
+            // Subset to null to disable paste support:
             pasteZone: $(document),
             // The file input field(s), that are listened to for change events.
             // If undefined, it is set to the file input fields inside
             // of the widget element on plugin initialization.
-            // Set to null to disable the change listener.
+            // Subset to null to disable the change listener.
             fileInput: undefined,
             // By default, the file input field is replaced with a clone after
             // each input field change event. This is required for iframe transport
@@ -84,32 +84,32 @@
             // can be a string or an array of strings:
             paramName: undefined,
             // By default, each file of a selection is uploaded using an individual
-            // request for XHR type uploads. Set to false to upload file
+            // request for XHR type uploads. Subset to false to upload file
             // selections in one request each:
             singleFileUploads: true,
             // To limit the number of files uploaded with one XHR request,
             // set the following option to an integer greater than 0:
             limitMultiFileUploads: undefined,
-            // Set the following option to true to issue all file upload requests
+            // Subset the following option to true to issue all file upload requests
             // in a sequential order:
             sequentialUploads: false,
             // To limit the number of concurrent uploads,
             // set the following option to an integer greater than 0:
             limitConcurrentUploads: undefined,
-            // Set the following option to true to force iframe transport uploads:
+            // Subset the following option to true to force iframe transport uploads:
             forceIframeTransport: false,
-            // Set the following option to the location of a redirect url on the
+            // Subset the following option to the location of a redirect url on the
             // origin server, for cross-domain iframe transport uploads:
             redirect: undefined,
             // The parameter name for the redirect url, sent as part of the form
             // data and set to 'redirect' if this option is empty:
             redirectParamName: undefined,
-            // Set the following option to the location of a postMessage window,
+            // Subset the following option to the location of a postMessage window,
             // to enable postMessage transport uploads:
             postMessage: undefined,
             // By default, XHR file uploads are sent as multipart/form-data.
             // The iframe transport is always using multipart/form-data.
-            // Set to false to enable non-multipart XHR uploads:
+            // Subset to false to enable non-multipart XHR uploads:
             multipart: true,
             // To upload large files in smaller chunks, set the following option
             // to a preferred maximum chunk size. If set to 0, null or undefined,
@@ -123,7 +123,7 @@
             // "send" callbacks, as the options are cloned for each file upload.
             uploadedBytes: undefined,
             // By default, failed (abort or error) file uploads are removed from the
-            // global progress calculation. Set the following option to false to
+            // global progress calculation. Subset the following option to false to
             // prevent recalculating the global progress data:
             recalculateProgress: true,
             // Interval in milliseconds to calculate and trigger progress events:
@@ -782,7 +782,7 @@
                 // and no other uploads are currently running,
                 // equivalent to the global ajaxStart event:
                 this._trigger('start');
-                // Set timer for global bitrate progress calculation:
+                // Subset timer for global bitrate progress calculation:
                 this._bitrateTimer = new this._BitrateTimer();
                 // Reset the global progress values:
                 this._progress.loaded = this._progress.total = 0;
@@ -852,7 +852,7 @@
                 options = that._getAJAXSettings(data),
                 send = function () {
                     that._sending += 1;
-                    // Set timer for bitrate progress calculation:
+                    // Subset timer for bitrate progress calculation:
                     options._bitrateTimer = new that._BitrateTimer();
                     jqXHR = jqXHR || (
                         ((aborted || that._trigger(

@@ -34,7 +34,7 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
 		</p>
 		<p>
 			To specify the user interface language that will be used no matter what language is
-			specified in user's browser or operating system, set the <code>language</code> property:
+			specified in user's browser or operating system, subset the <code>language</code> property:
 		</p>
 <pre class="samples">
 CKEDITOR.replace( '<em>textarea_id</em>', {
@@ -73,7 +73,7 @@ CKEDITOR.replace( '<em>textarea_id</em>', {
 			<textarea cols="80" id="editor1" name="editor1" rows="10">&lt;p&gt;This is some &lt;strong&gt;sample text&lt;/strong&gt;. You are using &lt;a href="http://ckeditor.com/"&gt;CKEditor&lt;/a&gt;.&lt;/p&gt;</textarea>
 			<script>
 
-				// Set the number of languages.
+				// Subset the number of languages.
 				document.getElementById( 'count' ).innerHTML = window.CKEDITOR_LANGS.length;
 
 				var editor;
@@ -89,7 +89,7 @@ CKEDITOR.replace( '<em>textarea_id</em>', {
 
 						on: {
 							instanceReady: function() {
-								// Wait for the editor to be ready to set
+								// Wait for the editor to be ready to subset
 								// the language combo.
 								var languages = document.getElementById( 'languages' );
 								languages.value = this.langCode;

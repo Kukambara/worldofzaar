@@ -24,4 +24,17 @@ public class HashConverter {
 
         return hash;
     }
+
+    public static String md5File(byte[] fileBytes) {
+        String hash = null;
+        try {
+            MessageDigest m = MessageDigest.getInstance("MD5");
+            m.update(fileBytes, 0, fileBytes.length);
+            hash = new BigInteger(1, m.digest()).toString(16);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return hash;
+    }
 }

@@ -19,18 +19,39 @@ public class RaceService {
         return raceDao.list();
     }
 
-    public void createRace(String ruName, String ruDescription,
-                           String engName, String engDescription) {
+    public void createRace(String ruName, String ruDescription, String ruPicture,
+                           String engName, String engDescription, String engPicture) {
         RaceDao raceDao = new RaceDao();
         Race race = new Race();
         // Crate new race.
         raceDao.add(race);
         // Create RuRaceText for race.
         RuRaceTextService ruRaceTextService = new RuRaceTextService();
-        ruRaceTextService.createRuRaceText(race, ruName, ruDescription);
+        ruRaceTextService.createRuRaceText(race, ruName, ruDescription, ruPicture);
         // Create EngRaceText for race.
         EngRaceTextService engRaceTextService = new EngRaceTextService();
-        engRaceTextService.createEngRaceText(race, engName, engDescription);
+        engRaceTextService.createEngRaceText(race, engName, engDescription, engPicture);
+
+    }
+
+    public void deleteRace(Integer raceId) {
+        EngRaceTextService engRaceTextService = new EngRaceTextService();
+        engRaceTextService.deleteRaceText(raceId);
+        RuRaceTextService ruRaceTextService = new RuRaceTextService();
+        ruRaceTextService.deleteRaceText(raceId);
+        RaceDao raceDao = new RaceDao();
+        raceDao.deleteRace(raceId);
+    }
+
+    public void editRace(Integer raceId, String ruName, String ruDescription, String ruPicture,
+                         String engName, String engDescription, String engPicture) {
+        //Edit engRaceText
+        EngRaceTextService engRaceTextService = new EngRaceTextService();
+        engRaceTextService.editEngRaceText(raceId, engName, engDescription, engPicture);
+        //Edit ruRaceText
+        RuRaceTextService ruRaceTextService = new RuRaceTextService();
+        ruRaceTextService.editRuRaceText(raceId, ruName, ruDescription, ruPicture);
+
 
     }
 

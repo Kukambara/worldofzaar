@@ -6,16 +6,13 @@
     </a>
     <ul class="dropdown-menu">
         <li>
-            <a href="/admin/race/createRace">Create race</a>
-<<<<<<< HEAD
+            <a href="/admin/race/create">Create race</a>
         </li>
         <li>
-            <a href="/admin/race/raceList">All races</a>
-=======
->>>>>>> 374fabb858f6202e7464eb59895297932d925317
+            <a href="/admin/race/list">All races</a>
         </li>
         <li>
-            <a href="#">Pictures</a>
+            <a href="/admin/race/picture/list">Pictures</a>
         </li>
     </ul>
 </li>
@@ -26,13 +23,16 @@
     </a>
     <ul class="dropdown-menu">
         <li>
-            <a href="/admin/class/createClass">Create class</a>
+            <a href="/admin/class/create">Create class</a>
         </li>
         <li>
-            <a href="/admin/class/classList">All classes</a>
+            <a href="/admin/class/list">All classes</a>
         </li>
         <li>
-            <a href="#">Blazons</a>
+            <a href="/admin/class/blazon/edit">Blazons</a>
+        </li>
+        <li>
+            <a href="/admin/class/cloth/edit">Clothes</a>
         </li>
     </ul>
 </li>
@@ -42,10 +42,36 @@
     </a>
     <ul class="dropdown-menu">
         <li>
-            <a href="#">Cards</a>
+            <a href="/admin/card/create">Create card</a>
+        </li>
+    </ul>
+</li>
+<li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        Sets<b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+        <li>
+            <a href="/admin/set/create">Create set</a>
         </li>
         <li>
-            <a href="#">Sets</a>
+            <a href="/admin/set/list">Sets</a>
+        </li>
+        <li>
+            <a href="/admin/subset/add">Subset</a>
+        </li>
+    </ul>
+</li>
+<li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        Properties<b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+        <li>
+            <a href="/admin/property/create">Create Property</a>
+        </li>
+        <li>
+            <a href="/admin/property/list">Properties</a>
         </li>
     </ul>
 </li>
