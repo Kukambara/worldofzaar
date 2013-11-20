@@ -2,29 +2,29 @@ function Area(beginPoint, width, height) {
 	this.beginPoint = beginPoint;
 	this.width = width;
 	this.height = height;
-	var isBorder = false;
+	this.isBorder = false;
 
 	var TO_RADIANS = Math.PI / 180;
 
-	this.Init = function (beginPoint, width, height) {
+	Area.prototype.Init = function (beginPoint, width, height) {
 		this.beginPoint = beginPoint;
 		this.width = width;
 		this.height = height;
 	}
 
-	this.DrawImage = function (context, image) {
+	Area.prototype.DrawImage = function (context, image) {
 		/*context.save();
 		context.translate(this.x, this.y);
 		context.drawImage(image, 0, 0, this.width, this.height);
 		context.restore();*/
 		context.drawImage(image, this.beginPoint.x, this.beginPoint.y, this.width, this.height);
-		if(isBorder){
+		if (this.isBorder) {
 			context.rect(this.beginPoint.x, this.beginPoint.y, this.width, this.height);
 			context.stroke();
 		}
 	}
 
-	this.DrawRotateBegin = function(context, rotate){
+	Area.prototype.DrawRotateBegin = function (context, rotate) {
 		context.save();
 		//Чтобы поворот был относительно нашего предмета.
 
@@ -53,11 +53,11 @@ function Area(beginPoint, width, height) {
 		//context.translate(-this.width / 2, -this.height / 2 );
 	}
 
-	this.DrawRotateEnd = function (context) {
+	Area.prototype.DrawRotateEnd = function (context) {
 		context.restore();
 	}
 
-	this.DrawRotateImage = function (context, image, rotate) {
+	Area.prototype.DrawRotateImage = function (context, image, rotate) {
 		this.DrawRotateBegin(context, rotate);
 
 		context.drawImage(
@@ -70,26 +70,31 @@ function Area(beginPoint, width, height) {
 		context.restore();
 	}
 
-	this.DrawText = function (context, string, borderX, borderY){
+
+	Area.prototype.DrawText = function (context, string, borderX, borderY) {
 		context.fillText(string, this.beginPoint.x + borderX, this.beginPoint.y + this.height - borderY, this.width - borderX * 2);
+		if (this.isBorder) {
+			context.rect(this.beginPoint.x, this.beginPoint.y, this.width, this.height);
+			context.stroke();
+		}
 		//context.fillText(string, 50, 150, this.width - borderX * 2);
 	}
 
-	this.DrawFromBegin = function (context, image) {
+	Area.prototype.DrawFromBegin = function (context, image) {
 		context.drawImage(image, 0, 0, this.width, this.height);		
 	}
 
-	this.GetDiagonalPositionAfterThis = function () {
+	Area.prototype.GetDiagonalPositionAfterThis = function () {
 		return new Point(this.beginPoint.x + this.width, this.beginPoint.y + this.height);
 	}
-	this.GetVerticalPositionAfterThis = function () {
+	Area.prototype.GetHorisontalPositionAfterThis = function () {
 		return new Point(this.beginPoint.x + this.width, this.beginPoint.y);
 	}
-	this.GetHorisontalPositionAfterThis = function () {
+	Area.prototype.GetVerticalPositionAfterThis= function () {
 		return new Point(this.beginPoint.x, this.beginPoint.y + this.height);
 	}
 
-	this.IsPointInArea = function (/*Point*/point) {
+	Area.prototype.IsPointInArea = function (/*Point*/point) {
 		var res1 = point.x > this.beginPoint.x;
 		var res2 = point.x < this.beginPoint.x + this.width;
 		var res3 = point.y > this.beginPoint.y;
@@ -97,10 +102,18 @@ function Area(beginPoint, width, height) {
 		return res1 && res2 && res3 && res4;
 	}
 
-	this.OnClick = function (/*POint*/ eventPoint) {
+	Area.prototype.OnClick = function (/*POint*/ eventPoint) {
 		if (this.IsPointInArea(eventPoint)) {
-			isBorder = !isBorder;
+			this.isBorder = !this.isBorder;
 			//alert("Do something");
 		}
+	}
+
+	Area.prototype.GetCenterWidthPoint = function () {
+		return new Point(this.width / 2 + this.beginPoint.x, this.height / 2 + this.beginPoint.y);
+	}
+
+	Area.prototype.GetCenterPoint = function () {
+		return new Point(this.width / 2 + this.beginPoint.x, this.height / 2 + this.beginPoint.y);
 	}
 }
