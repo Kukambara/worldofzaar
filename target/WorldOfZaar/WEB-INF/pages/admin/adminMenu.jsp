@@ -44,6 +44,20 @@
         <li>
             <a href="/admin/card/create">Create card</a>
         </li>
+        <li>
+            <a href="/admin/card/list">Cards</a>
+        </li>
+        <li class="dropdown-submenu">
+            <a tabindex="-1" href="/admin/mastercard/list">MasterCard</a>
+            <ul class="dropdown-menu">
+                <li>
+                    <a href="/admin/mastercard/create">Create</a>
+                </li>
+                <li>
+                    <a href="/admin/mastercard/list">List</a>
+                </li>
+            </ul>
+        </li>
     </ul>
 </li>
 <li class="dropdown">
@@ -75,8 +89,18 @@
         </li>
     </ul>
 </li>
-<li>
-    <a href="#">Master of desk</a>
+<li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        Experience<b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+        <li>
+            <a href="/admin/experience/create">Create experience</a>
+        </li>
+        <li>
+            <a href="/admin/experience/list">List</a>
+        </li>
+    </ul>
 </li>
 <li>
     <a href="/admin/adminList">Admin list</a>

@@ -6,6 +6,7 @@ import com.worldofzaar.util.HibernateUtilActive;
 import com.worldofzaar.util.HibernateUtilMain;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import java.util.List;
 
@@ -33,13 +34,28 @@ public class WarriorCardDao extends GenericDaoMain<WarriorCard> {
         return null;
     }
 
+    public void remove(Integer cardId) {
+        Transaction tx = null;
+        try {
+            Session session = HibernateUtilMain.getSessionFactory().openSession();
+            tx = session.beginTransaction();
+            Query query = session.createQuery("delete WarriorCard where cardId = :cardId");
+            query.setParameter("cardId", cardId);
+            query.executeUpdate();
+            tx.commit();
+            session.close();
+        } catch (Exception e) {
+            System.out.println("remove(cardId) Error = " + e.getCause());
+        }
+    }
+
     public List<Object[]> getCompositeWarriorsCards(String lang) {
         try {
 
             Session session = HibernateUtilMain.getSessionFactory().openSession();
 
             List warriorCards = (List) session.createQuery("select w.cardId, w.classification,t.cardName,w.cardEnergy," +
-                    "w.set,t.cardSlogan, " +
+                    "w.subset ,t.cardSlogan, " +
                     "pt.propertyInfo,w.cardPicture,w.isElite,w.cardHealth, w.cardArmor,w.cardDamage from WarriorCard as w,RuCardText as t,RuPropertyText as pt where pt.warriorCard.cardId = w.cardId AND t.warriorCard.cardId=w.cardId").list();
             session.close();
             return warriorCards;

@@ -33,4 +33,34 @@ public class RuCardTextService {
         RuCardTextDao ruCardTextDao = new RuCardTextDao();
         ruCardTextDao.add(ruCardText);
     }
+
+    public void editText(WarriorCard card, String ruName, String ruSlogan) {
+        editText((Card) card, ruName, ruSlogan);
+    }
+
+    public void editText(SupportCard card, String ruName, String ruSlogan) {
+        editText((Card) card, ruName, ruSlogan);
+    }
+
+    private void editText(Card card, String ruName, String ruSlogan) {
+        RuCardTextDao ruCardTextDao = new RuCardTextDao();
+        RuCardText ruCardText = ruCardTextDao.getTextByCardId(card.getCardId());
+        ruCardText.setCardName(ruName);
+        ruCardText.setCardSlogan(ruSlogan);
+        if (card instanceof SupportCard)
+            ruCardText.setSupportCard((SupportCard) card);
+        if (card instanceof WarriorCard)
+            ruCardText.setWarriorCard((WarriorCard) card);
+        ruCardTextDao.update(ruCardText);
+    }
+
+    public void deleteTextByCardId(Integer cardId) {
+        RuCardTextDao ruCardTextDao = new RuCardTextDao();
+        ruCardTextDao.removeTextByCardId(cardId);
+    }
+
+    public RuCardText getText(Integer cardId) {
+        RuCardTextDao ruCardTextDao = new RuCardTextDao();
+        return ruCardTextDao.getTextByCardId(cardId);
+    }
 }

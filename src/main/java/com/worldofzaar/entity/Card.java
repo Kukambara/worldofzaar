@@ -41,7 +41,7 @@ public class Card {
     }
 
     public void setCardId(Integer cardId) {
-        cardId = cardId;
+        this.cardId = cardId;
     }
 
     public Integer getCardEnergy() {
@@ -49,7 +49,7 @@ public class Card {
     }
 
     public void setCardEnergy(Integer cardEnergy) {
-        cardEnergy = cardEnergy;
+        this.cardEnergy = cardEnergy;
     }
 
     public String getCardPicture() {
@@ -57,7 +57,7 @@ public class Card {
     }
 
     public void setCardPicture(String cardPicture) {
-        cardPicture = cardPicture;
+        this.cardPicture = cardPicture;
     }
 
     public Property getProperty() {

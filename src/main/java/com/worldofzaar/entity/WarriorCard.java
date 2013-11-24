@@ -23,11 +23,11 @@ import javax.persistence.*;
         @AssociationOverride(name = "subset", joinColumns = @JoinColumn(name = "\"subsetId\""))
 })
 public class WarriorCard extends Card {
-    @Column(name = "cardArmor")
+    @Column(name = "\"cardArmor\"")
     private Integer cardArmor;
-    @Column(name = "cardDamage")
+    @Column(name = "\"cardDamage\"")
     private Integer cardDamage;
-    @Column(name = "cardHealth")
+    @Column(name = "\"cardHealth\"")
     private Integer cardHealth;
 
     public Integer getCardArmor() {

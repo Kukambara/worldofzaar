@@ -1,9 +1,10 @@
 package com.worldofzaar.dao;
 
 import com.worldofzaar.entity.SupportCard;
-import com.worldofzaar.entity.WarriorCard;
 import com.worldofzaar.util.HibernateUtilMain;
+import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import java.util.List;
 
@@ -29,6 +30,21 @@ public class SupportCardDao extends GenericDaoMain<SupportCard> {
             System.out.println("list() Error = " + e.getCause());
         }
         return null;
+    }
+
+    public void remove(Integer cardId) {
+        Transaction tx = null;
+        try {
+            Session session = HibernateUtilMain.getSessionFactory().openSession();
+            tx = session.beginTransaction();
+            Query query = session.createQuery("delete SupportCard where cardId = :cardId");
+            query.setParameter("cardId", cardId);
+            query.executeUpdate();
+            tx.commit();
+            session.close();
+        } catch (Exception e) {
+            System.out.println("remove(cardId) Error = " + e.getCause());
+        }
     }
 
     public List<Object[]> getCompositeSupportCards(String lang) {

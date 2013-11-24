@@ -1,9 +1,10 @@
 package com.worldofzaar.dao;
 
-import com.worldofzaar.entity.Friendship;
 import com.worldofzaar.entity.MasterOfDeck;
 import com.worldofzaar.util.HibernateUtilMain;
+import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import java.util.List;
 
@@ -30,5 +31,20 @@ public class MasterOfDeckDao extends GenericDaoMain<MasterOfDeck> {
             System.out.println("list() Error = " + e.getCause());
         }
         return null;
+    }
+
+    public void remove(Integer masterOfDeckId) {
+        Transaction tx = null;
+        try {
+            Session session = HibernateUtilMain.getSessionFactory().openSession();
+            tx = session.beginTransaction();
+            Query query = session.createQuery("delete MasterOfDeck where mastersCardId = :masterOfDeckId");
+            query.setParameter("masterOfDeckId", masterOfDeckId);
+            query.executeUpdate();
+            tx.commit();
+            session.close();
+        } catch (Exception e) {
+            System.out.println("remove(masterOfDeckId) Error = " + e.getCause());
+        }
     }
 }

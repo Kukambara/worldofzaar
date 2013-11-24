@@ -51,4 +51,12 @@ $(document)
             }
 
         });
+
+        var cardType = $("input[name='cardType']:checked");
+        if (cardType.val() == 'support') {
+            $('#warriorCardType').hide();
+        } else {
+            $('#warriorCardType').show();
+        }
+
     });
