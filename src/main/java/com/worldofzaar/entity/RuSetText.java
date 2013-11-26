@@ -1,5 +1,8 @@
 package com.worldofzaar.entity;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 import javax.persistence.*;
 
 /**
@@ -11,6 +14,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "\"RuSetTexts\"")
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @AttributeOverrides({
         @AttributeOverride(name = "setName", column = @Column(name = "\"setName\"")),
         @AttributeOverride(name = "setInfo", column = @Column(name = "\"setInfo\""))
@@ -18,6 +22,6 @@ import javax.persistence.*;
 @AssociationOverrides({
         @AssociationOverride(name = "set", joinColumns = @JoinColumn(name = "\"setId\""))
 })
-public class RuSetText extends SetText{
+public class RuSetText extends SetText {
 
 }

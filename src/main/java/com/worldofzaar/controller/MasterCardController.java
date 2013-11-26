@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping("/admin/mastercard/")
 public class MasterCardController {
+    /*
+    Create methods depricated now
     @RequestMapping(value = "create", method = RequestMethod.GET)
     public String createMasterCard(ModelMap model) {
         EngCardTextService engCardTextService = new EngCardTextService();
@@ -34,7 +36,7 @@ public class MasterCardController {
         masterOfDeckService.createMasterOfDeck(cardId, cardLevel, price, donatePrice);
         return "redirect:/admin/mastercard/list";
     }
-
+      */
     @RequestMapping(value = "list", method = RequestMethod.GET)
     public String listMasterCard(ModelMap model) {
         MasterOfDeckService masterOfDeckService = new MasterOfDeckService();

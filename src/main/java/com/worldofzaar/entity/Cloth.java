@@ -1,5 +1,8 @@
 package com.worldofzaar.entity;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 import javax.persistence.*;
 
 /**
@@ -11,6 +14,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "\"Clothes\"")
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Cloth {
     @Id
     @SequenceGenerator(name = "cloth_seq", sequenceName = "\"Clothes_clothId_seq\"", allocationSize = 1)

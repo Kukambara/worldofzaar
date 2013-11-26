@@ -38,9 +38,12 @@ public class WarriorCardService {
     public void addCard(MultipartHttpServletRequest request, ServletContext context, Integer energy, Integer classId,
                         Integer propertyId, Integer subsetId,
                         String propertyString, Integer armor, Integer damage, Integer health,
-                        String ruName, String engName, String ruSlogan, String engSlogan, Boolean isElite) {
+                        String ruName, String engName, String ruSlogan, String engSlogan, String ruProperty, String engProperty,
+                        Boolean isElite) {
         EngCardTextService engCardTextService = new EngCardTextService();
         RuCardTextService ruCardTextService = new RuCardTextService();
+        EngPropertyTextService engPropertyTextService = new EngPropertyTextService();
+        RuPropertyTextService ruPropertyTextService = new RuPropertyTextService();
         PropertyService propertyService = new PropertyService();
         ClassificationService classificationService = new ClassificationService();
         WarriorCardDao warriorCardDao = new WarriorCardDao();
@@ -76,14 +79,24 @@ public class WarriorCardService {
 
         engCardTextService.addText(warriorCard, engName, engSlogan);
         ruCardTextService.addText(warriorCard, ruName, ruSlogan);
+
+        engPropertyTextService.addText(warriorCard, engProperty);
+        ruPropertyTextService.addText(warriorCard, ruProperty);
+
+        MasterOfDeckService masterOfDeckService = new MasterOfDeckService();
+        masterOfDeckService.createWarrMasterOfDeck(warriorCard.getCardId(), -1, 0, 0);
     }
 
     public void editCard(Integer cardId, MultipartHttpServletRequest request, ServletContext context, Integer energy,
                          Integer classId, Integer propertyId, Integer subsetId,
                          String propertyString, Integer armor, Integer damage, Integer health,
-                         String ruName, String engName, String ruSlogan, String engSlogan, Boolean isElite) {
+                         String ruName, String engName, String ruSlogan, String engSlogan, String ruProperty, String engProperty,
+                         Boolean isElite) {
         EngCardTextService engCardTextService = new EngCardTextService();
         RuCardTextService ruCardTextService = new RuCardTextService();
+        EngPropertyTextService engPropertyTextService = new EngPropertyTextService();
+        RuPropertyTextService ruPropertyTextService = new RuPropertyTextService();
+
         PropertyService propertyService = new PropertyService();
         ClassificationService classificationService = new ClassificationService();
         WarriorCardDao warriorCardDao = new WarriorCardDao();
@@ -122,6 +135,8 @@ public class WarriorCardService {
 
         engCardTextService.editText(warriorCard, engName, engSlogan);
         ruCardTextService.editText(warriorCard, ruName, ruSlogan);
+        engPropertyTextService.editText(warriorCard, engProperty);
+        ruPropertyTextService.editText(warriorCard, ruProperty);
 
     }
 

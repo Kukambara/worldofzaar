@@ -13,8 +13,8 @@ import javax.persistence.*;
 @Table(name = "\"WebUsers\"")
 public class WebUser {
     @Id
-    @SequenceGenerator(name="webUser_seq", sequenceName="\"WebUsers_webUserId_seq\"", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE ,generator="webUser_seq")
+    @SequenceGenerator(name = "webUser_seq", sequenceName = "\"WebUsers_webUserId_seq\"", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "webUser_seq")
     @Column(name = "\"webUserId\"")
     private Integer webUserId;
     @Column(name = "\"webUserEmail\"")

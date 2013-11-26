@@ -1,5 +1,8 @@
 package com.worldofzaar.entity;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 import javax.persistence.*;
 
 /**
@@ -11,6 +14,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "\"SetTexts\"")
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class SetText {
     @Id
@@ -23,6 +27,7 @@ public class SetText {
     @Column(name = "\"setInfo\"")
     private String setInfo;
     @OneToOne
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JoinColumn(name = "\"setId\"")
     private Set set;
 

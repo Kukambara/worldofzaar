@@ -131,6 +131,14 @@
                         <textarea cols="80" id="ruSlogan" name="ruSlogan" placeholder="Слоган" rows="10"></textarea>
                     </div>
                 </div>
+                <div class="control-group">
+                    <label class="control-label" for="ruProperty">Описание свойства</label>
+
+                    <div class="controls">
+                        <textarea cols="80" id="ruProperty" name="ruProperty" placeholder="Описание свойтсва" rows="10">
+                        </textarea>
+                    </div>
+                </div>
 
             </div>
         </div>
@@ -158,6 +166,16 @@
                                   rows="10"></textarea>
                     </div>
                 </div>
+                <div class="control-group">
+                    <label class="control-label" for="engProperty">Property description</label>
+
+                    <div class="controls">
+                        <textarea cols="80" id="engProperty" name="engProperty" placeholder="Property description"
+                                  rows="10">
+                        </textarea>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

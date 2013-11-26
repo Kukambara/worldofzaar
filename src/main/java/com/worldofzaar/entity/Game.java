@@ -1,9 +1,9 @@
 package com.worldofzaar.entity;
 
+import org.hibernate.annotations.Parameter;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
-import org.hibernate.annotations.Parameter;
 
 /**
  * Created with IntelliJ IDEA.

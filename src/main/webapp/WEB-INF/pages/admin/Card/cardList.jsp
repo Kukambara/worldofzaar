@@ -30,7 +30,7 @@
                     ${card.cardId}
             </td>
             <td>
-                <a href="/admin/card/edit/${card.cardId}">${cardText.cardName}s</a>
+                <a href="/admin/card/edit/${card.cardId}">${cardText.cardName}</a>
             </td>
             <td>
                     ${card.cardEnergy}

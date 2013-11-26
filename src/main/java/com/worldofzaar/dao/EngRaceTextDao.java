@@ -5,6 +5,7 @@ import com.worldofzaar.util.HibernateUtilMain;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.stat.SessionStatistics;
 
 import java.util.List;
 
@@ -23,7 +24,10 @@ public class EngRaceTextDao extends GenericDaoMain<EngRaceText> {
     public List<EngRaceText> list() {
         try {
             Session session = HibernateUtilMain.getSessionFactory().openSession();
-            List engRace = (List) session.createQuery("from EngRaceText").list();
+            Query query = session.createQuery("from EngRaceText");
+            query.setCacheable(true);
+            List engRace = query.list();
+            SessionStatistics s = session.getStatistics();
             session.close();
             return engRace;
         } catch (Exception e) {

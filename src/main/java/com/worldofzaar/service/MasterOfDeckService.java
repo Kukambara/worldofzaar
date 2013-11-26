@@ -26,21 +26,43 @@ public class MasterOfDeckService {
         return masterOfDeckDao.find(masterOfDeckId);
     }
 
-    public void createMasterOfDeck(Integer cardId, Integer cardLevel, Integer price, Integer donatePrice) {
-        SupportCardService supportCardService = new SupportCardService();
+    public MasterOfDeck getMasterOfDeckByCardId(Integer cardId) {
+        MasterOfDeckDao masterOfDeckDao = new MasterOfDeckDao();
+        return masterOfDeckDao.findByCardId(cardId);
+    }
+
+    public void createWarrMasterOfDeck(Integer cardId, Integer cardLevel, Integer price, Integer donatePrice) {
+
+        //Don't repeat Master of card for the same card.
+        if (getMasterOfDeckByCardId(cardId) != null)
+            return;
+
         WarriorCardService warriorCardService = new WarriorCardService();
-        SupportCard supportCard = supportCardService.getCard(cardId);
         WarriorCard warriorCard = warriorCardService.getCard(cardId);
         MasterOfDeck masterOfDeck = new MasterOfDeck();
         masterOfDeck.setWarriorCard(warriorCard);
+        masterOfDeck.setCardLevel(cardLevel);
+        masterOfDeck.setPrice(price);
+        masterOfDeck.setDonatePrice(donatePrice);
+        MasterOfDeckDao masterOfDeckDao = new MasterOfDeckDao();
+        masterOfDeckDao.add(masterOfDeck);
+    }
+
+    public void createSuppMasterOfDeck(Integer cardId, Integer cardLevel, Integer price, Integer donatePrice) {
+
+        //Don't repeat Master of card for the same card.
+        if (getMasterOfDeckByCardId(cardId) != null)
+            return;
+
+        SupportCardService supportCardService = new SupportCardService();
+        SupportCard supportCard = supportCardService.getCard(cardId);
+        MasterOfDeck masterOfDeck = new MasterOfDeck();
         masterOfDeck.setSupportCard(supportCard);
         masterOfDeck.setCardLevel(cardLevel);
         masterOfDeck.setPrice(price);
         masterOfDeck.setDonatePrice(donatePrice);
         MasterOfDeckDao masterOfDeckDao = new MasterOfDeckDao();
         masterOfDeckDao.add(masterOfDeck);
-
-
     }
 
     public void editMasterOfDeck(Integer masterofDeckId, Integer cardId, Integer cardLevel, Integer price, Integer donatePrice) {
@@ -50,7 +72,9 @@ public class MasterOfDeckService {
         SupportCardService supportCardService = new SupportCardService();
         WarriorCardService warriorCardService = new WarriorCardService();
         SupportCard supportCard = supportCardService.getCard(cardId);
-        WarriorCard warriorCard = warriorCardService.getCard(cardId);
+        WarriorCard warriorCard = null;
+        if (supportCard == null)
+            warriorCard = warriorCardService.getCard(cardId);
 
         masterOfDeck.setWarriorCard(warriorCard);
         masterOfDeck.setSupportCard(supportCard);

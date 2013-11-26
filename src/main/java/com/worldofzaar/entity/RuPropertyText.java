@@ -1,5 +1,8 @@
 package com.worldofzaar.entity;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 import javax.persistence.*;
 
 /**
@@ -11,6 +14,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "\"RuPropertyTexts\"")
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @AttributeOverrides({
         @AttributeOverride(name = "propertyInfo", column = @Column(name = "\"propertyInfo\""))
 })

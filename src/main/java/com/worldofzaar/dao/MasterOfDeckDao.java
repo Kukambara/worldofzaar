@@ -47,4 +47,22 @@ public class MasterOfDeckDao extends GenericDaoMain<MasterOfDeck> {
             System.out.println("remove(masterOfDeckId) Error = " + e.getCause());
         }
     }
+
+    public MasterOfDeck findByCardId(Integer cardId) {
+        try {
+            Session session = HibernateUtilMain.getSessionFactory().openSession();
+            Query query = session.createQuery("from MasterOfDeck where supportCard.cardId = :cardId or warriorCard.cardId = :cardId");
+            query.setParameter("cardId", cardId);
+            query.setMaxResults(1);
+            List masters = query.list();
+            session.close();
+            if (masters == null)
+                return null;
+            else
+                return (MasterOfDeck) masters.get(0);
+        } catch (Exception e) {
+            System.out.println("findByCardId(cardId) Error = " + e.getCause());
+        }
+        return null;
+    }
 }
