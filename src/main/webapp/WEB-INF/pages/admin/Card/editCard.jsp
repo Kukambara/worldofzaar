@@ -98,17 +98,19 @@
             <div class="control-group">
                 <label class="control-label">Card type</label>
 
-                <div class="controls">
-                    <input type="radio" name="cardType" value="warrior"
-                    <c:if test="${engCardText.warriorCard != null}">
-                           checked
-                    </c:if>
-                           disabled> Warrior<br>
-                    <input type="radio" name="cardType" value="support"
-                    <c:if test="${engCardText.supportCard != null}">
-                           checked
-                    </c:if>
-                           disabled> Support<br>
+                <div id="disableClicks">
+                    <div class="controls">
+                        <input type="radio" name="cardType" value="warrior"
+                        <c:if test="${engCardText.warriorCard != null}">
+                               checked
+                        </c:if>
+                                > Warrior<br>
+                        <input type="radio" name="cardType" value="support"
+                        <c:if test="${engCardText.supportCard != null}">
+                               checked
+                        </c:if>
+                                > Support<br>
+                    </div>
                 </div>
             </div>
             <div id="warriorCardType">
@@ -183,9 +185,16 @@
                 <label class="control-label" for="ruSlogan">Слоган</label>
 
                 <div class="controls">
-                    <textarea cols="80" id="ruSlogan" name="ruSlogan" placeholder="Слоган" rows="10">
-                        ${ruCardText.cardSlogan}
-                    </textarea>
+                    <textarea cols="80" id="ruSlogan" name="ruSlogan" placeholder="Слоган"
+                              rows="10">${ruCardText.cardSlogan}</textarea>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="ruProperty">Описание свойства</label>
+
+                <div class="controls">
+                    <textarea cols="80" id="ruProperty" name="ruProperty" placeholder="Описание свойтсва"
+                              rows="10">${ruPropertyText.propertyInfo}</textarea>
                 </div>
             </div>
 
@@ -214,6 +223,15 @@
                 <div class="controls">
                     <textarea cols="80" id="engSlogan" name="engSlogan" placeholder="Slogan"
                               rows="10">${engCardText.cardSlogan}</textarea>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="engProperty">Property description</label>
+
+                <div class="controls">
+                    <textarea cols="80" id="engProperty" name="engProperty" placeholder="Property description"
+                              rows="10">${engPropertyText.propertyInfo}</textarea>
                 </div>
             </div>
         </div>

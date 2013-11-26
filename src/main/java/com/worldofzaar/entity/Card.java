@@ -1,5 +1,8 @@
 package com.worldofzaar.entity;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 import javax.persistence.*;
 
 /**
@@ -11,6 +14,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "\"Cards\"")
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Card {
     @Id
@@ -23,9 +27,11 @@ public class Card {
     @Column(name = "\"cardPicture\"")
     private String cardPicture;
     @ManyToOne
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JoinColumn(name = "\"propertyId\"")
     private Property property;
     @ManyToOne
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JoinColumn(name = "\"cardClassId\"")
     private Classification classification;
     @Column(name = "\"isElite\"")
@@ -33,6 +39,7 @@ public class Card {
     @Column(name = "\"propertySystemString\"")
     private String propertySystemString;
     @ManyToOne
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JoinColumn(name = "\"subsetId\"")
     private Subset subset;
 

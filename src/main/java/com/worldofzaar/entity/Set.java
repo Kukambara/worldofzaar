@@ -1,5 +1,8 @@
 package com.worldofzaar.entity;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -12,6 +15,7 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "\"Set\"")
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Set {
     @Id
     @SequenceGenerator(name = "set_seq", sequenceName = "\"Set_setId_seq\"", allocationSize = 1)

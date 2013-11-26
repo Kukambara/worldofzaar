@@ -1,16 +1,16 @@
 package com.worldofzaar.entity;
 
+import org.hibernate.HibernateException;
+import org.hibernate.usertype.EnhancedUserType;
+import org.hibernate.usertype.ParameterizedType;
+import org.postgresql.util.PGobject;
+
 import java.io.Serializable;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 import java.util.Properties;
-
-import org.hibernate.HibernateException;
-import org.hibernate.usertype.EnhancedUserType;
-import org.hibernate.usertype.ParameterizedType;
-import org.postgresql.util.PGobject;
 
 /**
  * Created with IntelliJ IDEA.
@@ -79,7 +79,7 @@ public class PGEnumUserType implements EnhancedUserType, ParameterizedType {
             // UPDATE: To support NULL insertion, change to: st.setNull(index, 1111);
         } else {
             // Notice 1111 which java.sql.Type for Postgres Enum
-            st.setObject(index, ((Enum)value), 1111);
+            st.setObject(index, ((Enum) value), 1111);
         }
     }
 
@@ -93,7 +93,7 @@ public class PGEnumUserType implements EnhancedUserType, ParameterizedType {
     }
 
     public int[] sqlTypes() {
-        return new int[] { Types.VARCHAR };
+        return new int[]{Types.VARCHAR};
         // UPDATE: To support NULL insertion, change to: return new int[] { 1111 };
     }
 

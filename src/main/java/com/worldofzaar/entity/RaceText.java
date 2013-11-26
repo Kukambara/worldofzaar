@@ -1,5 +1,8 @@
 package com.worldofzaar.entity;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 import javax.persistence.*;
 
 /**
@@ -19,6 +22,7 @@ public class RaceText {
     @Column(name = "\"raceTextId\"")
     private Integer raceTextId;
     @OneToOne
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JoinColumn(name = "\"raceId\"")
     private Race race;
     @Column(name = "\"raceName\"")

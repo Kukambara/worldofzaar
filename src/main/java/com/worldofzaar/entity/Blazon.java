@@ -1,5 +1,8 @@
 package com.worldofzaar.entity;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 import javax.persistence.*;
 
 /**
@@ -11,6 +14,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "\"Blazons\"")
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Blazon {
     @Id
     @SequenceGenerator(name = "blazon_seq", sequenceName = "\"Blazons_blazonId_seq\"", allocationSize = 1)
@@ -18,11 +22,13 @@ public class Blazon {
     @Column(name = "\"blazonId\"")
     private Integer blazonId;
     @ManyToOne
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JoinColumn(name = "\"classId\"")
     private Classification classification;
     @Column(name = "\"blazonPath\"")
     private String blazonPath;
     @OneToOne
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JoinColumn(name = "\"clothId\"")
     private Cloth cloth;
 

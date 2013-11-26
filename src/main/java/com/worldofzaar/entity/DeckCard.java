@@ -1,5 +1,8 @@
 package com.worldofzaar.entity;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 import javax.persistence.*;
 
 /**
@@ -11,6 +14,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "\"DecksCards\"")
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class DeckCard {
     @Id
     @SequenceGenerator(name = "deckCard_seq", sequenceName = "\"DecksCards_decksCardId_seq\"", allocationSize = 1)
@@ -19,11 +23,14 @@ public class DeckCard {
     private Integer deckCardId;
     @ManyToOne
     @JoinColumn(name = "\"deckId\"")
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     private Deck deck;
     @ManyToOne
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JoinColumn(name = "\"warriorCardId\"")
     private WarriorCard warriorCard;
     @ManyToOne
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JoinColumn(name = "\"supportCardId\"")
     private SupportCard supportCard;
 

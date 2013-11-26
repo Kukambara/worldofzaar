@@ -17,7 +17,7 @@ public class PropertyStack {
     @Column(name = "\"stackId\"")
     private Integer stackId;
     @ManyToOne
-    @JoinColumn(name ="\"heroId\"")
+    @JoinColumn(name = "\"heroId\"")
     private Hero hero;
     //TODO Link object and Id
     @Transient

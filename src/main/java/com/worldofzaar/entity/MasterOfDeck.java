@@ -1,5 +1,8 @@
 package com.worldofzaar.entity;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 import javax.persistence.*;
 
 /**
@@ -11,6 +14,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "\"MasterOfDeck\"")
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class MasterOfDeck {
 
     @Id
@@ -21,9 +25,11 @@ public class MasterOfDeck {
     @Column(name = "\"cardLevel\"")
     private Integer cardLevel;
     @OneToOne
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JoinColumn(name = "\"warriorCardId\"")
     private WarriorCard warriorCard;
     @OneToOne
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JoinColumn(name = "\"supportCardId\"")
     private SupportCard supportCard;
     @Column(name = "\"price\"")

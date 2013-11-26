@@ -36,9 +36,11 @@ public class SupportCardService {
 
     public void addCard(MultipartHttpServletRequest request, ServletContext context, Integer energy, Integer classId,
                         Integer propertyId, Integer subsetId, String propertyString, String ruName, String engName,
-                        String ruSlogan, String engSlogan, Boolean isElite) {
+                        String ruSlogan, String engSlogan, String ruProperty, String engProperty, Boolean isElite) {
         EngCardTextService engCardTextService = new EngCardTextService();
         RuCardTextService ruCardTextService = new RuCardTextService();
+        EngPropertyTextService engPropertyTextService = new EngPropertyTextService();
+        RuPropertyTextService ruPropertyTextService = new RuPropertyTextService();
         PropertyService propertyService = new PropertyService();
         ClassificationService classificationService = new ClassificationService();
         SupportCardDao supportCardDao = new SupportCardDao();
@@ -71,13 +73,20 @@ public class SupportCardService {
 
         engCardTextService.addText(supportCard, engName, engSlogan);
         ruCardTextService.addText(supportCard, ruName, ruSlogan);
+        engPropertyTextService.addText(supportCard, engProperty);
+        ruPropertyTextService.addText(supportCard, ruProperty);
+
+        MasterOfDeckService masterOfDeckService = new MasterOfDeckService();
+        masterOfDeckService.createSuppMasterOfDeck(supportCard.getCardId(), -1, 0, 0);
     }
 
     public void editCard(Integer cardId, MultipartHttpServletRequest request, ServletContext context, Integer energy, Integer classId,
                          Integer propertyId, Integer subsetId, String propertyString, String ruName, String engName,
-                         String ruSlogan, String engSlogan, Boolean isElite) {
+                         String ruSlogan, String engSlogan, String ruProperty, String engProperty, Boolean isElite) {
         EngCardTextService engCardTextService = new EngCardTextService();
         RuCardTextService ruCardTextService = new RuCardTextService();
+        EngPropertyTextService engPropertyTextService = new EngPropertyTextService();
+        RuPropertyTextService ruPropertyTextService = new RuPropertyTextService();
         PropertyService propertyService = new PropertyService();
         ClassificationService classificationService = new ClassificationService();
         SupportCardDao supportCardDao = new SupportCardDao();
@@ -113,6 +122,9 @@ public class SupportCardService {
 
         engCardTextService.editText(supportCard, engName, engSlogan);
         ruCardTextService.editText(supportCard, ruName, ruSlogan);
+        engPropertyTextService.editText(supportCard, engProperty);
+        ruPropertyTextService.editText(supportCard, ruProperty);
+
     }
 
     public void deleteCard(Integer cardId) {

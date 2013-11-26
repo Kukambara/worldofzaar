@@ -1,5 +1,8 @@
 package com.worldofzaar.entity;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 import javax.persistence.*;
 
 /**
@@ -11,6 +14,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "\"Subsets\"")
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Subset {
     @Id
     @SequenceGenerator(name = "subset_seq", sequenceName = "\"Sets_setId_seq\"", allocationSize = 1)
@@ -20,6 +24,7 @@ public class Subset {
     @Column(name = "\"frontPath\"")
     private String frontPath;
     @ManyToOne
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JoinColumn(name = "\"setId\"")
     private Set set;
     @Column(name = "\"subsetTechName\"")
