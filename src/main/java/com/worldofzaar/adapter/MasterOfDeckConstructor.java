@@ -20,7 +20,7 @@ public class MasterOfDeckConstructor {
 
 
     public MasterOfDeckConstructor(List<WarriorCardAdapter> inputWarriorCards, List<SupportCardAdapter> inputSupportCards, List<MasterOfDeck> inputMasterOfDeck) {
-
+        masterOfDeckAdapter = new HashMap<Integer, MasterOfDeckAdapter>();
         setMasterOfDeckAdapter(inputMasterOfDeck);
         SetAllCards(inputWarriorCards, inputSupportCards);
     }
@@ -31,7 +31,6 @@ public class MasterOfDeckConstructor {
             if (tmp.getWarriorCard() != null) {
                 getId = tmp.getWarriorCard().getCardId();
             } else if (tmp.getSupportCard() != null) {
-
                 getId = tmp.getSupportCard().getCardId();
             }
 
@@ -45,21 +44,22 @@ public class MasterOfDeckConstructor {
     public void SetAllCards(List<WarriorCardAdapter> inputWarriorCards, List<SupportCardAdapter> inputSupportCards) {
 
         for (WarriorCardAdapter tmp : inputWarriorCards) {
+            if(masterOfDeckAdapter.get(tmp.getCardId()) != null) {
             masterOfDeckAdapter.get(tmp.getCardId()).setWarriorCard(tmp);
+            }
         }
 
         for (SupportCardAdapter tmp : inputSupportCards) {
+            if(masterOfDeckAdapter.get(tmp.getCardId()) != null) {
             masterOfDeckAdapter.get(tmp.getCardId()).setSupportCard(tmp);
+            }
         }
     }
 
     public List<MasterOfDeckAdapter> getResultMasterOfDeckAdapter() {
         List<MasterOfDeckAdapter> resultMasterOfDeckAdapters = new ArrayList<MasterOfDeckAdapter>();
-
-        Map<Integer,MasterOfDeckAdapter> map = new HashMap<Integer,MasterOfDeckAdapter>();
-
-        for (Integer key: map.keySet()) {
-            resultMasterOfDeckAdapters.add(map.get(key));
+        for (Integer key: masterOfDeckAdapter.keySet()) {
+            resultMasterOfDeckAdapters.add(masterOfDeckAdapter.get(key));
         }
 
         return resultMasterOfDeckAdapters;

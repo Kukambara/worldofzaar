@@ -16,10 +16,9 @@ public class WarriorCardAdapter extends CardAdapter {
 
     public WarriorCardAdapter(Object[] input) {
         super(input);
-        this.cardArmor = (Integer)input[9];
-        this.cardDamage =(Integer) input[10];
-        this.cardHealth =(Integer) input[11];
-
+        this.cardArmor = (Integer)input[12-1];
+        this.cardDamage =(Integer) input[13-1];
+        this.cardHealth =(Integer) input[11-1];
     }
 
     public Integer getCardArmor() {

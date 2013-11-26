@@ -54,13 +54,36 @@ public class WarriorCardDao extends GenericDaoMain<WarriorCard> {
 
             Session session = HibernateUtilMain.getSessionFactory().openSession();
 
-            List warriorCards = (List) session.createQuery("select w.cardId, w.classification,t.cardName,w.cardEnergy," +
-                    "w.subset ,t.cardSlogan, " +
-                    "pt.propertyInfo,w.cardPicture,w.isElite,w.cardHealth, w.cardArmor,w.cardDamage from WarriorCard as w,RuCardText as t,RuPropertyText as pt where pt.warriorCard.cardId = w.cardId AND t.warriorCard.cardId=w.cardId").list();
+            /*List warriorCards = (List) session.createQuery("select "+
+                    "w.cardId, w.classification.id,w.cardEnergy," +
+                    "w.subset.frontPath , " +
+                    "w.cardPicture,w.isElite," +
+                    "w.cardHealth, w.cardArmor,w.cardDamage,t.cardName,t.cardSlogan,pt.propertyInfo " +
+                    "from WarriorCard as w,RuCardText as t,RuPropertyText as pt " +
+                    "where w.cardId=pt.warriorCard.cardId AND w.cardId=t.warriorCard.cardId " +
+                    "group by "+
+                    "w.cardId, w.classification.id,t.cardName,w.cardEnergy," +
+                    "w.subset.frontPath , " +
+                    "w.cardPicture,w.isElite," +
+                    "w.cardHealth, w.cardArmor,w.cardDamage,t.cardSlogan,pt.propertyInfo").list();
+            */
+
+            List warriorCards = (List) session.createQuery(
+                    "select w.cardId,w.cardEnergy,w.cardPicture,w.property.propertyId, w.classification.classificationId," +
+                            "w.isElite,w.subset.subsetId,w.subset.frontPath,t.cardName,t.cardSlogan," +
+                            "w.cardHealth, w.cardArmor,w.cardDamage " +
+                            "from WarriorCard as w,RuCardText as t " +
+                            "where w.cardId=t.warriorCard.cardId group by "+
+                            "w.cardId,w.cardEnergy,w.cardPicture,w.property.propertyId, w.classification.classificationId," +
+                            "w.isElite,w.subset.subsetId,w.subset.frontPath,t.cardName,t.cardSlogan," +
+                            "w.cardHealth, w.cardArmor,w.cardDamage").list();
+
             session.close();
             return warriorCards;
+
         } catch (Exception e) {
-            System.out.println("getCompositeWarriorsCards(lang) Error = " + e.getCause());
+            System.out.println("getCompositeWarriorsCards(lang) Error(DAO) = " + e.getCause());
+
         }
         return null;
     }
