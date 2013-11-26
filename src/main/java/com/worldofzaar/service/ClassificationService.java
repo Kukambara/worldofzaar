@@ -19,6 +19,11 @@ public class ClassificationService {
         return classificationDao.list();
     }
 
+    public List<Classification> getAllClassesFull(String lang) {
+        ClassificationDao classificationDao = new ClassificationDao();
+        return classificationDao.list();
+    }
+
     public void createClass(String ruName, String ruDescription,
                             String engName, String engDescription, String raceId, String ruPicture, String engPicture) {
         //Find race.

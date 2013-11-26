@@ -67,4 +67,23 @@ public class UserController {
         UserService userService = new UserService();
         return userService.getUserGameProfileById(userId);
     }
+
+    @RequestMapping(value = "/gameRaces/", method = RequestMethod.POST)
+    public
+    @ResponseBody
+    List<Race> getGameRaces(ModelMap model, HttpServletRequest request) {
+
+        RaceService raceService = new RaceService();
+        return raceService.getAllRace();
+    }
+
+    @RequestMapping(value = "/gameClasses/", method = RequestMethod.POST)
+    public
+    @ResponseBody
+    List<Classification> getGameClasses(ModelMap model, HttpServletRequest request) {
+
+        ClassificationService classificationService = new ClassificationService();
+        return classificationService.getAllClasses();
+    }
+
 }

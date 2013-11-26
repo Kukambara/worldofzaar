@@ -19,6 +19,11 @@ public class RaceService {
         return raceDao.list();
     }
 
+    public List<Race> getAllRaceFull(String lang) {
+        RaceDao raceDao = new RaceDao();
+        return raceDao.list();
+    }
+
     public void createRace(String ruName, String ruDescription, String ruPicture,
                            String engName, String engDescription, String engPicture) {
         RaceDao raceDao = new RaceDao();
