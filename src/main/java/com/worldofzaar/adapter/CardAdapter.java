@@ -10,30 +10,63 @@ package com.worldofzaar.adapter;
 public class CardAdapter {
 
     private Integer cardId;
-    private String cardName;
-    private String cardSlogan;
     private Integer cardEnergy;
     private String cardPicture;
-    private String property;
+    private Integer propertyId;
     private Integer classificationId;
     private Boolean isElite;
-    private Integer setId;
-
-
-
+    //private String propertySystemString;
+    private Integer subsetId;
+    private String subsetImage;
+    private String cardName;
+    private String propertyInfo;
+    private String cardSlogan;
 
     public CardAdapter(Object[] input) {
+
         this.cardId = (Integer)input[0];
-        this.cardName =(String) input[2];
-        this.cardSlogan =(String) input[5];
-        this.cardEnergy = (Integer)input[3];
-        this.cardPicture =(String) input[7];
-        this.property =(String) input[6];
-        this.classificationId =(Integer) input[1];
-        isElite =(Boolean) input[8];
-        this.setId = (Integer)input[4];
+        this.cardEnergy = (Integer)input[1];
+        this.cardPicture =(String) input[2];
+        this.propertyId =(Integer) input[3];
+        this.classificationId =(Integer) input[4];
+        this.isElite =(Boolean) input[5];
+        this.subsetId = (Integer)input[6];
+        this.subsetImage = (String)input[7];
+        this.cardName =(String) input[8];
+        this.cardSlogan =(String) input[9];
+        this.propertyInfo ="" ;// (String) input[10];
+    }
 
+    public Integer getPropertyId() {
+        return propertyId;
+    }
 
+    public void setPropertyId(Integer propertyId) {
+        this.propertyId = propertyId;
+    }
+
+    public Integer getSubsetId() {
+        return subsetId;
+    }
+
+    public void setSubsetId(Integer subsetId) {
+        this.subsetId = subsetId;
+    }
+
+    public String getSubsetImage() {
+        return subsetImage;
+    }
+
+    public void setSubsetImage(String subsetImage) {
+        this.subsetImage = subsetImage;
+    }
+
+    public String getPropertyInfo() {
+        return propertyInfo;
+    }
+
+    public void setPropertyInfo(String propertyInfo) {
+        this.propertyInfo = propertyInfo;
     }
 
     public Integer getCardId() {
@@ -76,13 +109,6 @@ public class CardAdapter {
         this.cardPicture = cardPicture;
     }
 
-    public String getProperty() {
-        return property;
-    }
-
-    public void setProperty(String property) {
-        this.property = property;
-    }
 
     public Integer getClassificationId() {
         return classificationId;
@@ -100,12 +126,5 @@ public class CardAdapter {
         isElite = elite;
     }
 
-    public Integer getSetId() {
-        return setId;
-    }
-
-    public void setSetId(Integer setId) {
-        this.setId = setId;
-    }
 
 }

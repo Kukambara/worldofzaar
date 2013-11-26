@@ -50,13 +50,13 @@ public class UserController {
         return deckCardService.getDeckCardsById(deckId);
     }
 
-    @RequestMapping(value = "/allCards/", method = RequestMethod.GET)
+    @RequestMapping(value = "/masterOfDeckCards/", method = RequestMethod.GET)
     public
     @ResponseBody
     List<MasterOfDeckAdapter> getAllCards(ModelMap model, HttpServletRequest request) {
         MasterOfDeckCustomService masterOfDeckCustomService = new MasterOfDeckCustomService();
 
-        return masterOfDeckCustomService.getCustomMasterOfDeck("Lang");
+        return masterOfDeckCustomService.getCustomMasterOfDeck("Ru");
     }
 
     @RequestMapping(value = "/gameProfile/{userId}", method = RequestMethod.POST)

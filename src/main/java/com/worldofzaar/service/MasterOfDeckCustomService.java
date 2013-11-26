@@ -23,8 +23,8 @@ public class MasterOfDeckCustomService {
         SupportCardService supportCardService = new SupportCardService();
         MasterOfDeckService masterOfDeckService = new MasterOfDeckService();
 
-        List<WarriorCardAdapter> warriorCardAdapters = warriorCardService.getCompositeWarriorsCards(lang);
         List<SupportCardAdapter> supportCardAdapters = supportCardService.getCompositeSupportCards(lang);
+        List<WarriorCardAdapter> warriorCardAdapters = warriorCardService.getCompositeWarriorsCards(lang);
         List<MasterOfDeck> masterOfDeck = masterOfDeckService.getList();
 
 
