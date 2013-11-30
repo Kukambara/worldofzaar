@@ -1,5 +1,7 @@
 package com.worldofzaar.adapter;
 
+import com.worldofzaar.entity.RaceText;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Kseon
@@ -12,14 +14,12 @@ public class RaceAdapter {
     private String raceName;
     private String raceDescription;
     private String racePictureUrl;
-    private String raceClothesUrl;
 
-    public RaceAdapter(Integer raceId, String raceName, String raceDescription, String racePictureUrl, String raceClothesUrl) {
-        this.raceId = raceId;
-        this.raceName = raceName;
-        this.raceDescription = raceDescription;
-        this.racePictureUrl = racePictureUrl;
-        this.raceClothesUrl = raceClothesUrl;
+    public RaceAdapter(RaceText input) {
+        this.raceId = input.getRace().getRaceId();
+        this.raceName =input.getRaceName();
+        this.raceDescription =input.getRaceDescription();
+        this.racePictureUrl =input.getRaceNamePicturePath();
     }
 
     public Integer getRaceId() {
@@ -52,13 +52,5 @@ public class RaceAdapter {
 
     public void setRacePictureUrl(String racePictureUrl) {
         this.racePictureUrl = racePictureUrl;
-    }
-
-    public String getRaceClothesUrl() {
-        return raceClothesUrl;
-    }
-
-    public void setRaceClothesUrl(String raceClothesUrl) {
-        this.raceClothesUrl = raceClothesUrl;
     }
 }

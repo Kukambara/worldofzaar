@@ -1,6 +1,7 @@
 package com.worldofzaar.dao;
 
 import com.worldofzaar.entity.Race;
+import com.worldofzaar.entity.RaceText;
 import com.worldofzaar.util.HibernateUtilMain;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -45,5 +46,22 @@ public class RaceDao extends GenericDaoMain<Race> {
         } catch (Exception e) {
             System.out.println("deleteRace(raceId) Error = " + e.getCause());
         }
+    }
+
+    public List<RaceText> getCompositeRace(String lang) {
+        try {
+            Session session = HibernateUtilMain.getSessionFactory().openSession();
+            StringBuilder query = new StringBuilder();
+            query.append("from RuRaceText");
+            List<RaceText> races = (List<RaceText>) session.createQuery( query.toString() ).list();
+
+            session.close();
+            return races;
+
+        } catch (Exception e) {
+            System.out.println("getCompositeRace(lang) Error(DAO) = " + e.getCause());
+
+        }
+        return null;
     }
 }

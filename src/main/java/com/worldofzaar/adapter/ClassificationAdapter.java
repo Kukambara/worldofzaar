@@ -1,5 +1,8 @@
 package com.worldofzaar.adapter;
 
+import com.worldofzaar.entity.Blazon;
+import com.worldofzaar.entity.RuClassText;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Kseon
@@ -10,18 +13,39 @@ package com.worldofzaar.adapter;
 public class ClassificationAdapter {
     private Integer classId;
     private Integer raceId;
+    private Integer blazonId;
     private String className;
     private String classDescription;
     private String classPictureUrl;
     private String classBlazonUrl;
+    private String classClothUrl;
 
-    public ClassificationAdapter(Integer classId, Integer raceId, String className, String classDescription, String classPictureUrl, String classBlazonUrl) {
-        this.classId = classId;
-        this.raceId = raceId;
-        this.className = className;
-        this.classDescription = classDescription;
-        this.classPictureUrl = classPictureUrl;
-        this.classBlazonUrl = classBlazonUrl;
+    public ClassificationAdapter(Object[] input) {
+        this.classId = ((RuClassText)input[1]).getClassification().getClassificationId();
+        this.raceId = ((RuClassText)input[1]).getClassification().getRace().getRaceId();
+        this.blazonId = ((Blazon)input[0]).getBlazonId();
+        this.className = ((RuClassText)input[1]).getClassName();
+        this.classDescription = ((RuClassText)input[1]).getClassDescription();
+        this.classPictureUrl = ((RuClassText)input[1]).getClassPictureNamePath();
+        this.classBlazonUrl = ((Blazon)input[0]).getBlazonPath();
+        this.classClothUrl = ((Blazon)input[0]).getCloth().getClothPath();
+    }
+
+
+    public Integer getBlazonId() {
+        return blazonId;
+    }
+
+    public void setBlazonId(Integer blazonId) {
+        this.blazonId = blazonId;
+    }
+
+    public String getClassClothUrl() {
+        return classClothUrl;
+    }
+
+    public void setClassClothUrl(String classClothUrl) {
+        this.classClothUrl = classClothUrl;
     }
 
     public Integer getRaceId() {

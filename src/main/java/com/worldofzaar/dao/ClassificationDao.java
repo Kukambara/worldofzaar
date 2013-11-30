@@ -48,4 +48,23 @@ public class ClassificationDao extends GenericDaoMain<Classification> {
         }
     }
 
+    public List<Object[]> getCompositeClass(String lang) {
+        try {
+
+            Session session = HibernateUtilMain.getSessionFactory().openSession();
+            StringBuilder query = new StringBuilder();
+            query.append("from Blazon as b,RuClassText as t ")
+                    .append("where b.classification.classificationId=t.classification.classificationId");
+            List classifications = (List) session.createQuery( query.toString() ).list();
+
+            session.close();
+            return classifications;
+
+        } catch (Exception e) {
+            System.out.println("getCompositeWarriorsCards(lang) Error(DAO) = " + e.getCause());
+
+        }
+        return null;
+    }
+
 }

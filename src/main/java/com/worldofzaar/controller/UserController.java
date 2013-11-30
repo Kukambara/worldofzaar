@@ -68,22 +68,35 @@ public class UserController {
         return userService.getUserGameProfileById(userId);
     }
 
-    @RequestMapping(value = "/gameRaces/", method = RequestMethod.POST)
+    @RequestMapping(value = "/gameRaces/", method = RequestMethod.GET)
     public
     @ResponseBody
-    List<Race> getGameRaces(ModelMap model, HttpServletRequest request) {
+    List<RaceAdapter> getGameRaces(ModelMap model, HttpServletRequest request) {
 
         RaceService raceService = new RaceService();
-        return raceService.getAllRace();
+        return raceService.getAllRaceFull("Ru");
     }
 
-    @RequestMapping(value = "/gameClasses/", method = RequestMethod.POST)
+    @RequestMapping(value = "/gameClasses/", method = RequestMethod.GET)
     public
     @ResponseBody
-    List<Classification> getGameClasses(ModelMap model, HttpServletRequest request) {
+    List<ClassificationAdapter> getGameClasses(ModelMap model, HttpServletRequest request) {
 
         ClassificationService classificationService = new ClassificationService();
-        return classificationService.getAllClasses();
+        return classificationService.getAllClassesFull("Ru");
     }
 
+    @RequestMapping(value = "/gameAvatars/", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    List<RacePicture> getAvatar(ModelMap model, HttpServletRequest request) {
+
+        RacePictureService racePictureService = new RacePictureService();
+        return racePictureService.getAll();
+    }
+
+    @RequestMapping(value = "/registration", method = RequestMethod.GET)
+    public String getRegistration(ModelMap model, HttpServletRequest request) {
+        return "user/Registration";
+    }
 }

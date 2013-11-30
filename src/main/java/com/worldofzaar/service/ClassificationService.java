@@ -1,6 +1,10 @@
 package com.worldofzaar.service;
 
+import com.worldofzaar.adapter.ClassificationAdapter;
+import com.worldofzaar.adapter.ClassificationConstructor;
+import com.worldofzaar.adapter.RaceAdapter;
 import com.worldofzaar.dao.ClassificationDao;
+import com.worldofzaar.entity.Blazon;
 import com.worldofzaar.entity.Classification;
 import com.worldofzaar.entity.Race;
 
@@ -19,9 +23,12 @@ public class ClassificationService {
         return classificationDao.list();
     }
 
-    public List<Classification> getAllClassesFull(String lang) {
+    public List<ClassificationAdapter> getAllClassesFull(String lang) {
+        ClassificationConstructor classificationConstructor = new ClassificationConstructor();
         ClassificationDao classificationDao = new ClassificationDao();
-        return classificationDao.list();
+
+        List<Object[]> classifications = classificationDao.getCompositeClass(lang);
+        return classificationConstructor.CreateClassAdapterList(classifications);
     }
 
     public void createClass(String ruName, String ruDescription,

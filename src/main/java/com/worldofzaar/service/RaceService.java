@@ -1,7 +1,10 @@
 package com.worldofzaar.service;
 
+import com.worldofzaar.adapter.RaceAdapter;
+import com.worldofzaar.adapter.RaceConstructor;
 import com.worldofzaar.dao.RaceDao;
 import com.worldofzaar.entity.Race;
+import com.worldofzaar.entity.RaceText;
 
 import java.util.List;
 
@@ -19,9 +22,11 @@ public class RaceService {
         return raceDao.list();
     }
 
-    public List<Race> getAllRaceFull(String lang) {
+    public List<RaceAdapter> getAllRaceFull(String lang) {
+        RaceConstructor raceConstructor = new RaceConstructor();
         RaceDao raceDao = new RaceDao();
-        return raceDao.list();
+        List<RaceText> raceFull = raceDao.getCompositeRace(lang);
+        return raceConstructor.createRaceAdapterList(raceFull);
     }
 
     public void createRace(String ruName, String ruDescription, String ruPicture,

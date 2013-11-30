@@ -20,6 +20,11 @@ import java.util.List;
  */
 public class RacePictureService {
 
+    public List<RacePicture> getAll() {
+        RacePictureDao racePictureDao = new RacePictureDao();
+        return racePictureDao.list();
+    }
+
     public void addPictures(MultipartHttpServletRequest request, Boolean isMale, ServletContext context, Integer raceId) {
         Iterator<String> iter = request.getFileNames();
         FileManager fileManager = new FileManager();
