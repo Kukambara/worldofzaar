@@ -1,5 +1,7 @@
 package com.worldofzaar.entity;
 
+import com.worldofzaar.service.UserService;
+
 import javax.persistence.*;
 
 /**
@@ -54,11 +56,15 @@ public class Hero {
     }
 
     public User getUser() {
+        UserService userService = new UserService();
+
         return user;
     }
 
     public void setUser(User user) {
         this.user = user;
+        if (user != null)
+            this.userId = user.getUserId();
     }
 
     public HeroCard getHeroCard() {

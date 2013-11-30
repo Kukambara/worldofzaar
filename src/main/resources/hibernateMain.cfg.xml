@@ -24,7 +24,7 @@
         <property name="hibernate.cache.region.factory_class">net.sf.ehcache.hibernate.EhCacheRegionFactory</property>
         <property name="hibernate.cache.use_second_level_cache">true</property>
         <property name="hibernate.cache.use_query_cache">true</property>
-        <property name="hibernate.cache.provider_configuration_file_resource_path">resources/Ehcache.xml</property>
+        <property name="hibernate.cache.provider_configuration_file_resource_path">resources/ehcache.xml</property>
 
         <mapping class="com.worldofzaar.entity.Auction"/>
         <mapping class="com.worldofzaar.entity.Blazon"/>
@@ -58,7 +58,7 @@
         <mapping class="com.worldofzaar.entity.CoalitionRequest"/>
         <mapping class="com.worldofzaar.entity.MyGame"/>
         <mapping class="com.worldofzaar.entity.Notification"/>
-        <mapping class="com.worldofzaar.entity.Request"/>
+        <mapping class="com.worldofzaar.entity.CertainTable"/>
         <mapping class="com.worldofzaar.entity.UserGamesPlayer"/>
         <mapping class="com.worldofzaar.entity.Admin"/>
         <mapping class="com.worldofzaar.entity.WebUser"/>
@@ -70,6 +70,7 @@
         <mapping class="com.worldofzaar.entity.RuClassText"/>
         <mapping class="com.worldofzaar.entity.EngClassText"/>
         <mapping class="com.worldofzaar.entity.Set"/>
+        <mapping class="com.worldofzaar.entity.Discount"/>
 
 
     </session-factory>

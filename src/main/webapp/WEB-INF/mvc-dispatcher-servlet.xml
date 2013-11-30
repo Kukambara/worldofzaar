@@ -18,6 +18,8 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
+
+
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
 
     <mvc:interceptors>
@@ -30,7 +32,7 @@
         <mvc:interceptor>
             <mvc:mapping path="/game/**"/>
             <mvc:mapping path="/profile/**"/>
-
+            <mvc:mapping path="/api/**"/>
             <bean
                     class="com.worldofzaar.interceptors.UserInterceptor"/>
         </mvc:interceptor>

@@ -4,7 +4,9 @@ import com.worldofzaar.dao.MasterOfDeckDao;
 import com.worldofzaar.entity.MasterOfDeck;
 import com.worldofzaar.entity.SupportCard;
 import com.worldofzaar.entity.WarriorCard;
+import com.worldofzaar.wrapper.MasterOfDeckWrapper;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -88,5 +90,16 @@ public class MasterOfDeckService {
     public void deleteMasterOfDeck(Integer masterofDeckId) {
         MasterOfDeckDao masterOfDeckDao = new MasterOfDeckDao();
         masterOfDeckDao.remove(masterofDeckId);
+    }
+
+    public List<MasterOfDeckWrapper> getMasterWrapperList() {
+        MasterOfDeckDao masterOfDeckDao = new MasterOfDeckDao();
+        List<Object[]> list = masterOfDeckDao.listForWrapper();
+        List<MasterOfDeckWrapper> wrapperList = new ArrayList<MasterOfDeckWrapper>();
+        for (Object[] o : list) {
+            MasterOfDeckWrapper wrapperMasterOfDeck = new MasterOfDeckWrapper(o);
+            wrapperList.add(wrapperMasterOfDeck);
+        }
+        return wrapperList;
     }
 }

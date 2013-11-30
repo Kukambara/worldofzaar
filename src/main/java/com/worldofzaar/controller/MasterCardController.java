@@ -40,7 +40,7 @@ public class MasterCardController {
     @RequestMapping(value = "list", method = RequestMethod.GET)
     public String listMasterCard(ModelMap model) {
         MasterOfDeckService masterOfDeckService = new MasterOfDeckService();
-        model.addAttribute("masterCards", masterOfDeckService.getList());
+        model.addAttribute("masterCards", masterOfDeckService.getMasterWrapperList());
         return "admin/MasterCard/listMaster";
     }
 

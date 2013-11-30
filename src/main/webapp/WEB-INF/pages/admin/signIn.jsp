@@ -92,15 +92,9 @@
                         <li><a href="/restoreAccount">Forgot password</a></li>
                     </fieldset>
                 </form>
-                <!--
-                <form class="form"  action="#" method="post">
-
-                </form>
-                -->
             </div>
         </div>
     </div>
 </div>
-<!-- /container -->
 </body>
 </html>

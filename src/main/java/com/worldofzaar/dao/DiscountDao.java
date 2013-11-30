@@ -1,7 +1,6 @@
 package com.worldofzaar.dao;
 
-import com.worldofzaar.entity.Request;
-import com.worldofzaar.entity.WarriorCard;
+import com.worldofzaar.entity.Discount;
 import com.worldofzaar.util.HibernateUtilMain;
 import org.hibernate.Session;
 
@@ -9,22 +8,23 @@ import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
- * User: Kseon
- * Date: 11.10.13
- * Time: 19:38
+ * User: Дмитрий
+ * Date: 29.11.13
+ * Time: 14:01
  * To change this template use File | Settings | File Templates.
  */
-public class RequestDao extends GenericDaoMain<Request> {
-    public RequestDao() {
-        super(new Request());
+public class DiscountDao extends GenericDaoMain<Discount> {
+
+    public DiscountDao() {
+        super(new Discount());
     }
 
-    public List<Request> list() {
+    public List<Discount> list() {
         try {
             Session session = HibernateUtilMain.getSessionFactory().openSession();
-            List requests = (List) session.createQuery("from Request").list();
+            List discounts = (List) session.createQuery("from Discount ").list();
             session.close();
-            return requests;
+            return discounts;
         } catch (Exception e) {
             System.out.println("list() Error = " + e.getCause());
         }

@@ -1,6 +1,5 @@
 package com.worldofzaar.service;
 
-import com.worldofzaar.dao.GameProfileDao;
 import com.worldofzaar.dao.UserDao;
 import com.worldofzaar.entity.GameProfile;
 
@@ -13,8 +12,9 @@ import com.worldofzaar.entity.GameProfile;
  */
 public class UserService {
 
-    public GameProfile getUserGameProfileById(Integer userId){
+    public GameProfile getUserGameProfileById(Integer userId) {
         UserDao gameProfileDao = new UserDao();
         return gameProfileDao.getUserGameProfilesById(userId);
     }
+
 }

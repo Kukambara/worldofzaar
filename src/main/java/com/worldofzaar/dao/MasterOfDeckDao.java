@@ -33,6 +33,22 @@ public class MasterOfDeckDao extends GenericDaoMain<MasterOfDeck> {
         return null;
     }
 
+    public List<Object[]> listForWrapper() {
+        try {
+            Session session = HibernateUtilMain.getSessionFactory().openSession();
+            List masterOfDecks = (List) session.createQuery("select master.mastersCardId, classif.className, race.raceName, " +
+                    "master.supportCard.cardId, master.warriorCard.cardId, cardText.cardName, master.cardLevel, master.price, master.donatePrice " +
+                    "from MasterOfDeck as master, EngClassText as classif, EngRaceText as race, EngCardText as cardText " +
+                    "where master.supportCard.cardId = cardText.supportCard.cardId and race.race.raceId = master.supportCard.classification.race.raceId and " +
+                    "classif.classification.classificationId = master.supportCard.classification.classificationId").list();
+            session.close();
+            return masterOfDecks;
+        } catch (Exception e) {
+            System.out.println("listForWrapper() Error = " + e.getCause());
+        }
+        return null;
+    }
+
     public void remove(Integer masterOfDeckId) {
         Transaction tx = null;
         try {
