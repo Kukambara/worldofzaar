@@ -4,7 +4,7 @@ var avatarIndex=-1;
 var flagList=[];
 var flagIndex;
 
-var sexList=["/resources/Images/Registration/Sex/female.png","/resources/Images/Registration/Sex/male.png"];
+var sexList=["/resources/Images/Registration/Sex/male.png","/resources/Images/Registration/Sex/female.png"];
 var sexIndex=0;
 
 var raceList=[];

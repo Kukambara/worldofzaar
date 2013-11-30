@@ -1,7 +1,8 @@
 package com.worldofzaar.controller;
 
 import com.worldofzaar.adapter.*;
-import com.worldofzaar.entity.*;
+import com.worldofzaar.entity.GameProfile;
+import com.worldofzaar.entity.RacePicture;
 import com.worldofzaar.service.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
@@ -48,6 +49,14 @@ public class UserController {
     List<DeckCardAdapter> getDeckCards(ModelMap model, HttpServletRequest request, @PathVariable Integer deckId) {
         DeckCardService deckCardService = new DeckCardService();
         return deckCardService.getDeckCardsById(deckId);
+    }
+
+    @RequestMapping(value = "/test/createUser", method = RequestMethod.GET)
+    public String createTextUser(ModelMap model, HttpServletRequest request, HttpServletResponse response) {
+        UserService userService = new UserService();
+        userService.createUser("Kukambara", 10, 16, true, request, response);
+
+        return "redirect:/";
     }
 
     @RequestMapping(value = "/masterOfDeckCards/", method = RequestMethod.GET)
@@ -93,6 +102,11 @@ public class UserController {
 
         RacePictureService racePictureService = new RacePictureService();
         return racePictureService.getAll();
+    }
+
+    @RequestMapping(value = "", method = RequestMethod.GET)
+    public String getProfile(ModelMap model, HttpServletRequest request) {
+        return "profilePage";
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)

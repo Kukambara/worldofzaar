@@ -1,9 +1,12 @@
 package com.worldofzaar.dao;
 
+import com.worldofzaar.entity.ApiTable;
 import com.worldofzaar.entity.CertainTable;
 import com.worldofzaar.util.HibernateUtilMain;
+import com.worldofzaar.util.UserInformation;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import java.util.List;
 
@@ -17,6 +20,26 @@ import java.util.List;
 public class CertainTableDao extends GenericDaoMain<CertainTable> {
     public CertainTableDao() {
         super(new CertainTable());
+    }
+
+    public boolean deleteCertainTable(ApiTable table, UserInformation userInformation) {
+        Transaction tx = null;
+        try {
+            Session session = HibernateUtilMain.getSessionFactory().openSession();
+            tx = session.beginTransaction();
+            Query query = session.createQuery("delete CertainTable where tableSize = :tableSize and tableCost = :tableCost and seatPosition = :seatPosition and user.userId = :userId");
+            query.setParameter("tableSize", table.getSize());
+            query.setParameter("tableCost", table.getCost());
+            query.setParameter("seatPosition", table.getPosition());
+            query.setParameter("userId", userInformation.getUserId());
+            int count = query.executeUpdate();
+            tx.commit();
+            session.close();
+            return (count == 0) ? false : true;
+        } catch (Exception e) {
+            System.out.println("deleteCertainTable(table,userInformation) Error = " + e.getCause());
+        }
+        return false;
     }
 
     public List<CertainTable> list() {

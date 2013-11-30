@@ -1,5 +1,6 @@
 package com.worldofzaar.interceptors;
 
+import com.worldofzaar.service.AuthorizationService;
 import com.worldofzaar.util.WOZConsts;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
@@ -21,9 +22,18 @@ public class UserInterceptor extends HandlerInterceptorAdapter {
         if (request.getSession().getAttribute(WOZConsts.IS_ADMIN) != null)
             return true;
         else {
-            response.sendRedirect("/");
+            if (loginByCookies(request, response)) {
+                response.sendRedirect("/profile");
+            } else {
+                response.sendRedirect("/");
+            }
             return false;
         }
+    }
+
+    private boolean loginByCookies(HttpServletRequest request, HttpServletResponse response) {
+        AuthorizationService authorizationService = new AuthorizationService();
+        return authorizationService.loginByCookies(request, response);
     }
 
     @Override

@@ -25,11 +25,20 @@ public class NormalApiController {
     public ApiTable getApiTable() {
         return new ApiTable();
     }
+
     // /api/tables/getIn?size=4&position=1&cost=0
     @RequestMapping(value = "/tables/getIn", method = RequestMethod.GET)
     public String getInTable(HttpServletRequest request, ModelMap model, @ModelAttribute("getIn") ApiTable table) {
         CertainTableService certainTableService = new CertainTableService();
         certainTableService.getIn(table, request);
+        return "";
+    }
+
+    // /api/tables/getIn?size=4&position=1&cost=0
+    @RequestMapping(value = "/tables/getOut", method = RequestMethod.GET)
+    public String getOutTable(HttpServletRequest request, ModelMap model, @ModelAttribute("getIn") ApiTable table) {
+        CertainTableService certainTableService = new CertainTableService();
+        certainTableService.getOut(table, request);
         return "";
     }
 

@@ -76,4 +76,9 @@ public class BlazonService {
         BlazonDao blazonDao = new BlazonDao();
         return blazonDao.getClothIdByBlazonId(blazonId);
     }
+
+    public Blazon getBlazon(Integer blazonId) {
+        BlazonDao blazonDao = new BlazonDao();
+        return blazonDao.find(blazonId);
+    }
 }

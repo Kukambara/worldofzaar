@@ -3,6 +3,7 @@ package com.worldofzaar.service;
 import com.worldofzaar.adapter.DeckAdapter;
 import com.worldofzaar.dao.DeckDao;
 import com.worldofzaar.entity.Deck;
+import com.worldofzaar.entity.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +24,15 @@ public class DeckService {
         for (Deck tmp : decks) {
             deckAdapters.add(new DeckAdapter(tmp));
         }
-        return  deckAdapters;
+        return deckAdapters;
+    }
+
+    public void createDeck(String deckName, User user) {
+        DeckDao deckDao = new DeckDao();
+        Deck deck = new Deck();
+        deck.setDeckName(deckName);
+        deck.setUser(user);
+        deckDao.add(deck);
     }
 
 

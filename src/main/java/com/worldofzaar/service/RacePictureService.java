@@ -50,6 +50,11 @@ public class RacePictureService {
         return racePictureDao.geRacePicturesByRaceId(raceId);
     }
 
+    public RacePicture getRacePicture(Integer racePictureId) {
+        RacePictureDao racePictureDao = new RacePictureDao();
+        return racePictureDao.find(racePictureId);
+    }
+
     public Integer setNewSex(Integer racePictureId) {
         RacePictureDao racePictureDao = new RacePictureDao();
         RacePicture racePicture = racePictureDao.find(racePictureId);

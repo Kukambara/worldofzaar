@@ -2,6 +2,11 @@ package com.worldofzaar.service;
 
 import com.worldofzaar.dao.UserDao;
 import com.worldofzaar.entity.GameProfile;
+import com.worldofzaar.entity.User;
+import com.worldofzaar.util.WOZConsts;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * Created with IntelliJ IDEA.
@@ -15,6 +20,30 @@ public class UserService {
     public GameProfile getUserGameProfileById(Integer userId) {
         UserDao gameProfileDao = new UserDao();
         return gameProfileDao.getUserGameProfilesById(userId);
+    }
+
+    public void createUser(String userName, Integer blazonId, Integer racePictureId, boolean isMale,
+                           HttpServletRequest request, HttpServletResponse response) {
+        UserDao userDao = new UserDao();
+        GameProfileService gameProfileService = new GameProfileService();
+        GameProfile gameProfile = gameProfileService.addGameProfile(blazonId, racePictureId, isMale);
+
+        //Stop creation User if gameProfile didn't create.
+        if (gameProfile == null)
+            return;
+        User user = new User();
+        user.setGameProfile(gameProfile);
+        user.setUserName(userName);
+        userDao.add(user);
+
+        DeckService deckService = new DeckService();
+        deckService.createDeck("New deck", user);
+
+        WebUserService webUserService = new WebUserService();
+        webUserService.setUser((Integer) request.getSession().getAttribute(WOZConsts.WEBUSER_ID), user);
+
+        AuthorizationService authorizationService = new AuthorizationService();
+        authorizationService.loginByCookies(request, response);
     }
 
 }

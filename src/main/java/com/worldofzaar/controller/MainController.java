@@ -15,9 +15,14 @@ import javax.servlet.http.HttpServletResponse;
 @RequestMapping("/")
 public class MainController {
     @RequestMapping(method = RequestMethod.GET)
-    public String printWelcome(ModelMap model) {
-        model.addAttribute("message", "Hello world!");
-        return "redirect:/admin";
+    public String printWelcome(ModelMap model, HttpServletRequest request) {
+        if (request.getSession().getAttribute(WOZConsts.WEBUSER_ID) == null)
+            return "hello";
+        if (request.getSession().getAttribute(WOZConsts.USER_ID) == null)
+            return "redirect:/profile/registration";
+        else
+            return "redirect:/profile";
+
     }
 
     @RequestMapping(value = "adminSignIn", method = RequestMethod.GET)

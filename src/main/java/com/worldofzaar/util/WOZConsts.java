@@ -13,6 +13,7 @@ public class WOZConsts {
     public static final String NOREPLY_WORLDOFZAAR_EMAIL = "noreply.worldofzaar@gmail.com";
     public static final String NOREPLY_WORLDOFZAAR_PASS = "a6ksdf4590!@#sdII))%K";
     public static final String USER_ID = "userId";
+    public static final String WEBUSER_ID = "webUserId";
     public static final String IS_ADMIN = "isAdmin";
     public static final String USER_EMAIL = "userEmail";
     public static final String USER_PASSWORD = "userPassword";

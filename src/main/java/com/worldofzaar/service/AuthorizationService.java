@@ -56,13 +56,18 @@ public class AuthorizationService {
             cookieEmail.setMaxAge(cookieAge);
             Cookie cookiePass = new Cookie(WOZConsts.USER_PASSWORD, webUser.getWebUserPass());
             cookiePass.setMaxAge(cookieAge);
+            Cookie cookieWebUserId = new Cookie(WOZConsts.WEBUSER_ID, String.valueOf(webUser.getWebUserId()));
+            cookiePass.setMaxAge(cookieAge);
             response.addCookie(cookieEmail);
             response.addCookie(cookiePass);
+            response.addCookie(cookieWebUserId);
+
 
             //Write user data to Session
             boolean isAdmin = new AdminService().isAdmin(webUser);
             request.getSession().setAttribute(WOZConsts.USER_EMAIL, webUser.getWebUserEmail());
             request.getSession().setAttribute(WOZConsts.IS_ADMIN, isAdmin);
+            request.getSession().setAttribute(WOZConsts.WEBUSER_ID, webUser.getWebUserId());
 
             //Write user id in session and cookie if it's exist.
             if (webUser.getUser() != null) {
@@ -85,6 +90,7 @@ public class AuthorizationService {
         request.getSession().removeAttribute(WOZConsts.USER_ID);
         request.getSession().removeAttribute(WOZConsts.USER_EMAIL);
         request.getSession().removeAttribute(WOZConsts.IS_ADMIN);
+        request.getSession().removeAttribute(WOZConsts.WEBUSER_ID);
 
         //Subset cookie time for 0. And Write new cookie with the same names.
         Cookie cookieEmail = new Cookie(WOZConsts.USER_EMAIL, null);
@@ -93,11 +99,13 @@ public class AuthorizationService {
         cookiePass.setMaxAge(0);
         Cookie cookieUserId = new Cookie(WOZConsts.USER_ID, null);
         cookieUserId.setMaxAge(0);
+        Cookie cookieWebUserId = new Cookie(WOZConsts.WEBUSER_ID, null);
+        cookieUserId.setMaxAge(0);
 
         response.addCookie(cookieEmail);
         response.addCookie(cookiePass);
         response.addCookie(cookieUserId);
-
+        response.addCookie(cookieWebUserId);
 
     }
 
@@ -211,6 +219,23 @@ public class AuthorizationService {
                 login(webUser, response, request);
                 return true;
             }
+        }
+        return false;
+    }
+
+    public boolean loginByCookies(HttpServletRequest request, HttpServletResponse response) {
+        Cookie[] cookies = request.getCookies();
+        String email = "";
+        String password = "";
+        for (Cookie cookie : cookies) {
+            if (cookie.getName().equals(WOZConsts.USER_EMAIL))
+                email = cookie.getValue();
+            else if (cookie.getName().equals(WOZConsts.USER_PASSWORD))
+                password = cookie.getValue();
+        }
+
+        if (!email.equals("") && !password.equals("")) {
+            return loginWithHashedPass(email, password, request, response);
         }
         return false;
     }

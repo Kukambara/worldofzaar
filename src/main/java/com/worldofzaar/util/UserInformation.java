@@ -16,9 +16,9 @@ public class UserInformation {
 
 
     public UserInformation(HttpServletRequest request) {
-        request.getSession().getAttribute(WOZConsts.IS_ADMIN);
-        request.getSession().getAttribute(WOZConsts.USER_ID);
-        request.getSession().getAttribute(WOZConsts.USER_EMAIL);
+        this.isAdmin = (Boolean) request.getSession().getAttribute(WOZConsts.IS_ADMIN);
+        this.userId = (Integer) request.getSession().getAttribute(WOZConsts.USER_ID);
+        this.email = (String) request.getSession().getAttribute(WOZConsts.USER_EMAIL);
     }
 
     public Boolean getAdmin() {

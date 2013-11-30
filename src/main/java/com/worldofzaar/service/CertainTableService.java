@@ -33,6 +33,13 @@ public class CertainTableService {
         return false;
     }
 
+    public boolean getOut(ApiTable table, HttpServletRequest request) {
+        UserInformation userInformation = new UserInformation(request);
+        CertainTableDao certainTableDao = new CertainTableDao();
+        return certainTableDao.deleteCertainTable(table, userInformation);
+
+    }
+
     //Get in table if position is empty.
     private boolean getIn(List<CertainTable> tables, ApiTable table, UserInformation userInformation) {
         if (tables.size() < table.getSize()) {
