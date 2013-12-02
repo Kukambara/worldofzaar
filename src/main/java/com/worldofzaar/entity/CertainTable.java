@@ -26,6 +26,8 @@ public class CertainTable {
     private Integer seatPosition;
     @Column(name = "\"tableCost\"")
     private Integer tableCost;
+    @Column(name = "\"level\"")
+    private Integer level;
 
     public Integer getRequestId() {
         return requestId;
@@ -65,5 +67,13 @@ public class CertainTable {
 
     public void setTableCost(Integer tableCost) {
         this.tableCost = tableCost;
+    }
+
+    public Integer getLevel() {
+        return level;
+    }
+
+    public void setLevel(Integer level) {
+        this.level = level;
     }
 }

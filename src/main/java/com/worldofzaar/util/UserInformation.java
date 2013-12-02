@@ -1,5 +1,8 @@
 package com.worldofzaar.util;
 
+import com.worldofzaar.entity.User;
+import com.worldofzaar.service.UserService;
+
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -13,6 +16,7 @@ public class UserInformation {
     private Boolean isAdmin;
     private String email;
     private Integer userId;
+    private User user;
 
 
     public UserInformation(HttpServletRequest request) {
@@ -43,5 +47,18 @@ public class UserInformation {
 
     public void setUserId(Integer userId) {
         this.userId = userId;
+    }
+
+    public User getUser() {
+        if (user == null) {
+            UserService userService = new UserService();
+            user = userService.getUser(userId);
+        }
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+        userId = user.getUserId();
     }
 }

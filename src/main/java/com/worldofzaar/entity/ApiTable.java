@@ -11,6 +11,7 @@ public class ApiTable {
     private int cost;
     private int size;
     private int position;
+    private int level;
 
     public int getCost() {
         return cost;
@@ -34,5 +35,13 @@ public class ApiTable {
 
     public void setPosition(int position) {
         this.position = position;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
     }
 }

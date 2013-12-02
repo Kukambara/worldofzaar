@@ -54,12 +54,30 @@ public class CertainTableDao extends GenericDaoMain<CertainTable> {
         return null;
     }
 
-    public List<CertainTable> getCertainTables(int size, int cost) {
+    public List<CertainTable> getCertainTables(int size, int cost, int minLevel, int maxLevel) {
         try {
             Session session = HibernateUtilMain.getSessionFactory().openSession();
-            Query query = session.createQuery("from CertainTable where tableSize = :size and tableCost = :cost");
+            Query query = session.createQuery("from CertainTable where tableSize = :size and tableCost = :cost and level between :minLevel and :maxLevel");
             query.setParameter("size", size);
             query.setParameter("cost", cost);
+            query.setParameter("minLevel", minLevel);
+            query.setParameter("maxLevel", maxLevel);
+            List tables = query.list();
+            session.close();
+            return tables;
+        } catch (Exception e) {
+            System.out.println("getCertainTables(size, cost) Error = " + e.getCause());
+        }
+        return null;
+    }
+
+    public List<CertainTable> getCertainTables(int cost, int minLevel, int maxLevel) {
+        try {
+            Session session = HibernateUtilMain.getSessionFactory().openSession();
+            Query query = session.createQuery("from CertainTable where tableCost = :cost and level between :minLevel and :maxLevel");
+            query.setParameter("cost", cost);
+            query.setParameter("minLevel", minLevel);
+            query.setParameter("maxLevel", maxLevel);
             List tables = query.list();
             session.close();
             return tables;

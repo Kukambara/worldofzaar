@@ -22,6 +22,11 @@ public class UserService {
         return gameProfileDao.getUserGameProfilesById(userId);
     }
 
+    public User getUser(Integer userId) {
+        UserDao userDao = new UserDao();
+        return userDao.find(userId);
+    }
+
     public void createUser(String userName, Integer blazonId, Integer racePictureId, boolean isMale,
                            HttpServletRequest request, HttpServletResponse response) {
         UserDao userDao = new UserDao();
