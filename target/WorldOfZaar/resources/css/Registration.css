@@ -37,7 +37,20 @@ position:absolute;
 align:center;
 }
 
-#inputName {
+::-webkit-input-placeholder { /* WebKit browsers */
+    color:    #ad6704;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:    #ad6704;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:    #ad6704;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color:    #ad6704;
+}
+
+#userName {
 font-family:DeliciousRoman;
 font-size:30px;
 text-align:center;
@@ -49,13 +62,6 @@ height: 45px;
 background: transparent;
 border:none;
 outline:none;
-}
-
-#inputName::selection {
-background: #FF9E6F;
-color: #000;
--khtml-user-select: none;
--webkit-user-select: none;
 }
 
 .hideScrollForDescription{
