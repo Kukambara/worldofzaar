@@ -2,7 +2,7 @@ function EmptyDeck(area) {
 
     this.area=area;
     this.img = new Image();
-    this.img.src = "Images\\MyChambers\\Hollows\\deckHollow.png";
+    this.img.src = "\\resources\\Images\\MyChambers\\Hollows\\deckHollow.png";
 
 
     this.OnClick = function (point) {

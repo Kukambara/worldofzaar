@@ -2,11 +2,14 @@ var avatarData = [];
 var avatarList = [];
 var avatarIndex = 0;
 
+var nameAvailable = ["/resources/Images/Registration/Lables/nameToken.png","/resources/Images/Registration/Lables/nameAvailable.png"];
+var nameIsAvailable=false;
+
 var sexList = ["/resources/Images/Registration/Sex/female.png", "/resources/Images/Registration/Sex/male.png"];
 var sexIndex = 0;
 
 var raceData = [];
-var raceList = [];
+
 var raceIndex = 0;
 
 var classData = [];
@@ -46,7 +49,6 @@ $(document).ready(function () {
         }
     });
 
-
     document.getElementById('bottomLeftArrow').onclick = function () {
         changeSex(-1)
     };
@@ -73,6 +75,24 @@ $(document).ready(function () {
     };
     document.getElementById('startButton').onclick = function () {
         createUser();
+    };
+
+    document.getElementById('userName').onkeyup = function () {
+        var nickname = document.getElementById('userName').value;
+        $.ajax({
+            url: "/profile/checkNickname/"+nickname,
+            dataType: "json",
+            type: "POST",
+            async: true,
+            success: function (data) {
+                nameIsAvailable = data;
+                if(data){
+                    document.getElementById('userNameCheck').src=nameAvailable[1];  }
+                else{
+                    document.getElementById('userNameCheck').src=nameAvailable[0];
+                }
+            }
+        });
     };
 
     setClassList();
@@ -162,9 +182,9 @@ function changeAvatar(direction) {
 function setAvatarList() {
     var tmp = 0;
     avatarList = [];
-
+    avatarIndex = 0;
     for (var i = 0; i < avatarData.length; ++i) {
-        if (avatarData[i].race.raceId == raceData[raceIndex].raceId && avatarData[i].male != sexIndex) {
+        if (avatarData[i].race.raceId == raceData[raceIndex].raceId && avatarData[i].male == sexIndex) {
             avatarList[tmp] = avatarData[i];
             tmp++;
         }
@@ -203,19 +223,26 @@ function onChangeRace() {
     document.getElementById("arms").src = "";
     document.getElementById("avatar").src = "";
 
-    classIndex = 0;
+    classIndex = -1;
     avatarIndex = 0;
 }
 
 function createUser() {
-    if (raceData[raceIndex].raceId == classList[classIndex].raceId) {
+    var userName = document.getElementById("userName").value;
+    if (classIndex != -1 && nameIsAvailable && userName.length >3 ) {
         var sex = sexIndex;
-        var userName = document.getElementById("userName").value;
         var blazonId = classList[classIndex].blazonId;
-        var pictureId = avatarList.racePictureId;
+        var pictureId = avatarList[avatarIndex].racePictureId;
 
-        alert("success");
+        $.ajax({
+            url: "/profile/createUser/"+userName+"/"+blazonId+"/"+pictureId+"/"+sexIndex,
+            dataType: "json",
+            type: "POST",
+            async: true,
+            success: function () {
+                alert("success");
+            }
+        });
+        return;
     }
-
-    alert("select Class");
 }

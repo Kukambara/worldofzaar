@@ -25,7 +25,9 @@
         </div>
 		
         <input id="userName"  type="text" class="name" placeholder="Введите имя"/>
-        	
+
+        <img id="userNameCheck"  onselectstart="return false" onmousedown="return false"/>
+
 		<div class="hideScrollForDescription">
 		<textarea id="description" name="description" onselectstart="return false" onmousedown="return false" readonly></textarea>
 		</div>

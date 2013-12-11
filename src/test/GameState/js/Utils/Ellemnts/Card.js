@@ -1,6 +1,7 @@
 function Card() {
 	var baseWidth = 400;
 	var baseHeight = 640;
+    this.area;
 
 	this.borderSize = 0.1;
 	this.background;
@@ -25,6 +26,43 @@ function Card() {
 
 	this.scale = 1;
 
+    this.isWarrior ;
+
+    this.InitCard = function(area,isWarrior,cardObject,cardName,cardSlogan,cardProperty){
+
+        this.area = new Area(area.beginPoint, baseWidth, baseHeight);
+
+        this.isWarrior = isWarrior;
+
+        this.background = new AreaImage(new Area(new Point(0, 0), this.area.width, this.area.height));
+        this.background.SetSource(cardObject.subset.frontPath);
+
+        this.image = new AreaImage(new Area(this.hp.area.GetVerticalPositionAfterThis(), widthWithOutBorder, freeHeight * 2 / 3));
+        this.image.SetSource(cardObject.cardPicture);
+
+
+        this.info = new AreaText(new Area(this.image.area.GetVerticalPositionAfterThis(), widthWithOutBorder, freeHeight * 1 / 3), cardProperty);
+
+        this.name = new AreaText(new Area(new Point(this.background.area.beginPoint.x + this.borderSize, this.background.area.beginPoint.y + this.borderSize),
+            this.background.area.width - this.borderSize * 3, this.borderSize), cardName);
+
+        var widthWithOutBorder = this.background.area.width - this.borderSize * 2;
+
+        this.energy = new AreaText(new Area(this.name.area.GetHorisontalPositionAfterThis(),
+            this.borderSize, this.borderSize), cardObject.cardEnergy);
+
+        if(isWarrior){
+            this.hp = new AreaText(new Area(this.name.area.GetVerticalPositionAfterThis(),
+                widthWithOutBorder / 3, this.borderSize),cardObject.cardHealth);
+            this.atack = new AreaText(new Area(this.hp.area.GetHorisontalPositionAfterThis(),
+                widthWithOutBorder / 3, this.borderSize), cardObject.cardDamage);
+            this.defence = new AreaText(new Area(this.atack.area.GetHorisontalPositionAfterThis(),
+                widthWithOutBorder / 3, this.borderSize), cardObject.cardArmor);
+        }
+
+        this.SetDrawableArea(area);
+        this.InitSmall();
+    }
 
 	this.Init = function ( /*Area*/ area) {
 		//var border = this.borderSize * area.width;
@@ -252,4 +290,4 @@ function Card() {
 
 }
 
-Card.prototype = new Clickable();
+//Card.prototype = new Clickable();

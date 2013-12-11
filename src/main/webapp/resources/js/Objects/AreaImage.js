@@ -27,25 +27,19 @@ function AreaImage(area, image, context) {
 	}
 
 	this.SetSource = function (imageSource) {
-		this.image = new Image(this.area.width, this.area.height);
+		resources.loadByUrl(imageSource);
+		this.image = new Image(this.area.height, this.area.width);
 		this.image.src = imageSource;
 	}
 
-	this.OnClick = function (eventPoint) {
-		if (this.area.IsPointInArea(eventPoint)) {
-
-			//this.area.OnClick(eventPoint);
-			//	this.DrawImage(this.context, this.image);
-			this.context.drawImage(this.image, 800 / 3, 800 / 6, 800 / 3, 400);
-		}
+	this.SetImage = function (/*Image*/ image) {
+		this.image = image;
+		this.image.width = this.area.width;
+		this.image.height = this.area.height;
 	}
 
-	this.OnMouseLeave = function (eventPoint) {
-		if (!this.area.IsPointInArea(eventPoint)) {
-
-			//this.area.OnClick(eventPoint);
-			//	this.DrawImage(this.context, this.image);
-			this.context.clearRect(800 / 3, 800 / 6, 800 / 3, 400);
-		}
+	this.DrawBigImage = function () {
+		this.context.drawImage(this.image, 800 / 3, 800 / 6, 800 / 3, 400);
 	}
 }
+

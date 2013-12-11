@@ -32,6 +32,22 @@ public class UserDao extends GenericDaoMain<User> {
         return null;
     }
 
+    public Boolean checkUserNickname(String nickname) {
+        try {
+            Session session = HibernateUtilMain.getSessionFactory().openSession();
+            Query query = session.createQuery("from User as u where u.userName = :nickname");
+            query.setParameter("nickname", nickname);
+            query.setMaxResults(1);
+            List<User> user = query.list();
+            session.close();
+            if(user.isEmpty())  return true;
+            return false;
+        } catch (Exception e) {
+            System.out.println("getUserGameProfilesById(userId) Error = " + e.getCause());
+        }
+        return null;
+    }
+
     public GameProfile getUserGameProfilesById(Integer userId) {
         try {
             Session session = HibernateUtilMain.getSessionFactory().openSession();

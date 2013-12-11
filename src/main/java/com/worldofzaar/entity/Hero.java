@@ -18,7 +18,6 @@ public class Hero {
     @GeneratedValue
     @Column(name = "\"heroId\"")
     private Integer heroId;
-    //TODO Link object and Id
     @Transient
     private User user;
     @Column(name = "\"userId\"")
@@ -56,8 +55,10 @@ public class Hero {
     }
 
     public User getUser() {
-        UserService userService = new UserService();
-
+        if (user == null) {
+            UserService userService = new UserService();
+            user = userService.getUser(userId);
+        }
         return user;
     }
 

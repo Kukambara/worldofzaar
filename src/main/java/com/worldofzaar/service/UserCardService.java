@@ -19,10 +19,10 @@ public class UserCardService {
     public List<UserCardAdapter> getAllUserCardsById(Integer userId){
         UserCardDao userCardDao = new UserCardDao();
 
-        List<UserCard> userCards = userCardDao.gelAllUserCardsById(userId);
+        List<Object[]> userCards = userCardDao.gelAllUserCardsById(userId);
         List<UserCardAdapter> userCardAdapter = new ArrayList<UserCardAdapter>();
 
-        for (UserCard tmp : userCards) {
+        for (Object[] tmp : userCards) {
             userCardAdapter.add(new UserCardAdapter(tmp));
         }
         return userCardAdapter;

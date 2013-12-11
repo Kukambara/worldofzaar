@@ -1,14 +1,5 @@
 ﻿function ContentWrapper(id)
 {
-    var canvas = document.getElementById("сanvas");
-    canvas.parentNode.removeChild(canvas);
-
-    var newCanvas = document.createElement('canvas');
-    newCanvas.id = "сanvas";
-    document.body.appendChild(newCanvas);
-
-    document.getElementById('backgroundCanvas').getContext("2d").clearRect(0, 0 ,900,900);
-
     switch (id)
     {
         case 0:

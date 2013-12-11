@@ -13,6 +13,39 @@ public class DeckCardAdapter {
 
     private int deckCardId;
     private int deckId;
+
+    public int getDeckCardId() {
+        return deckCardId;
+    }
+
+    public void setDeckCardId(int deckCardId) {
+        this.deckCardId = deckCardId;
+    }
+
+    public int getDeckId() {
+        return deckId;
+    }
+
+    public void setDeckId(int deckId) {
+        this.deckId = deckId;
+    }
+
+    public int getWarriorCardId() {
+        return warriorCardId;
+    }
+
+    public void setWarriorCardId(int warriorCardId) {
+        this.warriorCardId = warriorCardId;
+    }
+
+    public int getSupportCardId() {
+        return supportCardId;
+    }
+
+    public void setSupportCardId(int supportCardId) {
+        this.supportCardId = supportCardId;
+    }
+
     private int warriorCardId;
     private int supportCardId;
 
@@ -20,7 +53,10 @@ public class DeckCardAdapter {
 
         deckCardId = inputDeckCard.getDeckCardId();
         deckId = inputDeckCard.getDeck().getDeckId();
-        warriorCardId = inputDeckCard.getWarriorCard().getCardId();
-        supportCardId = inputDeckCard.getSupportCard().getCardId();
+        if(inputDeckCard.getWarriorCard() != null){
+            warriorCardId = inputDeckCard.getWarriorCard().getCardId();
+        }else{
+            supportCardId = inputDeckCard.getSupportCard().getCardId();
+        }
     }
 }

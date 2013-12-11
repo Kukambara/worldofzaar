@@ -31,6 +31,7 @@ public class DeckService {
         DeckDao deckDao = new DeckDao();
         Deck deck = new Deck();
         deck.setDeckName(deckName);
+        deck.setActive(Boolean.FALSE);
         deck.setUser(user);
         deckDao.add(deck);
     }

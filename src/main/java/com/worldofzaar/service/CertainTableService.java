@@ -1,5 +1,6 @@
 package com.worldofzaar.service;
 
+import com.worldofzaar.adapter.TablesAdapter;
 import com.worldofzaar.dao.CertainTableDao;
 import com.worldofzaar.dao.UserDao;
 import com.worldofzaar.entity.ApiTable;
@@ -21,10 +22,32 @@ import java.util.List;
 public class CertainTableService {
     HashMap<Integer, CertainTable> tableMap = new HashMap<Integer, CertainTable>();
 
+    private int getMinLevel(int level) {
+        if (level >= 1 && level < 5)
+            return 1;
+        if (level >= 5 && level < 10)
+            return 5;
+        if (level >= 10 && level < 20)
+            return 10;
+        return 1;
+    }
+
+    private int getMaxLevel(int level) {
+        if (level >= 1 && level < 5)
+            return 4;
+        if (level >= 5 && level < 10)
+            return 9;
+        if (level >= 10 && level < 20)
+            return 19;
+        return 4;
+    }
+
     public boolean getIn(ApiTable table, HttpServletRequest request) {
         UserInformation userInformation = new UserInformation(request);
         CertainTableDao certainTableDao = new CertainTableDao();
-        List<CertainTable> tables = certainTableDao.getCertainTables(table.getSize(), table.getCost());
+        List<CertainTable> tables = certainTableDao.getCertainTables(table.getSize(), table.getCost(),
+                getMinLevel(userInformation.getUser().getGameProfile().getLevel()),
+                getMaxLevel(userInformation.getUser().getGameProfile().getLevel()));
         if (tables.size() == table.getSize())
             return false;
         else if (tables.size() < table.getSize()) {
@@ -57,11 +80,12 @@ public class CertainTableService {
                 newCT.setTableCost(table.getCost());
                 newCT.setTableSize(table.getSize());
                 newCT.setUser(user);
+                newCT.setLevel(user.getGameProfile().getLevel());
                 CertainTableDao certainTableDao = new CertainTableDao();
                 certainTableDao.add(newCT);
                 //Create table if table full/
                 if (tables.size() + 1 == table.getSize()) {
-                    tables = certainTableDao.getCertainTables(table.getSize(), table.getCost());
+                    tables = certainTableDao.getCertainTables(table.getSize(), table.getCost(), getMinLevel(table.getLevel()), getMaxLevel(table.getLevel()));
                     startTable(tables, userInformation);
                 }
                 return true;
@@ -79,6 +103,16 @@ public class CertainTableService {
         gameService.createNewGame(tables);
 
         return false;
+    }
+
+    //Get tables
+    public TablesAdapter getTables(int cost, HttpServletRequest request) {
+        UserInformation userInformation = new UserInformation(request);
+        CertainTableDao certainTableDao = new CertainTableDao();
+        List<CertainTable> tables = certainTableDao.getCertainTables(cost, getMinLevel(userInformation.getUser().getGameProfile().getLevel()),
+                getMaxLevel(userInformation.getUser().getGameProfile().getLevel()));
+        TablesAdapter tablesAdapter = new TablesAdapter(tables);
+        return tablesAdapter;
     }
 
 }

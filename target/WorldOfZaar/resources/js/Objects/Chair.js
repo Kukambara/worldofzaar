@@ -15,8 +15,8 @@
         imgHower = new Image();
         playerBlason = new Image();
 
-        img.src = "Images\\Duel\\Sits\\chair.png";
-        imgHower.src = "Images\\Duel\\Sits\\chairHower.png";
+        img.src = "\\resources\\Images\\Duel\\Sits\\chair.png";
+        imgHower.src = "\\resources\\Images\\Duel\\Sits\\chairHower.png";
     }
 
     this.setPlayer = function (imgSrc)
