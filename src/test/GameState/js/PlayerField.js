@@ -7,9 +7,9 @@ function PlayerField() {
 	var sizeOfTsAreaHeight = 1 / 3;
 
 	var fighterCount = 3;
-	var card = new Card();
-	var cardSmall = new Card();
-	var cardSmall2 = new Card();
+	var card = new CardFighter();
+	/*var cardSmall = new CardFighter();
+	var cardSmall2 = new CardFighter();*/
 	/*this.mainArea;
 	this.fighterArea;*/
 
@@ -61,22 +61,23 @@ function PlayerField() {
 		this.talonArea = new AreaImage(new Area(this.TSArea.area.GetHorisontalPositionAfterThis(), width * sizeOfOneCardEllement, this.deckArea.area.height));
 
 		card.Init(this.fighterCardAreas[0].area);
-		card.InitColorsForText();
-		cardSmall.Init(this.fighterCardAreas[1].area);
+		//card.InitColorsForText();
+		/*cardSmall.Init(this.fighterCardAreas[1].area);
 		cardSmall.InitColorsForText();
 		cardSmall2.Init(this.fighterCardAreas[2].area);
-		cardSmall2.InitSmall2();
+		cardSmall2.InitSmall2();*/
 		//this.InitClick();
 	}
 
 	this.InitClick = function () {
-		for (var i = 0; i < this.fighterCardAreas.length; ++i) {
+	/*	for (var i = 0; i < this.fighterCardAreas.length; ++i) {
 			this.fighterCardAreas[i].addListener(this.fighterCardAreas[i], "onClick", "DrawBigImage");
 		}
 
 		this.deckArea.addListener(this.deckArea, "onClick", "DrawBigImage");
 		this.talonArea.addListener(this.talonArea, "onClick", "DrawBigImage");
-		this.supportCardArea.addListener(this.supportCardArea, "onClick", "DrawBigImage");
+		this.supportCardArea.addListener(this.supportCardArea, "onClick", "DrawBigImage");*/
+
 	}
 
 	this.SetContext = function (context) {
@@ -99,8 +100,8 @@ function PlayerField() {
 		}
 
 		card.SetContext(context);
-		cardSmall.SetContext(context);
-		cardSmall2.SetContext(context);
+	/*	cardSmall.SetContext(context);
+		cardSmall2.SetContext(context);*/
 	}
 
 	this.InitTexts = function () {
@@ -176,18 +177,19 @@ function PlayerField() {
 		this.EArea.Draw();
 				
 		card.Draw();
-		cardSmall.DrawSmall();
-		cardSmall2.DrawSmall();
+		card.DrawEnd();
+	/*	cardSmall.DrawSmall();
+		cardSmall2.DrawSmall();*/
 
 		this.fullArea.DrawRotateEnd(this.context);
 	}
 	
 	this.OnClick = function (eventPoint) {
-		/*var eventPointTemp = new Point(eventPoint.x, eventPoint.y);
+		var eventPointTemp = new Point(eventPoint.x, eventPoint.y);
 		eventPointTemp.RotationAcrosPoint(this.fullArea.beginPoint, -this.rotate);//для востановления нужно передавать обратный угол.
-		if (this.fullArea.IsPointInArea(eventPointTemp)) {*/
+		if (this.fullArea.IsPointInArea(eventPointTemp)) {
 
-		/*	eventPointTemp.MinusFromThis(this.fullArea.beginPoint)
+			/*eventPointTemp.MinusFromThis(this.fullArea.beginPoint)
 			for (var i = 0; i < this.fighterCardAreas.length; ++i) {
 				this.fighterCardAreas[i].OnClick(eventPointTemp);
 			}
@@ -196,7 +198,7 @@ function PlayerField() {
 			this.talonArea.OnClick(eventPointTemp);
 			this.supportCardArea.OnClick(eventPointTemp);*/
 
-			/*eventPointTemp.MinusFromThis(this.fullArea.beginPoint)
+			eventPointTemp.MinusFromThis(this.fullArea.beginPoint)
 			for (var i = 0; i < this.fighterCardAreas.length; ++i) {
 				this.fighterCardAreas[i].onClick(eventPointTemp);
 			}
@@ -205,7 +207,7 @@ function PlayerField() {
 			this.talonArea.onClick(eventPointTemp);
 			this.supportCardArea.onClick(eventPointTemp);
 
-		}*/
+		}
 	}
 
 	/*this.CheckPoint = function (eventPoint) {

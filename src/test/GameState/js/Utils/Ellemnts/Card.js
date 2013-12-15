@@ -1,6 +1,6 @@
 function Card() {
-	var baseWidth = 400;
-	var baseHeight = 640;
+	this.baseWidth = 400;
+	this.baseHeight = 600;
 
 	this.borderSize = 0.1;
 	this.background;
@@ -10,23 +10,15 @@ function Card() {
 	this.name;
 	this.energy;
 
-	this.hp;
-	this.atack;
-	this.defence;
-
 	this.imageSmall;
 
 	this.nameSmall;
 	this.energySmall;
 
-	this.hpSmall;
-	this.atackSmall;
-	this.defenceSmall;
-
 	this.scale = 1;
 
 
-	this.Init = function ( /*Area*/ area) {
+	Card.prototype.Init = function ( /*Area*/ area) {
 		//var border = this.borderSize * area.width;
 		
 		//this.area = area;
@@ -41,13 +33,7 @@ function Card() {
 		var widthWithOutBorder = this.background.area.width - this.borderSize * 2;
 		this.energy = new AreaText(new Area(this.name.area.GetHorisontalPositionAfterThis(),
 		this.borderSize, this.borderSize), "0");
-		this.hp = new AreaText(new Area(this.name.area.GetVerticalPositionAfterThis(),
-		widthWithOutBorder / 3, this.borderSize), "1");
-		this.atack = new AreaText(new Area(this.hp.area.GetHorisontalPositionAfterThis(),
-		widthWithOutBorder / 3, this.borderSize), "2");
-		this.defence = new AreaText(new Area(this.atack.area.GetHorisontalPositionAfterThis(),
-		widthWithOutBorder / 3, this.borderSize), "3");
-		var freeHeight = this.area.height - this.borderSize*4;
+		var freeHeight = this.area.height - this.borderSize*3;
 		this.image = new AreaImage(new Area(this.hp.area.GetVerticalPositionAfterThis(), widthWithOutBorder, freeHeight * 2 / 3));
 		this.image.SetSource("Picture/Symbols/Card/Rokirovaka_support_VE.jpg");
 		this.info = new AreaText(new Area(this.image.area.GetVerticalPositionAfterThis(), widthWithOutBorder, freeHeight * 1 / 3), "testInfo");
@@ -56,7 +42,7 @@ function Card() {
 		this.InitSmall();
 	}
 
-	this.InitSmall2 = function () {
+	Card.InitSmall2 = function () {
 
 	//	this.borderSize = this.borderSize * this.area.width;
 		//	this.background = new AreaImage(this.area);
@@ -86,7 +72,7 @@ function Card() {
 		this.InitColorsForText2();
 	}
 
-	this.InitSmall = function () {
+	Card.prototype.InitSmall = function () {
 
 		//	this.borderSize = this.borderSize * this.area.width;
 		//	this.background = new AreaImage(this.area);
@@ -113,7 +99,7 @@ function Card() {
 		this.imageSmall.SetSource("Picture/Symbols/Card/Rokirovaka_support_VE.jpg");
 	}
 
-	this.SetContextSmall = function(context){
+	Card.prototype.SetContextSmall = function (context) {
 		this.imageSmall.context = context;
 
 		this.nameSmall.context = context;
@@ -132,7 +118,7 @@ function Card() {
 		this.defenceSmall.area.isBorder = true;
 	}
 
-	this.InitColorsForText = function () {
+	Card.prototype.InitColorsForText = function () {
 		this.nameSmall.background = "rgb(254, 254, 254)";
 		this.energySmall.background = "rgb(254, 254, 254)";
 
@@ -142,13 +128,9 @@ function Card() {
 
 		this.nameSmall.textColor = "rgb(0, 0, 0)";
 		this.energySmall.textColor = "rgb(0, 0, 0)";
-
-		this.hpSmall.textColor = "rgb(0, 0, 0)";
-		this.atackSmall.textColor = "rgb(0, 0, 0)";
-		this.defenceSmall.textColor = "rgb(0, 0, 0)";
 	}
 
-	this.InitColorsForText2 = function () {
+	Card.prototype.InitColorsForText2 = function () {
 		this.nameSmall.textColor = "rgb(254, 254, 254)";
 		this.energySmall.textColor = "rgb(254, 254, 254)";
 
@@ -157,7 +139,7 @@ function Card() {
 		this.defenceSmall.textColor = "rgb(254, 254, 254)";
 	}
 
-	this.SetContext = function (context) {
+	Card.prototype.SetContext = function (context) {
 		this.background.context = context;
 		this.image.context = context;
 		this.info.context = context;
@@ -193,21 +175,17 @@ function Card() {
 		this.name.textColor = "rgb(0, 0, 0)";
 		this.energy.textColor = "rgb(0, 0, 0)";
 
-		this.hp.textColor = "rgb(0, 0, 0)";
-		this.atack.textColor = "rgb(0, 0, 0)";
-		this.defence.textColor = "rgb(0, 0, 0)";
-
 		this.SetContextSmall(context);
 	}
 
-	this.SetDrawableArea = function (/*Area*/ drawableArea){//(/*Point*/ beginPoint, /*int*/ width, /*int*/ height) {
+	Card.prototype.SetDrawableArea = function (/*Area*/ drawableArea) {//(/*Point*/ beginPoint, /*int*/ width, /*int*/ height) {
 		var widthScale = drawableArea.width / this.area.width;
 		var heightScale = drawableArea.height / this.area.height;
 		this.scale = (widthScale < heightScale ? widthScale : heightScale)/this.scale;
 		this.area.beginPoint = drawableArea.beginPoint;
 	}
 
-	this.Draw = function () {
+	Card.prototype.Draw = function () {
 		this.background.context.save();
 
 		this.background.context.translate(this.area.beginPoint.x, this.area.beginPoint.y);
@@ -221,15 +199,13 @@ function Card() {
 		this.name.Draw();
 		this.energy.Draw();
 
-		this.hp.Draw();
-		this.atack.Draw();
-		this.defence.Draw();
-
-		this.background.context.restore();
-
 	}
 
-	this.DrawSmall = function () {
+	Card.prototype.DrawEnd = function () {
+		this.background.context.restore();
+	}
+
+	Card.prototype.DrawSmall = function () {
 		this.imageSmall.context.save();
 
 		this.background.context.translate(this.area.beginPoint.x, this.area.beginPoint.y);
@@ -242,10 +218,10 @@ function Card() {
 		this.nameSmall.Draw();
 
 		this.energySmall.Draw();
-		this.hpSmall.Draw();
+		/*this.hpSmall.Draw();
 
 		this.atackSmall.Draw();
-		this.defenceSmall.Draw();
+		this.defenceSmall.Draw();*/
 
 		this.imageSmall.context.restore();
 	}

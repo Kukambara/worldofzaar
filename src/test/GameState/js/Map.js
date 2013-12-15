@@ -1,28 +1,26 @@
 function Map() {
-
 	var fieldHeightSize = 1 / 3;
 	var fieldWidthSize = 2 / 3;
 	var fieldStepX = (1 - fieldWidthSize)/2;
 	var fieldStepY = 1 - fieldHeightSize;
-	var borderSize = 51;
+	var borderScaleSize = 63/750;
 
-	this.backgroundFull;
+	//this.backgroundFull;
 	this.background;
 	this.playerField = [];
 	this.canvas;
 	//this.scale = 0.5;
 
-	this.canvas = canvasInstance;//document.getElementById("canvas");
-
-
 	this.Init = function (x, y, width, height) {
+		this.canvas = canvasManager.getCanvasStatic();//document.getElementById("canvas");
 		resources.loadByArr([
 				"Picture/map.png",
 				"Picture/table.png"]);
-		this.backgroundFull = new AreaImage(
-			new Area(new Point(0, 0), 1000, 1000),
-			new Image(1000, 1000));
-		this.backgroundFull.image.src = /*resources[*/"Picture/table.png"/*]*/;
+	/*	this.backgroundFull = new AreaImage(
+			new Area(new Point(0, 0), 1100, 1100),
+			new Image(1000, 1000));*/
+		var borderSize = borderScaleSize * width;
+//		this.backgroundFull.image.src = /*resources[*/"Picture/table.png"/*]*/;
 		this.background = new AreaImage(
 				new Area(new Point(x - borderSize, y - borderSize), width + borderSize * 2, height + borderSize * 2),
 				new Image(width, height));
@@ -49,7 +47,7 @@ function Map() {
 		this.playerField[3].InitAreas(x + width * (1 - fieldStepX), y + height * (1 - fieldStepY), width * fieldWidthSize, height * fieldHeightSize);
 		this.playerField[3].InitTexts();
 
-		this.canvas.Init(width/750*1000);
+		//this.canvas.setNewDrawableAreaByWidth(width / 750 * 1000);
 
 		//this.canvas = document.getElementById("canvas");
 
@@ -70,7 +68,7 @@ function Map() {
 			alert("Sorry, but your browser isn`t support canvas:(");
 		}
 		*/
-		this.backgroundFull.context = this.canvas.getContext();
+	//	this.backgroundFull.context = this.canvas.getContext();
 		this.background.context = this.canvas.getContext();
 		for (var i = 0; i < this.playerField.length; ++i) {
 			this.playerField[i].SetContext(this.background.context);
@@ -130,7 +128,7 @@ function Map() {
 	}
 
 	this.Draw = function () {
-		this.backgroundFull.Draw();
+		//this.backgroundFull.Draw();
 		this.background.Draw();
 		for (var i = 0; i < this.playerField.length; ++i) {
 			this.playerField[i].Draw();
