@@ -44,10 +44,12 @@ public class CertainTableService {
     }
 
     public boolean getIn(ApiTable table, HttpServletRequest request) {
-        if (!table.valid())
-            return false;
         UserInformation userInformation = new UserInformation(request);
         CertainTableDao certainTableDao = new CertainTableDao();
+        table.setLevel(userInformation.getUser().getGameProfile().getLevel());
+        if (!table.valid())
+            return false;
+
         List<CertainTable> tables = certainTableDao.getCertainTables(table.getSize(), table.getCost(),
                 getMinLevel(userInformation.getUser().getGameProfile().getLevel()),
                 getMaxLevel(userInformation.getUser().getGameProfile().getLevel()));
