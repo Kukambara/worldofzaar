@@ -619,7 +619,7 @@
 
     function AddCard(){
         $.ajax({
-            url: "/profile/cards/add/"+allPlayerDecks[currDeckIndex].deckId +"/"+allPlayerCards1[loadedCardIndex],
+            url: "/profile/cards/add/"+allPlayerDecks[currDeckIndex].deckId +"/"+allPlayerCards1[loadedCardIndex].userCardId,
             dataType: "json",
             type: "POST",
             async: false,

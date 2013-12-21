@@ -1,7 +1,6 @@
 package com.worldofzaar.adapter;
 
 import com.worldofzaar.entity.CardInDeck;
-import com.worldofzaar.entity.DeckCard;
 
 /**
  * Created with IntelliJ IDEA.
