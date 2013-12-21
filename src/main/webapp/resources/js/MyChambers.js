@@ -161,6 +161,7 @@
                         Draw(loadedCards);
                     } else {
                         isDeckEdit = !isDeckEdit;
+                        currCardsRowIndex = 0;
                         ReDrawCanvas();
                     }
                 }
@@ -276,6 +277,7 @@
         SetCards();
         setBorders();
         setLables();
+        setDecks();
         setMyChambersMap();
 
         setTimeout(function () {
@@ -288,6 +290,8 @@
                 Draw(loadedLabels);
                 Draw(loadedBorders);
                 Draw(transitionArrows);
+                if(!isDeckEdit){
+                Draw(loadedDecks);}
             }, 200);
 
         }, 50);

@@ -105,6 +105,7 @@
             if (state) {
                 if(transitionArrows[i].GetDirection() == 0){
                     isBuyingCards=!isBuyingCards;
+                    currCardsRowIndex = 0;
                     canvas.GetCanvasContextLevel(1).clearRect(0,100,900,800);
                     ReDrawCanvas();
                     break;
@@ -333,7 +334,7 @@
 
         for (var i = 0; i < 4 * cardsInRow; i++) {
 
-            if (allPlayerCards[i + (currCardsRowIndex * cardsInRow)]) {
+            if (allMasterOfDeckCards[i + (currCardsRowIndex * cardsInRow)]) {
                 loadedCards[i] = initMasterOfDeckCard(allMasterOfDeckCards[i + (currCardsRowIndex * cardsInRow)],
                     new Area(new Point(curr_x, curr_y), cardsWidth, cardsHeigth), 1);
                 // loadedCardsUserId[i] = allPlayerCards[i + (currCardsRowIndex * cardsInRow)].userCardId;

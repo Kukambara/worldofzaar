@@ -137,7 +137,7 @@
             for (var i = 0; i < tables.length; ++i) {
                 var index = tables[i].OnClick(point);
                 if (index != (-1)) {
-                    if(isWaiting){
+                    if(!isWaiting){
                         if(tables[i].GetPlayer(index)== player.userId){
                             registrateAbort();
                             break;
