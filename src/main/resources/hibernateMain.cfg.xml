@@ -29,6 +29,7 @@
         <mapping class="com.worldofzaar.entity.Auction"/>
         <mapping class="com.worldofzaar.entity.Blazon"/>
         <mapping class="com.worldofzaar.entity.Card"/>
+
         <mapping class="com.worldofzaar.entity.CardText"/>
         <mapping class="com.worldofzaar.entity.Classification"/>
         <mapping class="com.worldofzaar.entity.Deck"/>
