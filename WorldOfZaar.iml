@@ -15,6 +15,16 @@
         </sourceRoots>
       </configuration>
     </facet>
+    <facet type="hibernate" name="Hibernate">
+      <configuration>
+        <datasource-map>
+          <unit-entry name="hibernateActiveGame.cfg.xml" value="e549c1aa-565a-4858-a059-ad96ea7794d5" />
+          <unit-entry name="hibernateMain.cfg.xml" value="cd424eff-f715-4464-ac2b-9fad86301374" />
+        </datasource-map>
+        <deploymentDescriptor name="hibernate.cfg.xml" url="file://$MODULE_DIR$/src/main/resources/hibernateActiveGame.cfg.xml" />
+        <deploymentDescriptor name="hibernate.cfg.xml" url="file://$MODULE_DIR$/src/main/resources/hibernateMain.cfg.xml" />
+      </configuration>
+    </facet>
   </component>
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_6" inherit-compiler-output="false">
     <output url="file://$MODULE_DIR$/target/classes" />
