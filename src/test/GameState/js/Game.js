@@ -1,47 +1,90 @@
-var lastTime;
+(function(){
+	var lastTime;
 
-var map = new Map();
-var buttonTest = new Button();
+	var background;
+	var map = new Map();
+	var buttons = [];
+	var bank;
+	var chat;
+	var log;
+	var state;
+	var activePlayerNUmber;
 
-function initGame() {	
-	map.Init(50, 50, 750, 750);
+	window.requestAnimFrame = (function (callback) {
+		return window.requestAnimationFrame || window.webkitRequestAnimationFrame
+		|| window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
+		function (callback) {
+			window.setTimeout(callback, 1000 / 60);
+		};
+	})();
 
-	buttonTest.Init(new Area(new Point(10, 100), 100, 50), map.background.image, "test", canvasInstance.getContext());
-	buttonTest._OnClick = onButtonTestClick;
-	canvasInstance.addListener(this, "onClick", "onClickListener");
-	resources.onReady(draw);
-}
+	function init() {
+		canvasManager.init('canvas_static', 1000)
+		_initBackground();
+		map.Init(50, 50, 760, 760);
 
-function main() {
-	var now = Date.now();
-	var deltaTime = (now - loastTime) / 1000.0;
+		buttons["test"] = new Button();
+		buttons["test"].Init(new Area(new Point(10, 100), 100, 50), map.background.image, "test", canvasManager.getCanvasStatic().getContext());
+		buttons["test"]._OnClick = onButtonTestClick;
+		canvasManager.addEventFunction("static", this, "onClick", "onClickListener");
+		lastTime = Date.now();
+		resources.onReady(drawStatic);
+	}
 
-	update(deltaTime);
-	render();
+	function _initBackground() {
+		resources.loadByUrl("Picture/table.png");
+		background = new AreaImage(
+					new Area(new Point(0, 0), 1000, 1000),
+					new Image(1000, 1000));
+		background.image.src = "Picture/table.png";
+		background.context = canvasManager.getCanvasStatic().getContext();
+	}
 
-	lastTime = now;
+	function main() {
+		var now = Date.now();
+		var deltaTime = (now - lastTime) / 1000.0;
 
-}
+		update(deltaTime);
+		draw();
 
-function update(deltaTime){
-	alert(deltaTime);
-}
+		lastTime = now;
+		requestAnimFrame(main);
 
-function render() {
-	alert("render");
-}
+	}
 
-function onClickListener(eventPoint) {
-	map.OnClick(eventPoint);
-	buttonTest.onClick(eventPoint);
-}
+	function update(deltaTime) {
+		//alert(deltaTime);
+	}
 
-function draw() {
-	map.Draw();
-	buttonTest.Draw();
-}
+	function render() {
+		alert("render");
+	}
 
-/*Clicks*/
-function onButtonTestClick(eventPoint) {
-	alert("test");
-}
+	function onClickListener(eventPoint) {
+	
+		map.OnClick(eventPoint);
+		//buttonTest.onClick(eventPoint);
+	}
+
+	function drawStatic() {
+
+		background.Draw();
+		map.Draw();
+		main();
+	}
+
+	function draw() {
+		map.Draw();
+		//buttonTest.Draw();
+	}
+
+	/*Clicks*/
+	function onButtonTestClick(eventPoint) {
+		alert("onButtonTestClick");
+	}
+
+	window.game = {
+		init: init
+		, onClickListener: onClickListener
+	}
+})();

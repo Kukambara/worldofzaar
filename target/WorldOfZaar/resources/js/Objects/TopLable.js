@@ -15,12 +15,12 @@
         imgHower = new Image();
 
         if (isSelected) {
-            img.src = "Images\\NavigationBar\\Lables\\" + lableName + "Select.png";
+            img.src = "\\resources\\Images\\NavigationBar\\Lables\\" + lableName + "Select.png";
         }
         else {
-            img.src = "Images\\NavigationBar\\Lables\\" + lableName + ".png";
+            img.src = "\\resources\\Images\\NavigationBar\\Lables\\" + lableName + ".png";
         }
-        imgHower.src = "Images\\NavigationBar\\Lables\\" + lableName + "Hower.png";
+        imgHower.src = "\\resources\\Images\\NavigationBar\\Lables\\" + lableName + "Hower.png";
     }
 
     this.Load = function (){

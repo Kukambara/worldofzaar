@@ -16,12 +16,21 @@ public class DeckAdapter {
     private int deckId;
     private String deckName;
     private int userId;
-
+    private Boolean isActive;
     public DeckAdapter(Deck deck){
 
         deckId = deck.getDeckId();
         deckName = deck.getDeckName();
         userId  = deck.getUser().getUserId();
+        isActive = deck.getActive();
+    }
+
+    public Boolean getIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(Boolean isActive) {
+        this.isActive = isActive;
     }
 
     public int getDeckId() {

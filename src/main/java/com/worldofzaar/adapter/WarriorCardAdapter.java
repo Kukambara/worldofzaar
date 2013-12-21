@@ -1,5 +1,7 @@
 package com.worldofzaar.adapter;
 
+import com.worldofzaar.entity.WarriorCard;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Kseon
@@ -16,9 +18,9 @@ public class WarriorCardAdapter extends CardAdapter {
 
     public WarriorCardAdapter(Object[] input) {
         super(input);
-        this.cardArmor = (Integer)input[12-1];
-        this.cardDamage =(Integer) input[13-1];
-        this.cardHealth =(Integer) input[11-1];
+        this.cardArmor = ((WarriorCard)input[0]).getCardArmor();
+        this.cardDamage =((WarriorCard)input[0]).getCardDamage();
+        this.cardHealth =((WarriorCard)input[0]).getCardHealth();
     }
 
     public Integer getCardArmor() {

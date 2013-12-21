@@ -51,25 +51,10 @@ public class SupportCardDao extends GenericDaoMain<SupportCard> {
         try {
 
             Session session = HibernateUtilMain.getSessionFactory().openSession();
-
-            /*List supportCards = (List) session.createQuery("select " +
-                    "s.cardId,s.cardEnergy, s.classification.id,t.cardName,s.subset,t.cardSlogan," +
-                    "pt.propertyInfo,s.cardPicture,s.isElite from " +
-                    "SupportCard as s,RuCardText as t,RuPropertyText as pt " +
-                    "where s.cardId=pt.supportCard.cardId AND s.cardId=t.supportCard.cardId group by s.cardId").list();
-            */
-
             List supportCards = (List) session.createQuery(
-                    "select s.cardId,s.cardEnergy,s.cardPicture,s.property.propertyId, s.classification.classificationId," +
-                            "s.isElite,s.subset.subsetId,s.subset.frontPath,t.cardName,t.cardSlogan " +
-                    "from SupportCard as s,RuCardText as t " +
-                    "where s.cardId=t.supportCard.cardId group by "+
-                    " s.cardId,s.cardEnergy,s.cardPicture,s.property.propertyId, s.classification.classificationId," +
-                     "s.isElite,s.subset.subsetId,s.subset.frontPath,t.cardName,t.cardSlogan ").list();
-
-
+                    "from SupportCard as s,RuCardText as t, RuPropertyText as p " +
+                    "where s.cardId=t.supportCard.cardId AND s.cardId=p.supportCard.cardId").list();
             session.close();
-
             return supportCards;
         } catch (Exception e) {
             System.out.println("getCompositeSupportCards(lang) Error(DAO) = " + e.getCause());

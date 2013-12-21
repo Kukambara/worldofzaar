@@ -24,8 +24,10 @@
 		    </center>
         </div>
 		
-        <input id="inputName" name="inputName" type="text" class="name" value="Введите имя"/>
-        	
+        <input id="userName"  type="text" class="name" placeholder="Введите имя"/>
+
+        <img id="userNameCheck"  onselectstart="return false" onmousedown="return false"/>
+
 		<div class="hideScrollForDescription">
 		<textarea id="description" name="description" onselectstart="return false" onmousedown="return false" readonly></textarea>
 		</div>
@@ -86,8 +88,8 @@
         	<img id="arms"  onselectstart="return false" onmousedown="return false"/>
         	</div>
 
-		<div class="startButton">
-        	<img src="/resources/Images/Registration/Lables/start.png"  onselectstart="return false" onmousedown="return false"/>
+		<div class="startButton" >
+        	<img id="startButton" src="/resources/Images/Registration/Lables/start.png"   onselectstart="return false" onmousedown="return false"/>
         	</div>
 	</div>
     </body>

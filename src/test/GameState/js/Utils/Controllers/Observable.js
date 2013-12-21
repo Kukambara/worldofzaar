@@ -5,6 +5,7 @@ function Observable() {
 		if (!this.listeners.hasOwnProperty(evt)) {
 			this.listeners[evt] = [];
 		}
+		var i = object[callback];
 		this.listeners[evt].push(object[callback]);
 	},
 

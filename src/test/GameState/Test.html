@@ -8,7 +8,7 @@
 <script type="text/javascript" src="js/Utils/CanvasWrap.js"></script>
 <script type="text/javascript" src="js/Utils/Text.js"></script>
 <script type="text/javascript" src="js/Utils/Controllers/Events.js"></script>
-<script type="text/javascript" src="js/Utils/Controllers/Clickable.js"></script>
+<script type="text/javascript" src="../../main/webapp/resources/js/Objects/Clickable.js"></script>
 <script type="text/javascript" src="js/Utils/Controllers/Button.js"></script>
 <script type="text/javascript" src="js/Utils/Resources.js"></script>
 <script type="text/javascript" src="js/Utils/Ellemnts/Point.js"></script>
@@ -17,11 +17,13 @@
 <script type="text/javascript" src="js/Utils/Ellemnts/AreaImage.js"></script>
 <script type="text/javascript" src="js/Utils/Ellemnts/AreaText.js"></script>
 <script type="text/javascript" src="js/Utils/Ellemnts/Card.js"></script>
+<script type="text/javascript" src="js/Utils/Ellemnts/CardFighter.js"></script>
+<script type="text/javascript" src="js/Utils/Ellemnts/CardSupport.js"></script>
+<script type="text/javascript" src="js/Utils/CanvasManager.js"></script>
 <script type="text/javascript" src="js/PlayerField.js"></script>
 <script type="text/javascript" src="js/Map.js"></script>
 <script type="text/javascript" src="js/Game.js"></script>
-<body onload="initGame()">
-	<div style="float:left;"><canvas id="canvas" style="border: solid 1px red;" width="1000" height="1000">
+<body onload="game.init()">
+	<div style="float:left;"><canvas id="canvas_static" style="position:absolute; left:50; top:50; border: solid 1px red; zindex:0" width="1100" height="1100">
 	</canvas></div>
-	<img src="Picture/map.png" />
 </body>

@@ -6,6 +6,7 @@
     var chairs = [];
     var coordinateSet = [];
     var tableImg;
+    this.playersId =[];
 
     this.Init = function ()
     {
@@ -18,7 +19,7 @@
         }
 
         tableImg = new Image();
-        tableImg.src = "Images\\Duel\\Sits\\table.png";
+        tableImg.src = "resources\\Images\\Duel\\Sits\\table.png";
     }
 
     function setCoordinateSet()
@@ -60,11 +61,12 @@
     this.OnClick = function (point) {
         if (area.IsPointInArea(point)) {
             for (var i = 0; i < type; i++) {
-                chairs[i].OnClick(point);
+                if(chairs[i].OnClick(point));{
+                    return chairs[i].id;
+                }
             }
-            return true;
         }
-        return false;
+        return -1;
     }
 
     this.OnMove = function (point) {
@@ -72,5 +74,21 @@
                 chairs[i].OnMove(point);
             }
             Draw();
+    }
+
+    this.GetType = function (){
+        return type;
+    }
+
+    this.SetPlayer = function (sit,playerId,playerBlazon){
+        this.playersId[sit] = playerId;
+        chairs[sit].SetPlayer(playerBlazon);
+    }
+
+    this.GetPlayer = function (index){
+        if( typeof this.playersId[index] != "undefined" ){
+            return this.playersId[index];
+        }
+        return -1;
     }
 }

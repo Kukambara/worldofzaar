@@ -29,8 +29,19 @@ public class Deck {
     @Column(name = "\"isActive\"")
     private Boolean isActive;
 
+    @Column(name = "\"isActive\"")
+    private Boolean isActive;
+
     public Integer getDeckId() {
         return deckId;
+    }
+
+    public Boolean getActive() {
+        return isActive;
+    }
+
+    public void setActive(Boolean active) {
+        isActive = active;
     }
 
     public void setDeckId(Integer deckId) {

@@ -2,7 +2,7 @@ function Area(beginPoint, width, height) {
 	this.beginPoint = beginPoint;
 	this.width = width;
 	this.height = height;
-	this.isBorder = false;
+	this.isBorder = true;
 
 	var TO_RADIANS = Math.PI / 180;
 
@@ -13,20 +13,21 @@ function Area(beginPoint, width, height) {
 	}
 
 	Area.prototype.DrawImage = function (context, image) {
-		/*context.save();
+		context.save();
 		context.translate(this.x, this.y);
 		context.drawImage(image, 0, 0, this.width, this.height);
-		context.restore();*/
+
 		context.drawImage(image, this.beginPoint.x, this.beginPoint.y, this.width, this.height);
 		if (this.isBorder) {
 			context.rect(this.beginPoint.x, this.beginPoint.y, this.width, this.height);
 			context.stroke();
 		}
+        context.restore();
 	}
 
 	Area.prototype.DrawRotateBegin = function (context, rotate) {
 		context.save();
-		//Чтобы поворот был относительно нашего предмета.
+		//пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
 		var rotationX = this.beginPoint.x + this.width / 2;
 		var rotationY = this.beginPoint.y + this.height / 2;
@@ -72,11 +73,13 @@ function Area(beginPoint, width, height) {
 
 
 	Area.prototype.DrawText = function (context, string, borderX, borderY) {
+        context.save();
 		context.fillText(string, this.beginPoint.x + borderX, this.beginPoint.y + this.height - borderY, this.width - borderX * 2);
 		if (this.isBorder) {
 			context.rect(this.beginPoint.x, this.beginPoint.y, this.width, this.height);
 			context.stroke();
 		}
+        context.restore();
 		//context.fillText(string, 50, 150, this.width - borderX * 2);
 	}
 

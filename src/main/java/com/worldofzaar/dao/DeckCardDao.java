@@ -36,7 +36,7 @@ public class DeckCardDao  extends GenericDaoMain<DeckCard> {
     public List<DeckCard> getDeckCardsById(Integer deckId) {
         try {
             Session session = HibernateUtilMain.getSessionFactory().openSession();
-            Query query = session.createQuery("from DeckCard where DeckCard.deckCardId = :deckId");
+            Query query = session.createQuery("from DeckCard as d where d.deck.deckId = :deckId");
             query.setParameter("deckId", deckId);
             List deckCards = query.list();
             session.close();

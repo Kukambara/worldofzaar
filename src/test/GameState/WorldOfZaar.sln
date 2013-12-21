@@ -1,0 +1,63 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A03545BE-8A89-414B-AC32-0A0D453666B5}"
+	ProjectSection(SolutionItems) = preProject
+		Test.html = Test.html
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "js", "js", "{C2D8521A-9360-4871-B9BF-80DF181E362A}"
+	ProjectSection(SolutionItems) = preProject
+		js\Game.js = js\Game.js
+		js\jquery-2.0.3.js = js\jquery-2.0.3.js
+		js\Map.js = js\Map.js
+		js\Menu.js = js\Menu.js
+		js\Player.js = js\Player.js
+		js\PlayerField.js = js\PlayerField.js
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utils", "Utils", "{1309E7D7-5AED-4DBC-B093-BB62755295C1}"
+	ProjectSection(SolutionItems) = preProject
+		js\Utils\CanvasManager.js = js\Utils\CanvasManager.js
+		js\Utils\CanvasMath.js = js\Utils\CanvasMath.js
+		js\Utils\CanvasWrap.js = js\Utils\CanvasWrap.js
+		js\Utils\CanvasWrapTransponsable.js = js\Utils\CanvasWrapTransponsable.js
+		js\Utils\Resources.js = js\Utils\Resources.js
+		js\Utils\Text.js = js\Utils\Text.js
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Controllers", "Controllers", "{FFEA7CD1-92CF-4678-8F4B-95D78DB174F5}"
+	ProjectSection(SolutionItems) = preProject
+		js\Utils\Controllers\Button.js = js\Utils\Controllers\Button.js
+		js\Utils\Controllers\Clickable.js = js\Utils\Controllers\Clickable.js
+		js\Utils\Controllers\Events.js = js\Utils\Controllers\Events.js
+		js\Utils\Controllers\Extend.js = js\Utils\Controllers\Extend.js
+		js\Utils\Controllers\Observable.js = js\Utils\Controllers\Observable.js
+		js\Utils\Controllers\Observarable.js = js\Utils\Controllers\Observarable.js
+		js\Utils\Controllers\Observer.js = js\Utils\Controllers\Observer.js
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ellements", "Ellements", "{318A63E3-908C-4E57-BD39-ECC99E145F72}"
+	ProjectSection(SolutionItems) = preProject
+		js\Utils\Ellemnts\Area.js = js\Utils\Ellemnts\Area.js
+		js\Utils\Ellemnts\AreaImage.js = js\Utils\Ellemnts\AreaImage.js
+		js\Utils\Ellemnts\AreaText.js = js\Utils\Ellemnts\AreaText.js
+		js\Utils\Ellemnts\Card.js = js\Utils\Ellemnts\Card.js
+		js\Utils\Ellemnts\CardFighter.js = js\Utils\Ellemnts\CardFighter.js
+		js\Utils\Ellemnts\CardFighter_1.js = js\Utils\Ellemnts\CardFighter_1.js
+		js\Utils\Ellemnts\CardSupport.js = js\Utils\Ellemnts\CardSupport.js
+		js\Utils\Ellemnts\ClickableImage.js = js\Utils\Ellemnts\ClickableImage.js
+		js\Utils\Ellemnts\Point.js = js\Utils\Ellemnts\Point.js
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C2D8521A-9360-4871-B9BF-80DF181E362A} = {A03545BE-8A89-414B-AC32-0A0D453666B5}
+		{1309E7D7-5AED-4DBC-B093-BB62755295C1} = {C2D8521A-9360-4871-B9BF-80DF181E362A}
+		{FFEA7CD1-92CF-4678-8F4B-95D78DB174F5} = {1309E7D7-5AED-4DBC-B093-BB62755295C1}
+		{318A63E3-908C-4E57-BD39-ECC99E145F72} = {1309E7D7-5AED-4DBC-B093-BB62755295C1}
+	EndGlobalSection
+EndGlobal

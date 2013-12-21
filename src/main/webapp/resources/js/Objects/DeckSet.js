@@ -1,27 +1,44 @@
-function DeckSet(deckId,context,area){
-
+function DeckSet(){
 
     var isActivated = false;
-    var area = area;
-    var canvasContext = context;
-    var deckId = deckId;
-    var cardsId = [];
+    var area;
+    var canvasContext;
+    var deckCovers= [];
+    this.deckId;
+    this.deckName;
+    this.cardsCount;
+
+    this.Init = function(deckId,deckName,context,inputArea){
+        deckCovers[0] = new Image();
+        deckCovers[0].src = "/resources/Images/Backgrounds/deckBackground.png";
+
+        deckCovers[1] = new Image();
+        deckCovers[1].src = "/resources/Images/MyChambers/Borders/deckActive.png";
+        area = inputArea;
+        canvasContext = context;
+        this.deckId = deckId;
+        this.deckName = deckName;
+    }
 
     //Отрисовка деки
     //!!!как будет утвержден вариант отображения - изменить !!!
     this.Draw = function () {
 
-        var b_context = canvas.getContext("2d");
         switch(isActivated){
-            case true:  b_context.fillStyle="orange";
-                b_context.fillRect(start_x, start_y,width, heigth); break;
-            case false: b_context.fillStyle="black";
-                b_context.drawImage(img,start_x, start_y, width, heigth); break;
+            case true:
+                canvasContext.drawImage(deckCovers[1], area.beginPoint.x-3,area.beginPoint.y-3,area.width+6,area.height+6);
+                break;
+            case false:
+                  break;
         }
+        canvasContext.font = "italic 20pt Segoe Script";
+        canvasContext.drawImage(deckCovers[0], area.beginPoint.x,area.beginPoint.y,area.width,area.height);
+        canvasContext.fillText(this.deckName,area.beginPoint.x+20,(area.beginPoint.y +area.height/3)-10);
+        canvasContext.font = "italic 15pt Arial";
+        canvasContext.fillText(this.cardsCount+"/30",area.beginPoint.x+60,(area.beginPoint.y +area.height*2/3)+15);
     }
 
-    this.StartPointChange = function(point)
-    {
+    this.StartPointChange = function(point){
         area.beginPoint = point;
     }
 
@@ -49,4 +66,5 @@ function DeckSet(deckId,context,area){
         }
         return false;
     }
+
 }

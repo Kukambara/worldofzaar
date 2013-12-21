@@ -1,6 +1,6 @@
 package com.worldofzaar.adapter;
 
-import com.worldofzaar.entity.UserCard;
+import com.worldofzaar.entity.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -12,15 +12,47 @@ import com.worldofzaar.entity.UserCard;
 public class UserCardAdapter {
 
     private int userCardId;
-    private int userId;
-    private int warriorCardId;
-    private int supportCardId;
+    private WarriorCard warriorCard;
+    private SupportCard supportCard;
+    private String cardName;
+    private String cardProperty;
+    private String cardSlogan;
 
-    public UserCardAdapter(UserCard inputUserCard) {
-       userCardId = inputUserCard.getUserCardId();
-       userId = inputUserCard.getUser().getUserId();
-       warriorCardId = inputUserCard.getWarriorCard().getCardId();
-       supportCardId = inputUserCard.getSupportCard().getCardId();
+
+    public UserCardAdapter(Object[] inputUserCard) {
+        userCardId = ((UserCard)inputUserCard[0]).getUserCardId();
+        if (((UserCard)inputUserCard[0]).getWarriorCard() != null) {
+            warriorCard = ((UserCard)inputUserCard[0]).getWarriorCard();
+        } else {
+            supportCard = ((UserCard)inputUserCard[0]).getSupportCard();
+        }
+        cardName = ((RuCardText)inputUserCard[1]).getCardName();
+        cardSlogan = ((RuCardText)inputUserCard[1]).getCardSlogan();
+        cardProperty = ((RuPropertyText)inputUserCard[2]).getPropertyInfo();
+    }
+
+    public String getCardName() {
+        return cardName;
+    }
+
+    public void setCardName(String cardName) {
+        this.cardName = cardName;
+    }
+
+    public String getCardProperty() {
+        return cardProperty;
+    }
+
+    public void setCardProperty(String cardProperty) {
+        this.cardProperty = cardProperty;
+    }
+
+    public String getCardSlogan() {
+        return cardSlogan;
+    }
+
+    public void setCardSlogan(String cardSlogan) {
+        this.cardSlogan = cardSlogan;
     }
 
     public int getUserCardId() {
@@ -31,27 +63,19 @@ public class UserCardAdapter {
         this.userCardId = userCardId;
     }
 
-    public int getUserId() {
-        return userId;
+    public WarriorCard getWarriorCard() {
+        return warriorCard;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setWarriorCard(WarriorCard warriorCard) {
+        this.warriorCard = warriorCard;
     }
 
-    public int getWarriorCardId() {
-        return warriorCardId;
+    public SupportCard getSupportCard() {
+        return supportCard;
     }
 
-    public void setWarriorCardId(int warriorCardId) {
-        this.warriorCardId = warriorCardId;
-    }
-
-    public int getSupportCardId() {
-        return supportCardId;
-    }
-
-    public void setSupportCardId(int supportCardId) {
-        this.supportCardId = supportCardId;
+    public void setSupportCard(SupportCard supportCard) {
+        this.supportCard = supportCard;
     }
 }
