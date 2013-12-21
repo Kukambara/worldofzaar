@@ -1,5 +1,6 @@
 function Button() {
-	this.background;// = [];
+	this.background = [];
+	this.backgroundNow;
 	this.state;
 	this.text;
 	this.context;
@@ -10,6 +11,7 @@ function Button() {
 		this.text = text;
 		this.background = background;
 		this.context = context;
+		this.backgroundNow = this.background["normal"];
 	}
 
 	Button.prototype.Draw = function () {

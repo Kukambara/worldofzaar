@@ -2,7 +2,7 @@ function Area(beginPoint, width, height) {
 	this.beginPoint = beginPoint;
 	this.width = width;
 	this.height = height;
-	this.isBorder = false;
+	this.isBorder = true;
 
 	var TO_RADIANS = Math.PI / 180;
 

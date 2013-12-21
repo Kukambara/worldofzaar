@@ -4,7 +4,8 @@
 	var buttons = [];
 
 	function Init(/*Area*/ area) {
-		var width = area/
+		var width = area /
+		buttons[]
 		buttonChat.Init(new Area());
 	}
 })();

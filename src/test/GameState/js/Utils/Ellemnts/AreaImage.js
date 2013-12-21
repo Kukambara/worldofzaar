@@ -4,6 +4,8 @@ function AreaImage(area, image, context) {
 	this.image = image;
 	this.context = context;
 
+	this.state = 0;
+
 	this.Init = function (area, image, context) {
 		this.area = area;
 		this.image = image;
@@ -12,6 +14,9 @@ function AreaImage(area, image, context) {
 
 	this.Draw = function () {
 		this.area.DrawImage(this.context, this.image);
+		if (this.state == 1) {
+			this.DrawBigImage();
+		}
 	}
 
 	this.DrawRotation = function (rotate){
@@ -41,5 +46,13 @@ function AreaImage(area, image, context) {
 	this.DrawBigImage = function () {
 		this.context.drawImage(this.image, 800 / 3, 800 / 6, 800 / 3, 400);
 	}
+
+	this._OnClick = function () {
+		this.state = this.state == 0 ? 1 : 0;
+		this.Draw();
+	}
+
 }
+
+AreaImage.prototype = new Clickable();
 
