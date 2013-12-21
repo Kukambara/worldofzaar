@@ -14,6 +14,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "\"Heroes\"")
 public class Hero {
+    private final int HERO_ARMOR = 2;
     @Id
     @GeneratedValue
     @Column(name = "\"heroId\"")
@@ -37,6 +38,8 @@ public class Hero {
     private Integer negativeEffect;
     @Column(name = "\"isActive\"")
     private Boolean isActive;
+    @Column(name = "\"isReady\"")
+    private Boolean isReady;
 
     public Integer getUserId() {
         return userId;
@@ -122,5 +125,24 @@ public class Hero {
 
     public void setActive(Boolean active) {
         isActive = active;
+    }
+
+    public Boolean getReady() {
+        return isReady;
+    }
+
+    public void setReady(Boolean ready) {
+        isReady = ready;
+    }
+
+    public boolean attackHero(int attack) {
+        if (health == null)
+            return false;
+
+        int currentArmor = (armor >= HERO_ARMOR) ? HERO_ARMOR : armor;
+        int damage = attack - currentArmor;
+        health = health - damage;
+
+        return true;
     }
 }

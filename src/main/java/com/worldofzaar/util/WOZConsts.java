@@ -19,4 +19,5 @@ public class WOZConsts {
     public static final String USER_PASSWORD = "userPassword";
     public static final String SYSTEM_INFO = "infoMessage";
     public static final String SYSTEM_ERROR = "errorMessage";
+    public static final Integer MINIMUM_CARDS_COUNT = 30;
 }

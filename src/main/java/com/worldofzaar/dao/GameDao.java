@@ -33,7 +33,7 @@ public class GameDao extends GenericDaoActive<Game> {
         return null;
     }
 
-    public boolean isMyGameReady(UserInformation userInformation) {
+    public boolean isGameCreated(UserInformation userInformation) {
         Transaction tx = null;
         try {
             Session session = HibernateUtilActive.getSessionFactory().openSession();
@@ -49,8 +49,65 @@ public class GameDao extends GenericDaoActive<Game> {
             session.close();
             return (count == 1) ? true : false;
         } catch (Exception e) {
-            System.out.println("deleteCertainTable(table,userInformation) Error = " + e.getCause());
+            System.out.println("isGameCreated(userInformation) Error = " + e.getCause());
         }
         return false;
     }
+
+    public boolean isGameReady(UserInformation userInformation) {
+        Transaction tx = null;
+        try {
+            Session session = HibernateUtilActive.getSessionFactory().openSession();
+            tx = session.beginTransaction();
+            Query query = session.createQuery("from Game where (fourthHero.userId = :id or thirdHero.userId = :id or secondHero.userId = :id or firstHero.userId = :id) and isReady = true");
+            query.setParameter("id", userInformation.getUserId());
+            query.setMaxResults(1);
+            List list = query.list();
+            if (list == null)
+                return false;
+            int count = (Integer) list.get(0);
+            tx.commit();
+            session.close();
+            return (count == 1) ? true : false;
+        } catch (Exception e) {
+            System.out.println("isGameReady(userInformation) Error = " + e.getCause());
+        }
+        return false;
+    }
+
+    public Game getGame(Integer userId) {
+        Transaction tx = null;
+        try {
+            Session session = HibernateUtilActive.getSessionFactory().openSession();
+            tx = session.beginTransaction();
+            Query query = session.createQuery("from Game where fourthHero.userId = :id or thirdHero.userId = :id or secondHero.userId = :id or firstHero.userId = :id");
+            query.setParameter("id", userId);
+            query.setMaxResults(1);
+            List list = query.list();
+            if (list == null)
+                return null;
+            tx.commit();
+            session.close();
+            return (Game) list.get(0);
+        } catch (Exception e) {
+            System.out.println("getGame(userId) Error = " + e.getCause());
+        }
+        return null;
+    }
+
+    public void gameIsReady(UserInformation userInformation) {
+        Transaction tx = null;
+        try {
+            Session session = HibernateUtilActive.getSessionFactory().openSession();
+            tx = session.beginTransaction();
+            Query query = session.createQuery("update Game set isReady = true where  fourthHero.userId = :id or thirdHero.userId = :id or secondHero.userId = :id or firstHero.userId = :id");
+            query.setParameter("id", userInformation.getUserId());
+            query.executeUpdate();
+            tx.commit();
+            session.close();
+        } catch (Exception e) {
+            System.out.println("gameIsReady(userInformation) Error = " + e.getCause());
+        }
+    }
+
 }

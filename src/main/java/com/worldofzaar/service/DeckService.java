@@ -28,10 +28,15 @@ public class DeckService {
     }
 
     public void createDeck(String deckName, User user) {
+        createDeck(deckName, user, false);
+    }
+
+    public void createDeck(String deckName, User user, Boolean active) {
         DeckDao deckDao = new DeckDao();
         Deck deck = new Deck();
         deck.setDeckName(deckName);
         deck.setUser(user);
+        deck.setActive(active);
         deckDao.add(deck);
     }
 

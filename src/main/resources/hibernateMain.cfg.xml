@@ -71,6 +71,8 @@
         <mapping class="com.worldofzaar.entity.EngClassText"/>
         <mapping class="com.worldofzaar.entity.Set"/>
         <mapping class="com.worldofzaar.entity.Discount"/>
+        <mapping class="com.worldofzaar.entity.CardInDeck"/>
+
 
 
     </session-factory>

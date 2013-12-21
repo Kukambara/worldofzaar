@@ -7,12 +7,9 @@ http://www.springframework.org/schema/beans/spring-beans.xsd
 http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd">
 
 
-    <!-- we can use annotations <context:annotation-config/>-->
-
     <mvc:annotation-driven/>
 
     <mvc:resources mapping="/resources/**" location="/resources/"/>
-
 
 
     <mvc:annotation-driven>

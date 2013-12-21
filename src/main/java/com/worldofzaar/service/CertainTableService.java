@@ -3,10 +3,11 @@ package com.worldofzaar.service;
 import com.worldofzaar.adapter.TablesAdapter;
 import com.worldofzaar.dao.CertainTableDao;
 import com.worldofzaar.dao.UserDao;
-import com.worldofzaar.entity.ApiTable;
 import com.worldofzaar.entity.CertainTable;
 import com.worldofzaar.entity.User;
+import com.worldofzaar.modelAttribute.ApiTable;
 import com.worldofzaar.util.UserInformation;
+import com.worldofzaar.util.WOZConsts;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
@@ -43,6 +44,8 @@ public class CertainTableService {
     }
 
     public boolean getIn(ApiTable table, HttpServletRequest request) {
+        if (!table.valid())
+            return false;
         UserInformation userInformation = new UserInformation(request);
         CertainTableDao certainTableDao = new CertainTableDao();
         List<CertainTable> tables = certainTableDao.getCertainTables(table.getSize(), table.getCost(),
@@ -56,15 +59,19 @@ public class CertainTableService {
         return false;
     }
 
-    public boolean getOut(ApiTable table, HttpServletRequest request) {
+    public boolean getOut(HttpServletRequest request) {
         UserInformation userInformation = new UserInformation(request);
         CertainTableDao certainTableDao = new CertainTableDao();
-        return certainTableDao.deleteCertainTable(table, userInformation);
+        return certainTableDao.deleteCertainTable(userInformation);
 
     }
 
     //Get in table if position is empty.
     private boolean getIn(List<CertainTable> tables, ApiTable table, UserInformation userInformation) {
+        CardInDeckService cardInDeckService = new CardInDeckService();
+        int userCardsCount = cardInDeckService.getCountOfActiveDeckCards(userInformation);
+        if (userCardsCount != WOZConsts.MINIMUM_CARDS_COUNT)
+            return false;
         if (tables.size() < table.getSize()) {
             for (CertainTable ct : tables) {
                 tableMap.put(ct.getSeatPosition(), ct);

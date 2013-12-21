@@ -1,5 +1,7 @@
 package com.worldofzaar.entity;
 
+import com.worldofzaar.entity.enums.Phase;
+import com.worldofzaar.entity.enums.State;
 import org.hibernate.annotations.Parameter;
 import org.hibernate.annotations.Type;
 
@@ -34,16 +36,20 @@ public class Game {
     @Column(name = "\"bank\"")
     private Integer bank;
     @Column(name = "\"isPrivate\"")
-    private Boolean isPrivate;
+    private Boolean isReady;
     @OneToOne
     @JoinColumn(name = "\"chatId\"")
     private Chat chat;
     @OneToOne
     @JoinColumn(name = "\"logId\"")
     private Log log;
+    @Column(name = "\"state\"")
+    @Type(type = "com.worldofzaar.entity.enums.PGEnumUserType",
+            parameters = @Parameter(name = "enumClassName", value = "com.worldofzaar.entity.enums.State"))
+    private State state;
     @Column(name = "\"phase\"")
-    @Type(type = "com.worldofzaar.entity.PGEnumUserType",
-            parameters = @Parameter(name = "enumClassName", value = "com.worldofzaar.entity.Phase"))
+    @Type(type = "com.worldofzaar.entity.enums.PGEnumUserType",
+            parameters = @Parameter(name = "enumClassName", value = "com.worldofzaar.entity.enums.Phase"))
     private Phase phase;
 
     public Integer getGameId() {
@@ -94,14 +100,6 @@ public class Game {
         this.bank = bank;
     }
 
-    public Boolean getPrivate() {
-        return isPrivate;
-    }
-
-    public void setPrivate(Boolean aPrivate) {
-        isPrivate = aPrivate;
-    }
-
     public Chat getChat() {
         return chat;
     }
@@ -124,5 +122,21 @@ public class Game {
 
     public void setPhase(Phase phase) {
         this.phase = phase;
+    }
+
+    public Boolean getReady() {
+        return isReady;
+    }
+
+    public void setReady(Boolean ready) {
+        isReady = ready;
+    }
+
+    public State getState() {
+        return state;
+    }
+
+    public void setState(State state) {
+        this.state = state;
     }
 }

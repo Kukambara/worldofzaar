@@ -1,5 +1,7 @@
 package com.worldofzaar.entity;
 
+import com.worldofzaar.service.WarriorCardService;
+
 import javax.persistence.*;
 
 /**
@@ -16,7 +18,6 @@ public class ActiveWarriorCard {
     @GeneratedValue
     @Column(name = "\"warriorCurrentCardId\"")
     private Integer activeWarriorCardId;
-    //TODO Link object and Id
     @Transient
     private WarriorCard warriorCard;
     @Column(name = "\"warriorCardId\"")
@@ -39,11 +40,17 @@ public class ActiveWarriorCard {
     }
 
     public WarriorCard getWarriorCard() {
+        if (warriorCard == null) {
+            WarriorCardService warriorCardService = new WarriorCardService();
+            warriorCard = warriorCardService.getCard(warriorCardId);
+        }
         return warriorCard;
     }
 
     public void setWarriorCard(WarriorCard warriorCard) {
+        warriorCardId = warriorCard.getCardId();
         this.warriorCard = warriorCard;
+        warriorCardId = warriorCard.getCardId();
     }
 
     public Integer getWarriorCardId() {
@@ -84,5 +91,13 @@ public class ActiveWarriorCard {
 
     public void setStepCount(Integer stepCount) {
         this.stepCount = stepCount;
+    }
+
+    public boolean attackCard(ActiveWarriorCard card) {
+        if (card == null)
+            return false;
+        int damage = currentArmor - card.getCurrentAttack();
+        currentHealth = currentHealth - damage;
+        return true;
     }
 }

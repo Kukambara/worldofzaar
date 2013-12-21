@@ -42,7 +42,8 @@ public class UserService {
         userDao.add(user);
 
         DeckService deckService = new DeckService();
-        deckService.createDeck("New deck", user);
+        //Create deck with name New deck,  user = user, and active = true
+        deckService.createDeck("New deck", user, true);
 
         WebUserService webUserService = new WebUserService();
         webUserService.setUser((Integer) request.getSession().getAttribute(WOZConsts.WEBUSER_ID), user);

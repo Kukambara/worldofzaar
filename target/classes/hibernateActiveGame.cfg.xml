@@ -14,14 +14,21 @@
         <property name="connection.pool_size">1</property>
         <property name="current_session_context_class">thread</property>
         <property name="show_sql">true</property>
+        <property name="hibernate.generate_statistics">true</property>
+
 
         <property name="hibernate.connection.sslfactory">org.postgresql.ssl.NonValidatingFactory</property>
-        <property name="hibernate.connection.requireSSL">true</property>
+        <property name="hibernate.connection.ssl">true</property>
         <property name="hibernate.connection.autoReconnect">true</property>
+
+        <property name="hibernate.cache.region.factory_class">net.sf.ehcache.hibernate.EhCacheRegionFactory</property>
+        <property name="hibernate.cache.use_second_level_cache">true</property>
+        <property name="hibernate.cache.use_query_cache">true</property>
+        <property name="hibernate.cache.provider_configuration_file_resource_path">resources/ehcache.xml</property>
 
 
         <mapping class="com.worldofzaar.entity.ActiveCoalition"/>
-        <mapping class="com.worldofzaar.entity.ActiveDeck"/>
+        <mapping class="com.worldofzaar.entity.ActiveCard"/>
         <mapping class="com.worldofzaar.entity.Chat"/>
         <mapping class="com.worldofzaar.entity.Game"/>
         <mapping class="com.worldofzaar.entity.HeroCard"/>
