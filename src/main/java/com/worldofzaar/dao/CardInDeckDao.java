@@ -71,5 +71,17 @@ public class CardInDeckDao extends GenericDaoMain<CardInDeck> {
         }
         return null;
     }
-
+    public List<CardInDeck> getDeckCardsById(Integer deckId) {
+        try {
+            Session session = HibernateUtilMain.getSessionFactory().openSession();
+            Query query = session.createQuery("from CardInDeck as d where d.deck.deckId = :deckId");
+            query.setParameter("deckId", deckId);
+            List deckCards = query.list();
+            session.close();
+            return deckCards;
+        } catch (Exception e) {
+            System.out.println("getDeckCardsById(deckId) Error = " + e.getCause());
+        }
+        return null;
+    }
 }

@@ -1,5 +1,6 @@
 package com.worldofzaar.adapter;
 
+import com.worldofzaar.entity.CardInDeck;
 import com.worldofzaar.entity.DeckCard;
 
 /**
@@ -11,28 +12,48 @@ import com.worldofzaar.entity.DeckCard;
  */
 public class DeckCardAdapter {
 
-    private Integer deckCardId;
+    private Integer cardInDeckId;
     private Integer deckId;
     private Integer cardId;
+    private Integer userCardId;
+    private Boolean isWarrior;
 
+    public DeckCardAdapter(CardInDeck cardInDeck){
 
-    public DeckCardAdapter(DeckCard inputDeckCard){
-
-        deckCardId = inputDeckCard.getDeckCardId();
-        deckId = inputDeckCard.getDeck().getDeckId();
-        if(inputDeckCard.getWarriorCard() != null){
-            cardId = inputDeckCard.getWarriorCard().getCardId();
+        cardInDeckId = cardInDeck.getCardId();
+        deckId = cardInDeck.getDeck().getDeckId();
+        if(cardInDeck.getCard().getWarriorCard() != null){
+            cardId = cardInDeck.getCard().getWarriorCard().getCardId();
+            isWarrior =true;
         }else{
-            cardId = inputDeckCard.getSupportCard().getCardId();
+            cardId = cardInDeck.getCard().getSupportCard().getCardId();
+            isWarrior =false;
         }
+        userCardId = cardInDeck.getCard().getUserCardId();
     }
 
-    public Integer getDeckCardId() {
-        return deckCardId;
+    public Integer getCardInDeckId() {
+        return cardInDeckId;
     }
 
-    public void setDeckCardId(Integer deckCardId) {
-        this.deckCardId = deckCardId;
+    public void setCardInDeckId(Integer cardInDeckId) {
+        this.cardInDeckId = cardInDeckId;
+    }
+
+    public Integer getUserCardId() {
+        return userCardId;
+    }
+
+    public void setUserCardId(Integer userCardId) {
+        this.userCardId = userCardId;
+    }
+
+    public Boolean getIsWarrior() {
+        return isWarrior;
+    }
+
+    public void setIsWarrior(Boolean isWarrior) {
+        this.isWarrior = isWarrior;
     }
 
     public Integer getDeckId() {

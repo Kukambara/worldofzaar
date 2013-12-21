@@ -32,29 +32,4 @@ public class DeckCardService {
         return deckCardAdapter;
     }
 
-    public void removeCard(Integer deckCardId){
-        DeckCardDao deckCardDao = new DeckCardDao();
-        DeckCard toDelete = deckCardDao.find(deckCardId);
-        deckCardDao.remove(toDelete);
-    }
-
-    public void addCard(Integer deckId, Integer cardId,Boolean isWarrior){
-        DeckCardDao deckCardDao = new DeckCardDao();
-
-        DeckService deckService = new DeckService();
-        DeckCard deckCard = new DeckCard();
-
-        deckCard.setDeck(deckService.getDeck(deckId));
-        if (isWarrior){
-            WarriorCardService warriorCardService = new WarriorCardService();
-            WarriorCard warriorCard = warriorCardService.getCard(cardId);
-            deckCard.setWarriorCard(warriorCard);
-        }else{
-            SupportCardService supportCardService = new SupportCardService();
-            SupportCard supportCard = supportCardService.getCard(cardId);
-            deckCard.setSupportCard(supportCard);
-        }
-
-        deckCardDao.add(deckCard);
-    }
 }

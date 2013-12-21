@@ -87,4 +87,9 @@ public class UserCardService {
         userCardDao.remove(userCard);
         gameProfileService.updateGameProfile(user.getGameProfile());
     }
+
+    public UserCard fingUserCardById(Integer userCardId){
+        UserCardDao userCardDao = new UserCardDao();
+        return userCardDao.find(userCardId);
+    }
 }

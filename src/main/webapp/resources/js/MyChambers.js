@@ -618,9 +618,8 @@
     }
 
     function AddCard(){
-        var isWarrior = allPlayerCards1[loadedCardIndex].warriorCard != null;
         $.ajax({
-            url: "/profile/cards/add/"+allPlayerDecks[currDeckIndex].deckId +"/"+loadedCardId+"/"+isWarrior,
+            url: "/profile/cards/add/"+allPlayerDecks[currDeckIndex].deckId +"/"+allPlayerCards1[loadedCardIndex],
             dataType: "json",
             type: "POST",
             async: false,
@@ -648,7 +647,7 @@
     function getDeckCardId(cardId){
         for(var i = 0; i<cardsInDeck.length;++i){
             if(cardsInDeck[i][0].cardId == cardId && cardsInDeck[i][0].deckId == allPlayerDecks[currDeckIndex].deckId){
-                return cardsInDeck[i][0].deckCardId;
+                return cardsInDeck[i][0].cardInDeckId;
             }
         }
         return -1;

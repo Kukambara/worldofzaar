@@ -54,8 +54,8 @@ public class UserController {
     public
     @ResponseBody
     List<DeckCardAdapter> getDeckCards(ModelMap model, HttpServletRequest request, @PathVariable Integer deckId) {
-        DeckCardService deckCardService = new DeckCardService();
-        return deckCardService.getDeckCardsById(deckId);
+        CardInDeckService cardInDeckService = new CardInDeckService();
+        return cardInDeckService.getCardsByDeckId(deckId);
     }
 
     @RequestMapping(value = "/createUser/{nickname}/{blazonId}/{pictureId}/{isMale}", method = RequestMethod.POST)
@@ -130,20 +130,20 @@ public class UserController {
         return "user/Registration";
     }
 
-    @RequestMapping(value = "/cards/add/{deckId}/{cardId}/{isWarrior}", method = RequestMethod.POST)
+    @RequestMapping(value = "/cards/add/{deckId}/{userCardId}", method = RequestMethod.POST)
     public
     @ResponseBody
-    void addCard(ModelMap model, HttpServletRequest request, @PathVariable Integer deckId, @PathVariable Integer cardId,@PathVariable Boolean isWarrior) {
-        DeckCardService deckCardService = new DeckCardService();
-        deckCardService.addCard(deckId,cardId,isWarrior);
+    void addCard(ModelMap model, HttpServletRequest request, @PathVariable Integer deckId, @PathVariable Integer userCardId) {
+        CardInDeckService cardInDeckService = new CardInDeckService();
+        cardInDeckService.addCard(deckId,userCardId);
     }
 
-    @RequestMapping(value = "/cards/remove/{deckCardId}", method = RequestMethod.POST)
+    @RequestMapping(value = "/cards/remove/{cardInDeckId}", method = RequestMethod.POST)
     public
     @ResponseBody
-    void removeCard(ModelMap model, HttpServletRequest request, @PathVariable Integer deckCardId) {
-        DeckCardService deckCardService = new DeckCardService();
-        deckCardService.removeCard(deckCardId);
+    void removeCard(ModelMap model, HttpServletRequest request, @PathVariable Integer cardInDeckId) {
+        CardInDeckService cardInDeckService = new CardInDeckService();
+        cardInDeckService.removeCard(cardInDeckId);
     }
 
     @RequestMapping(value = "/cards/buy/{masterOfDeckId}/{isGold}", method = RequestMethod.POST)
