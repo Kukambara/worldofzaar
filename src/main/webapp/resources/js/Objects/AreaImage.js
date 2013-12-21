@@ -39,7 +39,11 @@ function AreaImage(area, image, context) {
 	}
 
 	this.DrawBigImage = function () {
-		this.context.drawImage(this.image, 800 / 3, 800 / 6, 800 / 3, 400);
-	}
+        this.context.drawImage(this.image, 800 / 3, 800 / 6, 800 / 3, 400);
+    }
+
+    this.SetContext = function (context) {
+        this.context = context;
+    }
 }
 

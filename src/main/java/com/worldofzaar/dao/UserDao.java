@@ -48,15 +48,15 @@ public class UserDao extends GenericDaoMain<User> {
         return null;
     }
 
-    public GameProfile getUserGameProfilesById(Integer userId) {
+    public User getUserGameProfilesById(Integer userId) {
         try {
             Session session = HibernateUtilMain.getSessionFactory().openSession();
-            Query query = session.createQuery("select GameProfile from User where User.userId = :userId");
+            Query query = session.createQuery("from User as u where u.userId = :userId");
             query.setParameter("userId", userId);
             query.setMaxResults(1);
-            List<GameProfile> gameProfile = query.list();
+            List<User> user = query.list();
             session.close();
-            return gameProfile.get(0);
+            return user.get(0);
         } catch (Exception e) {
             System.out.println("getUserGameProfilesById(userId) Error = " + e.getCause());
         }

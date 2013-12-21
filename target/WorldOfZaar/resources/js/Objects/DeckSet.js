@@ -26,7 +26,7 @@ function DeckSet(){
 
         switch(isActivated){
             case true:
-                canvasContext.drawImage(deckCovers[1], area.beginPoint.x-10,area.beginPoint.y-10,area.width+20,area.height+20);
+                canvasContext.drawImage(deckCovers[1], area.beginPoint.x-3,area.beginPoint.y-3,area.width+6,area.height+6);
                 break;
             case false:
                   break;

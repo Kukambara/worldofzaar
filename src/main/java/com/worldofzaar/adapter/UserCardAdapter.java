@@ -11,7 +11,7 @@ import com.worldofzaar.entity.*;
  */
 public class UserCardAdapter {
 
-    private int cardId;
+    private int userCardId;
     private WarriorCard warriorCard;
     private SupportCard supportCard;
     private String cardName;
@@ -20,7 +20,7 @@ public class UserCardAdapter {
 
 
     public UserCardAdapter(Object[] inputUserCard) {
-        cardId = ((UserCard)inputUserCard[0]).getUserCardId();
+        userCardId = ((UserCard)inputUserCard[0]).getUserCardId();
         if (((UserCard)inputUserCard[0]).getWarriorCard() != null) {
             warriorCard = ((UserCard)inputUserCard[0]).getWarriorCard();
         } else {
@@ -55,12 +55,12 @@ public class UserCardAdapter {
         this.cardSlogan = cardSlogan;
     }
 
-    public int getCardId() {
-        return cardId;
+    public int getUserCardId() {
+        return userCardId;
     }
 
-    public void setCardId(int cardId) {
-        this.cardId = cardId;
+    public void setUserCardId(int userCardId) {
+        this.userCardId = userCardId;
     }
 
     public WarriorCard getWarriorCard() {

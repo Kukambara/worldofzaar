@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class UserService {
 
-    public GameProfile getUserGameProfileById(Integer userId) {
+    public User getUserGameProfileById(Integer userId) {
         UserDao gameProfileDao = new UserDao();
         return gameProfileDao.getUserGameProfilesById(userId);
     }
@@ -56,4 +56,8 @@ public class UserService {
         authorizationService.loginByCookies(request, response);
     }
 
+    public void updateUser(User user){
+        UserDao userDao = new UserDao();
+        userDao.update(user);
+    }
 }

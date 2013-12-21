@@ -9,7 +9,7 @@
     var currCardsRowIndex = 0;                //Индекс строки отрисовки
     var currDeckRowIndex = 0;
     var currDeckIndex = (-1);             //Индекс текущей активной деки. (-1) - никакая не активна 
-
+    var tmpIndexForDeckCards=0;
 
     var cardsWidth = 85;
     var cardsHeigth = 120;
@@ -28,11 +28,18 @@
     var allPlayerDecks = [];             //Все пользовательские деки
 
     var transitionArrows = [];           //Стрелки навигации
+
     var loadedCards = [];
+    var loadedCardsUserId = [];
+
     var loadedDecks = [];
     var loadedBorders = [];
     var loadedLabels = [];
     var loadedBackground = [];
+    var loadedActionImg = [];
+
+    var loadedCardIndex=0;
+    var loadedCardId = 0;
 
     var myChambersMap = [];
     var navigationBar;
@@ -43,10 +50,12 @@
     function OnLoadCanvas() {
         canvas = new Canvas();
         canvas.Init();
-        test();
+        canvas.ReInitCanvasEventLevel();
+
+        query();
         setNavigationBar();
         setTransitionElements();
-        setAllCards();
+        SetCards();
         setBackground();
         setBorders();
         setLables();
@@ -62,11 +71,10 @@
                 Draw(loadedBorders);
                 Draw(loadedDecks);
                 Draw(transitionArrows);
-                canvas.GetCanvasLevel(1).addEventListener("click", OnClickWraper);
-                canvas.GetCanvasLevel(1).addEventListener("mousemove", OnMoveWrapper);
+                setEvents(0);
             }, 200);
 
-        }, 50);
+        }, 100);
     }
 
     OnLoadCanvas();
@@ -87,8 +95,7 @@
         }
     }
 
-    function OnMoveWrapper(event)
-    {
+    function OnMoveWrapper(event){
         var point = new Point((event.pageX - canvas.CanvasPos_X) * canvas.CanvasScale, (event.pageY - canvas.CanvasPos_Y) * canvas.CanvasScale);
         for (var i = 0; i < myChambersMap.length; i++) {
             //if (myChambersMap[i][0].IsPointInArea(point)) {
@@ -120,7 +127,6 @@
                             currDeckRowIndex = 0;
                             break;
                         }
-                        //Вызов перерисовки
                         break;
                     case false:
                         currCardsRowIndex += transitionArrows[i].GetDirection();
@@ -128,11 +134,11 @@
                             currCardsRowIndex = 0;
                             break;
                         }
-                        //Вызов перерисовки
-                        setAllCards();
-                        setTimeout(function () {
+
+                        SetCards();
+                        setTimeout(function() {
                             Draw(loadedCards);
-                        }, 10);
+                        }, 150);
                         break;
                     default: break;
                 }
@@ -149,21 +155,49 @@
                 if (loadedDecks[i].OnClick(point)) {
                     if (currDeckIndex != i) {
                         currDeckIndex = i;
-                        //loadedDecks[i].ActivationSwitch(true);
-                        //loadedDecks[i].Draw();
+                        loadedDecks[i].ActivationSwitch(true);
+                        loadedDecks[i].Draw();
+                        SetCards();
+                        Draw(loadedCards);
                     } else {
                         isDeckEdit = !isDeckEdit;
+                        ReDrawCanvas();
                     }
                 }
             }
         }
     }
 
-    function OnClickCard(point) {
-        for (var i = 0; i < loadedCards.length; ++i) {
-            if (loadedCards[i].OnClick(point)) {
-                loadedCards[i].CardAction();
-                //перерисовка карт
+    function OnClickCardAdd(event) {
+        var point = new Point((event.pageX - canvas.CanvasPos_X) * canvas.CanvasScale, (event.pageY - canvas.CanvasPos_Y) * canvas.CanvasScale);
+
+        for (var i = 0; i < loadedActionImg.length; ++i) {
+            if (loadedActionImg[i].OnClick(point)) {
+                if(loadedActionImg[i].GetDirection()){
+                    AddCard();
+                }
+                setTimeout(function() {
+                    setEvents(0);
+                    canvas.GetCanvasContextLevel(2).clearRect(0,0,900,900);
+                }, 250);
+                break;
+            }
+        }
+    }
+
+    function OnClickCardRemove(event) {
+        var point = new Point((event.pageX - canvas.CanvasPos_X) * canvas.CanvasScale, (event.pageY - canvas.CanvasPos_Y) * canvas.CanvasScale);
+
+        for (var i = 0; i < loadedActionImg.length; ++i) {
+            if (loadedActionImg[i].OnClick(point)) {
+                if(loadedActionImg[i].GetDirection()){
+                    RemoveCard();
+                }
+                setTimeout(function() {
+                    setEvents(0);
+                    canvas.GetCanvasContextLevel(2).clearRect(0,0,900,900);
+                }, 250);
+                break;
             }
         }
 
@@ -172,6 +206,44 @@
     function OnClickNavigationBar(point) {
         navigationBar.OnClick(point)
     }
+
+    function OnClickCardAction(point){
+        for (var i = 0; i < loadedCards.length; ++i) {
+            if (loadedCards[i].OnClick(point)) {
+                loadedActionImg = [];
+
+                var area = new Area (new Point(250,100),400,600);
+                var card = initPlayerCard(allPlayerCards1[(currCardsRowIndex*3)+i],area,2);
+                loadedCardIndex = (currCardsRowIndex*3)+i;
+                loadedCardId = card.cardId;
+                card.Draw();
+                card.DrawEnd();
+                if(loadedCards[i].GetDeckEntry() || isDeckEdit){
+                    loadedActionImg[0] = new TransitionArrow(false, "MyChambers", "deleteCard", canvas.GetCanvasContextLevel(2), new Area(new Point(235 * canvas.CanvasScale, 740* canvas.CanvasScale), 432, 67), 1);
+                    loadedActionImg[1] = new TransitionArrow(false, "MyChambers", "cancel",canvas.GetCanvasContextLevel(2), new Area(new Point(285 * canvas.CanvasScale, 810 * canvas.CanvasScale), 240, 57), 0);
+
+                    setEvents(-1);
+                }else{
+                    loadedActionImg[0] = new TransitionArrow(false, "MyChambers", "addCard", canvas.GetCanvasContextLevel(2), new Area(new Point(235 * canvas.CanvasScale, 740* canvas.CanvasScale), 460, 68), 1);
+                    loadedActionImg[1] = new TransitionArrow(false, "MyChambers", "cancel",canvas.GetCanvasContextLevel(2), new Area(new Point(285 * canvas.CanvasScale, 810 * canvas.CanvasScale), 240, 57), 0);
+                    setEvents(1);
+                }
+
+                loadedActionImg[0].Load();
+                loadedActionImg[1].Load();
+                break;
+            }
+        }
+
+    }
+
+    function OnMoveCardAction(event){
+        var point = new Point((event.pageX - canvas.CanvasPos_X) * canvas.CanvasScale, (event.pageY - canvas.CanvasPos_Y) * canvas.CanvasScale);
+        for (var i = 0; i < loadedActionImg.length; ++i) {
+            loadedActionImg[i].OnMove(point);
+        }
+    }
+
     //--------------------------------------------------------------------------
     //-----------------------------Отрисовка-----------------------------------
     //-----------------------------------------------------------------------
@@ -183,19 +255,45 @@
     }
 
     function Draw(input){
-        for (var i = 0; i < input.length; ++i)
-        {
-            if(input[i].DrawSmall)
-            {
+        for (var i = 0; i < input.length; ++i){
+            if(input[i].__proto__ instanceof Card){
+                input[i].ClearDrawableArea(canvas.GetCanvasContextLevel(1));
                 input[i].Draw();
                 input[i].DrawEnd();
             }
             else{
-            input[i].Draw();
-        }
+                input[i].Draw();
+            }
 
         }
     }
+
+    function ReDrawCanvas() {
+        canvas.GetCanvasContextLevel(1).clearRect(0,0,900,900);
+        canvas.GetCanvasContextLevel(2).clearRect(0,0,900,900);
+
+        setTransitionElements();
+        SetCards();
+        setBorders();
+        setLables();
+        setMyChambersMap();
+
+        setTimeout(function () {
+            setTimeout(function () {
+                Draw(loadedCards);
+
+                if(!isDeckEdit){
+                    Draw(loadedDecks);
+                }
+                Draw(loadedLabels);
+                Draw(loadedBorders);
+                Draw(transitionArrows);
+            }, 200);
+
+        }, 50);
+
+    }
+
     //-----------------------------------------------------------------------
     //-----------------------Переключатели----------------------------------
     //-----------------------------------------------------------------------
@@ -206,26 +304,26 @@
     //-----------------------------------------------------------------------
 
     function setTransitionElements() {
-
+        transitionArrows= [];
         switch (isDeckEdit) {
             case true:
                 var deckEditArrowWidth = 38 * canvas.CanvasScale;
-                var deckEditArrowHeigth = 46 * canvas.CanvasScale;
+                var deckEditArrowHeight = 46 * canvas.CanvasScale;
 
-                transitionArrows[0] = new TransitionArrow(false, "MyChambers", "upDeckEdit", canvas.GetCanvasContextLevel(1), new Area(new Point(15 * canvas.CanvasScale, 140 * canvas.CanvasScale), deckEditArrowWidth, deckEditArrowHeigth), -1);
-                transitionArrows[1] = new TransitionArrow(false, "MyChambers", "downDeckEdit",canvas.GetCanvasContextLevel(1), new Area(new Point(570 * canvas.CanvasScale, 140 * canvas.CanvasScale), deckEditArrowWidth, deckEditArrowHeigth), 1);
+                transitionArrows[0] = new TransitionArrow(false, "MyChambers", "upDeckEdit", canvas.GetCanvasContextLevel(1), new Area(new Point(15 * canvas.CanvasScale, 140 * canvas.CanvasScale), deckEditArrowWidth, deckEditArrowHeight), -1);
+                transitionArrows[1] = new TransitionArrow(false, "MyChambers", "downDeckEdit",canvas.GetCanvasContextLevel(1), new Area(new Point(570 * canvas.CanvasScale, 140 * canvas.CanvasScale), deckEditArrowWidth, deckEditArrowHeight), 1);
 
                 break;
             case false:
                 var deckArrowWidth = 38 * canvas.CanvasScale;
-                var deckArrowHeigth = 53 * canvas.CanvasScale;
+                var deckArrowHeight = 53 * canvas.CanvasScale;
                 var cardsArrowWidth = 38 * canvas.CanvasScale;
-                var cardsArrowHeigth = 87 * canvas.CanvasScale;
+                var cardsArrowHeight = 87 * canvas.CanvasScale;
 
-                transitionArrows[0] = new TransitionArrow(true, "MyChambers", "upDeck", canvas.GetCanvasContextLevel(1), new Area(new Point(15 * canvas.CanvasScale, 140 * canvas.CanvasScale), deckArrowWidth, deckArrowHeigth), -1);
-                transitionArrows[1] = new TransitionArrow(true, "MyChambers", "downDeck", canvas.GetCanvasContextLevel(1), new Area(new Point(205 * canvas.CanvasScale, 140 * canvas.CanvasScale), deckArrowWidth, deckArrowHeigth), 1);
-                transitionArrows[2] = new TransitionArrow(false, "MyChambers", "upCards", canvas.GetCanvasContextLevel(1), new Area(new Point(270 * canvas.CanvasScale, 140 * canvas.CanvasScale), cardsArrowWidth, cardsArrowHeigth), -1);
-                transitionArrows[3] = new TransitionArrow(false, "MyChambers", "downCards", canvas.GetCanvasContextLevel(1), new Area(new Point(570 * canvas.CanvasScale, 140 * canvas.CanvasScale), cardsArrowWidth, cardsArrowHeigth), 1);
+                transitionArrows[0] = new TransitionArrow(true, "MyChambers", "upDeck", canvas.GetCanvasContextLevel(1), new Area(new Point(15 * canvas.CanvasScale, 140 * canvas.CanvasScale), deckArrowWidth, deckArrowHeight), -1);
+                transitionArrows[1] = new TransitionArrow(true, "MyChambers", "downDeck", canvas.GetCanvasContextLevel(1), new Area(new Point(205 * canvas.CanvasScale, 140 * canvas.CanvasScale), deckArrowWidth, deckArrowHeight), 1);
+                transitionArrows[2] = new TransitionArrow(false, "MyChambers", "upCards", canvas.GetCanvasContextLevel(1), new Area(new Point(270 * canvas.CanvasScale, 140 * canvas.CanvasScale), cardsArrowWidth, cardsArrowHeight), -1);
+                transitionArrows[3] = new TransitionArrow(false, "MyChambers", "downCards", canvas.GetCanvasContextLevel(1), new Area(new Point(570 * canvas.CanvasScale, 140 * canvas.CanvasScale), cardsArrowWidth, cardsArrowHeight), 1);
                 break;
             default:
                 break;
@@ -236,8 +334,18 @@
         }
     }
 
-    function setAllCards()
-    {
+    function SetCards(){
+        switch(isDeckEdit){
+            case true:
+                setDeckCards();
+                break;
+            case false:
+                setAllCards();
+                break;
+        }
+    }
+
+    function setAllCards(){
         var curr_x;
         var curr_y;
         var cardsInRow;
@@ -254,63 +362,132 @@
             case true:
                 curr_x = 30;
                 curr_y = 220;
-                cardsInRow = 3;
+                cardsInRow = 6;
                 restart_X = 30;
                 break;
             default: break;
         }
-        resetScale(allPlayerCards1);
-        for (var i = 0  ; i < 12 ; i++) {
+
+        for (var i = 0  ; i < 4*cardsInRow ; i++) {
+
             if (allPlayerCards1[i + (currCardsRowIndex * cardsInRow)]) {
-                loadedCards[i] = allPlayerCards1[i + (currCardsRowIndex * cardsInRow)] ;
-                loadedCards[i].SetDrawableArea(new Area(new Point(curr_x, curr_y), cardsWidth, cardsHeigth));
+                loadedCards[i] = initPlayerCard(allPlayerCards1[i + (currCardsRowIndex * cardsInRow)],
+                    new Area(new Point(curr_x, curr_y), cardsWidth, cardsHeigth),1)  ;
+                loadedCardsUserId[i] = allPlayerCards1[i + (currCardsRowIndex * cardsInRow)].userCardId;
+                //loadedCards[i] = allPlayerCards1[i + (currCardsRowIndex * cardsInRow)] ;
+                //loadedCards[i].SetDrawableArea(new Area(new Point(curr_x, curr_y), cardsWidth, cardsHeigth));
                 //loadedCards[i].SetDeckEntry(cardsEnabler(loadedCards[i].cardId));
             }
             else {
                 var emptyHollow = new EmptyHollow(canvas.GetCanvasContextLevel(1), new Area(new Point(curr_x, curr_y), cardsWidth, cardsHeigth));
                 EmptyCard.prototype = emptyHollow;
-
                 loadedCards[i] = new EmptyCard("MyChambers");
             }
 
             if ((i + 1) % cardsInRow != 0) {
-                curr_x += cardsWidth + 15;
+                curr_x += cardsWidth + 10;
             }
             else {
                 curr_y += cardsHeigth + 10;
                 curr_x = restart_X;
             }
         }
+
+        if(currDeckIndex != -1 && !isDeckEdit){
+            setDeckCardsEntry();
+        }
     }
 
-    function setDeckCards() {
-        LoadedCards = [];
-        var curr_x = cardsDrawingStart_X;
-        var curr_y = cardsDrawingStart_Y;
-        var startPass = 0;
-
-        for (var i = 0 + (10 * page) ; i < 10 + (10 * page) ; ++i) {
-            LoadedCards[i] = new Card("1.jpg", i, i, curr_x, curr_y, cardsHeigth, cardsWidth, сanvas);
-
-            for (var j = startPass; j < playerCardsInDeck[currSetIndex].length; j++) {
-                if (playerCardsInDeck[currSetIndex][j] == i) {
-                    LoadedCards[i].SetDeckEntry(true);
-                    startPass++;
-                    break;
+    function setDeckCardsEntry(){
+        for(var i = 0;i<loadedCards.length;++i){
+            for(var j = 0;j<cardsInDeck.length;++j){
+                if(cardsInDeck[j][1] == 0){
+                    if(!(loadedCards[i] instanceof  EmptyHollow)){
+                        if((loadedCards[i].GetCardId() == cardsInDeck[j][0].cardId)){
+                            loadedCards[i].SetDeckEntry(true);
+                            cardsInDeck[j][1]= loadedCardsUserId[i];
+                            break;
+                        }
+                    }else{
+                        break;
+                    }
+                }else{
+                    if(!(loadedCards[i] instanceof  EmptyHollow)){
+                    if((loadedCardsUserId[i] == cardsInDeck[j][1])){
+                        loadedCards[i].SetDeckEntry(true);
+                        break;
+                    }
+                    }
                 }
             }
+        }
+    }
 
-            LoadedCards[i].Draw();
+    function setDeckCards(){
+        var curr_x;
+        var curr_y;
+        var cardsInRow;
+        var restart_X;
+        loadedCards = [];
+        var index = 0;
 
-            curr_x += 160;
-            if (curr_x + 170 <= 800) {
-            }
-            else {
-                curr_y += 210;
-                curr_x = cardsDrawingStart_X;
-            }
+        switch (isDeckEdit) {
+            case false:
+                curr_x = 300;
+                curr_y = 230;
+                cardsInRow = 3;
+                restart_X = 300;
+                break;
+            case true:
+                curr_x = 30;
+                curr_y = 220;
+                cardsInRow = 6;
+                restart_X = 30;
+                break;
+            default: break;
         }
 
+        var counter = 0;
+
+        for(var j=0; j<allPlayerCards1.length; ++j){
+                if (allPlayerCards1[j]) {
+                    if(getDeckCardId(getPlayerCardId(allPlayerCards1[j]) != -1)){
+                        if(counter < currCardsRowIndex * cardsInRow){counter ++; continue;}
+
+                        loadedCards[index] = initPlayerCard(allPlayerCards1[j],
+                            new Area(new Point(curr_x, curr_y), cardsWidth, cardsHeigth),1)  ;
+                        loadedCardsUserId[index] = allPlayerCards1[j].userCardId;
+
+                        if ((index + 1) % cardsInRow != 0) {
+                            curr_x += cardsWidth + 10;
+                        }
+                        else {
+                            curr_y += cardsHeigth + 10;
+                            curr_x = restart_X;
+                        }
+
+                        index++;
+                    }
+                }
+                if(index == 24){
+                    break;
+                }
+        }
+
+        for(var j=index; j<24; ++j){
+
+            var emptyHollow = new EmptyHollow(canvas.GetCanvasContextLevel(1), new Area(new Point(curr_x, curr_y), cardsWidth, cardsHeigth));
+            EmptyCard.prototype = emptyHollow;
+            loadedCards[j] = new EmptyCard("MyChambers");
+
+            if ((j + 1) % cardsInRow != 0) {
+                curr_x += cardsWidth + 10;
+            }
+            else {
+                curr_y += cardsHeigth + 10;
+                curr_x = restart_X;
+            }
+        }
     }
 
     function setBackground() {
@@ -324,21 +501,22 @@
         var deckLabelImg = new Image();
         var availableCardsImg = new Image();
         loadedLabels = [];
-        switch (currDeckIndex != (-1)) {
+        switch (isDeckEdit) {
             case false:
                 deckLabelImg.src = "\\resources\\Images\\MyChambers\\Lables\\deck.png";
                 availableCardsImg.src = "\\resources\\Images\\MyChambers\\Lables\\availableCards.png";
+                loadedLabels[0] = new AreaImage(new Area(new Point(45, 140), 163, 54), deckLabelImg, canvas.GetCanvasContextLevel(1));
+                loadedLabels[1] = new AreaImage(new Area(new Point(300, 140), 270, 93), availableCardsImg, canvas.GetCanvasContextLevel(1));
                 break;
             case true:
-                deckLabelImg.src = "\\resources\\Images\\MyChambers\\Lables\\deckActive.png";
-                availableCardsImg.src = "\\resources\\Images\\MyChambers\\Lables\\availableCardsActive.png";
+                deckLabelImg.src = "\\resources\\Images\\MyChambers\\Lables\\deckEdit.png";
+                loadedLabels[0] = new AreaImage(new Area(new Point(85, 140), 446, 55), deckLabelImg, canvas.GetCanvasContextLevel(1));
                 break;
             default:
                 break;
         }
 
-        loadedLabels[0] = new AreaImage(new Area(new Point(45, 140), 163, 54), deckLabelImg, canvas.GetCanvasContextLevel(1));
-        loadedLabels[1] = new AreaImage(new Area(new Point(300, 140), 270, 93), availableCardsImg, canvas.GetCanvasContextLevel(1));
+
     }
 
     function setBorders() {
@@ -390,45 +568,120 @@
         navigationBar = new NavigationBar(canvas, 0);
     }
 
-    function setMyChambersMap()
-    {
+    function setMyChambersMap(){
+        myChambersMap =  [];
+
         myChambersMap[0] = [];
         myChambersMap[0][0] = new Area(new Point(0, 0), 900, 100);
         myChambersMap[0][1] = function (point) { OnClickNavigationBar(point); };
         myChambersMap[0][2] = function (point) { OnMoveNavigationBar(point);};
 
-        myChambersMap[1] = [];
-        myChambersMap[1][0] = new Area(new Point(40, 200), deckWidth, (deckHeigth*2)+50);
-        myChambersMap[1][1] = function (point) { OnClickDeck(point); };
-        myChambersMap[1][2] = function (point) { };
+        if(!isDeckEdit){
+            myChambersMap[1] = [];
+            myChambersMap[1][0] = new Area(new Point(40, 200), deckWidth, (deckHeigth*2)+50);
+            myChambersMap[1][1] = function (point) { OnClickDeck(point); };
+            myChambersMap[1][2] = function (point) { };
+        }
 
         myChambersMap[2] = [];
         myChambersMap[2][0] = new Area(new Point(10, 130), 700, 100);
         myChambersMap[2][1] = function (point) { OnClickTransitionElement(point); };
         myChambersMap[2][2] = function (point) { OnMoveTransitionElement(point); };
 
-        myChambersMap[3] = [];
-        myChambersMap[3][0] = new Area(new Point(300, 230), cardsWidth*3+100, cardsHeigth*4+100);
-        myChambersMap[3][1] = function (point) { OnClickCard(point); };
-        myChambersMap[3][2] = function (point) {  };
-
-        //myChambersMap[4] = [];
-        //myChambersMap[4][0] = new Area(new Point(0, 0), 900, 100);
-        //myChambersMap[4][1] = function (point) { OnClickTopBar(point); };
+        if(!isDeckEdit){
+            myChambersMap[3] = [];
+            myChambersMap[3][0] = new Area(new Point(300, 230), cardsWidth*3+100, cardsHeigth*4+100);
+            myChambersMap[3][1] = function (point) { OnClickCardAction(point); };
+            myChambersMap[3][2] = function (point) {  };
+        } else{
+            myChambersMap[1] = [];
+            myChambersMap[1][0] = new Area(new Point(40, 200), cardsWidth*6+100, cardsHeigth*4+100);
+            myChambersMap[1][1] = function (point) { OnClickCardAction(point); };
+            myChambersMap[1][2] = function (point) {  };
+        }
 
     }
 
-    function test() {
+    function setEvents(id){
+        canvas.ReInitCanvasEventLevel();
+        switch(id){
+            case 0:canvas.GetCanvasLevel(3).addEventListener("click", OnClickWraper);
+                   canvas.GetCanvasLevel(3).addEventListener("mousemove", OnMoveWrapper);
+                   break;
+            case 1:canvas.GetCanvasLevel(3).addEventListener("click", OnClickCardAdd);
+                   canvas.GetCanvasLevel(3).addEventListener("mousemove", OnMoveCardAction);
+                   break;
+            case -1:canvas.GetCanvasLevel(3).addEventListener("click", OnClickCardRemove);
+                    canvas.GetCanvasLevel(3).addEventListener("mousemove", OnMoveCardAction);
+                    break;
+        }
+    }
+
+    function AddCard(){
+        var isWarrior = allPlayerCards1[loadedCardIndex].warriorCard != null;
+        $.ajax({
+            url: "/profile/cards/add/"+allPlayerDecks[currDeckIndex].deckId +"/"+loadedCardId+"/"+isWarrior,
+            dataType: "json",
+            type: "POST",
+            async: false,
+            success: function () {
+            }
+        });
+        getDeckCards();
+        ReDrawCanvas();
+    }
+
+    function RemoveCard(){
+        $.ajax({
+            url: "/profile/cards/remove/"+getDeckCardId(loadedCardId),
+            dataType: "json",
+            type: "POST",
+            async: false,
+            success: function () {
+            }
+        });
+        getDeckCards();
+        ReDrawCanvas();
+    }
+
+
+    function getDeckCardId(cardId){
+        for(var i = 0; i<cardsInDeck.length;++i){
+            if(cardsInDeck[i][0].cardId == cardId && cardsInDeck[i][0].deckId == allPlayerDecks[currDeckIndex].deckId){
+                return cardsInDeck[i][0].deckCardId;
+            }
+        }
+        return -1;
+    }
+
+    function checkDeckEntry(cardId){
+        for(var i = 0; i<cardsInDeck.length;++i){
+            if(cardsInDeck[i][0].cardId == cardId && cardsInDeck[i][0].deckId == allPlayerDecks[currDeckIndex].deckId){
+                return cardsInDeck[i][0].deckCardId;
+            }
+        }
+    }
+
+    function query() {
         //allPlayerCards[0] = new Card(0,0,0,0,0,0,canvas);
+        getUserCards();
+        getUserDecks();
+        getDeckCards();
+    }
+
+    function getUserCards(){
         $.ajax({
             url: "/profile/userCards/",
             dataType: "json",
             type: "GET",
             async: false,
             success: function (data) {
-                initAllPlayerCards(data);
+                allPlayerCards1 = data;
             }
         });
+    }
+
+    function getUserDecks(){
         $.ajax({
             url: "/profile/userDecks/",
             dataType: "json",
@@ -438,7 +691,9 @@
                 initAllPlayerDecks(data);
             }
         });
+    }
 
+    function getDeckCards(){
         for(var i = 0; i < allPlayerDecks.length;++i){
             $.ajax({
                 url: "/profile/deckCards/"+allPlayerDecks[i].deckId,
@@ -452,46 +707,49 @@
         }
     }
 
-    function ReDrawCanvas() { }
-    function initAllPlayerCards(data) {
-        for(var i= 0; i< data.length;++i){
-            var isWarrior;
-            var cardObject;
-            if(data[i].warriorCard != null){
-                allPlayerCards1[i] = new CardFighter();
-                cardObject = data[i].warriorCard;
-            }
-            else{
-                allPlayerCards1[i] = new CardSupport();
-                cardObject = data[i].supportCard;
-            }
-            var area = new Area(new Point(0,0),400,600);
-
-            allPlayerCards1[i].Init(area,cardObject,data[i].cardName,data[i].cardSlogan,data[i].cardProperty);
-            allPlayerCards1[i].SetContext(canvas.GetCanvasContextLevel(1));
-            allPlayerCards1[i].SetContextSmall(canvas.GetCanvasContextLevel(1));
+    function initPlayerCard(data,area,canvaslevel) {
+        var card;
+        var isWarrior;
+        var cardObject;
+        if(data.warriorCard != null){
+            card = new CardFighter();
+            cardObject = data.warriorCard;
         }
+        else{
+            card = new CardSupport();
+            cardObject = data.supportCard;
+        }
+
+        card.Init(area,cardObject,data.cardName,data.cardSlogan,data.cardProperty);
+        card.SetContext(canvas.GetCanvasContextLevel(canvaslevel));
+        card.SetContextSmall(canvas.GetCanvasContextLevel(canvaslevel));
+
+        return card;
     }
+    function getPlayerCardId(data){
+        if(data.warriorCard != null){
+            return  data.warriorCard.cardId;
+        }
+        return data.supportCard.cardId;
+    }
+
     function initAllPlayerDecks(data) {
         for(var i = 0; i< data.length;++i){
            allPlayerDecks[i] = data[i];
         }
     }
     function initCardsInDeck(data) {
+        cardsInDeck = [];
         for(var i=cardsInDeck.length;i<data.length;++i){
-            cardsInDeck[i] = data[i];
+            cardsInDeck[i] = [];
+            cardsInDeck[i][0] = data[i];
+            cardsInDeck[i][1] = 0;
         }
     }
-    function resetScale(inputObj){
-        for(var i = 0; i<inputObj.length;++i){
-            inputObj[i].SetScale(1);
-        }
-    }
-
     function countDeckCards(inputDeckId){
         var counter= 0;
         for(var i = 0; i<cardsInDeck.length;++i){
-            if(cardsInDeck[i].deckId == inputDeckId){
+            if(cardsInDeck[i][0].deckId == inputDeckId){
                 counter++;
             }
         }

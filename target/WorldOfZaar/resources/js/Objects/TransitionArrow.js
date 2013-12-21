@@ -52,7 +52,7 @@ function TransitionArrow(isDeckArrow,place,name,contex,area,direction) {
             case 2:                                     //������
                 canvasContext.clearRect(area.beginPoint.x, area.beginPoint.y, area.width, area.height);
                 canvasContext.drawImage(imgClick, area.beginPoint.x, area.beginPoint.y, area.width, area.height);
-                setTimeout(function () {
+                setTimeout(function() {
                     canvasContext.clearRect(area.beginPoint.x, area.beginPoint.y, area.width, area.height);
                     canvasContext.drawImage(imgHower, area.beginPoint.x, area.beginPoint.y, area.width, area.height);
                 }, 150);
@@ -61,6 +61,7 @@ function TransitionArrow(isDeckArrow,place,name,contex,area,direction) {
         }
         return;
     }
+
 
     this.OnClick =  function (point) {
         if (area.IsPointInArea(point)) {

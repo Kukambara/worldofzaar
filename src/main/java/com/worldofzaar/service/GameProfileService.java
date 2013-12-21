@@ -39,4 +39,9 @@ public class GameProfileService {
 
     }
 
+    public void updateGameProfile(GameProfile gameProfile){
+        GameProfileDao gameProfileDao = new GameProfileDao();
+        gameProfileDao.update(gameProfile);
+    }
+
 }

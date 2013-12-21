@@ -10,7 +10,9 @@ function CardFighter() {
 		
 		//this.area = area;
 		this.__proto__.area = new Area(area.beginPoint, this.__proto__.baseWidth, this.__proto__.baseHeight)
-		
+        this.__proto__.activeCover = new AreaImage(new Area(new Point(-3,-3), this.baseWidth+6 , this.baseHeight+6));
+        this.__proto__.activeCover.SetSource("/resources/Images/MyChambers/Borders/cardActive.png");
+
 		this.__proto__.borderSize = this.borderSize * this.__proto__.area.width;
 		//	this.background = new AreaImage(this.area);
 		this.__proto__.background = new AreaImage(new Area(new Point(0, 0), this.__proto__.area.width, this.__proto__.area.height));
@@ -29,10 +31,11 @@ function CardFighter() {
 		var freeHeight = this.area.height - this.borderSize*4;
 		this.__proto__.image = new AreaImage(new Area(this.hp.area.GetVerticalPositionAfterThis(), widthWithOutBorder, freeHeight * 2 / 3));
 		this.__proto__.image.SetSource(cardObject.cardPicture);
-		this.__proto__.info = new AreaText(new Area(this.__proto__.image.area.GetVerticalPositionAfterThis(), widthWithOutBorder, freeHeight * 1 / 3), "testInfo");
+		this.__proto__.info = new AreaText(new Area(this.__proto__.image.area.GetVerticalPositionAfterThis(), widthWithOutBorder, freeHeight * 1 / 3), cardProperty);
 
 		this.__proto__.SetDrawableArea(area);
 
+        this.__proto__.cardId = cardObject.cardId;
         this.InitSmall(cardObject,cardName);
 	}
 
@@ -94,7 +97,7 @@ function CardFighter() {
 	}
 
 	this.SetContextSmall = function(context){
-		this.imageSmall.context = context;
+		/*this.imageSmall.context = context;
 
 		this.nameSmall.context = context;
 		this.energySmall.context = context;
@@ -106,14 +109,14 @@ function CardFighter() {
 
 		this.nameSmall.area.isBorder = true;
 		this.energySmall.area.isBorder = true;
-
+         */
 		this.hpSmall.area.isBorder = true;
 		this.atackSmall.area.isBorder = true;
 		this.defenceSmall.area.isBorder = true;
 	}
 
 	this.InitColorsForText = function () {
-		this.nameSmall.background = "rgb(254, 254, 254)";
+		/*this.nameSmall.background = "rgb(254, 254, 254)";
 		this.energySmall.background = "rgb(254, 254, 254)";
 
 		this.hpSmall.background = "rgb(254, 254, 254)";
@@ -122,15 +125,15 @@ function CardFighter() {
 
 		this.nameSmall.textColor = "rgb(0, 0, 0)";
 		this.energySmall.textColor = "rgb(0, 0, 0)";
-
+            */
 		this.hpSmall.textColor = "rgb(0, 0, 0)";
 		this.atackSmall.textColor = "rgb(0, 0, 0)";
 		this.defenceSmall.textColor = "rgb(0, 0, 0)";
 	}
 
 	this.InitColorsForText2 = function () {
-		this.nameSmall.textColor = "rgb(254, 254, 254)";
-		this.energySmall.textColor = "rgb(254, 254, 254)";
+		//this.nameSmall.textColor = "rgb(254, 254, 254)";
+		//this.energySmall.textColor = "rgb(254, 254, 254)";
 
 		this.hpSmall.textColor = "rgb(254, 254, 254)";
 		this.atackSmall.textColor = "rgb(254, 254, 254)";
@@ -138,46 +141,48 @@ function CardFighter() {
 	}
 
 	this.SetContext = function (context) {
-		this.__proto__.background.context = context;
+		/*this.__proto__.background.context = context;
 		this.__proto__.image.context = context;
 		this.__proto__.info.context = context;
 
 		this.__proto__.name.context = context;
 		this.__proto__.energy.context = context;
+        */
+        this.__proto__.SetContext(context);
 
 		this.hp.context = context;
 		this.atack.context = context;
 		this.defence.context = context;
 		//this.context = context;
-
+         /*
 		this.__proto__.info.area.isBorder = true;
 
 		this.__proto__.name.area.isBorder = true;
 		this.__proto__.energy.area.isBorder = true;
-
+         */
 		this.hp.area.isBorder = true;
 		this.atack.area.isBorder = true;
 		this.defence.area.isBorder = true;
-
+         /*
 		this.__proto__.info.background = "rgb(254, 254, 254)";
 
 		this.__proto__.name.background = "rgb(254, 254, 254)";
 		this.__proto__.energy.background = "rgb(254, 254, 254)";
-
+        */
 		this.hp.background = "rgb(254, 254, 254)";
 		this.atack.background = "rgb(254, 254, 254)";
 		this.defence.background = "rgb(254, 254, 254)";
-
+        /*
 		this.__proto__.info.textColor = "rgb(0, 0, 0)";
 
 		this.__proto__.name.textColor = "rgb(0, 0, 0)";
 		this.__proto__.energy.textColor = "rgb(0, 0, 0)";
-
+        */
 		this.hp.textColor = "rgb(0, 0, 0)";
 		this.atack.textColor = "rgb(0, 0, 0)";
 		this.defence.textColor = "rgb(0, 0, 0)";
 
-		//this.SetContextSmall(context);
+		this.SetContextSmall(context);
 	}
 
 	this.Draw = function () {
@@ -199,12 +204,17 @@ function CardFighter() {
 		this.defence.Draw();
 
 		this.background.context.restore();*/
+
 		this.__proto__.Draw();
 		this.hp.Draw();
 		this.atack.Draw();
 		this.defence.Draw();
 
 	}
+
+    this.DrawEnd = function(){
+         this.__proto__.DrawEnd();
+    }
 
 	this.DrawSmall = function () {
 		this.imageSmall.context.save();
@@ -235,4 +245,23 @@ function CardFighter() {
         this.__proto__.SetScale(input);
     }
 
+    this.GetCardId = function(){
+        return this.__proto__.GetCardId();
+    }
+
+    this.SetDeckEntry = function(inputState){
+        this.__proto__.SetDeckEntry(inputState);
+    }
+
+    this.GetDeckEntry = function(){
+        return this.__proto__.GetDeckEntry();
+    }
+
+    this.ClearDrawableArea = function(context){
+        this.__proto__.ClearDrawableArea(context);
+    }
+
+    this.OnClick = function(point){
+           return this.__proto__.OnClick(point);
+    }
 }

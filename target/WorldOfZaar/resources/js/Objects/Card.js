@@ -18,13 +18,18 @@ function Card() {
 
 	this.scale = 1;
 
+    this.isInDeck;
+    this.activeCover;
+
+    this.cardId;
 
 	Card.prototype.Init = function (area,cardObject,cardName,cardSlogan,cardProperty) {
-		//var border = this.borderSize * area.width;
-		
-		//this.area = area;
+        this.isInDeck = false;
+
 		this.area = new Area(area.beginPoint, this.baseWidth, this.baseHeight)
-		
+        this.activeCover = new AreaImage(new Area(new Point(-3,-3), this.baseWidth+6 , this.baseHeight+6));
+        this.activeCover.SetSource("/resources/Images/MyChambers/Borders/cardActive.png");
+
 		this.borderSize = this.borderSize * this.area.width;
 		//	this.background = new AreaImage(this.area);
 		this.background = new AreaImage(new Area(new Point(0, 0), this.area.width, this.area.height));
@@ -39,6 +44,8 @@ function Card() {
 		this.image.SetSource(cardObject.cardPicture);
 		this.info = new AreaText(new Area(this.image.area.GetVerticalPositionAfterThis(), widthWithOutBorder, freeHeight * 1 / 3), cardProperty);
 
+
+        this.cardId = cardObject.cardId;
 		this.SetDrawableArea(area);
 		this.InitSmall(cardObject,cardName,cardSlogan,cardProperty);
 	}
@@ -124,6 +131,7 @@ function Card() {
 
 	Card.prototype.SetContext = function (context) {
 		this.background.context = context;
+        this.activeCover.context = context;
 		this.image.context = context;
 		this.info.context = context;
 
@@ -162,17 +170,35 @@ function Card() {
     this.SetScale = function (input){
         this.scale = input;
     }
+    this.GetCardId =function(){
+         return this.cardId;
+    }
+    this.SetDeckEntry = function(inputState){
+        this.isInDeck = inputState;
+    }
+    this.GetDeckEntry = function(){
+        return this.isInDeck;
+    }
 
-	Card.prototype.Draw = function () {
+    this.ClearDrawableArea = function(context){
+        context.clearRect(this.area.beginPoint.x-3,this.area.beginPoint.y-3,(this.area.width*this.scale)+6,(this.area.height*this.scale)+6);
+    }
+
+    Card.prototype.Draw = function () {
 		this.background.context.save();
 
 		this.background.context.translate(this.area.beginPoint.x, this.area.beginPoint.y);
 		this.background.context.scale(this.scale, this.scale);
 		this.background.context.font = "25pt Arial";
 
+
 		this.background.Draw();
-		this.image.Draw();
-		this.info.Draw();
+        if(this.isInDeck){
+            this.activeCover.Draw();
+        }
+        this.image.Draw();
+
+        this.info.Draw();
 
 		this.name.Draw();
 		this.energy.Draw();
@@ -203,6 +229,15 @@ function Card() {
 		this.imageSmall.context.restore();
 	}
 
+    Card.prototype.OnClick = function(point){
+
+        var tmp1 =  this.area.beginPoint.x <= point.x;
+        var tmp2 =  this.area.beginPoint.x+(this.area.width*this.scale) >= point.x;
+        var tmp3 =  this.area.beginPoint.y <= point.y;
+        var tmp4 =  this.area.beginPoint.y+(this.area.height*this.scale) >= point.y;
+
+        return tmp1&&tmp2&&tmp3&&tmp4;
+    }
 }
 
-//Card.prototype = new Clickable();
+

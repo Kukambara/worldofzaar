@@ -36,5 +36,10 @@ public class DeckService {
         deckDao.add(deck);
     }
 
+    public Deck getDeck(Integer deckId) {
+        DeckDao deckDao = new DeckDao();
+        return deckDao.find(deckId);
+    }
+
 
 }

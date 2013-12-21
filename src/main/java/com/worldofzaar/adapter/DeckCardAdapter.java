@@ -11,52 +11,43 @@ import com.worldofzaar.entity.DeckCard;
  */
 public class DeckCardAdapter {
 
-    private int deckCardId;
-    private int deckId;
+    private Integer deckCardId;
+    private Integer deckId;
+    private Integer cardId;
 
-    public int getDeckCardId() {
-        return deckCardId;
-    }
-
-    public void setDeckCardId(int deckCardId) {
-        this.deckCardId = deckCardId;
-    }
-
-    public int getDeckId() {
-        return deckId;
-    }
-
-    public void setDeckId(int deckId) {
-        this.deckId = deckId;
-    }
-
-    public int getWarriorCardId() {
-        return warriorCardId;
-    }
-
-    public void setWarriorCardId(int warriorCardId) {
-        this.warriorCardId = warriorCardId;
-    }
-
-    public int getSupportCardId() {
-        return supportCardId;
-    }
-
-    public void setSupportCardId(int supportCardId) {
-        this.supportCardId = supportCardId;
-    }
-
-    private int warriorCardId;
-    private int supportCardId;
 
     public DeckCardAdapter(DeckCard inputDeckCard){
 
         deckCardId = inputDeckCard.getDeckCardId();
         deckId = inputDeckCard.getDeck().getDeckId();
         if(inputDeckCard.getWarriorCard() != null){
-            warriorCardId = inputDeckCard.getWarriorCard().getCardId();
+            cardId = inputDeckCard.getWarriorCard().getCardId();
         }else{
-            supportCardId = inputDeckCard.getSupportCard().getCardId();
+            cardId = inputDeckCard.getSupportCard().getCardId();
         }
+    }
+
+    public Integer getDeckCardId() {
+        return deckCardId;
+    }
+
+    public void setDeckCardId(Integer deckCardId) {
+        this.deckCardId = deckCardId;
+    }
+
+    public Integer getDeckId() {
+        return deckId;
+    }
+
+    public void setDeckId(Integer deckId) {
+        this.deckId = deckId;
+    }
+
+    public Integer getCardId() {
+        return cardId;
+    }
+
+    public void setCardId(Integer cardId) {
+        this.cardId = cardId;
     }
 }

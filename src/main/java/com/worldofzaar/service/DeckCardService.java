@@ -2,7 +2,11 @@ package com.worldofzaar.service;
 
 import com.worldofzaar.adapter.DeckCardAdapter;
 import com.worldofzaar.dao.DeckCardDao;
+import com.worldofzaar.dao.DeckDao;
 import com.worldofzaar.entity.DeckCard;
+import com.worldofzaar.entity.SupportCard;
+import com.worldofzaar.entity.UserCard;
+import com.worldofzaar.entity.WarriorCard;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,5 +30,31 @@ public class DeckCardService {
             deckCardAdapter.add(new DeckCardAdapter(tmp));
         }
         return deckCardAdapter;
+    }
+
+    public void removeCard(Integer deckCardId){
+        DeckCardDao deckCardDao = new DeckCardDao();
+        DeckCard toDelete = deckCardDao.find(deckCardId);
+        deckCardDao.remove(toDelete);
+    }
+
+    public void addCard(Integer deckId, Integer cardId,Boolean isWarrior){
+        DeckCardDao deckCardDao = new DeckCardDao();
+
+        DeckService deckService = new DeckService();
+        DeckCard deckCard = new DeckCard();
+
+        deckCard.setDeck(deckService.getDeck(deckId));
+        if (isWarrior){
+            WarriorCardService warriorCardService = new WarriorCardService();
+            WarriorCard warriorCard = warriorCardService.getCard(cardId);
+            deckCard.setWarriorCard(warriorCard);
+        }else{
+            SupportCardService supportCardService = new SupportCardService();
+            SupportCard supportCard = supportCardService.getCard(cardId);
+            deckCard.setSupportCard(supportCard);
+        }
+
+        deckCardDao.add(deckCard);
     }
 }
