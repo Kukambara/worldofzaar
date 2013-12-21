@@ -1,5 +1,7 @@
 package com.worldofzaar.adapter;
 
+import com.worldofzaar.entity.*;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Kseon
@@ -16,25 +18,24 @@ public class CardAdapter {
     private Integer classificationId;
     private Boolean isElite;
     //private String propertySystemString;
-    private Integer subsetId;
-    private String subsetImage;
+    private Subset subset;
+
     private String cardName;
     private String propertyInfo;
     private String cardSlogan;
 
     public CardAdapter(Object[] input) {
 
-        this.cardId = (Integer)input[0];
-        this.cardEnergy = (Integer)input[1];
-        this.cardPicture =(String) input[2];
-        this.propertyId =(Integer) input[3];
-        this.classificationId =(Integer) input[4];
-        this.isElite =(Boolean) input[5];
-        this.subsetId = (Integer)input[6];
-        this.subsetImage = (String)input[7];
-        this.cardName =(String) input[8];
-        this.cardSlogan =(String) input[9];
-        this.propertyInfo ="" ;// (String) input[10];
+        this.cardId = ((Card)input[0]).getCardId();
+        this.cardEnergy = ((Card)input[0]).getCardEnergy();
+        this.cardPicture =((Card)input[0]).getCardPicture();
+        this.propertyId =((Card)input[0]).getProperty().getPropertyId();
+        this.classificationId =((Card)input[0]).getClassification().getClassificationId();
+        this.isElite =((Card)input[0]).getElite();
+        this.subset = ((Card)input[0]).getSubset();
+        this.cardName =((CardText)input[1]).getCardName();
+        this.cardSlogan =((CardText)input[1]).getCardSlogan();
+        this.propertyInfo = ((PropertyText)input[2]).getPropertyInfo();
     }
 
     public Integer getPropertyId() {
@@ -45,21 +46,23 @@ public class CardAdapter {
         this.propertyId = propertyId;
     }
 
-    public Integer getSubsetId() {
-        return subsetId;
+    public Subset getSubset() {
+        return subset;
     }
 
-    public void setSubsetId(Integer subsetId) {
-        this.subsetId = subsetId;
+    public void setSubset(Subset subset) {
+        this.subset = subset;
     }
 
-    public String getSubsetImage() {
-        return subsetImage;
+    public Boolean getIsElite() {
+        return isElite;
     }
 
-    public void setSubsetImage(String subsetImage) {
-        this.subsetImage = subsetImage;
+    public void setIsElite(Boolean isElite) {
+        this.isElite = isElite;
     }
+
+
 
     public String getPropertyInfo() {
         return propertyInfo;
