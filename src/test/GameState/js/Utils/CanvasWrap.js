@@ -4,7 +4,7 @@ function CanvasWrap() {
 
 	this.canvas;
 	this.context;
-	this.scale;
+	this.scale = 1;
 	var scale1;
 
 	CanvasWrap.prototype.Init = function (/*string*/name, /*int*/ newWidth) {
@@ -51,7 +51,7 @@ function CanvasWrap() {
 	}
 
 	CanvasWrap.prototype.onClick = function (eventPoint) {
-		var point = new Point(eventPoint.x / this.scale, eventPoint.y / this.scale);
+		var point = new Point(eventPoint.layerX / this.scale, eventPoint.layerY / this.scale);
 		this.triggerEvent("onClick", point);
 	}
 
@@ -64,7 +64,11 @@ function CanvasWrap() {
 	}
 
 	CanvasWrap.prototype.onClickHelper = function (/*Point*/ point, /*CanvasWrap*/ canvasWrap) {
-		canvasWrap.onClick(point.x * canvasWrap.scale, point.y * canvasWrap.scale)
+		canvasWrap.onClick(point.layerX * canvasWrap.scale, point.layerY * canvasWrap.scale)
+	}
+
+	CanvasWrap.prototype.clear = function () {
+		this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 	}
 	
 	//this.canvas.addEventListener("click", onClick);

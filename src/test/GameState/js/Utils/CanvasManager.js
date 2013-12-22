@@ -4,22 +4,23 @@
 	var fieldStepX = (1 - fieldWidthSize)/2;
 	var fieldStepY = 1 - fieldHeightSize;
 	var borderScaleSize = 63/750;
-	
-	var canvasStaticNameConst = "static"
 
 	var canvases = []
 	
 	function init(/*string*/canvasStaticName, /*int*/ width){
 		canvases[canvasStaticNameConst] = new CanvasWrap();
 		canvases[canvasStaticNameConst].Init(canvasStaticName, width);
-		//var canvasArea = new Area(new Point(canvasStatic.style.left,canvasStatic.style.top),canvasStatic.width*3/4, canvasStatic.height*3/4 );
-		var canvasArea = new Area(new Point(50, 150), canvases[canvasStaticNameConst].width * 3 / 4, canvases[canvasStaticNameConst].height * 3 / 4);
-		createCanvas(canvasArea, "canvasMenu", 1);
-		canvases["testCanvas"] = new CanvasWrap();
-		canvases["testCanvas"].Init("canvasMenu", canvasArea.width);
-			
-	/*	var context = canvasMenu.getContext("2d");		
-		context.scale(2, 2);*/
+	}
+
+	function addCanvas(/*string*/canvasName) {
+		canvases[canvasName] = new CanvasWrap();
+		var width = document.getElementById(canvasName).width;
+		canvases[canvasName].Init(canvasName, width);		
+	}
+
+	function addCanvasWithWidth(/*string*/canvasName, /*int*/ width) {
+		canvases[canvasName] = new CanvasWrap();
+		canvases[canvasName].Init(canvasName, width);
 	}
 
 	/*canvas*/ function createCanvas(/*Area*/ area, /*stting*/ name, /*int*/ zIndex) {
@@ -38,25 +39,30 @@
 		return canvas;
 	}
 
+	function addNewCanvas(/*Area*/ area, /*stting*/ canvasName, /*int*/ zIndex) {
+		createCanvas(/*Area*/ area, /*stting*/ canvasName, /*int*/ zIndex);
+		addCanvas(canvasName);
+	}
+
+	function copyCanvas(/*string*/ canvasNameCopied, /*string*/ canvasNameNew, /*int*/ zIndexNew) {
+		var canvasCopied = document.getElementById(canvasNameCopied);
+		var newBeginPoint = new Point(canvasCopied.style.left, canvasCopied.style.top);
+		var newWidth = canvasCopied.width;
+		var newHeight = canvasCopied.height;
+		var newArea = new Area(newBeginPoint, newWidth, newHeight);
+		addNewCanvas(newArea, canvasNameNew, zIndexNew);
+	}
+
 	/*canvas*/function getCanvasByName(/*string*/ name) {
 		return this.canvases[name];
 	}
 
-	function addCanvas(/*String*/ name, /*int*/ newWidth) {
-		this.canvases[name] = new CanvasWrap();
-		this.canvases[name].Init(name, newWidth);
-	}
-
-	function getCanvasStatic(){
-		return canvases[canvasStaticNameConst];
-	}
-
-	function getCanvasMenu(){
-		return canvases["menu"];
-	}
-
-	function getCanvasPlayerField(/*int*/index){
-		//return canvasPlayerField[index];
+	function setCanvasZindex(canvasName, zIndex) {
+		var canvas = document.getElementById(canvasName);
+		canvas.style.zIndex = zIndex;
+		//	document.getElementById(canvasName).style.zIndex = zIndex;
+		testZindex = document.getElementById(canvasName).style.zIndex;
+		
 	}
 
 	function addEventFunction(/*string*/ nameOfCanvas, /*obj*/ object,  /*string*/ eventName, /*function*/ onClickFunction) {
@@ -72,9 +78,12 @@
 
 	window.canvasManager = {
 		init: init,
-		getCanvasStatic: getCanvasStatic,
-		getCanvasMenu: getCanvasMenu,
-		getCanvasPlayerField: getCanvasPlayerField,
+		addCanvas: addCanvas,
+		addCanvasWithWidth: addCanvasWithWidth,
+		addNewCanvas: addNewCanvas,
+		copyCanvas:copyCanvas,
+		getCanvasByName:getCanvasByName,
+		setCanvasZindex:setCanvasZindex,
 		addEventFunction:addEventFunction,
 		canvases:canvases
 	};

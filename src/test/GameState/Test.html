@@ -4,6 +4,7 @@
 	</title>
 </head>
 <script type="text/javascript" src="js/jquery-2.0.3.js"></script>
+<script type="text/javascript" src="js/Utils/Consts.js"></script>
 <script type="text/javascript" src="js/Utils/Controllers/Observable.js"></script>
 <script type="text/javascript" src="js/Utils/CanvasWrap.js"></script>
 <script type="text/javascript" src="js/Utils/Text.js"></script>
@@ -23,7 +24,7 @@
 <script type="text/javascript" src="js/PlayerField.js"></script>
 <script type="text/javascript" src="js/Map.js"></script>
 <script type="text/javascript" src="js/Game.js"></script>
-<body onload="game.init()">
-	<div style="float:left;"><canvas id="canvas_static" style="position:absolute; left:50; top:50; border: solid 1px red; zindex:0" width="1100" height="1100">
+<body onload="game.init('canvas_loading')">
+	<div style="float:left;"><canvas id="canvas_loading" style="position:absolute; left:50; top:50; border: solid 1px red; zindex:1" width="1000" height="1000">
 	</canvas></div>
 </body>

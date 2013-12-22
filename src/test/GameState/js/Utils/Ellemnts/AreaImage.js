@@ -12,6 +12,10 @@ function AreaImage(area, image, context) {
 		this.context = context;
 	}
 
+	this.Clear = function () {
+		this.area.Clear(this.context);
+	}
+
 	this.Draw = function () {
 		this.area.DrawImage(this.context, this.image);
 		if (this.state == 1) {
@@ -49,7 +53,6 @@ function AreaImage(area, image, context) {
 
 	this._OnClick = function () {
 		this.state = this.state == 0 ? 1 : 0;
-		this.Draw();
 	}
 
 }

@@ -38,4 +38,22 @@ function AreaText(area, text){
 	this.SetTextProperty = function () {
 		
 	}
+
+	this.SetText = function (/*string*/ newText) {
+		this.text = newText;
+	}
+
+	this.DrawNewText = function (/*string*/ newText) {
+		this.text = newText;
+		this.Redraw();
+	}
+
+	this.Redraw = function () {
+		this.Clear();
+		this.Draw();		
+	}
+
+	this.Clear = function () {
+		this.area.Clear(this.context);
+	}
 }
