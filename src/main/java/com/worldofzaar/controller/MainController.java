@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 public class MainController {
     @RequestMapping(method = RequestMethod.GET)
     public String printWelcome(ModelMap model, HttpServletRequest request) {
+        System.out.println("FROM MAIN");
         if (request.getSession().getAttribute(WOZConsts.WEBUSER_ID) == null)
             return "hello";
         if (request.getSession().getAttribute(WOZConsts.USER_ID) == null)

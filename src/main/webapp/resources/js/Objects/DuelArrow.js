@@ -26,9 +26,9 @@
         imgHower = new Image();
         imgSelect = new Image();
 
-        img.src = "Images\\Duel\\NavigationArrows\\" + name + ".png";
-        imgHower.src = "Images\\Duel\\NavigationArrows\\Hower.png";
-        imgSelect.src = "Images\\Duel\\NavigationArrows\\Select.png";
+        img.src = "\\resources\\Images\\Duel\\NavigationArrows\\" + name + ".png";
+        imgHower.src = "\\resources\\Images\\Duel\\NavigationArrows\\Hower.png";
+        imgSelect.src = "\\resources\\Images\\Duel\\NavigationArrows\\Select.png";
     }
 
     this.Draw = function (state){

@@ -26,6 +26,8 @@ public class Deck {
     private User user;
     @Column(name = "\"deckName\"")
     private String deckName;
+    @Column(name = "\"isActive\"")
+    private Boolean isActive;
 
     public Integer getDeckId() {
         return deckId;
@@ -49,5 +51,13 @@ public class Deck {
 
     public void setDeckName(String deckName) {
         this.deckName = deckName;
+    }
+
+    public Boolean getActive() {
+        return isActive;
+    }
+
+    public void setActive(Boolean active) {
+        isActive = active;
     }
 }

@@ -12,13 +12,9 @@ import com.worldofzaar.entity.MasterOfDeck;
 public class MasterOfDeckAdapter {
     private Integer mastersCardId;
     private Integer cardLevel;
-
     private WarriorCardAdapter warriorCard;
-
     private SupportCardAdapter supportCard;
-
     private Integer price;
-
     private Integer donatePrice;
 
     public MasterOfDeckAdapter(MasterOfDeck inputMasterOfDeck) {

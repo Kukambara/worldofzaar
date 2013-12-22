@@ -32,7 +32,7 @@
         <mapping class="com.worldofzaar.entity.CardText"/>
         <mapping class="com.worldofzaar.entity.Classification"/>
         <mapping class="com.worldofzaar.entity.Deck"/>
-        <mapping class="com.worldofzaar.entity.DeckCard"/>
+
         <mapping class="com.worldofzaar.entity.EngCardText"/>
         <mapping class="com.worldofzaar.entity.EngPropertyText"/>
         <mapping class="com.worldofzaar.entity.EngSetText"/>
@@ -71,6 +71,8 @@
         <mapping class="com.worldofzaar.entity.EngClassText"/>
         <mapping class="com.worldofzaar.entity.Set"/>
         <mapping class="com.worldofzaar.entity.Discount"/>
+        <mapping class="com.worldofzaar.entity.CardInDeck"/>
+
 
 
     </session-factory>

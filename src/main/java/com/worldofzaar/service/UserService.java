@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class UserService {
 
-    public GameProfile getUserGameProfileById(Integer userId) {
+    public User getUserGameProfileById(Integer userId) {
         UserDao gameProfileDao = new UserDao();
         return gameProfileDao.getUserGameProfilesById(userId);
     }
@@ -25,6 +25,11 @@ public class UserService {
     public User getUser(Integer userId) {
         UserDao userDao = new UserDao();
         return userDao.find(userId);
+    }
+
+    public Boolean checkUserNickname(String nickname){
+        UserDao userDao = new UserDao();
+        return userDao.checkUserNickname(nickname);
     }
 
     public void createUser(String userName, Integer blazonId, Integer racePictureId, boolean isMale,
@@ -42,7 +47,8 @@ public class UserService {
         userDao.add(user);
 
         DeckService deckService = new DeckService();
-        deckService.createDeck("New deck", user);
+        //Create deck with name New deck,  user = user, and active = true
+        deckService.createDeck("New deck", user, true);
 
         WebUserService webUserService = new WebUserService();
         webUserService.setUser((Integer) request.getSession().getAttribute(WOZConsts.WEBUSER_ID), user);
@@ -51,4 +57,8 @@ public class UserService {
         authorizationService.loginByCookies(request, response);
     }
 
+    public void updateUser(User user){
+        UserDao userDao = new UserDao();
+        userDao.update(user);
+    }
 }

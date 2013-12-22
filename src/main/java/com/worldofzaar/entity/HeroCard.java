@@ -18,18 +18,16 @@ public class HeroCard {
     private Integer heroCardsId;
     @OneToOne
     @JoinColumn(name = "\"firstActiveCurrentCardId\"")
-    private ActiveWarriorCard firstActiveWarriorCard;
+    private ActiveCard firstActiveWarriorCard;
     @OneToOne
     @JoinColumn(name = "\"secondActiveCurrentCardId\"")
-    private ActiveWarriorCard secondActiveWarriorCard;
+    private ActiveCard secondActiveWarriorCard;
     @OneToOne
     @JoinColumn(name = "\"thirdActiveCurrentCardId\"")
-    private ActiveWarriorCard thirdActiveWarriorCard;
-    //TODO Link object and Id
-    @Transient
-    private SupportCard supportCard;
-    @Column(name = "\"supportCardId\"")
-    private Integer supportCardId;
+    private ActiveCard thirdActiveWarriorCard;
+    @OneToOne
+    @JoinColumn(name = "\"activeSupportCardId\"")
+    private ActiveCard supportCard;
 
     public Integer getHeroCardsId() {
         return heroCardsId;
@@ -39,43 +37,47 @@ public class HeroCard {
         this.heroCardsId = heroCardsId;
     }
 
-    public ActiveWarriorCard getFirstActiveWarriorCard() {
+    public ActiveCard getFirstActiveWarriorCard() {
         return firstActiveWarriorCard;
     }
 
-    public void setFirstActiveWarriorCard(ActiveWarriorCard firstActiveWarriorCard) {
+    public void setFirstActiveWarriorCard(ActiveCard firstActiveWarriorCard) {
         this.firstActiveWarriorCard = firstActiveWarriorCard;
     }
 
-    public ActiveWarriorCard getSecondActiveWarriorCard() {
+    public ActiveCard getSecondActiveWarriorCard() {
         return secondActiveWarriorCard;
     }
 
-    public void setSecondActiveWarriorCard(ActiveWarriorCard secondActiveWarriorCard) {
+    public void setSecondActiveWarriorCard(ActiveCard secondActiveWarriorCard) {
         this.secondActiveWarriorCard = secondActiveWarriorCard;
     }
 
-    public ActiveWarriorCard getThirdActiveWarriorCard() {
+    public ActiveCard getThirdActiveWarriorCard() {
         return thirdActiveWarriorCard;
     }
 
-    public void setThirdActiveWarriorCard(ActiveWarriorCard thirdActiveWarriorCard) {
+    public void setThirdActiveWarriorCard(ActiveCard thirdActiveWarriorCard) {
         this.thirdActiveWarriorCard = thirdActiveWarriorCard;
     }
 
-    public SupportCard getSupportCard() {
+    public ActiveCard getSupportCard() {
         return supportCard;
     }
 
-    public void setSupportCard(SupportCard supportCard) {
+    public void setSupportCard(ActiveCard supportCard) {
         this.supportCard = supportCard;
     }
 
-    public Integer getSupportCardId() {
-        return supportCardId;
-    }
-
-    public void setSupportCardId(Integer supportCardId) {
-        supportCardId = supportCardId;
+    public ActiveCard getCard(Integer cardId) {
+        if (supportCard != null && supportCard.getActiveCardId().equals(cardId))
+            return supportCard;
+        if (firstActiveWarriorCard != null && firstActiveWarriorCard.getActiveCardId().equals(cardId))
+            return firstActiveWarriorCard;
+        if (secondActiveWarriorCard != null && secondActiveWarriorCard.getActiveCardId().equals(cardId))
+            return secondActiveWarriorCard;
+        if (thirdActiveWarriorCard != null && thirdActiveWarriorCard.getActiveCardId().equals(cardId))
+            return thirdActiveWarriorCard;
+        return null;
     }
 }

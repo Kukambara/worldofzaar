@@ -32,10 +32,12 @@ public class UserCardDao extends GenericDaoMain<UserCard> {
         return null;
     }
 
-    public List<UserCard> gelAllUserCardsById(Integer userId) {
+    public List<Object[]> gelAllUserCardsById(Integer userId) {
         try {
             Session session = HibernateUtilMain.getSessionFactory().openSession();
-            Query query = session.createQuery("from UserCard where user.userId = :userId");
+            Query query = session.createQuery("from UserCard as u,RuCardText as t,RuPropertyText as p where u.user.userId = :userId AND " +
+                    "((t.warriorCard.cardId=u.warriorCard.cardId AND p.warriorCard.cardId=u.warriorCard.cardId) OR " +
+                    "(t.supportCard.cardId=u.supportCard.cardId AND p.supportCard.cardId=u.supportCard.cardId))");
             query.setParameter("userId", userId);
             List userCards = query.list();
             session.close();

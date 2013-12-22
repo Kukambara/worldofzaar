@@ -54,31 +54,11 @@ public class WarriorCardDao extends GenericDaoMain<WarriorCard> {
 
             Session session = HibernateUtilMain.getSessionFactory().openSession();
             StringBuilder query = new StringBuilder();
-            query.append("select w.cardId,w.cardEnergy,w.cardPicture,w.property.propertyId, w.classification.classificationId,")
-                    .append("w.isElite,w.subset.subsetId,w.subset.frontPath,t.cardName,t.cardSlogan,")
-                    .append("w.cardHealth, w.cardArmor,w.cardDamage ")
-                    .append("from WarriorCard as w,RuCardText as t ")
-                    .append("where w.cardId=t.warriorCard.cardId group by ")
-                    .append("w.cardId,w.cardEnergy,w.cardPicture,w.property.propertyId, w.classification.classificationId,")
-                    .append("w.isElite,w.subset.subsetId,w.subset.frontPath,t.cardName,t.cardSlogan,")
-                    .append("w.cardHealth, w.cardArmor,w.cardDamage");
 
-            /*List warriorCards = (List) session.createQuery("select "+
-                    "w.cardId, w.classification.id,w.cardEnergy," +
-                    "w.subset.frontPath , " +
-                    "w.cardPicture,w.isElite," +
-                    "w.cardHealth, w.cardArmor,w.cardDamage,t.cardName,t.cardSlogan,pt.propertyInfo " +
+            List warriorCards = (List) session.createQuery(
                     "from WarriorCard as w,RuCardText as t,RuPropertyText as pt " +
-                    "where w.cardId=t.warriorCard.cardId OR (w.cardId=pt.warriorCard.cardId AND w.cardId=t.warriorCard.cardId) " +
-                    "group by "+
-                    "w.cardId, w.classification.id,t.cardName,w.cardEnergy," +
-                    "w.subset.frontPath , " +
-                    "w.cardPicture,w.isElite," +
-                    "w.cardHealth, w.cardArmor,w.cardDamage,t.cardSlogan,pt.propertyInfo").list();
-            */
-
-            List warriorCards = (List) session.createQuery( query.toString() ).list();
-
+                    "where w.cardId=t.warriorCard.cardId  AND w.cardId=pt.warriorCard.cardId "
+                    ).list();
             session.close();
             return warriorCards;
 

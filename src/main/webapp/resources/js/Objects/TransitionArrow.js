@@ -5,7 +5,7 @@ function TransitionArrow(isDeckArrow,place,name,contex,area,direction) {
     var area = area;
 
     var direction = direction;
-    this.isDeckArrow = isDeckArrow;                        //флаг
+    this.isDeckArrow = isDeckArrow;                        //пїЅпїЅпїЅпїЅ
     var canvasContext = contex;
     var isPointerIn = false;
 
@@ -27,14 +27,14 @@ function TransitionArrow(isDeckArrow,place,name,contex,area,direction) {
         imgHower = new Image();
         imgClick = new Image();
 
-        img.src = "Images\\"+place+"\\NavigationArrows\\" + name + ".png";
-        imgHower.src = "Images\\" + place + "\\NavigationArrows\\" + name + "Hower.png";
-        imgClick.src = "Images\\" + place + "\\NavigationArrows\\" + name + "Click.png";
+        img.src = "\\resources\\Images\\"+place+"\\NavigationArrows\\" + name + ".png";
+        imgHower.src = "\\resources\\Images\\" + place + "\\NavigationArrows\\" + name + "Hower.png";
+        imgClick.src = "\\resources\\Images\\" + place + "\\NavigationArrows\\" + name + "Click.png";
     }
 
     function Draw(id) {
         switch (id) {
-            case 0:                                      //Покой
+            case 0:                                      //пїЅпїЅпїЅпїЅпїЅ
                 if (!isPointerIn) {
                     canvasContext.clearRect(area.beginPoint.x, area.beginPoint.y, area.width, area.height);
                     
@@ -42,17 +42,17 @@ function TransitionArrow(isDeckArrow,place,name,contex,area,direction) {
                 }
                     break;
                 
-            case 1:                                      //Наведено
+            case 1:                                      //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
                 if (!isPointerIn) {
                     canvasContext.clearRect(area.beginPoint.x, area.beginPoint.y, area.width, area.height);
                     canvasContext.drawImage(imgHower, area.beginPoint.x, area.beginPoint.y, area.width, area.height);
                 }
                     break;
                 
-            case 2:                                     //Нажато
+            case 2:                                     //пїЅпїЅпїЅпїЅпїЅпїЅ
                 canvasContext.clearRect(area.beginPoint.x, area.beginPoint.y, area.width, area.height);
                 canvasContext.drawImage(imgClick, area.beginPoint.x, area.beginPoint.y, area.width, area.height);
-                setTimeout(function () {
+                setTimeout(function() {
                     canvasContext.clearRect(area.beginPoint.x, area.beginPoint.y, area.width, area.height);
                     canvasContext.drawImage(imgHower, area.beginPoint.x, area.beginPoint.y, area.width, area.height);
                 }, 150);
@@ -61,6 +61,7 @@ function TransitionArrow(isDeckArrow,place,name,contex,area,direction) {
         }
         return;
     }
+
 
     this.OnClick =  function (point) {
         if (area.IsPointInArea(point)) {

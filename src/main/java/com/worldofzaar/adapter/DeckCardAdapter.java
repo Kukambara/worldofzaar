@@ -1,6 +1,6 @@
 package com.worldofzaar.adapter;
 
-import com.worldofzaar.entity.DeckCard;
+import com.worldofzaar.entity.CardInDeck;
 
 /**
  * Created with IntelliJ IDEA.
@@ -11,16 +11,63 @@ import com.worldofzaar.entity.DeckCard;
  */
 public class DeckCardAdapter {
 
-    private int deckCardId;
-    private int deckId;
-    private int warriorCardId;
-    private int supportCardId;
+    private Integer cardInDeckId;
+    private Integer deckId;
+    private Integer cardId;
+    private Integer userCardId;
+    private Boolean isWarrior;
 
-    public DeckCardAdapter(DeckCard inputDeckCard){
+    public DeckCardAdapter(CardInDeck cardInDeck){
 
-        deckCardId = inputDeckCard.getDeckCardId();
-        deckId = inputDeckCard.getDeck().getDeckId();
-        warriorCardId = inputDeckCard.getWarriorCard().getCardId();
-        supportCardId = inputDeckCard.getSupportCard().getCardId();
+        cardInDeckId = cardInDeck.getCardId();
+        deckId = cardInDeck.getDeck().getDeckId();
+        if(cardInDeck.getCard().getWarriorCard() != null){
+            cardId = cardInDeck.getCard().getWarriorCard().getCardId();
+            isWarrior =true;
+        }else{
+            cardId = cardInDeck.getCard().getSupportCard().getCardId();
+            isWarrior =false;
+        }
+        userCardId = cardInDeck.getCard().getUserCardId();
+    }
+
+    public Integer getCardInDeckId() {
+        return cardInDeckId;
+    }
+
+    public void setCardInDeckId(Integer cardInDeckId) {
+        this.cardInDeckId = cardInDeckId;
+    }
+
+    public Integer getUserCardId() {
+        return userCardId;
+    }
+
+    public void setUserCardId(Integer userCardId) {
+        this.userCardId = userCardId;
+    }
+
+    public Boolean getIsWarrior() {
+        return isWarrior;
+    }
+
+    public void setIsWarrior(Boolean isWarrior) {
+        this.isWarrior = isWarrior;
+    }
+
+    public Integer getDeckId() {
+        return deckId;
+    }
+
+    public void setDeckId(Integer deckId) {
+        this.deckId = deckId;
+    }
+
+    public Integer getCardId() {
+        return cardId;
+    }
+
+    public void setCardId(Integer cardId) {
+        this.cardId = cardId;
     }
 }
