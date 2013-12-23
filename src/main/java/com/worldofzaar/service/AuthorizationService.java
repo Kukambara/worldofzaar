@@ -237,6 +237,7 @@ public class AuthorizationService {
         if (!email.equals("") && !password.equals("")) {
             return loginWithHashedPass(email, password, request, response);
         }
+        System.out.println("CAN'T LOGIN BY COOKIES");
         return false;
     }
 }

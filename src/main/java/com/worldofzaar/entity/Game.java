@@ -51,6 +51,12 @@ public class Game {
     @Type(type = "com.worldofzaar.entity.enums.PGEnumUserType",
             parameters = @Parameter(name = "enumClassName", value = "com.worldofzaar.entity.enums.Phase"))
     private Phase phase;
+    @Column(name = "\"step\"")
+    private Integer step;
+    @Column(name = "\"firstHeroIndex\"")
+    private Integer firstCircleHeroIndex;
+    @Column(name = "\"moveDuration\"")
+    private Integer moveDuration;
 
     public Integer getGameId() {
         return gameId;
@@ -138,5 +144,33 @@ public class Game {
 
     public void setState(State state) {
         this.state = state;
+    }
+
+    public Integer getStep() {
+        return step;
+    }
+
+    public void setStep(Integer step) {
+        this.step = step;
+    }
+
+    public Integer getFirstCircleHeroIndex() {
+        return firstCircleHeroIndex;
+    }
+
+    public void setFirstCircleHeroIndex(Integer firstCircleHeroIndex) {
+        this.firstCircleHeroIndex = firstCircleHeroIndex;
+    }
+
+    public Integer getMoveDuration() {
+        return moveDuration;
+    }
+
+    public void setMoveDuration(Integer moveDuration) {
+        this.moveDuration = moveDuration;
+    }
+
+    public Hero[] getAllHeroes() {
+        return new Hero[]{getFirstHero(), getSecondHero(), getThirdHero(), getFourthHero()};
     }
 }

@@ -21,7 +21,7 @@ public class ActiveCoalitionDao extends GenericDaoActive<ActiveCoalition> {
     public List<ActiveCoalition> list() {
         try {
             Session session = HibernateUtilActive.getSessionFactory().openSession();
-            List activeCoalitions = (List) session.createQuery("from ActiveCoalition").list();
+            List activeCoalitions = session.createQuery("from ActiveCoalition").list();
             session.close();
             return activeCoalitions;
         } catch (Exception e) {

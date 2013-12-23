@@ -55,9 +55,9 @@ public class ActiveCardService {
 
             //Set first 5 cards - hand = true, first 5 cards already in user's hands.
             if (i < cardsInHand) {
-                activeCard.setLocation(Location.hand);
+                activeCard.setLocation(Location.HAND);
             } else {
-                activeCard.setLocation(Location.deck);
+                activeCard.setLocation(Location.DECK);
             }
             activeCardDao.add(activeCard);
             cards.remove(randomCard);

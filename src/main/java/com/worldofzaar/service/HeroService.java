@@ -5,6 +5,7 @@ import com.worldofzaar.entity.Game;
 import com.worldofzaar.entity.Hero;
 import com.worldofzaar.entity.HeroCard;
 import com.worldofzaar.entity.User;
+import com.worldofzaar.entity.enums.Activity;
 import com.worldofzaar.util.UserInformation;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +19,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class HeroService {
     public Hero createHero(User user) {
-        return createHero(user, false);
+        return createHero(user, Activity.UNACTIVE);
     }
 
     public Hero getHero(UserInformation userInformation) {
@@ -26,7 +27,7 @@ public class HeroService {
         return heroDao.getHero(userInformation);
     }
 
-    public Hero createHero(User user, boolean isActive) {
+    public Hero createHero(User user, Activity activity) {
         HeroCard heroCard = createHeroCard();
         HeroDao heroDao = new HeroDao();
         Hero hero = new Hero();
@@ -35,7 +36,7 @@ public class HeroService {
         hero.setEnergy(6);
         hero.setMysteryPower(1);
         hero.setArmor(0);
-        hero.setActive(isActive);
+        hero.setActivity(activity);
         hero.setNegativeEffect(0);
         hero.setHeroCard(heroCard);
         heroDao.add(hero);
@@ -63,16 +64,6 @@ public class HeroService {
         GameService gameService = new GameService();
         Game game = gameService.getGame(request);
         gameService.gameIsReady(game, request);
-    }
-
-    public void setActiveHero(Hero hero) {
-        HeroDao heroDao = new HeroDao();
-        heroDao.heroIsActive(hero);
-    }
-
-    public void setUnActiveHero(Hero hero) {
-        HeroDao heroDao = new HeroDao();
-        heroDao.heroIsUnActive(hero);
     }
 
     public void updateHero(Hero hero) {
