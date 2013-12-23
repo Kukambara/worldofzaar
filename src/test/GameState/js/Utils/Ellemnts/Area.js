@@ -71,6 +71,9 @@ function Area(beginPoint, width, height) {
 		context.restore();
 	}
 
+	Area.prototype.Clear = function (context) {
+		context.clearRect(this.beginPoint.x, this.beginPoint.y, this.width, this.height);
+	}
 
 	Area.prototype.DrawText = function (context, string, borderX, borderY) {
         context.save();
