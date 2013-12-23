@@ -14,16 +14,14 @@ function Map() {
 
 	this.Init = function ( canvas, x, y, width, height) {
 		this.canvas = canvas;
-		resources.loadByArr([
-				"Picture/map.png",
-				"Picture/table.png"]);
+		resources.loadByUrl("/resources/Images/GameState/map.png");
 
 		var borderSize = borderScaleSize * width;
 		this.beginPoint = new Point(x, y);
 		this.background = new AreaImage(
 				new Area(new Point(x - borderSize, y - borderSize), width + borderSize * 2, height + borderSize * 2),
 				new Image(width, height));
-		this.background.image.src = "Picture/map.png";
+		this.background.image.src = "/resources/Images/GameState/map.png";
 
 		this.playerField = [];
 		this.playerField[0] = new PlayerField();

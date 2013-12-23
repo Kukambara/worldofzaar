@@ -55,11 +55,11 @@
 	}
 
 	function _initBackground() {
-		resources.loadByUrl("Picture/table.png");
+		resources.loadByUrl("/resources/Images/GameState/table.png");
 		background = new AreaImage(
 					new Area(new Point(0, 0), 1000, 1000),
 					new Image(1000, 1000));
-		background.image.src = "Picture/table.png";
+		background.image.src = "/resources/Images/GameState/table.png";
 		background.context = canvasManager.getCanvasByName(canvasesName["static"]).getContext();
 	}
 

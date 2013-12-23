@@ -14,7 +14,7 @@ function PlayerField() {
 	this.areas = []
 	this.cards = [];
 	
-	this.rotate = 0;	//градусы
+	this.rotate = 0;	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	this.context;
 
 	this.FighterAreasInit = function(x, y, width, height, count) {
@@ -87,38 +87,38 @@ function PlayerField() {
 
 	this.SetSourceFighterCardAreas = function () {
 		for (var i = 0; i < this.fighterCardAreas.length; ++i) {
-			this.fighterCardAreas[i].SetSource("Picture/Symbols/fighterCard.png");
+			this.fighterCardAreas[i].SetSource("/resources/Images/GameState/Symbols/fighterCard.png");
 		}
 	}
 
 	this.SetSourceHightElf = function () {
 		this.SetSourceFighterCardAreas();
-		this.areas["deck"].SetSource("Picture/Symbols/HightElf/deck.png");
-		this.areas["talon"].SetSource("Picture/Symbols/HightElf/talon.png");
-		this.areas["supportCard"].SetSource("Picture/Symbols/HightElf/supportCard.png");
+		this.areas["deck"].SetSource("/resources/Images/GameState/Symbols/HightElf/deck.png");
+		this.areas["talon"].SetSource("/resources/Images/GameState/Symbols/HightElf/talon.png");
+		this.areas["supportCard"].SetSource("/resources/Images/GameState/Symbols/HightElf/supportCard.png");
 	}
 
 	this.SetSourceDarkElf = function () {
 		this.SetSourceFighterCardAreas();
-		this.areas["deck"].SetSource("Picture/Symbols/DarkElf/deck.png");
-		this.areas["talon"].SetSource("Picture/Symbols/DarkElf/talon.png");
-		this.areas["supportCard"].SetSource("Picture/Symbols/DarkElf/supportCard.png");
+		this.areas["deck"].SetSource("/resources/Images/GameState/Symbols/DarkElf/deck.png");
+		this.areas["talon"].SetSource("/resources/Images/GameState/Symbols/DarkElf/talon.png");
+		this.areas["supportCard"].SetSource("/resources/Images/GameState/Symbols/DarkElf/supportCard.png");
 		
 	}
 
 	this.SetSourceBalikuru = function () {
 		this.SetSourceFighterCardAreas();
-		this.areas["deck"].SetSource("Picture/Symbols/Balikuru/deck.png");
-		this.areas["talon"].SetSource("Picture/Symbols/Balikuru/talon.png");
-		this.areas["supportCard"].SetSource("Picture/Symbols/Balikuru/supportCard.png");
+		this.areas["deck"].SetSource("/resources/Images/GameState/Symbols/Balikuru/deck.png");
+		this.areas["talon"].SetSource("/resources/Images/GameState/Symbols/Balikuru/talon.png");
+		this.areas["supportCard"].SetSource("/resources/Images/GameState/Symbols/Balikuru/supportCard.png");
 		
 	}
 
 	this.SetSourceVeld = function () {
 		this.SetSourceFighterCardAreas();
-		this.areas["deck"].SetSource("Picture/Symbols/Veld/deck.png");
-		this.areas["talon"].SetSource("Picture/Symbols/Veld/talon.png");
-		this.areas["supportCard"].SetSource("Picture/Symbols/Veld/supportCard.png");
+		this.areas["deck"].SetSource("/resources/Images/GameState/Symbols/Veld/deck.png");
+		this.areas["talon"].SetSource("/resources/Images/GameState/Symbols/Veld/talon.png");
+		this.areas["supportCard"].SetSource("/resources/Images/GameState/Symbols/Veld/supportCard.png");
 		
 	}
 
@@ -142,7 +142,7 @@ function PlayerField() {
 	
 	this.OnClick = function (eventPoint) {
 		var eventPointTemp = new Point(eventPoint.x, eventPoint.y);
-		eventPointTemp.RotationAcrosPoint(this.fullArea.beginPoint, -this.rotate);//для востановления нужно передавать обратный угол.
+		eventPointTemp.RotationAcrosPoint(this.fullArea.beginPoint, -this.rotate);//пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
 		if (this.fullArea.IsPointInArea(eventPointTemp)) {
 			eventPointTemp.MinusFromThis(this.fullArea.beginPoint);
 
@@ -176,14 +176,14 @@ function PlayerField() {
 
 	/*this.CheckPoint = function (eventPoint) {
 		var eventPointTemp = new Point(eventPoint.x, eventPoint.y);
-		eventPointTemp.RotationAcrosPoint(this.fullArea.beginPoint, -this.rotate);//для востановления нужно передавать обратный угол.
+		eventPointTemp.RotationAcrosPoint(this.fullArea.beginPoint, -this.rotate);//пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
 		return this.fullArea.IsPointInArea(eventPointTemp);
 	}*/
 
 
 	this.OnMouseLeave = function (eventPoint) {
 		/*var eventPointTemp = new Point(eventPoint.x, eventPoint.y);
-		eventPointTemp.RotationAcrosPoint(this.fullArea.beginPoint, -this.rotate);//для востановления нужно передавать обратный угол.
+		eventPointTemp.RotationAcrosPoint(this.fullArea.beginPoint, -this.rotate);//пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
 		if (!this.fullArea.IsPointInArea(eventPointTemp)) {
 			eventPointTemp.MinusFromThis(this.fullArea.beginPoint)
 			for (var i = 0; i < this.fighterCardAreas.length; ++i) {

@@ -4,7 +4,7 @@
 		return canvasStaticName;
 	};
 
-	window.consts = {
+    window.consts = {
 		getCanvasStaticName: getCanvasStaticName
 
 	};
