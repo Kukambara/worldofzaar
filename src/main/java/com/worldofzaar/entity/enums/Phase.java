@@ -8,5 +8,5 @@ package com.worldofzaar.entity.enums;
  * To change this template use File | Settings | File Templates.
  */
 public enum Phase {
-    active, war, end
+    ACTIVE, WAR, END
 }

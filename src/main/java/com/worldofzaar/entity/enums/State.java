@@ -8,5 +8,5 @@ package com.worldofzaar.entity.enums;
  * To change this template use File | Settings | File Templates.
  */
 public enum State {
-    loading, ready, gameover
+    LOADING, READY, GAME_OVER
 }

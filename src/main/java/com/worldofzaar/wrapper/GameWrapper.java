@@ -3,6 +3,7 @@ package com.worldofzaar.wrapper;
 import com.worldofzaar.entity.ActiveCard;
 import com.worldofzaar.entity.Game;
 import com.worldofzaar.entity.Hero;
+import com.worldofzaar.entity.enums.Activity;
 import com.worldofzaar.entity.enums.Location;
 import com.worldofzaar.modelAttribute.Card;
 import com.worldofzaar.modelAttribute.Move;
@@ -58,6 +59,19 @@ public class GameWrapper {
         }
     }
 
+    private Hero getHero(Integer userId) {
+        Collection<Hero> collection = allHeroes.values();
+        for (Hero hero : collection) {
+            if (hero != null && hero.getUserId().equals(userId))
+                return hero;
+        }
+        return null;
+    }
+
+    private Hero getCurrentHero() {
+        return getHero(userInformation.getUserId());
+    }
+
     private void initiateAllHeroes() {
         if (game.getFirstHero() != null)
             allHeroes.put(game.getFirstHero().getHeroId(), game.getFirstHero());
@@ -94,6 +108,8 @@ public class GameWrapper {
         if (card.getActiveWarriorCard() == null)
             return false;
         boolean isAttacked = hero.attackHero(card.getActiveWarriorCard().getCurrentAttack());
+        if (hero.isDead())
+            hero.setDeadStep(game.getStep());
         heroService.updateHero(hero);
         return isAttacked;
     }
@@ -114,8 +130,8 @@ public class GameWrapper {
         ActiveCard myCard = allCards.get(card.getCardId());
         if (myCard == null || !myCard.getHero().getUserId().equals(userInformation.getUserId()))
             return false;
-        if (myCard.getLocation() == Location.hand) {
-            myCard.setLocation(Location.talon);
+        if (myCard.getLocation() == Location.HAND) {
+            myCard.setLocation(Location.TALON);
             ActiveCardService activeCardService = new ActiveCardService();
             activeCardService.updateCard(myCard);
 
@@ -129,4 +145,14 @@ public class GameWrapper {
         }
         return false;
     }
+
+    public boolean skipMove() {
+        Hero hero = getCurrentHero();
+        if (hero.getActivity() == Activity.ACTIVE) {
+            hero.setNegativeEffect(hero.getNegativeEffect() + 1);
+            return true;
+        }
+        return false;
+    }
+
 }

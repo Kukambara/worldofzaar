@@ -140,8 +140,6 @@ public class NormalApiController {
      * @param request
      * @param move
      */
-
-
     @RequestMapping(value = "/game/move", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     public void move(HttpServletRequest request, @ModelAttribute("move") Move move) {
@@ -168,8 +166,9 @@ public class NormalApiController {
 
     @RequestMapping(value = "/game/skip", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
-    public void skip(ModelMap model, HttpServletRequest request){
-
+    public void skip(ModelMap model, HttpServletRequest request) {
+        GameService gameService = new GameService();
+        gameService.skipMove(request);
     }
 
 
