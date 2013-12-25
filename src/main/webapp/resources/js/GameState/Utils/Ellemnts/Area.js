@@ -2,7 +2,7 @@ function Area(beginPoint, width, height) {
 	this.beginPoint = beginPoint;
 	this.width = width;
 	this.height = height;
-	this.isBorder = true;
+	this.isBorder = false;
 
 	var TO_RADIANS = Math.PI / 180;
 
@@ -121,4 +121,17 @@ function Area(beginPoint, width, height) {
 	Area.prototype.GetCenterPoint = function () {
 		return new Point(this.width / 2 + this.beginPoint.x, this.height / 2 + this.beginPoint.y);
 	}
+
+    Area.prototype.Scale = function(/*int*/ scaleValue){
+        this.width *= scaleValue;
+        this.height *= scaleValue;
+    }
+
+    Area.prototype.GetClone = function(){
+        return new Area(this.beginPoint, this.width, this.height);
+    }
+
+    Area.prototype.Rotate = function(angle){
+        this
+    }
 }

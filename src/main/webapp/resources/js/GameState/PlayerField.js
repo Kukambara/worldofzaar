@@ -16,6 +16,8 @@ function PlayerField() {
 	
 	this.rotate = 0;	//�������
 	this.context;
+    this.fieldId = 0;
+    this.scale = 0;
 
 	this.FighterAreasInit = function(x, y, width, height, count) {
 		this.fighterCardAreas = new Array(count);
@@ -28,28 +30,64 @@ function PlayerField() {
 		}
 	}
 
-	this.InitAreas = function (x, y, width, height) {
-		this.fullArea = new Area(new Point(x, y), width, height);
+	this.InitAreas = function (/*Area*/ area) {
+		this.fullArea = area.GetClone();
 	
-		var tempHeight = height * sizeOfHeightStep;
-		this.FighterAreasInit(0 + width * sizeOfOneCardEllement, 0, width * 2 * sizeOfOneCardEllement, tempHeight, fighterCount);
+		var tempHeight = this.fullArea.height * sizeOfHeightStep;
+		this.FighterAreasInit(0 + this.fullArea.width * sizeOfOneCardEllement
+            , 0
+            , this.fullArea.width * 2 * sizeOfOneCardEllement
+            , tempHeight
+            , fighterCount
+        );
 
-		this.areas["deck"] = new AreaImage(new Area(new Point(0, 0 + tempHeight), width * sizeOfOneCardEllement, tempHeight));
+		this.areas["deck"] = new AreaImage(new Area(new Point(0, 0 + tempHeight)
+            , this.fullArea.width * sizeOfOneCardEllement
+            , tempHeight)
+        );
 
-		this.areas["hp"] = new AreaText(new Area(this.areas["deck"].area.GetHorisontalPositionAfterThis(), width * sizeOfHpAreaWidth, this.areas["deck"].area.height * sizeOfHpAreaHeight));
-		this.areas["ea"] = new AreaText(new Area(this.areas["hp"].area.GetVerticalPositionAfterThis(), width * sizeOfHpAreaWidth, this.areas["deck"].area.height * sizeOfHpAreaHeight));
+		this.areas["hp"] = new AreaText(new Area(this.areas["deck"].area.GetHorisontalPositionAfterThis()
+            , this.fullArea.width * sizeOfHpAreaWidth
+            , this.areas["deck"].area.height * sizeOfHpAreaHeight)
+        );
 
-		this.areas["supportCard"] = new AreaImage(new Area(this.areas["hp"].area.GetHorisontalPositionAfterThis(), width * sizeOfOneCardEllement, this.areas["deck"].area.height));
+		this.areas["ea"] = new AreaText(new Area(this.areas["hp"].area.GetVerticalPositionAfterThis()
+            , this.fullArea.width * sizeOfHpAreaWidth
+            , this.areas["deck"].area.height * sizeOfHpAreaHeight)
+        );
+
+		this.areas["supportCard"] = new AreaImage(new Area(this.areas["hp"].area.GetHorisontalPositionAfterThis()
+            , this.fullArea.width * sizeOfOneCardEllement
+            , this.areas["deck"].area.height)
+        );
 
 
-		this.areas["ts"] = new AreaText(new Area(this.areas["supportCard"].area.GetHorisontalPositionAfterThis(), width * sizeOfHpAreaWidth, this.areas["deck"].area.height * sizeOfTsAreaHeight));
-		this.areas["ob"] = new AreaText(new Area(this.areas["ts"].area.GetVerticalPositionAfterThis(), width * sizeOfHpAreaWidth, this.areas["deck"].area.height * sizeOfTsAreaHeight));
-		this.areas["nv"] = new AreaText(new Area(this.areas["ob"].area.GetVerticalPositionAfterThis(), width * sizeOfHpAreaWidth, this.areas["deck"].area.height * sizeOfTsAreaHeight));
+		this.areas["mp"] = new AreaText(new Area(this.areas["supportCard"].area.GetHorisontalPositionAfterThis()
+            , this.fullArea.width * sizeOfHpAreaWidth
+            , this.areas["deck"].area.height * sizeOfTsAreaHeight)
+        );
+		this.areas["ap"] = new AreaText(new Area(this.areas["mp"].area.GetVerticalPositionAfterThis()
+            , this.fullArea.width * sizeOfHpAreaWidth
+            , this.areas["deck"].area.height * sizeOfTsAreaHeight)
+        );
+		this.areas["nv"] = new AreaText(new Area(this.areas["ap"].area.GetVerticalPositionAfterThis()
+            , this.fullArea.width * sizeOfHpAreaWidth
+            , this.areas["deck"].area.height * sizeOfTsAreaHeight)
+        );
 
-		this.areas["talon"] = new AreaImage(new Area(this.areas["ts"].area.GetHorisontalPositionAfterThis(), width * sizeOfOneCardEllement, this.areas["deck"].area.height));
+		this.areas["talon"] = new AreaImage(new Area(this.areas["mp"].area.GetHorisontalPositionAfterThis()
+            , this.fullArea.width * sizeOfOneCardEllement, this.areas["deck"].area.height)
+        );
 
 		this.areas["talon"]._OnClick = this.OnTalonClick;
 	}
+
+    this.InitAreasForCards = function(/*Area*/ areaReal){
+        this.scale =  Card().CalculateScale(areaReal);
+        var scaledArea = areaReal.GetClone();
+        scaledArea.Scale(this.scale);
+        this.InitAreas(scaledArea);
+    }
 
 	this.InitClick = function () {
 		/*for (var i = 0; i < this.fighterCardAreas.length; ++i) {
@@ -79,11 +117,24 @@ function PlayerField() {
 	this.InitTexts = function () {
 		this.areas["hp"].text = "HP";
 		this.areas["ea"].text = "E";
-		this.areas["ts"].text = "TS";
-		this.areas["ob"].text = "OB";
+		this.areas["mp"].text = "MP";
+		this.areas["ap"].text = "AP";
 		this.areas["nv"].text = "NV";
 
 	}
+
+    this.SetStats = function(hp, ea, mp, ap, nv){
+        SetStatByName("hp", hp);
+        SetStatByName("ea", ea);
+        SetStatByName("mp", mp);
+        SetStatByName("ap", ap);
+        SetStatByName("nv", nv);
+    }
+
+    this.SetStatByName = function(/*string*/ name, value){
+        this.areas[name].ResetText(value);
+    }
+
 
 	this.SetSourceFighterCardAreas = function () {
 		for (var i = 0; i < this.fighterCardAreas.length; ++i) {
@@ -146,14 +197,20 @@ function PlayerField() {
 		if (this.fullArea.IsPointInArea(eventPointTemp)) {
 			eventPointTemp.MinusFromThis(this.fullArea.beginPoint);
 
-			for (var i = 0; i < this.fighterCardAreas.length; ++i) {
+			for (var i in this.fighterCardAreas) {
 				this.fighterCardAreas[i].onClick(eventPointTemp);
+                if(this.fighterCardAreas[i].CheckPoint(eventPointTemp))   {
+                    eventManager.triggerEvent("onFieldClick", [this.fieldId, i]);
+                }
 			}
 
 			for (var areaName in this.areas) {
 				if (this.areas[areaName].onClick) {
 					this.areas[areaName].onClick(eventPointTemp);
 				}
+                if(this.areas[areaName].area.IsPointInArea(eventPointTemp))   {
+                    eventManager.triggerEvent("onFieldClick", [this.fieldId, areaName]);
+                }
 			}
 
 		}
@@ -201,9 +258,12 @@ function PlayerField() {
 	}
 
 	this.OnTalonClick = function () {
-		alert("talon");
-		alert(this);
+	//	alert("talon");
 	}
+
+    this.OnPlayerField = function(){
+        eventManager.triggerEvent("onFieldClick", this.fieldId, "talon");
+    }
 
 	this.OnSuppClick = function () {
 		alert("supp");
