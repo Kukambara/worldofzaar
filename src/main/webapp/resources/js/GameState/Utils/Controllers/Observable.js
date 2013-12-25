@@ -29,3 +29,5 @@ function Observable() {
 		}
 	}
 };
+
+window.eventManager = new Observable();
