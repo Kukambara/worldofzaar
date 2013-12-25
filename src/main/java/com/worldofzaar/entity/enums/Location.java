@@ -8,5 +8,5 @@ package com.worldofzaar.entity.enums;
  * To change this template use File | Settings | File Templates.
  */
 public enum Location {
-    deck, talon, hand, table
+    DECK, TALON, HAND, TABLE
 }

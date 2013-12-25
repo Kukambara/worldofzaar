@@ -21,7 +21,33 @@
     <div class="container">
     <h3>World Of zaar</h3>
 
-    <div class="container-fluid">
+        <c:if test="${param.errorMessage != null}">
+            <div class="alert alert-error">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <strong>Error!</strong> ${param.errorMessage}
+            </div>
+        </c:if>
+        <c:if test="${param.infoMessage != null}">
+            <div class="alert alert-info">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <strong>Information!</strong> ${param.infoMessage}
+            </div>
+        </c:if>
+        <c:if test="${errorMessage != null}">
+            <div class="alert alert-error">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <strong>Error!</strong> ${errorMessage}
+            </div>
+        </c:if>
+        <c:if test="${infoMessage != null}">
+            <div class="alert alert-info">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <strong>Information!</strong> ${infoMessage}
+            </div>
+        </c:if>
+
+
+        <div class="container-fluid">
         <div class="row-fluid">
             <div class="span7">
                 <div class="mycontent-left">
@@ -47,7 +73,7 @@
                         <fieldset>
                             <input name="email" type="text"
                                    placeholder="Email">     <br>
-                            <input name="password" type="password"
+                            <input name="pass" type="password"
                                    placeholder="Password"><br>
                             <button type="submit" id="btnLogin" class="btn">Sign up</button>
                         </fieldset>

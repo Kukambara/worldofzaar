@@ -25,7 +25,7 @@ public class CardInDeckDao extends GenericDaoMain<CardInDeck> {
     public List<CertainTable> list() {
         try {
             Session session = HibernateUtilMain.getSessionFactory().openSession();
-            List requests = (List) session.createQuery("from CardInDeck").list();
+            List requests = session.createQuery("from CardInDeck").list();
             session.close();
             return requests;
         } catch (Exception e) {

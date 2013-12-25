@@ -2,6 +2,7 @@ package com.worldofzaar.service;
 
 import com.worldofzaar.dao.GameDao;
 import com.worldofzaar.entity.*;
+import com.worldofzaar.entity.enums.Activity;
 import com.worldofzaar.entity.enums.Phase;
 import com.worldofzaar.entity.enums.State;
 import com.worldofzaar.modelAttribute.CardPosition;
@@ -36,11 +37,11 @@ public class GameService {
     }
 
     private Hero createHero(HashMap<Integer, CertainTable> tableMap, int index, int randomUser) {
-        boolean isActive = false;
+        Activity activity = Activity.UNACTIVE;
         if (randomUser == index)
-            isActive = true;
+            activity = Activity.ACTIVE;
         HeroService heroService = new HeroService();
-        return heroService.createHero(tableMap.get(index).getUser(), isActive);
+        return heroService.createHero(tableMap.get(index).getUser(), activity);
     }
 
     public void createNewGame(List<CertainTable> tables) {
@@ -48,8 +49,8 @@ public class GameService {
             return;
         Game game = new Game();
         game.setBank(tables.get(0).getTableCost());
-        game.setState(State.loading);
-        game.setPhase(Phase.active);
+        game.setState(State.LOADING);
+        game.setPhase(Phase.ACTIVE);
         game.setBank(tables.get(0).getTableCost() * tables.size());
 
         Random random = new Random();
@@ -77,7 +78,7 @@ public class GameService {
         game.setChat(getChat());
         game.setLog(getLog());
         game.setReady(false);
-
+        game.setFirstCircleHeroIndex(randomUser);
         GameDao gameDao = new GameDao();
         gameDao.add(game);
     }
@@ -118,13 +119,13 @@ public class GameService {
             return;
         boolean isReady = true;
         if (game.getFirstHero() != null)
-            isReady &= game.getFirstHero().getReady();
+            isReady &= (game.getFirstHero().getActivity() == Activity.READY);
         if (game.getSecondHero() != null)
-            isReady &= game.getSecondHero().getReady();
+            isReady &= (game.getSecondHero().getActivity() == Activity.READY);
         if (game.getThirdHero() != null)
-            isReady &= game.getThirdHero().getReady();
+            isReady &= (game.getThirdHero().getActivity() == Activity.READY);
         if (game.getFourthHero() != null)
-            isReady &= game.getFourthHero().getReady();
+            isReady &= (game.getFourthHero().getActivity() == Activity.READY);
 
         if (isReady) {
             GameDao gameDao = new GameDao();
@@ -140,18 +141,18 @@ public class GameService {
         Hero nextActiveHero = null;
         Hero activeHero = null;
         if (game != null) {
-            activeHero = getActiveHero(game.getFirstHero(), game.getSecondHero(), game.getThirdHero(), game.getFourthHero());
-            nextActiveHero = getNextActiveHero(game.getFirstHero(), game.getSecondHero(), game.getThirdHero(), game.getFourthHero());
+            activeHero = getActiveHero(game.getAllHeroes());
+            nextActiveHero = getNextActiveHero(game.getAllHeroes());
         }
         HeroService heroService = new HeroService();
-        heroService.setUnActiveHero(activeHero);
-        heroService.setActiveHero(nextActiveHero);
+        heroService.updateHero(activeHero);
+        heroService.updateHero(nextActiveHero);
     }
 
     private Hero getNextActiveHero(Hero... heroes) {
         for (int i = 0; i < heroes.length; i++) {
             if (heroes[i] != null) {
-                if (heroes[i].getActive()) {
+                if (heroes[i].getActivity() == Activity.ACTIVE) {
                     return getNextHero(i, heroes);
                 }
             }
@@ -162,7 +163,7 @@ public class GameService {
     private Hero getActiveHero(Hero... heroes) {
         for (int i = 0; i < heroes.length; i++) {
             if (heroes[i] != null) {
-                if (heroes[i].getActive()) {
+                if (heroes[i].getActivity() == Activity.ACTIVE) {
                     return heroes[i];
                 }
             }
@@ -190,6 +191,7 @@ public class GameService {
     public void putCard(HttpServletRequest request, CardPosition cardPosition) {
         HeroCardService heroCardService = new HeroCardService();
         heroCardService.putCard(cardPosition, request);
+        endMove(request);
     }
 
     public boolean move(HttpServletRequest request, Move move) {
@@ -206,8 +208,22 @@ public class GameService {
         Game game = getGame(request);
         UserInformation userInformation = new UserInformation(request);
         GameWrapper gameWrapper = new GameWrapper(game, userInformation);
-        return gameWrapper.throwOff(card);
+        if (gameWrapper.throwOff(card)) {
+            endMove(request);
+            return true;
+        }
+        return false;
+    }
 
+    public boolean skipMove(HttpServletRequest request) {
+        Game game = getGame(request);
+        UserInformation userInformation = new UserInformation(request);
+        GameWrapper gameWrapper = new GameWrapper(game, userInformation);
+        if (gameWrapper.skipMove()) {
+            endMove(request);
+            return true;
+        }
+        return false;
     }
 
 

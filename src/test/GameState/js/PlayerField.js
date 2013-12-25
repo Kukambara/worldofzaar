@@ -7,25 +7,13 @@ function PlayerField() {
 	var sizeOfTsAreaHeight = 1 / 3;
 
 	var fighterCount = 3;
-	var card = new CardFighter();
-	/*var cardSmall = new CardFighter();
-	var cardSmall2 = new CardFighter();*/
-	/*this.mainArea;
-	this.fighterArea;*/
-
-	this.fullArea;
-	this.deckArea = new AreaImage();
-	this.talonArea;
-	this.supportCardArea;
-
-	this.HPArea;
-	this.TSArea;
-	this.OBArea;
-	this.NVArea;
-	this.EArea;
-
 	this.fighterCardAreas = new Array();
 
+	this.fullArea;
+
+	this.areas = []
+	this.cards = [];
+	
 	this.rotate = 0;	//градусы
 	this.context;
 
@@ -46,31 +34,25 @@ function PlayerField() {
 		var tempHeight = height * sizeOfHeightStep;
 		this.FighterAreasInit(0 + width * sizeOfOneCardEllement, 0, width * 2 * sizeOfOneCardEllement, tempHeight, fighterCount);
 
-		this.deckArea.Init(new Area(new Point(0, 0 + tempHeight), width * sizeOfOneCardEllement, tempHeight));
+		this.areas["deck"] = new AreaImage(new Area(new Point(0, 0 + tempHeight), width * sizeOfOneCardEllement, tempHeight));
 
-		this.HPArea = new AreaText(new Area(this.deckArea.area.GetHorisontalPositionAfterThis(), width * sizeOfHpAreaWidth, this.deckArea.area.height * sizeOfHpAreaHeight));
-		this.EArea = new AreaText(new Area(this.HPArea.area.GetVerticalPositionAfterThis(), width * sizeOfHpAreaWidth, this.deckArea.area.height * sizeOfHpAreaHeight));
+		this.areas["hp"] = new AreaText(new Area(this.areas["deck"].area.GetHorisontalPositionAfterThis(), width * sizeOfHpAreaWidth, this.areas["deck"].area.height * sizeOfHpAreaHeight));
+		this.areas["ea"] = new AreaText(new Area(this.areas["hp"].area.GetVerticalPositionAfterThis(), width * sizeOfHpAreaWidth, this.areas["deck"].area.height * sizeOfHpAreaHeight));
 
-		this.supportCardArea = new AreaImage(new Area(this.HPArea.area.GetHorisontalPositionAfterThis(), width * sizeOfOneCardEllement, this.deckArea.area.height));
+		this.areas["supportCard"] = new AreaImage(new Area(this.areas["hp"].area.GetHorisontalPositionAfterThis(), width * sizeOfOneCardEllement, this.areas["deck"].area.height));
 
 
-		this.TSArea = new AreaText(new Area(this.supportCardArea.area.GetHorisontalPositionAfterThis(), width * sizeOfHpAreaWidth, this.deckArea.area.height * sizeOfTsAreaHeight));
-		this.OBArea = new AreaText(new Area(this.TSArea.area.GetVerticalPositionAfterThis(), width * sizeOfHpAreaWidth, this.deckArea.area.height * sizeOfTsAreaHeight));
-		this.NVArea = new AreaText(new Area(this.OBArea.area.GetVerticalPositionAfterThis(), width * sizeOfHpAreaWidth, this.deckArea.area.height * sizeOfTsAreaHeight));
+		this.areas["ts"] = new AreaText(new Area(this.areas["supportCard"].area.GetHorisontalPositionAfterThis(), width * sizeOfHpAreaWidth, this.areas["deck"].area.height * sizeOfTsAreaHeight));
+		this.areas["ob"] = new AreaText(new Area(this.areas["ts"].area.GetVerticalPositionAfterThis(), width * sizeOfHpAreaWidth, this.areas["deck"].area.height * sizeOfTsAreaHeight));
+		this.areas["nv"] = new AreaText(new Area(this.areas["ob"].area.GetVerticalPositionAfterThis(), width * sizeOfHpAreaWidth, this.areas["deck"].area.height * sizeOfTsAreaHeight));
 
-		this.talonArea = new AreaImage(new Area(this.TSArea.area.GetHorisontalPositionAfterThis(), width * sizeOfOneCardEllement, this.deckArea.area.height));
+		this.areas["talon"] = new AreaImage(new Area(this.areas["ts"].area.GetHorisontalPositionAfterThis(), width * sizeOfOneCardEllement, this.areas["deck"].area.height));
 
-		card.Init(this.fighterCardAreas[0].area);
-		//card.InitColorsForText();
-		/*cardSmall.Init(this.fighterCardAreas[1].area);
-		cardSmall.InitColorsForText();
-		cardSmall2.Init(this.fighterCardAreas[2].area);
-		cardSmall2.InitSmall2();*/
-		//this.InitClick();
+		this.areas["talon"]._OnClick = this.OnTalonClick;
 	}
 
 	this.InitClick = function () {
-	/*	for (var i = 0; i < this.fighterCardAreas.length; ++i) {
+		/*for (var i = 0; i < this.fighterCardAreas.length; ++i) {
 			this.fighterCardAreas[i].addListener(this.fighterCardAreas[i], "onClick", "DrawBigImage");
 		}
 
@@ -78,77 +60,65 @@ function PlayerField() {
 		this.talonArea.addListener(this.talonArea, "onClick", "DrawBigImage");
 		this.supportCardArea.addListener(this.supportCardArea, "onClick", "DrawBigImage");*/
 
+		this.areas["talon"]._OnClick = this.OnTalonClick();
+
 	}
 
 	this.SetContext = function (context) {
 		this.context = context;
-		this.deckArea.context = context;
 
-		this.HPArea.context = context;
-		this.EArea.context = context;
-
-		this.supportCardArea.context = context;
-
-		this.TSArea.context = context;
-		this.OBArea.context = context;
-		this.NVArea.context = context;
-
-		this.talonArea.context = context;
-
-		for (var i = 0; i < this.fighterCardAreas.length; ++i) {			
+		for (var i = 0; i < this.fighterCardAreas.length; ++i) {
 			this.fighterCardAreas[i].context = context;
 		}
 
-		card.SetContext(context);
-	/*	cardSmall.SetContext(context);
-		cardSmall2.SetContext(context);*/
+		for (var areaName in this.areas) {
+			this.areas[areaName].context = context;
+		}
 	}
 
 	this.InitTexts = function () {
-		this.HPArea.text = "HP";
-		this.EArea.text = "E";
-		this.TSArea.text = "TS";
-		this.OBArea.text = "OB";
-		this.NVArea.text = "NV";
+		this.areas["hp"].text = "HP";
+		this.areas["ea"].text = "E";
+		this.areas["ts"].text = "TS";
+		this.areas["ob"].text = "OB";
+		this.areas["nv"].text = "NV";
 
 	}
 
 	this.SetSourceFighterCardAreas = function () {
-		//resources.loadByUrl("Picture/Symbols/fighterCard.png");
 		for (var i = 0; i < this.fighterCardAreas.length; ++i) {
-			//this.fighterCardAreas[i].SetImage(resources.get("Picture/Symbols/fighterCard.png"));
 			this.fighterCardAreas[i].SetSource("Picture/Symbols/fighterCard.png");
 		}
 	}
 
 	this.SetSourceHightElf = function () {
 		this.SetSourceFighterCardAreas();
-		this.deckArea.SetSource("Picture/Symbols/HightElf/deck.png");
-		this.talonArea.SetSource("Picture/Symbols/HightElf/talon.png");
-		this.supportCardArea.SetSource("Picture/Symbols/HightElf/supportCard.png");
+		this.areas["deck"].SetSource("Picture/Symbols/HightElf/deck.png");
+		this.areas["talon"].SetSource("Picture/Symbols/HightElf/talon.png");
+		this.areas["supportCard"].SetSource("Picture/Symbols/HightElf/supportCard.png");
 	}
 
 	this.SetSourceDarkElf = function () {
 		this.SetSourceFighterCardAreas();
-		this.deckArea.SetSource("Picture/Symbols/DarkElf/deck.png");
-		this.talonArea.SetSource("Picture/Symbols/DarkElf/talon.png");
-		this.supportCardArea.SetSource("Picture/Symbols/DarkElf/supportCard.png");
+		this.areas["deck"].SetSource("Picture/Symbols/DarkElf/deck.png");
+		this.areas["talon"].SetSource("Picture/Symbols/DarkElf/talon.png");
+		this.areas["supportCard"].SetSource("Picture/Symbols/DarkElf/supportCard.png");
 		
 	}
 
 	this.SetSourceBalikuru = function () {
 		this.SetSourceFighterCardAreas();
-		this.deckArea.SetSource("Picture/Symbols/Balikuru/deck.png");
-		this.talonArea.SetSource("Picture/Symbols/Balikuru/talon.png");
-		this.supportCardArea.SetSource("Picture/Symbols/Balikuru/supportCard.png");
+		this.areas["deck"].SetSource("Picture/Symbols/Balikuru/deck.png");
+		this.areas["talon"].SetSource("Picture/Symbols/Balikuru/talon.png");
+		this.areas["supportCard"].SetSource("Picture/Symbols/Balikuru/supportCard.png");
 		
 	}
 
 	this.SetSourceVeld = function () {
 		this.SetSourceFighterCardAreas();
-		this.deckArea.SetSource("Picture/Symbols/Veld/deck.png");
-		this.talonArea.SetSource("Picture/Symbols/Veld/talon.png");
-		this.supportCardArea.SetSource("Picture/Symbols/Veld/supportCard.png");
+		this.areas["deck"].SetSource("Picture/Symbols/Veld/deck.png");
+		this.areas["talon"].SetSource("Picture/Symbols/Veld/talon.png");
+		this.areas["supportCard"].SetSource("Picture/Symbols/Veld/supportCard.png");
 		
 	}
 
@@ -160,26 +130,12 @@ function PlayerField() {
 
 	this.Draw = function () {
 		this.fullArea.DrawRotateBegin(this.context, this.rotate);
-
-	//	this.deckArea.area.DrawImage(this.deckArea.context, this.deckArea.image);
-
+		
 		//this.fullArea.Draw();
-
 		this.FighterCardAreasDraw();
-		this.deckArea.Draw();
-		this.talonArea.Draw();
-		this.supportCardArea.Draw();
-
-		this.HPArea.Draw();
-		this.TSArea.Draw();
-		this.OBArea.Draw();
-		this.NVArea.Draw();
-		this.EArea.Draw();
-				
-		card.Draw();
-		card.DrawEnd();
-	/*	cardSmall.DrawSmall();
-		cardSmall2.DrawSmall();*/
+		for (var areaName in this.areas) {
+			this.areas[areaName].Draw();
+		}
 
 		this.fullArea.DrawRotateEnd(this.context);
 	}
@@ -188,26 +144,34 @@ function PlayerField() {
 		var eventPointTemp = new Point(eventPoint.x, eventPoint.y);
 		eventPointTemp.RotationAcrosPoint(this.fullArea.beginPoint, -this.rotate);//для востановления нужно передавать обратный угол.
 		if (this.fullArea.IsPointInArea(eventPointTemp)) {
+			eventPointTemp.MinusFromThis(this.fullArea.beginPoint);
 
-			/*eventPointTemp.MinusFromThis(this.fullArea.beginPoint)
-			for (var i = 0; i < this.fighterCardAreas.length; ++i) {
-				this.fighterCardAreas[i].OnClick(eventPointTemp);
-			}
-
-			this.deckArea.OnClick(eventPointTemp);
-			this.talonArea.OnClick(eventPointTemp);
-			this.supportCardArea.OnClick(eventPointTemp);*/
-
-			eventPointTemp.MinusFromThis(this.fullArea.beginPoint)
 			for (var i = 0; i < this.fighterCardAreas.length; ++i) {
 				this.fighterCardAreas[i].onClick(eventPointTemp);
 			}
 
-			this.deckArea.onClick(eventPointTemp);
-			this.talonArea.onClick(eventPointTemp);
-			this.supportCardArea.onClick(eventPointTemp);
+			for (var areaName in this.areas) {
+				if (this.areas[areaName].onClick) {
+					this.areas[areaName].onClick(eventPointTemp);
+				}
+			}
 
 		}
+	}
+
+	this.Clear = function () {
+		this.fullArea.DrawRotateBegin(this.context, this.rotate);
+
+		for (var i = 0; i < this.fighterCardAreas.length; ++i) {
+			this.fighterCardAreas[i].Clear();
+		}
+
+		for (var areaName in this.areas) {
+			this.areas[areaName].Clear();
+		}
+
+		this.fullArea.DrawRotateEnd(this.context);
+
 	}
 
 	/*this.CheckPoint = function (eventPoint) {
@@ -230,5 +194,18 @@ function PlayerField() {
 			this.talonArea.OnMouseLeave(eventPointTemp);
 			this.supportCardArea.OnMouseLeave(eventPointTemp);
 		}*/
+	}
+
+	this.OnDeckClick = function () {
+		alert("deck");
+	}
+
+	this.OnTalonClick = function () {
+		alert("talon");
+		alert(this);
+	}
+
+	this.OnSuppClick = function () {
+		alert("supp");
 	}
 }

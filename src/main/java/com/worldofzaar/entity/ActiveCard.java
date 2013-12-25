@@ -105,7 +105,7 @@ public class ActiveCard {
         boolean isAttack = getActiveWarriorCard().attackCard(card.getActiveWarriorCard());
         //Throw card off into talon if card has died and update this active card.
         if (getActiveWarriorCard().getCurrentHealth() <= 0) {
-            location = Location.talon;
+            location = Location.TALON;
             ActiveCardService activeCardService = new ActiveCardService();
             activeCardService.updateCard(this);
         }
@@ -121,5 +121,23 @@ public class ActiveCard {
             energy = supportCard.getCardEnergy();
 
         return (energy + (2 + 1)) / 2;
+    }
+
+    public boolean isSupport() {
+        if (activeWarriorCard == null && supportCard != null)
+            return true;
+        return false;
+    }
+
+    public boolean isWarrior() {
+        if (activeWarriorCard != null && supportCard == null)
+            return true;
+        return false;
+    }
+
+    public Integer getEnergy() {
+        if (supportCard != null)
+            return supportCard.getCardEnergy();
+        return activeWarriorCard.getWarriorCard().getCardEnergy();
     }
 }

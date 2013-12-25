@@ -12,13 +12,13 @@ public class AdminInterceptor extends HandlerInterceptorAdapter {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
-        if (request.getSession().getAttribute(WOZConsts.IS_ADMIN) == null || (Boolean) request.getSession().getAttribute(WOZConsts.IS_ADMIN) != true) {
-            if (loginByCookies(request, response)) {
+        if (request.getSession().getAttribute(WOZConsts.IS_ADMIN) == null) {
+            if (loginByCookies(request, response) && (Boolean) request.getSession().getAttribute(WOZConsts.IS_ADMIN)) {
                 response.sendRedirect("/admin");
             } else {
                 response.sendRedirect("/adminSignIn");
+                return false;
             }
-            return false;
         }
         return true;
     }

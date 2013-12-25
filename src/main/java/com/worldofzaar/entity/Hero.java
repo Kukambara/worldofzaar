@@ -1,8 +1,11 @@
 package com.worldofzaar.entity;
 
+import com.worldofzaar.entity.enums.Activity;
 import com.worldofzaar.service.UserService;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.util.Date;
 
 /**
  * Created with IntelliJ IDEA.
@@ -36,10 +39,14 @@ public class Hero {
     private Integer mysteryPower;
     @Column(name = "\"negativeEffect\"")
     private Integer negativeEffect;
-    @Column(name = "\"isActive\"")
-    private Boolean isActive;
-    @Column(name = "\"isReady\"")
-    private Boolean isReady;
+    @Column(name = "\"heroActivity\"")
+    @Type(type = "com.worldofzaar.entity.enums.PGEnumUserType",
+            parameters = @org.hibernate.annotations.Parameter(name = "enumClassName", value = "com.worldofzaar.entity.enums.Activity"))
+    private Activity activity;
+    @Column(name = "\"startTime\"")
+    private Date startTime;
+    @Column(name = "\"deadStep\"")
+    private Integer deadStep;
 
     public Integer getUserId() {
         return userId;
@@ -119,20 +126,28 @@ public class Hero {
         this.negativeEffect = negativeEffect;
     }
 
-    public Boolean getActive() {
-        return isActive;
+    public Activity getActivity() {
+        return activity;
     }
 
-    public void setActive(Boolean active) {
-        isActive = active;
+    public void setActivity(Activity activity) {
+        this.activity = activity;
     }
 
-    public Boolean getReady() {
-        return isReady;
+    public Date getStartTime() {
+        return startTime;
     }
 
-    public void setReady(Boolean ready) {
-        isReady = ready;
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+
+    public Integer getDeadStep() {
+        return deadStep;
+    }
+
+    public void setDeadStep(Integer deadStep) {
+        this.deadStep = deadStep;
     }
 
     public boolean attackHero(int attack) {
@@ -144,5 +159,9 @@ public class Hero {
         health = health - damage;
 
         return true;
+    }
+
+    public boolean isDead() {
+        return (health <= 0) ? true : false;
     }
 }
