@@ -45,10 +45,10 @@ public class CardInDeckDao extends GenericDaoMain<CardInDeck> {
             List list = query.list();
             if (list == null)
                 return 0;
-            int count = (Integer) list.get(0);
+            long count = (Long) list.get(0);
             tx.commit();
             session.close();
-            return count;
+            return (int)count;
         } catch (Exception e) {
             System.out.println("getActiveDeckCardCount(userInformation) Error = " + e.getCause());
         }

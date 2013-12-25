@@ -21,6 +21,7 @@
           <unit-entry name="hibernateActiveGame.cfg.xml" value="e549c1aa-565a-4858-a059-ad96ea7794d5" />
           <unit-entry name="hibernateMain.cfg.xml" value="cd424eff-f715-4464-ac2b-9fad86301374" />
         </datasource-map>
+        <naming-strategy-map />
         <deploymentDescriptor name="hibernate.cfg.xml" url="file://$MODULE_DIR$/src/main/resources/hibernateActiveGame.cfg.xml" />
         <deploymentDescriptor name="hibernate.cfg.xml" url="file://$MODULE_DIR$/src/main/resources/hibernateMain.cfg.xml" />
       </configuration>
