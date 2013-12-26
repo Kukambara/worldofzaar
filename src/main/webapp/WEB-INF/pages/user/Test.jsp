@@ -28,8 +28,7 @@
 <script type="text/javascript" src="/resources/js/ContentWrapper.js"></script>
 <script type="text/javascript" src="/resources/js/NavigationBar.js"></script>
 <script type="text/javascript" src="/resources/js/jquery-2.0.3.js"></script>
-<body onload="ContentWrapper(0)" style="background-color:black;">
-
+<body onload="ContentWrapper(0)" style="background-color:black; margin: 0px 0px 0px 0px">
     <div id = "placeholder_0">
     <canvas id="canvasLevel_0"  style="position:absolute;" onmousedown="return false;" width="900" height="900" >
     </canvas>
@@ -46,5 +45,4 @@
         <canvas id="canvasLevel_event" style="position:absolute;"  width="900" height="900" >
         </canvas>
     </div>
-
 </body>

@@ -1,7 +1,9 @@
 package com.worldofzaar.service;
 
 import com.worldofzaar.dao.WebUserDao;
+import com.worldofzaar.entity.VkUser;
 import com.worldofzaar.entity.WebUser;
+import com.worldofzaar.modelAttribute.VKInitialization;
 import com.worldofzaar.util.EmailSender;
 import com.worldofzaar.util.HashConverter;
 import com.worldofzaar.util.PasswordGenerator;
@@ -50,47 +52,65 @@ public class AuthorizationService {
             if (!webUser.getApproved())
                 return false;
              */
-
             //Write user data to Cookie
             Cookie cookieEmail = new Cookie(WOZConsts.USER_EMAIL, webUser.getWebUserEmail());
             cookieEmail.setMaxAge(cookieAge);
             Cookie cookiePass = new Cookie(WOZConsts.USER_PASSWORD, webUser.getWebUserPass());
             cookiePass.setMaxAge(cookieAge);
-            Cookie cookieWebUserId = new Cookie(WOZConsts.WEBUSER_ID, String.valueOf(webUser.getWebUserId()));
+            Cookie cookieWebUserId = new Cookie(WOZConsts.WEB_USER_ID, String.valueOf(webUser.getWebUserId()));
             cookiePass.setMaxAge(cookieAge);
             response.addCookie(cookieEmail);
             response.addCookie(cookiePass);
             response.addCookie(cookieWebUserId);
-
-
             //Write user data to Session
             boolean isAdmin = new AdminService().isAdmin(webUser);
             request.getSession().setAttribute(WOZConsts.USER_EMAIL, webUser.getWebUserEmail());
             request.getSession().setAttribute(WOZConsts.IS_ADMIN, isAdmin);
-            request.getSession().setAttribute(WOZConsts.WEBUSER_ID, webUser.getWebUserId());
-
+            request.getSession().setAttribute(WOZConsts.WEB_USER_ID, webUser.getWebUserId());
+            request.getSession().setAttribute(WOZConsts.WEB_USER, true);
             //Write user id in session and cookie if it's exist.
             if (webUser.getUser() != null) {
                 request.getSession().setAttribute(WOZConsts.USER_ID, webUser.getUser().getUserId());
-
                 //Cookie for userId
                 Cookie cookieUserId = new Cookie(WOZConsts.USER_ID, String.valueOf(webUser.getUser().getUserId()));
                 cookieUserId.setMaxAge(cookieAge);
                 response.addCookie(cookieUserId);
             }
-
-
             return true;
         }
         return false;
+    }
 
+    public boolean login(VKInitialization vk, HttpServletResponse response, HttpServletRequest request) {
+        if (vk != null && vk.valid()) {
+            VkUserService vkUserService = new VkUserService();
+            VkUser vkUser = vkUserService.getOrCreate(vk);
+            //Write user data to Cookie
+            Cookie cookieWebUserId = new Cookie(WOZConsts.VK_USER_ID, String.valueOf(vk.getViewer_id()));
+            response.addCookie(cookieWebUserId);
+            //Write user data to Session
+            request.getSession().setAttribute(WOZConsts.VK_USER_ID, vk.getViewer_id());
+            request.getSession().setAttribute(WOZConsts.VK_USER, true);
+            //Write user id in session and cookie if it's exist.
+            if (vkUser != null && vkUser.getUser() != null) {
+                request.getSession().setAttribute(WOZConsts.USER_ID, vkUser.getUser().getUserId());
+                //Cookie for userId
+                Cookie cookieUserId = new Cookie(WOZConsts.USER_ID, String.valueOf(vkUser.getUser().getUserId()));
+                cookieUserId.setMaxAge(cookieAge);
+                response.addCookie(cookieUserId);
+            }
+            return true;
+        }
+        return false;
     }
 
     public void logout(HttpServletRequest request, HttpServletResponse response) {
         request.getSession().removeAttribute(WOZConsts.USER_ID);
         request.getSession().removeAttribute(WOZConsts.USER_EMAIL);
         request.getSession().removeAttribute(WOZConsts.IS_ADMIN);
-        request.getSession().removeAttribute(WOZConsts.WEBUSER_ID);
+        request.getSession().removeAttribute(WOZConsts.WEB_USER_ID);
+        request.getSession().removeAttribute(WOZConsts.WEB_USER);
+        request.getSession().removeAttribute(WOZConsts.VK_USER);
 
         //Subset cookie time for 0. And Write new cookie with the same names.
         Cookie cookieEmail = new Cookie(WOZConsts.USER_EMAIL, null);
@@ -99,7 +119,7 @@ public class AuthorizationService {
         cookiePass.setMaxAge(0);
         Cookie cookieUserId = new Cookie(WOZConsts.USER_ID, null);
         cookieUserId.setMaxAge(0);
-        Cookie cookieWebUserId = new Cookie(WOZConsts.WEBUSER_ID, null);
+        Cookie cookieWebUserId = new Cookie(WOZConsts.WEB_USER_ID, null);
         cookieUserId.setMaxAge(0);
 
         response.addCookie(cookieEmail);

@@ -1,9 +1,11 @@
 package com.worldofzaar.controller;
 
+import com.worldofzaar.modelAttribute.VKInitialization;
 import com.worldofzaar.service.AuthorizationService;
 import com.worldofzaar.util.WOZConsts;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,16 +16,27 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 @RequestMapping("/")
 public class MainController {
+
+
+    @ModelAttribute("")
+    public VKInitialization getApiTable() {
+        return new VKInitialization();
+    }
+
     @RequestMapping(method = RequestMethod.GET)
-    public String printWelcome(ModelMap model, HttpServletRequest request) {
+    public String printWelcome(ModelMap model, HttpServletResponse response, HttpServletRequest request, @ModelAttribute("") VKInitialization vk) {
         System.out.println("FROM MAIN");
-        if (request.getSession().getAttribute(WOZConsts.WEBUSER_ID) == null)
+        if (vk.valid()) {
+            AuthorizationService authorizationService = new AuthorizationService();
+            authorizationService.login(vk, response, request);
+        }
+        if (request.getSession().getAttribute(WOZConsts.WEB_USER) == null && request.getSession().getAttribute(WOZConsts.VK_USER) == null)
             return "hello";
-        if (request.getSession().getAttribute(WOZConsts.USER_ID) == null)
+        if (request.getSession().getAttribute(WOZConsts.USER_ID) == null &&
+                (request.getSession().getAttribute(WOZConsts.WEB_USER) != null || request.getSession().getAttribute(WOZConsts.VK_USER) != null))
             return "redirect:/profile/registration";
         else
             return "redirect:/profile";
-
     }
 
     @RequestMapping(value = "adminSignIn", method = RequestMethod.GET)

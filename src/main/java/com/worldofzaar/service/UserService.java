@@ -27,7 +27,7 @@ public class UserService {
         return userDao.find(userId);
     }
 
-    public Boolean checkUserNickname(String nickname){
+    public Boolean checkUserNickname(String nickname) {
         UserDao userDao = new UserDao();
         return userDao.checkUserNickname(nickname);
     }
@@ -50,14 +50,17 @@ public class UserService {
         //Create deck with name New deck,  user = user, and active = true
         deckService.createDeck("New deck", user, true);
 
-        WebUserService webUserService = new WebUserService();
-        webUserService.setUser((Integer) request.getSession().getAttribute(WOZConsts.WEBUSER_ID), user);
-
-        AuthorizationService authorizationService = new AuthorizationService();
-        authorizationService.loginByCookies(request, response);
+        if (request.getSession().getAttribute(WOZConsts.WEB_USER) != null) {
+            WebUserService webUserService = new WebUserService();
+            webUserService.setUser((Integer) request.getSession().getAttribute(WOZConsts.WEB_USER_ID), user);
+        }
+        if (request.getSession().getAttribute(WOZConsts.VK_USER) != null) {
+            VkUserService vkUserService = new VkUserService();
+            vkUserService.setUser((Integer) request.getSession().getAttribute(WOZConsts.VK_USER_ID), user);
+        }
     }
 
-    public void updateUser(User user){
+    public void updateUser(User user) {
         UserDao userDao = new UserDao();
         userDao.update(user);
     }
