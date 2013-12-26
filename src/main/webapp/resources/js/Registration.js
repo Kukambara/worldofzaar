@@ -240,7 +240,7 @@ function createUser() {
             type: "POST",
             async: true,
             success: function () {
-                alert("success");
+                window.location.replace("/profile");
             }
         });
         return;

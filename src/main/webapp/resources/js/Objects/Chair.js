@@ -64,7 +64,7 @@
     }
 
     this.OnClick = function (point) {
-        if (area.IsPointInArea(point) && isAvailable) {
+        if (area.IsPointInArea(point)) {
             return true;
         }
         return false;
