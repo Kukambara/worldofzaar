@@ -30,6 +30,10 @@ function TransitionArrow(isDeckArrow,place,name,contex,area,direction) {
         img.src = "\\resources\\Images\\"+place+"\\NavigationArrows\\" + name + ".png";
         imgHower.src = "\\resources\\Images\\" + place + "\\NavigationArrows\\" + name + "Hower.png";
         imgClick.src = "\\resources\\Images\\" + place + "\\NavigationArrows\\" + name + "Click.png";
+
+        resources.loadByUrl("\\resources\\Images\\"+place+"\\NavigationArrows\\" + name + ".png");
+        resources.loadByUrl("\\resources\\Images\\" + place + "\\NavigationArrows\\" + name + "Hower.png");
+        resources.loadByUrl("\\resources\\Images\\" + place + "\\NavigationArrows\\" + name + "Click.png");
     }
 
     function Draw(id) {

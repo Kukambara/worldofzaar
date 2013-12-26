@@ -46,7 +46,8 @@
 	}
 
 	function onReady(func) {
-		readyCallbacks.push(func);
+        read
+		readyCallbacks[0] = func;
 	}
 
 	window.resources = {

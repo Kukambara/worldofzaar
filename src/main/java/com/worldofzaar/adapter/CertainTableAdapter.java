@@ -15,6 +15,7 @@ import java.util.List;
 public class CertainTableAdapter {
     private Integer seatPosition;
     private String blazonPath;
+    private String clothPath;
     private Integer requestId;
     private Integer userId;
     private String userName;
@@ -25,6 +26,7 @@ public class CertainTableAdapter {
             return;
         seatPosition = table.getSeatPosition();
         blazonPath = table.getUser().getGameProfile().getBlazon().getBlazonPath();
+        clothPath = table.getUser().getGameProfile().getBlazon().getCloth().getClothPath();
         requestId = table.getRequestId();
         userId = table.getUser().getUserId();
         userName = table.getUser().getUserName();
@@ -37,6 +39,14 @@ public class CertainTableAdapter {
             newTables.add(new CertainTableAdapter(table));
         }
         return newTables;
+    }
+
+    public String getClothPath() {
+        return clothPath;
+    }
+
+    public void setClothPath(String clothPath) {
+        this.clothPath = clothPath;
     }
 
     public Integer getSeatPosition() {

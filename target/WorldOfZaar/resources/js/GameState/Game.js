@@ -40,6 +40,18 @@
 		canvasesName["control"] = canvasControlName;
 		canvasManager.copyCanvas(canvasStaticName, canvasControlName, 1);
 
+        /*var rotate = 0;
+        for(var i; i < map.playerField.length; ++i){
+            players[i] = new PlayerField();
+            players[i].InitAreasForCards(map.playerField[i].fullArea);
+            canvasesName["field_"+i]= "canvas_field_"+i;
+            var area = players[i].fullArea.GetClone();
+            area.Rotate(rotate);
+            canvasManager.addNewCanvas(players[i].fullArea, canvasesName["field_"+i], 1);
+            rotate+=90;
+        }*/
+
+
 		buttons["test"] = new Button();
 		buttons["test"].Init(new Area(new Point(700, 800), 100, 100)
             , map.background.image, "test"

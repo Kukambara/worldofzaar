@@ -130,4 +130,8 @@ function Area(beginPoint, width, height) {
     Area.prototype.GetClone = function(){
         return new Area(this.beginPoint, this.width, this.height);
     }
+
+    Area.prototype.Rotate = function(angle){
+        this
+    }
 }
