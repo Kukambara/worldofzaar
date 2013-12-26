@@ -40,6 +40,10 @@
         canvas.Init();
         canvas.ReInitCanvasEventLevel();
 
+        canvas.ClearArea(new Area(new Point(0,0),900,900),0);
+        canvas.ClearArea(new Area(new Point(0,0),900,900),1);
+        canvas.ClearArea(new Area(new Point(0,0),900,900),2);
+
         getUserCards();
         getMasterOfDeckCards();
         getUser();
@@ -51,10 +55,12 @@
         setMasterOfDeckMap();
         setNavigationBar();
         setStaticElements();
+        test();
 
         setTimeout(function () {
+
             Draw(loadedBackground);
-            navigationBar.Init();
+            navigationBar.Draw();
             setTimeout(function () {
                 Draw(loadedCards);
                 Draw(loadedBorders);
@@ -63,11 +69,28 @@
                 Draw(transitionArrows);
                 setEvents(0);
             }, 200);
-
-        }, 50);
+        }, 2000);
     }
-
     OnLoadCanvas();
+
+    function test(){
+        var cardObject;
+        for(var i=0 ;i< allMasterOfDeckCards.length;++i){
+            if (allMasterOfDeckCards[i].warriorCard != null) {
+                cardObject = allMasterOfDeckCards[i].warriorCard;
+            }
+            else {
+                cardObject = allMasterOfDeckCards[i].supportCard;
+            }
+
+            resources.loadByUrl(cardObject.cardPicture);
+        }
+        var counter=0;
+        while(!resources.isReady()){
+            counter ++;
+            if(counter >50000){break;}
+        }
+    }
     //-----------------------------------------------------------------------
 
     //------------------------------События-----------------------------------
@@ -405,6 +428,7 @@
 
     function setNavigationBar() {
         navigationBar = new NavigationBar(canvas, 1);
+        navigationBar.Init();
     }
 
     function setMasterOfDeckMap() {

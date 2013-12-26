@@ -7,7 +7,7 @@
     //--------------------------Переменные характеристики--------------------
 
 
-    var currSelectedGameType = 0;                
+    var currSelectedGameType = 0;
     var isWaiting = true;               //флаг: true- покупаем; false - продаем
 
     var cardsWidth = 85;
@@ -18,7 +18,7 @@
     //------------------------Массивы данных--------------------------------
     var player;
     var playerClassName = "";
-    var playerRaceName="";
+    var playerRaceName = "";
     var currDeckIndex;
     var cardsInDeck = [];
 
@@ -37,13 +37,18 @@
     var loadedLabels = [];
     var loadedStatic = [];
     var loadedPlayer = [];
-
+    var clock;
     //-----------------------------------------------------------------------
 
     //--------------------------Входная точка---------------------------------
     function OnLoadCanvas() {
         canvas = new Canvas();
         canvas.Init();
+        canvas.ReInitCanvasEventLevel();
+
+        canvas.ClearArea(new Area(new Point(0, 0), 900, 900), 0);
+        canvas.ClearArea(new Area(new Point(0, 0), 900, 900), 1);
+        canvas.ClearArea(new Area(new Point(0, 0), 900, 900), 2);
 
         getUser();
         getUserDecks();
@@ -56,11 +61,12 @@
         setBorders();
         setDuelMap();
         setNavigationBar();
-        //setStaticElements();
         setTables();
+        getTables();
+
         setTimeout(function () {
             Draw(loadedBackground);
-            navigationBar.Init();
+            navigationBar.Draw();
 
             setTimeout(function () {
                 //DrawStaticElements()
@@ -72,15 +78,11 @@
                 setEvents(0);
             }, 200);
 
-        }, 50);
+        }, 2000);
     }
 
     OnLoadCanvas();
     //-----------------------------------------------------------------------
-
-
-
-
 
 
     //------------------------------События-----------------------------------
@@ -125,46 +127,48 @@
         for (var i = 0; i < transitionArrows.length; ++i) {
             var state = transitionArrows[i].OnClick(point);
             if (state) {
-                    currSelectedGameType = transitionArrows[i].GetDirection();
-                    DrawTransitionElements();
+                currSelectedGameType = transitionArrows[i].GetDirection();
+                DrawTransitionElements();
+                getTables();
             }
 
         }
     }
 
     function OnClickTables(point) {
-
-            for (var i = 0; i < tables.length; ++i) {
-                var index = tables[i].OnClick(point);
-                if (index != (-1)) {
-                    if(!isWaiting){
-                        if(tables[i].GetPlayer(index)== player.userId){
-                            registrateAbort();
-                            break;
-                        }
+        for (var i = 0; i < tables.length; ++i) {
+            var index = tables[i].OnClick(point);
+            if (index != (-1)) {
+                if (!isWaiting) {
+                    if (tables[i].GetPlayer(index) == player.userId) {
+                        registrateAbort();
+                        clearInterval(clock);
                         break;
-                    }
-                    registrateRequest(currSelectedGameType,tables[i].GetType(),index);
-                    if(!isWaiting){
-                        tables[i].SetPlayer(index,player.userId,"");
                     }
                     break;
                 }
+                registrateRequest(currSelectedGameType, tables[i].GetType(), index);
+                gameStartLisener();
+                if (!isWaiting) {
+                }
+                break;
             }
+        }
+        getTables();
     }
 
     function OnClickNavigationBar(point) {
         navigationBar.OnClick(point)
     }
+
     //-----------------------------------------------------------------------
 
     //-----------------------------Отрисовка-----------------------------------
 
 
-
     function DrawTransitionElements() {
         for (var i = 0; i < transitionArrows.length; ++i) {
-            transitionArrows[i].Draw(currSelectedGameType ==i);
+            transitionArrows[i].Draw(currSelectedGameType == i);
         }
     }
 
@@ -182,8 +186,9 @@
     }
 
 
+    function ReDrawCanvas() {
+    }
 
-    function ReDrawCanvas() { }
     //-----------------------------------------------------------------------
 
     //-----------------------SetElements------------------------------
@@ -193,7 +198,7 @@
         var deckArrowHeigth = 57 * canvas.CanvasScale;
 
         transitionArrows[0] = new DuelArrow("swords", canvas.GetCanvasContextLevel(1), new Area(new Point(285 * canvas.CanvasScale, 125 * canvas.CanvasScale), deckArrowWidth, deckArrowHeigth),
-            new Area(new Point(340 * canvas.CanvasScale, 140 * canvas.CanvasScale), 73, 33),0);
+            new Area(new Point(340 * canvas.CanvasScale, 140 * canvas.CanvasScale), 73, 33), 0);
         transitionArrows[1] = new DuelArrow("silver", canvas.GetCanvasContextLevel(1), new Area(new Point(464 * canvas.CanvasScale, 125 * canvas.CanvasScale), deckArrowWidth, deckArrowHeigth),
             new Area(new Point(517 * canvas.CanvasScale, 140 * canvas.CanvasScale), 84, 28), 1);
         transitionArrows[2] = new DuelArrow("gold", canvas.GetCanvasContextLevel(1), new Area(new Point(644 * canvas.CanvasScale, 125 * canvas.CanvasScale), deckArrowWidth, deckArrowHeigth),
@@ -206,7 +211,7 @@
 
     function setBackground() {
         var index = loadedBackground.length;
-        loadedBackground[index] = new AreaImage(new Area(new Point(),900,900));
+        loadedBackground[index] = new AreaImage(new Area(new Point(), 900, 900));
         loadedBackground[index].SetContext(canvas.GetCanvasContextLevel(0));
         loadedBackground[index].SetSource("resources\\Images\\Backgrounds\\duelBackground.png");
     }
@@ -218,8 +223,8 @@
 
         loadedDecks[0] = new DeckSet();
         loadedDecks[0].Init(allPlayerDecks[currDeckIndex].deckId,
-            allPlayerDecks[currDeckIndex].deckName,canvas.GetCanvasContextLevel(1),area);
-        loadedDecks[0].cardsCount =countDeckCards(loadedDecks[0].deckId);
+            allPlayerDecks[currDeckIndex].deckName, canvas.GetCanvasContextLevel(1), area);
+        loadedDecks[0].cardsCount = countDeckCards(loadedDecks[0].deckId);
 
     }
 
@@ -239,13 +244,18 @@
 
     function setNavigationBar() {
         navigationBar = new NavigationBar(canvas, 3);
+        navigationBar.Init();
     }
 
     function setDuelMap() {
         duelMap[0] = [];
         duelMap[0][0] = new Area(new Point(0, 0), 900, 100);
-        duelMap[0][1] = function (point) { OnClickNavigationBar(point); };
-        duelMap[0][2] = function (point) { OnMoveNavigationBar(point); };
+        duelMap[0][1] = function (point) {
+            OnClickNavigationBar(point);
+        };
+        duelMap[0][2] = function (point) {
+            OnMoveNavigationBar(point);
+        };
 
         //masterOfDeckMap[1] = [];
         //masterOfDeckMap[1][0] = new Area(new Point(40, 200), deckWidth, (deckHeigth * 2) + 50);
@@ -254,13 +264,21 @@
 
         duelMap[1] = [];
         duelMap[1][0] = new Area(new Point(300, 130), 600, 100);
-        duelMap[1][1] = function (point) { OnClickTransitionElement(point); };
-        duelMap[1][2] = function (point) { OnMoveTransitionElement(point); };
+        duelMap[1][1] = function (point) {
+            OnClickTransitionElement(point);
+        };
+        duelMap[1][2] = function (point) {
+            OnMoveTransitionElement(point);
+        };
 
         duelMap[2] = [];
         duelMap[2][0] = new Area(new Point(300, 300), cardsWidth * 3 + 100, cardsHeigth * 4 + 100);
-        duelMap[2][1] = function (point) { OnClickTables(point); };
-        duelMap[2][2] = function (point) { OnMoveTables(point); };
+        duelMap[2][1] = function (point) {
+            OnClickTables(point);
+        };
+        duelMap[2][2] = function (point) {
+            OnMoveTables(point);
+        };
 
         //myChambersMap[4] = [];
         //myChambersMap[4][0] = new Area(new Point(0, 0), 900, 100);
@@ -269,8 +287,8 @@
     }
 
     function setTables() {
-        tables[0] = new Table(2, canvas.GetCanvasContextLevel(1), new Area(new Point(300,300),138,126));
-        tables[1] = new Table(3, canvas.GetCanvasContextLevel(1), new Area(new Point(450,300),138,126));
+        tables[0] = new Table(2, canvas.GetCanvasContextLevel(1), new Area(new Point(300, 300), 138, 126));
+        tables[1] = new Table(3, canvas.GetCanvasContextLevel(1), new Area(new Point(450, 300), 138, 126));
         tables[2] = new Table(4, canvas.GetCanvasContextLevel(1), new Area(new Point(600, 300), 138, 126));
 
         tables[0].Init();
@@ -278,41 +296,40 @@
         tables[2].Init();
     }
 
-    function setPlayer(){
-        loadedPlayer[0] = new AreaImage(new Area(new Point(50,390),157,206));
+    function setPlayer() {
+        loadedPlayer[0] = new AreaImage(new Area(new Point(50, 390), 157, 206));
         loadedPlayer[0].SetContext(canvas.GetCanvasContextLevel(1));
         loadedPlayer[0].SetSource(player.gameProfile.racePicture.picturePath);
 
-        loadedPlayer[1] = new AreaImage(new Area(new Point(50,390),157,206));
+        loadedPlayer[1] = new AreaImage(new Area(new Point(50, 390), 157, 206));
         loadedPlayer[1].SetContext(canvas.GetCanvasContextLevel(1));
         loadedPlayer[1].SetSource("resources\\Images\\Duel\\Borders\\avatarBorder.png");
 
 
-
-        loadedPlayer[2] = new AreaImage(new Area(new Point(5,600),251,109));
+        loadedPlayer[2] = new AreaImage(new Area(new Point(5, 600), 251, 109));
         loadedPlayer[2].SetContext(canvas.GetCanvasContextLevel(1));
         loadedPlayer[2].SetSource("resources\\Images\\Backgrounds\\userNameBackground.png");
 
-        loadedPlayer[3] = new AreaText(new Area(new Point(130,625),0,0),player.userName);
+        loadedPlayer[3] = new AreaText(new Area(new Point(130, 625), 0, 0), player.userName);
         loadedPlayer[3].SetContext(canvas.GetCanvasContextLevel(1));
         loadedPlayer[3].textColor = "rgb(0,0,0)";
-        loadedPlayer[3].fontStyle ='italic 20pt Calibri';
+        loadedPlayer[3].fontStyle = 'italic 20pt Calibri';
 
-        loadedPlayer[4] = new AreaText(new Area(new Point(130,650),0,0),playerRaceName);
+        loadedPlayer[4] = new AreaText(new Area(new Point(130, 650), 0, 0), playerRaceName);
         loadedPlayer[4].SetContext(canvas.GetCanvasContextLevel(1));
         loadedPlayer[4].textColor = "rgb(0,0,0)";
-        loadedPlayer[4].fontStyle ='italic 20pt Calibri';
+        loadedPlayer[4].fontStyle = 'italic 20pt Calibri';
 
-        loadedPlayer[5] = new AreaText(new Area(new Point(130,675),0,0),playerClassName);
+        loadedPlayer[5] = new AreaText(new Area(new Point(130, 675), 0, 0), playerClassName);
         loadedPlayer[5].SetContext(canvas.GetCanvasContextLevel(1));
         loadedPlayer[5].textColor = "rgb(0,0,0)";
-        loadedPlayer[5].fontStyle ='italic 20pt Calibri';
+        loadedPlayer[5].fontStyle = 'italic 20pt Calibri';
 
-        loadedPlayer[6] = new AreaImage(new Area(new Point(20,690),220,220));
+        loadedPlayer[6] = new AreaImage(new Area(new Point(20, 690), 220, 220));
         loadedPlayer[6].SetContext(canvas.GetCanvasContextLevel(1));
         loadedPlayer[6].SetSource(player.gameProfile.blazon.cloth.clothPath);
 
-        loadedPlayer[7] = new AreaImage(new Area(new Point(20,690),220,220));
+        loadedPlayer[7] = new AreaImage(new Area(new Point(20, 690), 220, 220));
         loadedPlayer[7].SetContext(canvas.GetCanvasContextLevel(1));
         loadedPlayer[7].SetSource(player.gameProfile.blazon.blazonPath);
     }
@@ -324,27 +341,123 @@
                 canvas.GetCanvasLevel(3).addEventListener("click", OnClickWrapper);
                 canvas.GetCanvasLevel(3).addEventListener("mousemove", OnMoveWrapper);
                 break;
-            case 1:canvas.GetCanvasLevel(3).addEventListener("click", OnClickCardBuy);
+            case 1:
+                canvas.GetCanvasLevel(3).addEventListener("click", OnClickCardBuy);
                 canvas.GetCanvasLevel(3).addEventListener("mousemove", OnMoveCardAction);
                 break;
-            case -1:canvas.GetCanvasLevel(3).addEventListener("click", OnClickCardSell);
+            case -1:
+                canvas.GetCanvasLevel(3).addEventListener("click", OnClickCardSell);
                 canvas.GetCanvasLevel(3).addEventListener("mousemove", OnMoveCardAction);
                 break;
         }
     }
 
-    function registrateRequest(gameType,gameTable,gameSit){
+    function setPlayersOnTables(data) {
+        tables[0].ClearTable();
+        tables[0].ClearTable();
+        tables[1].ClearTable();
+
+        for (var i = 0; i < 2; ++i) {
+            for (var j = 0; j < data["twoPlayers"].length; ++j) {
+                if (data["twoPlayers"][j].seatPosition == i) {
+                    tables[0].SetPlayer(i, data["twoPlayers"][j].userId, data["twoPlayers"][j].blazonPath, data["twoPlayers"][j].clothPath);
+                }
+
+                if (data["twoPlayers"][j].userId == player.userId) {
+                    isWaiting = false;
+                    gameStartLisener();
+                }
+            }
+        }
+
+        for (var i = 0; i < 3; ++i) {
+            for (var j = 0; j < data["threePlayers"].length; ++j) {
+                if (data["threePlayers"][j].seatPosition == i) {
+                    tables[1].SetPlayer(i, data["threePlayers"][j].userId, data["threePlayers"][j].blazonPath, data["threePlayers"][j].clothPath);
+                }
+
+                if (data["threePlayers"][j].userId == player.userId) {
+                    isWaiting = false;
+                    gameStartLisener();
+                }
+            }
+        }
+
+        for (var i = 0; i < 4; ++i) {
+            for (var j = 0; j < data["fourPlayers"].length; ++j) {
+                if (data["fourPlayers"][j].seatPosition == i) {
+                    tables[2].SetPlayer(i, data["fourPlayers"][j].userId, data["fourPlayers"][j].blazonPath, data["fourPlayers"][j].clothPath);
+                }
+
+                if (data["threePlayers"][j].userId == player.userId) {
+                    isWaiting = false;
+                    gameStartLisener();
+                }
+            }
+        }
+
+
+    }
+
+
+    //--------------------------------------------------------
+    function gameStartLisener() {
+            clock = setInterval(getTables, 2000);
+    }
+    function isGameReady(){
+        $.ajax({
+            url: "/api/game/isGameReady",
+            dataType: "json",
+            type: "GET",
+            async: false,
+            success: function (data) {
+                if(data){
+                    window.location.replace("/game");
+                }
+            }
+        });
+    }
+
+    function getTables() {
         var cost;
-        switch(gameType){
+        switch (currSelectedGameType) {
             case 0:
-                cost=0;break;
+                cost = "free";
+                break;
             case 1:
-                cost=50;break;
+                cost = "cost50";
+                break;
             case 2:
-                cost=100;break;
+                cost = "cost100";
+                break;
+        }
+        isGameReady();
+        $.ajax({
+            url: "/api/tables/getTables/" + cost,
+            dataType: "json",
+            type: "GET",
+            async: false,
+            success: function (data) {
+                setPlayersOnTables(data);
+            }
+        });
+    }
+
+    function registrateRequest(gameType, gameTable, gameSit) {
+        var cost;
+        switch (gameType) {
+            case 0:
+                cost = 0;
+                break;
+            case 1:
+                cost = 50;
+                break;
+            case 2:
+                cost = 100;
+                break;
         }
         $.ajax({
-            url: "/api/tables/getIn?size="+gameTable+"&position="+gameSit+"&cost="+cost,
+            url: "/api/tables/getIn?size=" + gameTable + "&position=" + gameSit + "&cost=" + cost,
             dataType: "json",
             type: "GET",
             async: false,
@@ -353,7 +466,8 @@
             }
         });
     }
-    function registrateAbort(){
+
+    function registrateAbort() {
         $.ajax({
             url: "/api/tables/getOut",
             dataType: "json",
@@ -364,7 +478,8 @@
             }
         });
     }
-    function getUser(){
+
+    function getUser() {
         $.ajax({
             url: "/profile/gameProfile/",
             dataType: "json",
@@ -377,10 +492,11 @@
         getRaceName();
         getClassName();
     }
-    function getRaceName(){
+
+    function getRaceName() {
         var raceId = player.gameProfile.blazon.classification.race.raceId;
         $.ajax({
-            url: "/profile/raceName/"+raceId,
+            url: "/profile/raceName/" + raceId,
             dataType: "json",
             type: "POST",
             async: false,
@@ -389,10 +505,11 @@
             }
         });
     }
-    function getClassName(){
+
+    function getClassName() {
         var classId = player.gameProfile.blazon.classification.classificationId;
         $.ajax({
-            url: "/profile/className/"+classId,
+            url: "/profile/className/" + classId,
             dataType: "json",
             type: "POST",
             async: false,
@@ -401,7 +518,8 @@
             }
         });
     }
-    function getUserDecks(){
+
+    function getUserDecks() {
         $.ajax({
             url: "/profile/userDecks/",
             dataType: "json",
@@ -414,10 +532,11 @@
 
         getDeckCards();
     }
-    function getDeckCards(){
-        for(var i = 0; i < allPlayerDecks.length;++i){
+
+    function getDeckCards() {
+        for (var i = 0; i < allPlayerDecks.length; ++i) {
             $.ajax({
-                url: "/profile/deckCards/"+allPlayerDecks[i].deckId,
+                url: "/profile/deckCards/" + allPlayerDecks[i].deckId,
                 dataType: "json",
                 type: "POST",
                 async: false,
@@ -427,31 +546,36 @@
             });
         }
     }
+
     function initAllPlayerDecks(data) {
-        for(var i = 0; i< data.length;++i){
+        for (var i = 0; i < data.length; ++i) {
             allPlayerDecks[i] = data[i];
-            if(data[i].isActive){
-                currDeckIndex=i;
+            if (data[i].isActive) {
+                currDeckIndex = i;
             }
         }
     }
+
     function initCardsInDeck(data) {
         cardsInDeck = [];
-        for(var i=cardsInDeck.length;i<data.length;++i){
+        for (var i = cardsInDeck.length; i < data.length; ++i) {
             cardsInDeck[i] = [];
             cardsInDeck[i][0] = data[i];
             cardsInDeck[i][1] = 0;
         }
     }
-    function countDeckCards(inputDeckId){
-        var counter= 0;
-        for(var i = 0; i<cardsInDeck.length;++i){
-            if(cardsInDeck[i][0].deckId == inputDeckId){
+
+    function countDeckCards(inputDeckId) {
+        var counter = 0;
+        for (var i = 0; i < cardsInDeck.length; ++i) {
+            if (cardsInDeck[i][0].deckId == inputDeckId) {
                 counter++;
             }
         }
+
         return counter;
     }
+
     //-----------------------------------------------------------------------
 
 }

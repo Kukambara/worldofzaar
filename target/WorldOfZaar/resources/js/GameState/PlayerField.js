@@ -82,8 +82,7 @@ function PlayerField() {
 		this.areas["talon"]._OnClick = this.OnTalonClick;
 	}
 
-    this.InitAreasForCards = function(/*Area*/ areaReal, context){
-        this.context = context;
+    this.InitAreasForCards = function(/*Area*/ areaReal){
         this.scale =  Card().CalculateScale(areaReal);
         var scaledArea = areaReal.GetClone();
         scaledArea.Scale(this.scale);

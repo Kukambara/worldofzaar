@@ -14,7 +14,7 @@
 
         for (var i = 0; i < type; i++)
         {
-            chairs[i] = new Chair(i,canvasContext,new Area(coordinateSet[type][i], 45, 37));
+            chairs[i] = new Chair(i,canvasContext,new Area(coordinateSet[0][i], 45, 37));
             chairs[i].Init();
         }
 
@@ -24,20 +24,26 @@
 
     function setCoordinateSet()
     {
-        coordinateSet[2]=[];
-        coordinateSet[2][0] = new Point(area.beginPoint.x + (area.width / 2) - 22, area.beginPoint.y);
-        coordinateSet[2][1] = new Point(area.beginPoint.x+(area.width / 2) - 22, area.beginPoint.y + area.height - 37);
-
-        coordinateSet[3]=[];
-        coordinateSet[3][0] = new Point(area.beginPoint.x+(area.width / 2) - 22, area.beginPoint.y);
-        coordinateSet[3][1] = new Point(area.beginPoint.x,area.beginPoint.y+area.height-37);
-        coordinateSet[3][2] = new Point(area.beginPoint.x+area.width-45,area.beginPoint.y+area.height-37);
-
-        coordinateSet[4]=[];
-        coordinateSet[4][0] = new Point(area.beginPoint.x,area.beginPoint.y);
-        coordinateSet[4][1] = new Point(area.beginPoint.x+area.width-45,area.beginPoint.y);
-        coordinateSet[4][2] = new Point(area.beginPoint.x,area.beginPoint.y+area.height-37);
-        coordinateSet[4][3] = new Point(area.beginPoint.x+area.width-45,area.beginPoint.y+area.height-37);
+        switch(type){
+            case 2:
+                coordinateSet[0]=[];
+                coordinateSet[0][0] = new Point(area.beginPoint.x + (area.width / 2) - 22, area.beginPoint.y);
+                coordinateSet[0][1] = new Point(area.beginPoint.x+(area.width / 2) - 22, area.beginPoint.y + area.height - 37);
+                break;
+            case 3:
+                coordinateSet[0]=[];
+                coordinateSet[0][0] = new Point(area.beginPoint.x+(area.width / 2) - 22, area.beginPoint.y);
+                coordinateSet[0][1] = new Point(area.beginPoint.x,area.beginPoint.y+area.height-37);
+                coordinateSet[0][2] = new Point(area.beginPoint.x+area.width-45,area.beginPoint.y+area.height-37);
+                break;
+            case 4:
+                coordinateSet[0]=[];
+                coordinateSet[0][0] = new Point(area.beginPoint.x,area.beginPoint.y);
+                coordinateSet[0][1] = new Point(area.beginPoint.x+area.width-45,area.beginPoint.y);
+                coordinateSet[0][2] = new Point(area.beginPoint.x,area.beginPoint.y+area.height-37);
+                coordinateSet[0][3] = new Point(area.beginPoint.x+area.width-45,area.beginPoint.y+area.height-37);
+                break;
+        }
     }
     this.Draw = function ()
     {
@@ -61,7 +67,7 @@
     this.OnClick = function (point) {
         if (area.IsPointInArea(point)) {
             for (var i = 0; i < type; i++) {
-                if(chairs[i].OnClick(point));{
+                if(chairs[i].OnClick(point)){
                     return chairs[i].id;
                 }
             }
@@ -80,9 +86,16 @@
         return type;
     }
 
-    this.SetPlayer = function (sit,playerId,playerBlazon){
+    this.SetPlayer = function (sit,playerId,playerBlazon,playerCloth){
         this.playersId[sit] = playerId;
-        chairs[sit].SetPlayer(playerBlazon);
+        chairs[sit].SetPlayer(playerBlazon,playerCloth);
+    }
+
+    this.ClearTable = function(){
+        this.playersId = [];
+        for(var i in chairs){
+            chairs[i].DeletePlayer();
+        }
     }
 
     this.GetPlayer = function (index){
