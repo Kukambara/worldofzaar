@@ -16,6 +16,7 @@ function Button() {
 
 	Button.prototype.Draw = function () {
 		this.area.DrawImage(this.context, this.background);
+        //this.area.DrawText(this.context, this.text, 5, 5);
 	}
 
 	Button.prototype.DrawRotation = function (rotate) {

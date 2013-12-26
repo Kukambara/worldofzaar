@@ -13,15 +13,15 @@ function Area(beginPoint, width, height) {
 	}
 
 	Area.prototype.DrawImage = function (context, image) {
-		context.save();
-		context.translate(this.x, this.y);
-
+		/*context.save();
+		context.translate(this.beginPoint.x, this.beginPoint.y);
+       */
 		context.drawImage(image, this.beginPoint.x, this.beginPoint.y, this.width, this.height);
 		if (this.isBorder) {
 			context.rect(this.beginPoint.x, this.beginPoint.y, this.width, this.height);
 			context.stroke();
 		}
-        context.restore();
+      //  context.restore();
 	}
 
 	Area.prototype.DrawRotateBegin = function (context, rotate) {
@@ -128,10 +128,26 @@ function Area(beginPoint, width, height) {
     }
 
     Area.prototype.GetClone = function(){
-        return new Area(this.beginPoint, this.width, this.height);
+        var beginPoint = new Point(this.beginPoint.x, this.beginPoint.y);
+        return new Area(beginPoint, this.width, this.height);
     }
 
     Area.prototype.Rotate = function(angle){
-        this
+        //var endPoint = new Point(this.beginPoint.x+this.width, this.beginPoint.y+this.height);
+        //endPoint.RotationAcrosPoint( this.beginPoint, angle);
+        var endPoint = new Point(this.width, this.height);
+        endPoint.Rotation(angle * TO_RADIANS);
+        this.width = endPoint.x;
+        this.height = endPoint.y;
+        if(this.width < 0)
+        {
+            this.beginPoint.x += this.width;
+            this.width *= -1;
+        }
+        if( this.height < 0 )
+        {
+            this.beginPoint.y += this.height;
+            this.height *= -1;
+        }
     }
 }

@@ -27,7 +27,7 @@
 <script type="text/javascript" src="/resources/js/GameState/Game.js"></script>
 <body onload="game.init('canvas_loading')">
 <div style="float:left;">
-    <canvas id="canvas_loading" style="position:absolute; left:50; top:50; border: solid 1px red; zindex:1" width="1000"
+    <canvas id="canvas_loading" style="position:absolute; left:50; top:50; border: solid 1px red; zindex:10" width="1000"
             height="1000">
     </canvas>
 </div>
