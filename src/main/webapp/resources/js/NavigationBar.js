@@ -12,6 +12,7 @@ function NavigationBar(canvas,id) {
     function setBackground(){
         backgroundImg = new Image();
         backgroundImg.src = "\\resources\\Images\\NavigationBar\\Background\\topBackground.png";
+        resources.loadByUrl("\\resources\\Images\\NavigationBar\\Background\\topBackground.png");
     }
 
     this.OnClick = function (point)
@@ -54,21 +55,17 @@ function NavigationBar(canvas,id) {
         }
     }
 
-    function DrawLables()
-    {
+    this.Draw = function(){
+        DrawBackground();
         for (var i = 0; i < lables.length; ++i)
         {
             lables[i][0].Draw();
         }
+
     }
 
     this.Init = function () {
         setLables();
         setBackground();
-        
-        setTimeout(function () {
-            DrawBackground();
-            DrawLables();
-        }, 20);
     }
 }

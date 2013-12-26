@@ -46,6 +46,8 @@ public class CertainTableService {
     public boolean getIn(ApiTable table, HttpServletRequest request) {
         UserInformation userInformation = new UserInformation(request);
         CertainTableDao certainTableDao = new CertainTableDao();
+        if (certainTableDao.isAllreadyGotIn(userInformation))
+            return false;
         table.setLevel(userInformation.getUser().getGameProfile().getLevel());
         if (!table.valid())
             return false;

@@ -73,7 +73,7 @@
         <mapping class="com.worldofzaar.entity.Set"/>
         <mapping class="com.worldofzaar.entity.Discount"/>
         <mapping class="com.worldofzaar.entity.CardInDeck"/>
-
+        <mapping class="com.worldofzaar.entity.VkUser"/>
 
 
     </session-factory>

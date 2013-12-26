@@ -15,7 +15,7 @@ public class WebUserService {
 
     public void setUser(Integer webUserId, User user) {
         WebUserDao webUserDao = new WebUserDao();
-        WebUser webUser = webUserDao.getWebUser(webUserId);
+        WebUser webUser = webUserDao.find(webUserId);
         webUser.setUser(user);
         webUserDao.update(webUser);
     }

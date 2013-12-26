@@ -61,6 +61,7 @@
         canvasManager.getCanvasByName(canvasControlName).getContext().font = "15pt Arial";
         eventManager.addListener(this, "onFieldClick", "onCardTestClick");
 
+<<<<<<< HEAD
         lastTime = Date.now();
 
         resources.loadByUrl("/resources/Images/GameState/Symbols/borders/buttonUnpresed.png");
@@ -70,6 +71,23 @@
         buttons["skip"] = new Button();
         buttons["skip"].Init(new Area(new Point(830, 870), 150, 37)
             , buttonUnpresed, ""
+=======
+        /*var rotate = 0;
+        for(var i; i < map.playerField.length; ++i){
+            players[i] = new PlayerField();
+            players[i].InitAreasForCards(map.playerField[i].fullArea);
+            canvasesName["field_"+i]= "canvas_field_"+i;
+            var area = players[i].fullArea.GetClone();
+            area.Rotate(rotate);
+            canvasManager.addNewCanvas(players[i].fullArea, canvasesName["field_"+i], 1);
+            rotate+=90;
+        }*/
+
+
+		buttons["test"] = new Button();
+		buttons["test"].Init(new Area(new Point(700, 800), 100, 100)
+            , map.background.image, "test"
+>>>>>>> 897f747151c2334753d4eb312afd2f53ba4c6379
             , canvasManager.getCanvasByName(canvasControlName).getContext()
         );
         buttons["skip"]._OnClick = onButtonSkipClick;

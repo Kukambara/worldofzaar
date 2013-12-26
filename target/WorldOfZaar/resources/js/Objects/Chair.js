@@ -6,7 +6,7 @@
     var isPointerIn = false;
 
     var isAvailable = true;
-    this.playerBlason;
+    var playerBlazon = [];
 
     var img;
     var imgHower;
@@ -21,11 +21,18 @@
         imgHower.src = "\\resources\\Images\\Duel\\Sits\\chairHower.png";
     }
 
-    this.SetPlayer = function (imgSrc) {
-        this.playerBlason = new Image();
-        this.playerBlason.src = imgSrc;
-        this.isAvailable = false;
+    this.SetPlayer = function (blazonPath,clothPath) {
+        playerBlazon[0] = new Image();
+        playerBlazon[1] = new Image();
+        playerBlazon[0].src = clothPath;
+        playerBlazon[1].src = blazonPath;
+        isAvailable = false;
         Draw(0);
+    }
+
+    this.DeletePlayer = function (){
+        playerBlazon = [];
+        isAvailable = true;
     }
 
     this.Draw = function () {
@@ -40,7 +47,9 @@
                     canvasContext.drawImage(img, area.beginPoint.x, area.beginPoint.y, area.width, area.height);
                 }
                 else {
-                    canvasContext.drawImage(playerBlason, area.beginPoint.x, area.beginPoint.y, area.width, area.height);
+                    canvasContext.drawImage(playerBlazon[0], area.beginPoint.x, area.beginPoint.y, area.width, area.height);
+                    canvasContext.drawImage(playerBlazon[1], area.beginPoint.x, area.beginPoint.y, area.width, area.height);
+
                 }
                 break;
             case true:                                      //Наведено

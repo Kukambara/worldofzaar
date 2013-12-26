@@ -161,6 +161,45 @@ public class Hero {
         return true;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Hero hero = (Hero) o;
+
+        if (activity != hero.activity) return false;
+        if (!armor.equals(hero.armor)) return false;
+        if (deadStep != null ? !deadStep.equals(hero.deadStep) : hero.deadStep != null) return false;
+        if (!energy.equals(hero.energy)) return false;
+        if (!health.equals(hero.health)) return false;
+        if (!heroCard.equals(hero.heroCard)) return false;
+        if (!heroId.equals(hero.heroId)) return false;
+        if (!mysteryPower.equals(hero.mysteryPower)) return false;
+        if (!negativeEffect.equals(hero.negativeEffect)) return false;
+        if (startTime != null ? !startTime.equals(hero.startTime) : hero.startTime != null) return false;
+        if (user != null ? !user.equals(hero.user) : hero.user != null) return false;
+        if (!userId.equals(hero.userId)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = user != null ? user.hashCode() : 0;
+        result = 31 * result + userId.hashCode();
+        result = 31 * result + heroCard.hashCode();
+        result = 31 * result + health.hashCode();
+        result = 31 * result + energy.hashCode();
+        result = 31 * result + armor.hashCode();
+        result = 31 * result + mysteryPower.hashCode();
+        result = 31 * result + negativeEffect.hashCode();
+        result = 31 * result + activity.hashCode();
+        result = 31 * result + (startTime != null ? startTime.hashCode() : 0);
+        result = 31 * result + (deadStep != null ? deadStep.hashCode() : 0);
+        return result;
+    }
+
     public boolean isDead() {
         return (health <= 0) ? true : false;
     }

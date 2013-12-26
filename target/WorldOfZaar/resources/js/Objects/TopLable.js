@@ -16,11 +16,14 @@
 
         if (isSelected) {
             img.src = "\\resources\\Images\\NavigationBar\\Lables\\" + lableName + "Select.png";
+            resources.loadByUrl("\\resources\\Images\\NavigationBar\\Lables\\" + lableName + "Select.png");
         }
         else {
             img.src = "\\resources\\Images\\NavigationBar\\Lables\\" + lableName + ".png";
+            resources.loadByUrl("\\resources\\Images\\NavigationBar\\Lables\\" + lableName + ".png");
         }
         imgHower.src = "\\resources\\Images\\NavigationBar\\Lables\\" + lableName + "Hower.png";
+        resources.loadByUrl("\\resources\\Images\\NavigationBar\\Lables\\" + lableName + "Hower.png");
     }
 
     this.Load = function (){

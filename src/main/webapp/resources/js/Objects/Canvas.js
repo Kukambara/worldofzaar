@@ -34,8 +34,10 @@
 
     }
 
-    this.ClearArea = function (){
+    this.ClearArea = function (area,canvasLevel){
+        CanvasStore[canvasLevel][1].clearRect(area.beginPoint.x,area.beginPoint.y,area.width,area.height);
     }
+
 
     this.GetCanvasContextLevel = function (inputLevel){
         if(CanvasStore.length >inputLevel){

@@ -83,7 +83,11 @@ function PlayerField() {
 	}
 
     this.InitAreasForCards = function(/*Area*/ areaReal){
+<<<<<<< HEAD
         this.scale =  CalculateState(areaReal);
+=======
+        this.scale =  Card().CalculateScale(areaReal);
+>>>>>>> 897f747151c2334753d4eb312afd2f53ba4c6379
         var scaledArea = areaReal.GetClone();
         scaledArea.Scale(1 / this.scale);
         this.InitAreas(scaledArea);

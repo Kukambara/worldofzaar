@@ -11,9 +11,12 @@ function DeckSet(){
     this.Init = function(deckId,deckName,context,inputArea){
         deckCovers[0] = new Image();
         deckCovers[0].src = "/resources/Images/Backgrounds/deckBackground.png";
+        resources.loadByUrl("/resources/Images/Backgrounds/deckBackground.png");
 
         deckCovers[1] = new Image();
         deckCovers[1].src = "/resources/Images/MyChambers/Borders/deckActive.png";
+        resources.loadByUrl("/resources/Images/MyChambers/Borders/deckActive.png");
+
         area = inputArea;
         canvasContext = context;
         this.deckId = deckId;

@@ -82,4 +82,21 @@ public class CertainTableDao extends GenericDaoMain<CertainTable> {
         }
         return null;
     }
+
+    public boolean isAllreadyGotIn(UserInformation userInformation) {
+        try {
+            Session session = HibernateUtilMain.getSessionFactory().openSession();
+            Query query = session.createQuery("from CertainTable where user.userId = :userId");
+            query.setParameter("userId", userInformation.getUserId());
+            List tables = query.list();
+            session.close();
+            if (tables == null)
+                return false;
+            if (tables.size() != 0)
+                return true;
+        } catch (Exception e) {
+            System.out.println("getCertainTables(size, cost) Error = " + e.getCause());
+        }
+        return false;
+    }
 }
