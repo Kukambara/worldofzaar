@@ -22,6 +22,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utils", "Utils", "{1309E7D7
 		js\Utils\CanvasMath.js = js\Utils\CanvasMath.js
 		js\Utils\CanvasWrap.js = js\Utils\CanvasWrap.js
 		js\Utils\CanvasWrapTransponsable.js = js\Utils\CanvasWrapTransponsable.js
+		js\Utils\Consts.js = js\Utils\Consts.js
+		js\MapFieldCanvas.js = js\MapFieldCanvas.js
 		js\Utils\Resources.js = js\Utils\Resources.js
 		js\Utils\Text.js = js\Utils\Text.js
 	EndProjectSection
@@ -50,6 +52,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ellements", "Ellements", "{
 		js\Utils\Ellemnts\Point.js = js\Utils\Ellemnts\Point.js
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Screens", "Screens", "{D8E97E33-4D71-4045-ABC1-B82CE7743B36}"
+	ProjectSection(SolutionItems) = preProject
+		js\Screens\LoadingScreen.js = js\Screens\LoadingScreen.js
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -57,6 +64,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{C2D8521A-9360-4871-B9BF-80DF181E362A} = {A03545BE-8A89-414B-AC32-0A0D453666B5}
 		{1309E7D7-5AED-4DBC-B093-BB62755295C1} = {C2D8521A-9360-4871-B9BF-80DF181E362A}
+		{D8E97E33-4D71-4045-ABC1-B82CE7743B36} = {C2D8521A-9360-4871-B9BF-80DF181E362A}
 		{FFEA7CD1-92CF-4678-8F4B-95D78DB174F5} = {1309E7D7-5AED-4DBC-B093-BB62755295C1}
 		{318A63E3-908C-4E57-BD39-ECC99E145F72} = {1309E7D7-5AED-4DBC-B093-BB62755295C1}
 	EndGlobalSection

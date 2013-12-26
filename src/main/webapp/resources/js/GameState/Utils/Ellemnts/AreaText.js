@@ -43,6 +43,14 @@ function AreaText(area, text){
 		this.text = newText;
 	}
 
+    this.ResetText = function(/*string*/ newText){
+        if(newText != this.text)
+        {
+            this.DrawNewText(newText);
+        }
+    }
+
+
 	this.DrawNewText = function (/*string*/ newText) {
 		this.text = newText;
 		this.Redraw();

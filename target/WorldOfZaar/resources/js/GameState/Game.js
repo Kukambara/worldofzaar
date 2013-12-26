@@ -41,7 +41,10 @@
 		canvasManager.copyCanvas(canvasStaticName, canvasControlName, 1);
 
 		buttons["test"] = new Button();
-		buttons["test"].Init(new Area(new Point(700, 800), 100, 100), map.background.image, "test", canvasManager.getCanvasByName(canvasControlName).getContext());
+		buttons["test"].Init(new Area(new Point(700, 800), 100, 100)
+            , map.background.image, "test"
+            , canvasManager.getCanvasByName(canvasControlName).getContext()
+        );
 		buttons["test"]._OnClick = onButtonTestClick;
 		canvasManager.addEventFunction(canvasControlName, this, "onClick", "onClickListener");
 
@@ -49,6 +52,7 @@
 		timer.context = canvasManager.getCanvasByName(canvasControlName).getContext();
 		time = 0;
 		canvasManager.getCanvasByName(canvasControlName).getContext().font = "15pt Arial";
+        eventManager.addListener(this, "onFieldClick", "onCardTestClick");
 
 		lastTime = Date.now();
 		resources.onReady(postInit);
@@ -109,6 +113,10 @@
 		alert("onButtonTestClick");
 	}
 
+    function onCardTestClick(data) {
+        alert("fieldId:"+data[0]+"\ncardID:"+data[1]);
+    }
+
 	/*string*/function ConvertSecondIntoString(/*int*/ seconds) {
 		var timeWithOutMIllicesonds = Math.floor(seconds);
 		var minutes = Math.floor(timeWithOutMIllicesonds / 60);
@@ -120,5 +128,6 @@
 		init: init
 		, onClickListener: onClickListener
 		, onButtonTestClick: onButtonTestClick
+        , onCardTestClick: onCardTestClick
 	}
 })();
