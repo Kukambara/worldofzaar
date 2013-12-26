@@ -29,7 +29,7 @@
 		canvasesName["static"] = canvasStaticName;
 		canvasManager.copyCanvas(canvasLoadingName, canvasStaticName, 0);
 		_initBackground();
-		map.Init(canvasManager.getCanvasByName(canvasStaticName), 50, 50, 760, 760);
+		map.Init(canvasManager.getCanvasByName(canvasStaticName), 50, 50, 700, 700);
        	var canvasControlName = "canvas_control";
 		canvasesName["control"] = canvasControlName;
 		canvasManager.copyCanvas(canvasStaticName, canvasControlName, 2);
@@ -55,52 +55,8 @@
            // canvasManager.addEventFunction(canvasesName["field_"+i], this, "onClick", "OnCardClickHelper"+i);
         }
         _initButtons(canvasControlName);
-       /* timer = new AreaText(new Area(new Point(900, 830), 50, 40), 0);
-        timer.context = canvasManager.getCanvasByName(canvasControlName).getContext();
-        time = 0;
-        canvasManager.getCanvasByName(canvasControlName).getContext().font = "15pt Arial";
-        eventManager.addListener(this, "onFieldClick", "onCardTestClick");
 
-        lastTime = Date.now();
-
-        resources.loadByUrl("/resources/Images/GameState/Symbols/borders/buttonUnpresed.png");
-        var buttonUnpresed = new Image(100, 40);
-        buttonUnpresed.src = "/resources/Images/GameState/Symbols/borders/buttonUnpresed.png";
-
-        buttons["skip"] = new Button();
-        buttons["skip"].Init(new Area(new Point(830, 870), 150, 37)
-            , buttonUnpresed, ""
-            , canvasManager.getCanvasByName(canvasControlName).getContext()
-        );
-        buttons["skip"]._OnClick = onButtonSkipClick;
-
-		buttons["chat"] = new Button();
-        buttons["chat"].Init(new Area(buttons["skip"].area.GetVerticalPositionAfterThis(), 75, 37)
-            , buttonUnpresed, ""
-            , canvasManager.getCanvasByName(canvasControlName).getContext()
-        );
-        buttons["chat"]._OnClick = onButtonChatClick;
-
-        buttons["log"] = new Button();
-        buttons["log"].Init(new Area(buttons["chat"].area.GetHorisontalPositionAfterThis(), 75, 37)
-            , buttonUnpresed, ""
-            , canvasManager.getCanvasByName(canvasControlName).getContext()
-        );
-        buttons["log"]._OnClick = onButtonLogClick;
-
-        buttons["surrender"] = new Button();
-        buttons["surrender"].Init(new Area(buttons["chat"].area.GetVerticalPositionAfterThis(), 150, 37)
-            , buttonUnpresed, ""
-            , canvasManager.getCanvasByName(canvasControlName).getContext()
-        );
-        buttons["surrender"]._OnClick = onButtonSurrenderClick;
-
-        for(var name in buttons){
-            buttons[name].area.isBorder = true;
-        }
-
-        canvasManager.addEventFunction(canvasControlName, this, "onClick", "onClickListener");   */
-        canvasManager.addEventFunction(canvasStaticName, this, "onClick", "onClickListener");
+        canvasManager.addEventFunction(canvasStaticName, window.game, "onClick", "onClickListener");
 
 		resources.onReady(postInit);
 	}
@@ -115,12 +71,11 @@
 	}
 
     function _initButtons(canvasControlName){
-
         timer = new AreaText(new Area(new Point(900, 827), 50, 40), 0);
         timer.context = canvasManager.getCanvasByName(canvasControlName).getContext();
         time = 0;
         canvasManager.getCanvasByName(canvasControlName).getContext().font = "15pt Arial";
-        eventManager.addListener(this, "onFieldClick", "onCardTestClick");
+        eventManager.addListener(window.game, "onFieldClick", "onCardTestClick");
 
         lastTime = Date.now();
 
@@ -160,7 +115,7 @@
             buttons[name].area.isBorder = true;
         }
 
-        canvasManager.addEventFunction(canvasControlName, this, "onClick", "onClickListener");
+        canvasManager.addEventFunction(canvasControlName, window.game, "onClick", "onClickListener");
     }
 
 

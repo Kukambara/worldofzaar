@@ -150,8 +150,4 @@ function Area(beginPoint, width, height) {
             this.height *= -1;
         }
     }
-
-    Area.prototype.Rotate = function(angle){
-        this
-    }
 }
