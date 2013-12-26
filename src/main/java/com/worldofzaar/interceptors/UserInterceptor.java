@@ -19,7 +19,7 @@ public class UserInterceptor extends HandlerInterceptorAdapter {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        if (request.getSession().getAttribute(WOZConsts.IS_ADMIN) != null)
+        if (request.getSession().getAttribute(WOZConsts.WEB_USER) != null || request.getSession().getAttribute(WOZConsts.VK_USER) != null)
             return true;
         else {
             if (loginByCookies(request, response)) {

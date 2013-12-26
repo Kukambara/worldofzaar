@@ -1,5 +1,6 @@
 package com.worldofzaar.entity;
 
+import com.worldofzaar.entity.enums.Activity;
 import com.worldofzaar.entity.enums.Phase;
 import com.worldofzaar.entity.enums.State;
 import org.hibernate.annotations.Parameter;
@@ -53,6 +54,8 @@ public class Game {
     private Phase phase;
     @Column(name = "\"step\"")
     private Integer step;
+    @Column(name = "\"indexOfActiveHero\"")
+    private Integer IndexOfActiveHero;
     @Column(name = "\"firstHeroIndex\"")
     private Integer firstCircleHeroIndex;
     @Column(name = "\"moveDuration\"")
@@ -172,5 +175,88 @@ public class Game {
 
     public Hero[] getAllHeroes() {
         return new Hero[]{getFirstHero(), getSecondHero(), getThirdHero(), getFourthHero()};
+    }
+
+    public Hero getHeroFromPosition(int position) {
+        switch (position) {
+            case 0:
+                return firstHero;
+            case 1:
+                return secondHero;
+            case 2:
+                return thirdHero;
+            case 3:
+                return fourthHero;
+            default:
+                return null;
+        }
+    }
+
+    public int getPositionByHero(Hero hero) {
+        if (hero.equals(firstHero))
+            return 0;
+        else if (hero.equals(secondHero))
+            return 1;
+        else if (hero.equals(thirdHero))
+            return 2;
+        else if (hero.equals(fourthHero))
+            return 3;
+        return -1;
+    }
+
+    public void increasePhase() {
+        if (phase == Phase.ACTIVE) {
+            phase = Phase.WAR;
+            return;
+        } else if (phase == Phase.WAR) {
+            phase = Phase.END;
+            return;
+        } else if (phase == Phase.END) {
+            phase = Phase.ACTIVE;
+            return;
+        }
+
+    }
+
+    public Hero getNextActiveHero() {
+        Hero[] heroes = getAllHeroes();
+        for (int i = 0; i < heroes.length; i++) {
+            if (heroes[i] != null) {
+                if (heroes[i].getActivity() == Activity.ACTIVE) {
+                    return getNextHero(i);
+                }
+            }
+        }
+        return null;
+    }
+
+    public Hero getActiveHero() {
+        Hero[] heroes = getAllHeroes();
+        for (int i = 0; i < heroes.length; i++) {
+            if (heroes[i] != null) {
+                if (heroes[i].getActivity() == Activity.ACTIVE) {
+                    return heroes[i];
+                }
+            }
+        }
+        return null;
+    }
+
+    public Hero getNextHero(int index) {
+        Hero[] heroes = getAllHeroes();
+        int loop = 1;
+        for (int i = index; i < heroes.length; i++) {
+            if (loop == 2 && i == index) {
+                return heroes[i];
+            }
+            if (i != index && heroes[i] != null) {
+                return heroes[i];
+            }
+            if (i + 1 == heroes.length) {
+                i = -1;
+                loop++;
+            }
+        }
+        return null;
     }
 }

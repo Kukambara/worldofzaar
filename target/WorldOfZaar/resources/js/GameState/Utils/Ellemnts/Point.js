@@ -9,12 +9,12 @@ function Point(x, y) {
 		this.y += secondPoint.y;
 	}
 
-	Point.prototype.MinusFromThis = function (/*Point*/ subtrahend/*вычитаемое*/) {
+	Point.prototype.MinusFromThis = function (/*Point*/ subtrahend/*пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ*/) {
 		this.x -= subtrahend.x;
 		this.y -= subtrahend.y;
 	}
 
-	Point.prototype.MinusThis = function (/*Point*/ minuend/*уменьшаемое*/) {
+	Point.prototype.MinusThis = function (/*Point*/ minuend/*пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ*/) {
 		this.x = minuend.x - this.x;
 		this.y = minuend.y - this.y;
 	}
@@ -27,9 +27,23 @@ function Point(x, y) {
 	}
 
 	Point.prototype.RotationAcrosPoint = function (/*Point*/ point, /*int*/ rotate) {
-		//вычитаем из нашей точки вершину, относительно которой бкдет делаться поворот, чтобы поворот был относительно это вершины.
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 		this.MinusFromThis(point);	
-		this.Rotation(rotate * TO_RADIANS);	//для востановления нужно передавать обратный угол.
-		this.AddToThis(point); //чтобы получить значение относительно канваса.
+		this.Rotation(rotate * TO_RADIANS);	//пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
+		this.AddToThis(point); //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 	}
+
+    Point.prototype.ConvertStyleValue = function(styleValue){
+        return Number(styleValue.replace("px",""));
+    }
+
+    Point.prototype.ConvertThisFromStyle = function(){
+        this.x = this.ConvertStyleValue(this.x);
+        this.y = this.ConvertStyleValue(this.y);
+    }
+
+    Point.prototype.Multiply = function(scale){
+        this.x *= scale;
+        this.y *= scale;
+    }
 }

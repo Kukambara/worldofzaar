@@ -31,11 +31,6 @@ public class WebUserDao extends GenericDaoMain<WebUser> {
         return null;
     }
 
-    public WebUser getWebUser(Integer webUserId) {
-        WebUserDao webUserDao = new WebUserDao();
-        return webUserDao.find(webUserId);
-    }
-
     public WebUser signInEmail(String email, String pass) {
         try {
             Session session = HibernateUtilMain.getSessionFactory().openSession();

@@ -11,7 +11,7 @@ function PlayerField() {
 
 	this.fullArea;
 
-	this.areas = []
+	this.areas = [];
 	this.cards = [];
 	
 	this.rotate = 0;	//�������
@@ -83,11 +83,20 @@ function PlayerField() {
 	}
 
     this.InitAreasForCards = function(/*Area*/ areaReal){
-        this.scale =  Card().CalculateScale(areaReal);
+        this.scale =  CalculateState(areaReal);
         var scaledArea = areaReal.GetClone();
-        scaledArea.Scale(this.scale);
+        scaledArea.Scale(1 / this.scale);
         this.InitAreas(scaledArea);
     }
+
+    function CalculateState(/*Area*/ drawableArea){
+        var baseCardWidth = 400 * 6;
+        var baseCardHeight = 600 * 2;
+        var widthScale = drawableArea.width / baseCardWidth;
+        var heightScale = drawableArea.height / baseCardHeight;
+        return widthScale < heightScale ? widthScale : heightScale;
+    }
+
 
 	this.InitClick = function () {
 		/*for (var i = 0; i < this.fighterCardAreas.length; ++i) {
@@ -180,8 +189,7 @@ function PlayerField() {
 	}
 
 	this.Draw = function () {
-		this.fullArea.DrawRotateBegin(this.context, this.rotate);
-		
+        this.fullArea.DrawRotateBegin(this.context, this.rotate);
 		//this.fullArea.Draw();
 		this.FighterCardAreasDraw();
 		for (var areaName in this.areas) {
@@ -190,11 +198,25 @@ function PlayerField() {
 
 		this.fullArea.DrawRotateEnd(this.context);
 	}
-	
+
+    this.DrawCards = function(){
+        for(var name in this.cards){
+            this.cards[name].Draw()();
+        }
+    }
+
+    this.ApplyScale = function(){
+        this.context.scale(this.scale, this.scale);
+    }
+
+    this.ApplyRotation = function (){
+        this.fullArea.DrawRotateBegin(this.context, this.rotate);
+    }
+
 	this.OnClick = function (eventPoint) {
 		var eventPointTemp = new Point(eventPoint.x, eventPoint.y);
 		eventPointTemp.RotationAcrosPoint(this.fullArea.beginPoint, -this.rotate);//��� ������������� ����� ���������� �������� ����.
-		if (this.fullArea.IsPointInArea(eventPointTemp)) {
+        if (this.fullArea.IsPointInArea(eventPointTemp)) {
 			eventPointTemp.MinusFromThis(this.fullArea.beginPoint);
 
 			for (var i in this.fighterCardAreas) {
@@ -216,7 +238,36 @@ function PlayerField() {
 		}
 	}
 
-	this.Clear = function () {
+    this.OnCardClick = function (eventPoint) {
+        var eventPointTemp = new Point(eventPoint.x, eventPoint.y);
+        if(this.scale != 0){
+            eventPointTemp.Multiply(1/this.scale);
+        }
+        eventPointTemp.RotationAcrosPoint(this.fullArea.beginPoint, -this.rotate);//��� ������������� ����� ���������� �������� ����.
+
+        if (this.fullArea.IsPointInArea(eventPointTemp)) {
+            eventPointTemp.MinusFromThis(this.fullArea.beginPoint);
+
+            for (var i in this.fighterCardAreas) {
+                this.fighterCardAreas[i].onClick(eventPointTemp);
+                if(this.fighterCardAreas[i].CheckPoint(eventPointTemp))   {
+                    eventManager.triggerEvent("onFieldClick", [this.fieldId, i]);
+                }
+            }
+
+            for (var areaName in this.areas) {
+                if (this.areas[areaName].onClick) {
+                    this.areas[areaName].onClick(eventPointTemp);
+                }
+                if(this.areas[areaName].area.IsPointInArea(eventPointTemp))   {
+                    eventManager.triggerEvent("onFieldClick", [this.fieldId, areaName]);
+                }
+            }
+
+        }
+    }
+
+    this.Clear = function () {
 		this.fullArea.DrawRotateBegin(this.context, this.rotate);
 
 		for (var i = 0; i < this.fighterCardAreas.length; ++i) {
@@ -231,6 +282,9 @@ function PlayerField() {
 
 	}
 
+    this.OnClickListener = function(point){
+        OnClick(point);
+    }
 	/*this.CheckPoint = function (eventPoint) {
 		var eventPointTemp = new Point(eventPoint.x, eventPoint.y);
 		eventPointTemp.RotationAcrosPoint(this.fullArea.beginPoint, -this.rotate);//��� ������������� ����� ���������� �������� ����.

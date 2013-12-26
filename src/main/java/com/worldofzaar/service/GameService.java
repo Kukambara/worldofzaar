@@ -140,52 +140,36 @@ public class GameService {
         Game game = gameDao.getGame(userInformation.getUserId());
         Hero nextActiveHero = null;
         Hero activeHero = null;
-        if (game != null) {
-            activeHero = getActiveHero(game.getAllHeroes());
-            nextActiveHero = getNextActiveHero(game.getAllHeroes());
+        if (game == null)
+            return;
+
+        activeHero = game.getActiveHero();
+        nextActiveHero = game.getNextActiveHero();
+
+        activeHero.setActivity(Activity.UNACTIVE);
+        nextActiveHero.setActivity(Activity.ACTIVE);
+
+
+        if (game.getFirstCircleHeroIndex() == game.getPositionByHero(nextActiveHero)) {
+            if (game.getPhase() == Phase.END)
+                changeCircle(game);
+            game.increasePhase();
         }
+
         HeroService heroService = new HeroService();
         heroService.updateHero(activeHero);
         heroService.updateHero(nextActiveHero);
+
+        game.setStep(game.getStep() + 1);
+        gameDao.update(game);
     }
 
-    private Hero getNextActiveHero(Hero... heroes) {
-        for (int i = 0; i < heroes.length; i++) {
-            if (heroes[i] != null) {
-                if (heroes[i].getActivity() == Activity.ACTIVE) {
-                    return getNextHero(i, heroes);
-                }
-            }
-        }
-        return null;
-    }
-
-    private Hero getActiveHero(Hero... heroes) {
-        for (int i = 0; i < heroes.length; i++) {
-            if (heroes[i] != null) {
-                if (heroes[i].getActivity() == Activity.ACTIVE) {
-                    return heroes[i];
-                }
-            }
-        }
-        return null;
-    }
-
-    private Hero getNextHero(int index, Hero... heroes) {
-        int loop = 1;
-        for (int i = index; i < heroes.length; i++) {
-            if (loop == 2 && i == index) {
-                return heroes[i];
-            }
-            if (i != index && heroes[i] != null) {
-                return heroes[i];
-            }
-            if (i + 1 == heroes.length) {
-                i = -1;
-                loop++;
-            }
-        }
-        return null;
+    public void changeCircle(Game game) {
+        Hero activeHero = game.getActiveHero();
+        Hero nextActiveHero = game.getNextActiveHero();
+        activeHero.setActivity(Activity.UNACTIVE);
+        nextActiveHero.setActivity(Activity.ACTIVE);
+        game.setFirstCircleHeroIndex(game.getPositionByHero(nextActiveHero));
     }
 
     public void putCard(HttpServletRequest request, CardPosition cardPosition) {

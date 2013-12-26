@@ -32,28 +32,28 @@ function Map() {
         );
 		this.playerField[0].InitTexts();
 
-		this.playerField[1] = new PlayerField();
-		this.playerField[1].rotate = -90;
+        this.playerField[1] = new PlayerField();
+        this.playerField[1].rotate = 90;
         this.playerField[1].fieldId = 1;
-		this.playerField[1].InitAreas(new Area(new Point(x + width * fieldStepY, y + height * (1 - fieldStepX))
+        this.playerField[1].InitAreas(new Area(new Point(x + width * (1 - fieldStepY), y + height * fieldStepX)
             , width * fieldWidthSize
             , height * fieldHeightSize)
         );
-		this.playerField[1].InitTexts();
+        this.playerField[1].InitTexts();
 
-		this.playerField[2] = new PlayerField();
-		this.playerField[2].rotate = 90;
-        this.playerField[2].fieldId = 2;
-		this.playerField[2].InitAreas(new Area(new Point(x + width * (1 - fieldStepY), y + height * fieldStepX)
+        this.playerField[2] = new PlayerField();
+        this.playerField[2].rotate = 180;
+        this.playerField[2].fieldId = 3;
+        this.playerField[2].InitAreas(new Area(new Point(x + width * (1 - fieldStepX), y + height * (1 - fieldStepY))
             , width * fieldWidthSize
             , height * fieldHeightSize)
         );
-		this.playerField[2].InitTexts();
+        this.playerField[2].InitTexts();
 
 		this.playerField[3] = new PlayerField();
-		this.playerField[3].rotate = -180;
+		this.playerField[3].rotate = 270;
         this.playerField[3].fieldId = 3;
-		this.playerField[3].InitAreas(new Area(new Point(x + width * (1 - fieldStepX), y + height * (1 - fieldStepY))
+		this.playerField[3].InitAreas(new Area(new Point(x + width * fieldStepY, y + height * (1 - fieldStepX))
             , width * fieldWidthSize
             , height * fieldHeightSize)
         );
@@ -115,7 +115,6 @@ function Map() {
 	}
 
 	this.Draw = function () {
-		//this.backgroundFull.Draw();
 		this.background.Draw();
 		for (var i = 0; i < this.playerField.length; ++i) {
 			this.playerField[i].Draw();
