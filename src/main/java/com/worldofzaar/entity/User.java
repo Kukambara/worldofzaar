@@ -51,4 +51,26 @@ public class User {
     public void setGameProfile(GameProfile gameProfile) {
         this.gameProfile = gameProfile;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        User user = (User) o;
+
+        if (!gameProfile.equals(user.gameProfile)) return false;
+        if (!userId.equals(user.userId)) return false;
+        if (!userName.equals(user.userName)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = userId.hashCode();
+        result = 31 * result + userName.hashCode();
+        result = 31 * result + gameProfile.hashCode();
+        return result;
+    }
 }

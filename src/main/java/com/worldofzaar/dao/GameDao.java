@@ -34,10 +34,8 @@ public class GameDao extends GenericDaoActive<Game> {
     }
 
     public boolean isGameCreated(UserInformation userInformation) {
-        Transaction tx = null;
         try {
             Session session = HibernateUtilActive.getSessionFactory().openSession();
-            tx = session.beginTransaction();
             Query query = session.createQuery("select count(g.gameId) from Game as g where g.fourthHero.userId = :id or g.thirdHero.userId = :id or g.secondHero.userId = :id or g.firstHero.userId = :id");
             query.setParameter("id", userInformation.getUserId());
             query.setMaxResults(1);
@@ -45,7 +43,7 @@ public class GameDao extends GenericDaoActive<Game> {
             if (list == null)
                 return false;
             int count = (Integer) list.get(0);
-            tx.commit();
+
             session.close();
             return (count == 1) ? true : false;
         } catch (Exception e) {
@@ -55,10 +53,8 @@ public class GameDao extends GenericDaoActive<Game> {
     }
 
     public boolean isGameReady(UserInformation userInformation) {
-        Transaction tx = null;
         try {
             Session session = HibernateUtilActive.getSessionFactory().openSession();
-            tx = session.beginTransaction();
             Query query = session.createQuery("from Game where (fourthHero.userId = :id or thirdHero.userId = :id or secondHero.userId = :id or firstHero.userId = :id) and isReady = true");
             query.setParameter("id", userInformation.getUserId());
             query.setMaxResults(1);
@@ -66,7 +62,6 @@ public class GameDao extends GenericDaoActive<Game> {
             if (list == null)
                 return false;
             int count = (Integer) list.get(0);
-            tx.commit();
             session.close();
             return (count == 1) ? true : false;
         } catch (Exception e) {
@@ -76,17 +71,14 @@ public class GameDao extends GenericDaoActive<Game> {
     }
 
     public Game getGame(Integer userId) {
-        Transaction tx = null;
         try {
             Session session = HibernateUtilActive.getSessionFactory().openSession();
-            tx = session.beginTransaction();
             Query query = session.createQuery("from Game where fourthHero.userId = :id or thirdHero.userId = :id or secondHero.userId = :id or firstHero.userId = :id");
             query.setParameter("id", userId);
             query.setMaxResults(1);
             List list = query.list();
             if (list == null)
                 return null;
-            tx.commit();
             session.close();
             return (Game) list.get(0);
         } catch (Exception e) {

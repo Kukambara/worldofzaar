@@ -15,7 +15,8 @@ import javax.persistence.*;
 @Table(name = "\"WarriorCurrentCards\"")
 public class ActiveWarriorCard {
     @Id
-    @GeneratedValue
+    @SequenceGenerator(name = "activeWarriorCard_seq", sequenceName = "\"WarriorCurrentCards_warriorCurrentCardId_seq\"", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "activeWarriorCard_seq")
     @Column(name = "\"warriorCurrentCardId\"")
     private Integer activeWarriorCardId;
     @Transient

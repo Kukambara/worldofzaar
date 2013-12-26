@@ -23,6 +23,8 @@ public class ActiveWarriorCardService {
         activeWarriorCard.setCurrentHealth(warriorCard.getCardHealth());
         activeWarriorCard.setCurrentAttack(warriorCard.getCardDamage());
         activeWarriorCard.setWarriorCardId(warriorCard.getCardId());
+        activeWarriorCard.setStepCount(1);
+        activeWarriorCardDao.add(activeWarriorCard);
 
         return activeWarriorCard;
     }

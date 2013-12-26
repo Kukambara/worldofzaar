@@ -13,7 +13,8 @@ import javax.persistence.*;
 @Table(name = "\"PropertiesStacks\"")
 public class PropertyStack {
     @Id
-    @GeneratedValue
+    @SequenceGenerator(name = "propertyStack_seq", sequenceName = "\"PropertiesStacks_stackId_seq\"", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "propertyStack_seq")
     @Column(name = "\"stackId\"")
     private Integer stackId;
     @ManyToOne

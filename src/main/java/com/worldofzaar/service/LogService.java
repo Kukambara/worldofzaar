@@ -14,6 +14,7 @@ public class LogService {
     public Log createLog() {
         LogDao logDao = new LogDao();
         Log log = new Log();
+        log.setLog("");
         logDao.add(log);
         return log;
     }
