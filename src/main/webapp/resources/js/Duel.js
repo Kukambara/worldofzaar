@@ -158,7 +158,9 @@
     }
 
     function OnClickNavigationBar(point) {
-        navigationBar.OnClick(point)
+        clearInterval(clock);
+        isWaiting = true;
+        navigationBar.OnClick(point);
     }
 
     //-----------------------------------------------------------------------
@@ -363,9 +365,8 @@
                     tables[0].SetPlayer(i, data["twoPlayers"][j].userId, data["twoPlayers"][j].blazonPath, data["twoPlayers"][j].clothPath);
                 }
 
-                if (data["twoPlayers"][j].userId == player.userId) {
+                if (data["twoPlayers"][j].userId != null && data["twoPlayers"][j].userId == player.userId) {
                     isWaiting = false;
-                    gameStartLisener();
                 }
             }
         }
@@ -376,9 +377,8 @@
                     tables[1].SetPlayer(i, data["threePlayers"][j].userId, data["threePlayers"][j].blazonPath, data["threePlayers"][j].clothPath);
                 }
 
-                if (data["threePlayers"][j].userId == player.userId) {
+                if (data["threePlayers"][j].userId != null && data["threePlayers"][j].userId == player.userId) {
                     isWaiting = false;
-                    gameStartLisener();
                 }
             }
         }
@@ -389,21 +389,22 @@
                     tables[2].SetPlayer(i, data["fourPlayers"][j].userId, data["fourPlayers"][j].blazonPath, data["fourPlayers"][j].clothPath);
                 }
 
-                if (data["threePlayers"][j].userId == player.userId) {
+                if (data["fourPlayers"][j].userId != null && data["threePlayers"][j].userId == player.userId) {
                     isWaiting = false;
-                    gameStartLisener();
                 }
             }
         }
-
 
     }
 
 
     //--------------------------------------------------------
     function gameStartLisener() {
-            clock = setInterval(getTables, 2000);
+        if(!isWaiting){
+            clock = setInterval(function(){getTables;}, 5000);
+        }
     }
+
     function isGameReady(){
         $.ajax({
             url: "/api/game/isGameReady",
@@ -431,7 +432,7 @@
                 cost = "cost100";
                 break;
         }
-        isGameReady();
+        //isGameReady();
         $.ajax({
             url: "/api/tables/getTables/" + cost,
             dataType: "json",
