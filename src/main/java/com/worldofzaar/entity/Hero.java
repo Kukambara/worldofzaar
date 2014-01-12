@@ -17,9 +17,11 @@ import java.util.Date;
 @Entity
 @Table(name = "\"Heroes\"")
 public class Hero {
+    @Transient
     private final int HERO_ARMOR = 2;
     @Id
-    @GeneratedValue
+    @SequenceGenerator(name = "hero_seq", sequenceName = "\"Heroes_heroId_seq\"", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "hero_seq")
     @Column(name = "\"heroId\"")
     private Integer heroId;
     @Transient

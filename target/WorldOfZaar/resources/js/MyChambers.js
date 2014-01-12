@@ -37,13 +37,15 @@
     var loadedLabels = [];
     var loadedBackground = [];
     var loadedActionImg = [];
-
+    var loadedPlayer = [];
     var loadedCardIndex = 0;
     var loadedCardId = 0;
 
     var myChambersMap = [];
     var navigationBar;
-
+    var player;
+    var playerClassName = "";
+    var playerRaceName = "";
     //-----------------------------------------------------------------------
 
     //------------------------Входная точка----------------------------------
@@ -59,6 +61,9 @@
         canvas.ClearArea(new Area(new Point(0,0),900,900),2);
 
         query();
+        getUser();
+        getClassName();
+        getRaceName();
         setNavigationBar();
         setTransitionElements();
         SetCards();
@@ -67,6 +72,7 @@
         setLables();
         setDecks();
         setMyChambersMap();
+        setPlayer();
         test();
 
         setTimeout(function(){
@@ -259,7 +265,9 @@
     }
 
     //--------------------------------------------------------------------------
+
     //-----------------------------Отрисовка-----------------------------------
+
     //-------------------------------------------------------------------------
     function postInit(){
 
@@ -271,6 +279,7 @@
         Draw(loadedBorders);
         Draw(loadedDecks);
         Draw(transitionArrows);
+        Draw(loadedPlayer);
         setEvents(0);
     }
 
@@ -701,7 +710,67 @@
         ReDrawCanvas();
     }
 
-//---------------------------------------------------------------------
+    function setPlayer() {
+        loadedPlayer[0] = new AreaImage(new Area(new Point(680, 190), 157, 206));
+        loadedPlayer[0].SetContext(canvas.GetCanvasContextLevel(1));
+        loadedPlayer[0].SetSource(player.gameProfile.racePicture.picturePath);
+
+        loadedPlayer[1] = new AreaImage(new Area(new Point(680, 190), 157, 206));
+        loadedPlayer[1].SetContext(canvas.GetCanvasContextLevel(1));
+        loadedPlayer[1].SetSource("resources\\Images\\Duel\\Borders\\avatarBorder.png");
+
+
+        loadedPlayer[2] = new AreaImage(new Area(new Point(635, 400), 251, 109));
+        loadedPlayer[2].SetContext(canvas.GetCanvasContextLevel(1));
+        loadedPlayer[2].SetSource("resources\\Images\\Backgrounds\\userNameBackground.png");
+
+        loadedPlayer[3] = new AreaText(new Area(new Point(760, 425), 0, 0), player.userName);
+        loadedPlayer[3].SetContext(canvas.GetCanvasContextLevel(1));
+        loadedPlayer[3].textColor = "rgb(0,0,0)";
+        loadedPlayer[3].fontStyle = 'italic 20pt Calibri';
+
+        loadedPlayer[4] = new AreaText(new Area(new Point(760, 450), 0, 0), playerRaceName);
+        loadedPlayer[4].SetContext(canvas.GetCanvasContextLevel(1));
+        loadedPlayer[4].textColor = "rgb(0,0,0)";
+        loadedPlayer[4].fontStyle = 'italic 20pt Calibri';
+
+        loadedPlayer[5] = new AreaText(new Area(new Point(760, 475), 0, 0), playerClassName);
+        loadedPlayer[5].SetContext(canvas.GetCanvasContextLevel(1));
+        loadedPlayer[5].textColor = "rgb(0,0,0)";
+        loadedPlayer[5].fontStyle = 'italic 20pt Calibri';
+
+        loadedPlayer[6] = new AreaImage(new Area(new Point(650, 490), 220, 220));
+        loadedPlayer[6].SetContext(canvas.GetCanvasContextLevel(1));
+        loadedPlayer[6].SetSource(player.gameProfile.blazon.cloth.clothPath);
+
+        loadedPlayer[7] = new AreaImage(new Area(new Point(650, 490), 220, 220));
+        loadedPlayer[7].SetContext(canvas.GetCanvasContextLevel(1));
+        loadedPlayer[7].SetSource(player.gameProfile.blazon.blazonPath);
+
+        loadedPlayer[8] = new AreaText(new Area(new Point(700, 770), 50, 50),player.gameProfile.money);
+        loadedPlayer[8].SetContext(canvas.GetCanvasContextLevel(1));
+        loadedPlayer[8].textColor = "rgb(255,185,15)";
+        loadedPlayer[8].fontStyle ='italic 20pt Calibri';
+
+        loadedPlayer[9] = new AreaText(new Area(new Point(820, 770), 50, 50),player.gameProfile.donateMoney);
+        loadedPlayer[9].SetContext(canvas.GetCanvasContextLevel(1));
+        loadedPlayer[9].textColor = "rgb(192,192,192)";
+        loadedPlayer[9].fontStyle ='italic 20pt Calibri';
+
+        loadedPlayer[10] = new AreaImage(new Area(new Point(650, 770), 50, 50));
+        loadedPlayer[10].SetContext(canvas.GetCanvasContextLevel(1));
+        loadedPlayer[10].SetSource("/resources/Images/MasterOfDeck/Lables/goldImg.png");
+
+        loadedPlayer[11] = new AreaImage(new Area(new Point(770, 770), 50, 50));
+        loadedPlayer[11].SetContext(canvas.GetCanvasContextLevel(1));
+        loadedPlayer[11].SetSource("/resources/Images/MasterOfDeck/Lables/silverImg.png");
+
+        loadedPlayer[12] = new AreaImage(new Area(new Point(740, 710), 50, 50));
+        loadedPlayer[12].SetContext(canvas.GetCanvasContextLevel(1));
+        loadedPlayer[12].SetSource("/resources/Images/MasterOfDeck/Lables/moneyBag.png");
+    }
+
+    //---------------------------------------------------------------------
 
     function getDeckCardId(cardId) {
         for (var i = 0; i < cardsInDeck.length; ++i) {
@@ -719,6 +788,44 @@
         getDeckCards();
     }
 
+    function getUser() {
+        $.ajax({
+            url: "/profile/gameProfile/",
+            dataType: "json",
+            type: "GET",
+            async: false,
+            success: function (data) {
+                player = data;
+            }
+        });
+        getRaceName();
+        getClassName();
+    }
+    function getRaceName() {
+        var raceId = player.gameProfile.blazon.classification.race.raceId;
+        $.ajax({
+            url: "/profile/raceName/" + raceId,
+            dataType: "json",
+            type: "POST",
+            async: false,
+            success: function (data) {
+                playerRaceName = data.raceName;
+            }
+        });
+    }
+
+    function getClassName() {
+        var classId = player.gameProfile.blazon.classification.classificationId;
+        $.ajax({
+            url: "/profile/className/" + classId,
+            dataType: "json",
+            type: "POST",
+            async: false,
+            success: function (data) {
+                playerClassName = data.className;
+            }
+        });
+    }
     function getUserCards() {
         $.ajax({
             url: "/profile/userCards/",

@@ -14,6 +14,7 @@ public class ChatService {
     public Chat createChat() {
         ChatDao chatDao = new ChatDao();
         Chat chat = new Chat();
+        chat.setChat("");
         chatDao.add(chat);
         return chat;
     }

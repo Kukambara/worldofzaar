@@ -45,6 +45,7 @@
                 break;
         }
     }
+
     this.Draw = function ()
     {
         Draw();

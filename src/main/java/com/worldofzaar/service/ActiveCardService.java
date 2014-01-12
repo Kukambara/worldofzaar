@@ -33,7 +33,7 @@ public class ActiveCardService {
         Random random = new Random();
 
         int randomCard = 0;
-        for (int i = 0; i < cards.size(); i++) {
+        for (int i = 0; cards.size() != 0; i++) {
             //Get random active card.
             randomCard = random.nextInt(cards.size());
             CardInDeck cardInDeck = cards.get(randomCard);

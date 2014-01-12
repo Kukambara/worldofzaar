@@ -113,7 +113,7 @@ public class CertainTableService {
         GameService gameService = new GameService();
         gameService.createNewGame(tables);
 
-        return false;
+        return true;
     }
 
     //Get tables

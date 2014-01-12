@@ -20,12 +20,12 @@
         <property name="hibernate.connection.sslfactory">org.postgresql.ssl.NonValidatingFactory</property>
         <property name="hibernate.connection.ssl">true</property>
         <property name="hibernate.connection.autoReconnect">true</property>
-
+                                                <!--
         <property name="hibernate.cache.region.factory_class">net.sf.ehcache.hibernate.EhCacheRegionFactory</property>
         <property name="hibernate.cache.use_second_level_cache">true</property>
         <property name="hibernate.cache.use_query_cache">true</property>
-        <property name="hibernate.cache.provider_configuration_file_resource_path">resources/ehcache.xml</property>
-
+        <property name="hibernate.cache.provider_configuration_file_resource_path">resources/ehcacheActive.xml</property>
+                                                    -->
 
         <mapping class="com.worldofzaar.entity.ActiveCoalition"/>
         <mapping class="com.worldofzaar.entity.ActiveCard"/>

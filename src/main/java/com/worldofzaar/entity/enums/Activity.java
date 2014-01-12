@@ -8,5 +8,5 @@ package com.worldofzaar.entity.enums;
  * To change this template use File | Settings | File Templates.
  */
 public enum Activity {
-    UNREADY, READY, UNACTIVE, ACTIVE, DEAD, CAME_OUT
+    UNREADY, READY, UNACTIVE, ACTIVE, DEAD, CAME_OUT;
 }

@@ -76,4 +76,32 @@ public class CertainTable {
     public void setLevel(Integer level) {
         this.level = level;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        CertainTable that = (CertainTable) o;
+
+        if (!level.equals(that.level)) return false;
+        if (!requestId.equals(that.requestId)) return false;
+        if (!seatPosition.equals(that.seatPosition)) return false;
+        if (!tableCost.equals(that.tableCost)) return false;
+        if (!tableSize.equals(that.tableSize)) return false;
+        if (!user.equals(that.user)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = requestId.hashCode();
+        result = 31 * result + user.hashCode();
+        result = 31 * result + tableSize.hashCode();
+        result = 31 * result + seatPosition.hashCode();
+        result = 31 * result + tableCost.hashCode();
+        result = 31 * result + level.hashCode();
+        return result;
+    }
 }

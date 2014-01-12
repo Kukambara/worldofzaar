@@ -28,6 +28,7 @@
     var loadedStatic = [];
     var loadedActionImg =[];
     var masterOfDeckMap = [];
+    var loadedBank = [];
     var navigationBar;
     var player;
     var loadedCardIndex=0;
@@ -55,6 +56,7 @@
         setMasterOfDeckMap();
         setNavigationBar();
         setStaticElements();
+        setPlayerBank();
         test();
 
         setTimeout(function () {
@@ -67,6 +69,7 @@
                 Draw(loadedLabels);
                 Draw(loadedStatic);
                 Draw(transitionArrows);
+                Draw(loadedBank);
                 setEvents(0);
             }, 200);
         }, 2000);
@@ -75,6 +78,7 @@
 
     function test(){
         var cardObject;
+        resources.loadByUrl("resources\\Images\\Backgrounds\\actionBackground.png");
         for(var i=0 ;i< allMasterOfDeckCards.length;++i){
             if (allMasterOfDeckCards[i].warriorCard != null) {
                 cardObject = allMasterOfDeckCards[i].warriorCard;
@@ -156,8 +160,10 @@
                 if(loadedActionImg[i].GetDirection()){
                     BuyCard();
                 }
-                setEvents(0);
-                canvas.GetCanvasContextLevel(2).clearRect(0,0,900,900);
+                setTimeout(function () {
+                    setEvents(0);
+                    canvas.GetCanvasContextLevel(2).clearRect(0, 0, 900, 900);
+                }, 250);
                 break;
             }
         }
@@ -171,8 +177,10 @@
                 if(loadedActionImg[i].GetDirection()){
                     SellCard();
                 }
-                setEvents(0);
-                canvas.GetCanvasContextLevel(2).clearRect(0,0,900,900);
+                setTimeout(function () {
+                    setEvents(0);
+                    canvas.GetCanvasContextLevel(2).clearRect(0, 0, 900, 900);
+                }, 250);
                 break;
             }
         }
@@ -188,7 +196,18 @@
                 var card;
                 var info = [];
                 if(!isBuyingCards){
-                    card= initPlayerCard(allPlayerCards[(currCardsRowIndex*6)+i],area,2);}
+                    card= initPlayerCard(allPlayerCards[(currCardsRowIndex*6)+i],area,2);
+
+                    info[0] = new AreaText(new Area(new Point(600, 200), 50, 50),"Пожалуй, за нее я верну тебе");
+                    info[0].SetContext(canvas.GetCanvasContextLevel(2));
+                    info[0].textColor = "rgb(255,185,15)";
+                    info[0].fontStyle ='italic 20pt Calibri';
+
+                    info[1] = new AreaText(new Area(new Point(600, 220), 50, 50),"половину ее стоимости");
+                    info[1].SetContext(canvas.GetCanvasContextLevel(2));
+                    info[1].textColor = "rgb(255,185,15)";
+                    info[1].fontStyle ='italic 20pt Calibri';
+                }
                 else{
                     card= initMasterOfDeckCard(allMasterOfDeckCards[(currCardsRowIndex*6)+i],area,2);
 
@@ -206,18 +225,27 @@
                     info[2].SetContext(canvas.GetCanvasContextLevel(2));
                     info[2].textColor = "rgb(192,192,192)";
                     info[2].fontStyle ='italic 20pt Calibri';
+
+                    info[3] = new AreaImage(new Area(new Point(550, 200), 50, 50));
+                    info[3].SetContext(canvas.GetCanvasContextLevel(2));
+                    info[3].SetSource("/resources/Images/MasterOfDeck/Lables/goldImg.png");
+
+                    info[4] = new AreaImage(new Area(new Point(550, 250), 50, 50));
+                    info[4].SetContext(canvas.GetCanvasContextLevel(2));
+                    info[4].SetSource("/resources/Images/MasterOfDeck/Lables/silverImg.png");
+
                 }
                 loadedCardIndex = (currCardsRowIndex*6)+i;
                 //loadedCardId = card.cardId;
 
                 if(!isBuyingCards){
                     loadedActionImg[0] = new TransitionArrow(false, "MasterOfDeck", "sellCard", canvas.GetCanvasContextLevel(2), new Area(new Point(430 * canvas.CanvasScale, 590* canvas.CanvasScale), 432, 67), 1);
-                    loadedActionImg[1] = new TransitionArrow(false, "MyChambers", "cancel",canvas.GetCanvasContextLevel(2), new Area(new Point(510 * canvas.CanvasScale, 660 * canvas.CanvasScale), 240, 57), 0);
+                    loadedActionImg[1] = new TransitionArrow(false, "MasterOfDeck", "cancel",canvas.GetCanvasContextLevel(2), new Area(new Point(510 * canvas.CanvasScale, 660 * canvas.CanvasScale), 240, 57), 0);
 
                     setEvents(-1);
                 }else{
                     loadedActionImg[0] = new TransitionArrow(false, "MasterOfDeck", "buyCard", canvas.GetCanvasContextLevel(2), new Area(new Point(430 * canvas.CanvasScale, 590* canvas.CanvasScale), 460, 68), 1);
-                    loadedActionImg[1] = new TransitionArrow(false, "MyChambers", "cancel",canvas.GetCanvasContextLevel(2), new Area(new Point(510 * canvas.CanvasScale, 660 * canvas.CanvasScale), 240, 57), 0);
+                    loadedActionImg[1] = new TransitionArrow(false, "MasterOfDeck", "cancel",canvas.GetCanvasContextLevel(2), new Area(new Point(510 * canvas.CanvasScale, 660 * canvas.CanvasScale), 240, 57), 0);
                     setEvents(1);
                 }
                 var background = new AreaImage(new Area(new Point(0,0),900,900));
@@ -273,11 +301,13 @@
         setCardList();
         setLables();
         setMasterOfDeckMap();
+        setPlayerBank();
         setTimeout(function () {
                 Draw(loadedCards);
                 Draw(loadedLabels);
                 Draw(loadedStatic);
                 Draw(transitionArrows);
+                Draw(loadedBank);
                 setEvents(0);
         }, 200);
     }
@@ -414,16 +444,32 @@
         loadedStatic[0] = new AreaImage(new Area(new Point(10, 150), 262, 331));
         loadedStatic[0].SetContext(canvas.GetCanvasContextLevel(0));
         loadedStatic[0].SetSource("resources\\Images\\MasterOfDeck\\Hollows\\master.png");
+    }
 
-        loadedStatic[1] = new AreaText(new Area(new Point(30, 550), 50, 50),player.gameProfile.money);
-        loadedStatic[1].SetContext(canvas.GetCanvasContextLevel(1));
-        loadedStatic[1].textColor = "rgb(255,185,15)";
-        loadedStatic[1].fontStyle ='italic 20pt Calibri';
+    function setPlayerBank(){
+        loadedBank = [];
 
-        loadedStatic[2] = new AreaText(new Area(new Point(100, 550), 50, 50),player.gameProfile.donateMoney);
-        loadedStatic[2].SetContext(canvas.GetCanvasContextLevel(1));
-        loadedStatic[2].textColor = "rgb(192,192,192)";
-        loadedStatic[2].fontStyle ='italic 20pt Calibri';
+        loadedBank[0] = new AreaText(new Area(new Point(60, 550), 50, 50),player.gameProfile.money);
+        loadedBank[0].SetContext(canvas.GetCanvasContextLevel(1));
+        loadedBank[0].textColor = "rgb(255,185,15)";
+        loadedBank[0].fontStyle ='italic 20pt Calibri';
+
+        loadedBank[1] = new AreaText(new Area(new Point(180, 550), 50, 50),player.gameProfile.donateMoney);
+        loadedBank[1].SetContext(canvas.GetCanvasContextLevel(1));
+        loadedBank[1].textColor = "rgb(192,192,192)";
+        loadedBank[1].fontStyle ='italic 20pt Calibri';
+
+        loadedBank[2] = new AreaImage(new Area(new Point(10, 550), 50, 50));
+        loadedBank[2].SetContext(canvas.GetCanvasContextLevel(1));
+        loadedBank[2].SetSource("/resources/Images/MasterOfDeck/Lables/goldImg.png");
+
+        loadedBank[3] = new AreaImage(new Area(new Point(130, 550), 50, 50));
+        loadedBank[3].SetContext(canvas.GetCanvasContextLevel(1));
+        loadedBank[3].SetSource("/resources/Images/MasterOfDeck/Lables/silverImg.png");
+
+        loadedBank[4] = new AreaImage(new Area(new Point(90, 500), 50, 50));
+        loadedBank[4].SetContext(canvas.GetCanvasContextLevel(1));
+        loadedBank[4].SetSource("/resources/Images/MasterOfDeck/Lables/moneyBag.png");
     }
 
     function setNavigationBar() {
@@ -506,6 +552,7 @@
         });
 
         getUserCards();
+        getUser();
         ReDrawCanvas();
     }
 
@@ -520,6 +567,7 @@
         });
 
         getUserCards();
+        getUser();
         ReDrawCanvas();
     }
 

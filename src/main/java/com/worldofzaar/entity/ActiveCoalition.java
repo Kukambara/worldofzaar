@@ -13,7 +13,8 @@ import javax.persistence.*;
 @Table(name = "\"ActiveCoalitions\"")
 public class ActiveCoalition {
     @Id
-    @GeneratedValue
+    @SequenceGenerator(name = "activeCoalition_seq", sequenceName = "\"ActiveCoalitions_coalitionId_seq\"", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "activeCoalition_seq")
     @Column(name = "\"coalitionId\"")
     private Integer coalitionId;
     @OneToOne
