@@ -22,6 +22,7 @@
 	})();
 
 	function init(/*string*/ canvasLoadingName) {
+        setState(consts.gameState.loading);
 		canvasesName["loading"] = canvasLoadingName;
 		canvasManager.addCanvas(canvasLoadingName);
 
@@ -140,6 +141,14 @@
 		alert("render");
 	}
 
+    function setState(/*string*/ newState){
+        state = newState;
+    }
+
+    /*string*/ function getState(){
+        return state;
+    }
+
 	function onClickListener(eventPoint) {
 
 		map.OnClick(eventPoint);
@@ -157,6 +166,7 @@
         }
 		timer.Draw();
         main();
+        setState(consts.gameState.loaded);
 	}
 
 	function draw() {
@@ -211,6 +221,8 @@
 
 	window.game = {
 		init: init
+        , setState: setState
+        , getState: getState
 		, onClickListener: onClickListener
         , onCardTestClick: onCardTestClick
         , OnCardClickHelper0:OnCardClickHelper0
