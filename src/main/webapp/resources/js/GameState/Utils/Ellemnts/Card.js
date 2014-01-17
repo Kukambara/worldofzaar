@@ -1,6 +1,6 @@
 function Card() {
-    this.baseWidth = 400;
-    this.baseHeight = 600;
+    this.baseWidth = window.consts.cardSize.width;
+    this.baseHeight = window.consts.cardSize.height;
 
     this.borderSize = 0.1;
     this.texts = [];

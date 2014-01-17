@@ -23,6 +23,7 @@
 <script type="text/javascript" src="/resources/js/GameState/Utils/Ellemnts/CardSupport.js"></script>
 <script type="text/javascript" src="/resources/js/GameState/Utils/CanvasManager.js"></script>
 <script type="text/javascript" src="/resources/js/GameState/PlayerField.js"></script>
+<script type="text/javascript" src="/resources/js/GameState/PlayerHand.js"></script>
 <script type="text/javascript" src="/resources/js/GameState/Map.js"></script>
 <script type="text/javascript" src="/resources/js/GameState/Game.js"></script>
 <body onload="game.init('canvas_loading')">
