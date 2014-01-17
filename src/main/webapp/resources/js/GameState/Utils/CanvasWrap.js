@@ -56,11 +56,13 @@ function CanvasWrap() {
 	}
 
 	/*Area*/CanvasWrap.prototype.getCanvasArea = function () {
-		return new Area(new Point(this.canvas.style.top, this.canvas.style.left), this.canvas.width, this.canvas.height);
+		return new Area(new Point( parseInt(this.canvas.style.left), parseInt(this.canvas.style.top)),
+            this.canvas.width, this.canvas.height);
 	}
 
 	/*Area*/CanvasWrap.prototype.getContextArea = function () {
-		return new Area(new Point(this.canvas.style.top, this.canvas.style.left), this.canvas.width * this.scale, this.canvas.height * this.scale);
+		return new Area(new Point(parseInt(this.canvas.style.left), parseInt(this.canvas.style.top)),
+            this.canvas.width * this.scale, this.canvas.height * this.scale);
 	}
 
 	CanvasWrap.prototype.onClickHelper = function (/*Point*/ point, /*CanvasWrap*/ canvasWrap) {

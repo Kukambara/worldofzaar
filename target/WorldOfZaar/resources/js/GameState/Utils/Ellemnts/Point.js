@@ -38,8 +38,8 @@ function Point(x, y) {
     }
 
     Point.prototype.ConvertThisFromStyle = function(){
-        this.x = this.ConvertStyleValue(this.x);
-        this.y = this.ConvertStyleValue(this.y);
+        this.x = parseInt(this.x);//this.ConvertStyleValue(this.x);
+        this.y = parseInt(this.y);//this.ConvertStyleValue(this.y);
     }
 
     Point.prototype.Multiply = function(scale){

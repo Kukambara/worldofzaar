@@ -46,7 +46,7 @@
 
 	function copyCanvas(/*string*/ canvasNameCopied, /*string*/ canvasNameNew, /*int*/ zIndexNew) {
 		var canvasCopied = document.getElementById(canvasNameCopied);
-		var newBeginPoint = new Point(canvasCopied.style.left, canvasCopied.style.top);
+		var newBeginPoint = new Point(parseInt(canvasCopied.style.left), parseInt(canvasCopied.style.top));
 		var newWidth = canvasCopied.width;
 		var newHeight = canvasCopied.height;
 		var newArea = new Area(newBeginPoint, newWidth, newHeight);

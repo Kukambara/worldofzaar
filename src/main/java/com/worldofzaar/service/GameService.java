@@ -41,7 +41,10 @@ public class GameService {
         if (randomUser == index)
             activity = Activity.ACTIVE;
         HeroService heroService = new HeroService();
+        if (tableMap.size() < index)
+            return null;
         return heroService.createHero(tableMap.get(index).getUser(), activity);
+
     }
 
     public void createNewGame(List<CertainTable> tables) {
@@ -79,6 +82,7 @@ public class GameService {
         game.setLog(getLog());
         game.setReady(false);
         game.setFirstCircleHeroIndex(randomUser);
+        game.setIndexOfActiveHero(randomUser);
         GameDao gameDao = new GameDao();
         gameDao.add(game);
     }
@@ -93,7 +97,7 @@ public class GameService {
 
     //Check if index is out of bounds list.
     private boolean isOutOfBounds(List l, int position) {
-        if (l.size() >= position || position < 0)
+        if (position >= l.size() || position < 0)
             return true;
         return false;
     }

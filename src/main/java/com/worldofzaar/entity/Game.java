@@ -19,7 +19,8 @@ import javax.persistence.*;
 @Table(name = "\"Games\"")
 public class Game {
     @Id
-    @GeneratedValue
+    @SequenceGenerator(name = "game_seq", sequenceName = "\"Games_gameId_seq\"", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "game_seq")
     @Column(name = "\"gameId\"")
     private Integer gameId;
     @OneToOne
@@ -60,6 +61,15 @@ public class Game {
     private Integer firstCircleHeroIndex;
     @Column(name = "\"moveDuration\"")
     private Integer moveDuration;
+
+
+    public Integer getIndexOfActiveHero() {
+        return IndexOfActiveHero;
+    }
+
+    public void setIndexOfActiveHero(Integer indexOfActiveHero) {
+        IndexOfActiveHero = indexOfActiveHero;
+    }
 
     public Integer getGameId() {
         return gameId;

@@ -7,8 +7,13 @@
 	var canvasesName = [];
 	var buttons = [];
 	var players = [];
-	var state;
-	var activePlayerNUmber;
+    var playerHand;
+	var globalState;
+    var actionState;
+    var isPause = false;
+	var activePlayerNumber = 0;
+    var playerCount = 4;
+    var firstNumberInRound = 0;
 
 	var time;
 	var timer;
@@ -22,41 +27,65 @@
 	})();
 
 	function init(/*string*/ canvasLoadingName) {
+        setState(consts.gameState.loading);
 		canvasesName["loading"] = canvasLoadingName;
 		canvasManager.addCanvas(canvasLoadingName);
 
-		var canvasStaticName = "canvas_static";
-		canvasesName["static"] = canvasStaticName;
-		canvasManager.copyCanvas(canvasLoadingName, canvasStaticName, 0);
+		canvasesName["static"] = consts.canvasesName.static;
+		canvasManager.copyCanvas(canvasLoadingName, canvasesName["static"], consts.zIndex.static);
 		_initBackground();
-		map.Init(canvasManager.getCanvasByName(canvasStaticName), 50, 50, 700, 700);
-       	var canvasControlName = "canvas_control";
-		canvasesName["control"] = canvasControlName;
-		canvasManager.copyCanvas(canvasStaticName, canvasControlName, 2);
+		map.Init(canvasManager.getCanvasByName(canvasesName["static"]), 50, 50, 700, 700);
+
+		canvasesName["control"] = consts.canvasesName.control;
+		canvasManager.copyCanvas(canvasesName["static"], canvasesName["control"], consts.zIndex.control);
 
         var rotate = 0;
-        var canvasStyle = canvasManager.getCanvasByName(canvasStaticName).canvas.style;
-        var canvasStaticBeginPoint = new Point( canvasStyle.top, canvasStyle.left );
-        canvasStaticBeginPoint.ConvertThisFromStyle();
+        var canvasStyle = canvasManager.getCanvasByName(canvasesName["static"]).canvas.style;
+        var canvasStaticBeginPoint = new Point( parseInt(canvasStyle.top), parseInt(canvasStyle.left) );
+        //canvasStaticBeginPoint.ConvertThisFromStyle();
         for(var i = 0; i < map.playerField.length; ++i){
             players[i] = new PlayerField();
             players[i].InitAreasForCards(map.playerField[i].fullArea);
-            canvasesName["field_"+i]= "canvas_field_"+i;
+            canvasesName["field_"+i]= consts.canvasesName.field+i;
             var area = map.playerField[i].fullArea.GetClone();
             area.beginPoint.AddToThis(canvasStaticBeginPoint);
             area.Rotate(rotate);
-            canvasManager.addNewCanvas(area, canvasesName["field_"+i], 1);
+            canvasManager.addNewCanvas(area, canvasesName["field_"+i], consts.zIndex.field);
             rotate+=90;
-            players[i].rotate = 90;
+            players[i].rotate = rotate;
             players[i].SetContext(canvasManager.getCanvasByName(canvasesName["field_"+i]).context);
             players[i].ApplyScale();
             players[i].ApplyRotation();
             players[i].fullArea.isBorder = true;
            // canvasManager.addEventFunction(canvasesName["field_"+i], this, "onClick", "OnCardClickHelper"+i);
         }
-        _initButtons(canvasControlName);
+        _initButtons(canvasesName["control"]);
 
-        canvasManager.addEventFunction(canvasStaticName, window.game, "onClick", "onClickListener");
+        playerHand = new PlayerHand();
+        var canvasArea =  map.background.area;
+        var handBeginPoint = canvasManager.getCanvasByName(canvasesName["field_0"]).getCanvasArea().GetVerticalPositionAfterThis();
+        handBeginPoint.x = 0;
+        var q =   canvasManager.getCanvasByName(canvasesName["loading"]).getCanvasArea().beginPoint;
+        handBeginPoint.AddToThis(canvasManager.getCanvasByName(canvasesName["loading"]).getCanvasArea().beginPoint);
+
+        var handEndPoint = canvasManager.getCanvasByName(canvasesName["static"]).getCanvasArea().GetVerticalPositionAfterThis();
+        var h =  handEndPoint.y -   handBeginPoint.y;
+
+        var handAreaWidth = map.background.area.width;
+        var w =     canvasManager.getCanvasByName(canvasesName["loading"]).getCanvasArea().height;
+        var handAreaHeight = canvasManager.getCanvasByName(canvasesName["static"]).getCanvasArea().GetVerticalPositionAfterThis().y - handBeginPoint.y;
+        var handArea = new Area(handBeginPoint,
+            map.background.area.width,
+            canvasManager.getCanvasByName(canvasesName["loading"]).getCanvasArea().height - handBeginPoint.y);
+        playerHand.Init(handArea);
+        canvasManager.addEventFunction(
+            consts.canvasesName.playerHand,
+            playerHand,
+            "onClick",
+            "onClickListener");
+
+
+        canvasManager.addEventFunction(canvasesName["static"], window.game, "onClick", "onClickListener");
 
 		resources.onReady(postInit);
 	}
@@ -131,14 +160,57 @@
 	}
 
 	function update(deltaTime) {
-		time += deltaTime;
-		timer.DrawNewText(Math.floor(time));
+        if(!isPause)
+        {
+            time += deltaTime;
+            timer.DrawNewText(Math.floor(time));
+            if(time > 60){
+                PassCourse();
+            }
+        }
 		//alert(deltaTime);
-	}
+    }
+
+    function PassCourse(){
+        time = 0;
+        var mess =   "change player from "+ activePlayerNumber;
+        ++activePlayerNumber;
+        if(activePlayerNumber >= playerCount )  {
+            activePlayerNumber = 0;
+        }
+        mess += " to "+ activePlayerNumber;
+         alert( mess );
+        if(activePlayerNumber == firstNumberInRound){
+            switch (state){
+                case consts.gameState.gamePlaceCard:
+                    state = consts.gameState.gameFight;
+                    break;
+                case consts.gameState.gameFight:
+                    state = consts.gameState.gameNegative;
+                    break;
+                case consts.gameState.gameNegative:
+                    state = consts.gameState.gamePlaceCard;
+                    ++firstNumberInRound;
+                    if(firstNumberInRound >= playerCount )  {
+                        firstNumberInRound = 0;
+                    }
+                    break;
+                alert( "change state to "+state );
+            }
+        }
+    }
 
 	function render() {
 		alert("render");
 	}
+
+    function setState(/*string*/ newState){
+        state = newState;
+    }
+
+    /*string*/ function getState(){
+        return state;
+    }
 
 	function onClickListener(eventPoint) {
 
@@ -149,7 +221,7 @@
 	}
 
 	function postInit() {
-		canvasManager.setCanvasZindex(canvasesName["loading"], -1);
+		canvasManager.setCanvasZindex(canvasesName["loading"], consts.zIndex.hide);
 		background.Draw();
 		map.Draw();
         for(var name in buttons){
@@ -157,6 +229,8 @@
         }
 		timer.Draw();
         main();
+        setState(consts.gameState.loaded);
+        setState(consts.gameState.gamePlaceCard);
 	}
 
 	function draw() {
@@ -179,6 +253,7 @@
 
     function onButtonSurrenderClick(eventPoint){
         alert("onButtonSurrenderClick");
+        OnPauseClick(eventPoint);
     }
 
     function onCardTestClick(data) {
@@ -208,14 +283,21 @@
         players[3].OnCardClick(point);
     }
 
+    function OnPauseClick(point){
+        isPause = !isPause;
+    }
+
 
 	window.game = {
-		init: init
+        init: init
+        , setState: setState
+        , getState: getState
 		, onClickListener: onClickListener
         , onCardTestClick: onCardTestClick
         , OnCardClickHelper0:OnCardClickHelper0
         , OnCardClickHelper1:OnCardClickHelper1
         , OnCardClickHelper2:OnCardClickHelper2
         , OnCardClickHelper3:OnCardClickHelper3
+        , OnPauseClick: OnPauseClick
 	}
 })();
