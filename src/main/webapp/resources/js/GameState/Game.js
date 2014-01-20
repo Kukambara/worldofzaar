@@ -64,19 +64,13 @@
         playerHand = new PlayerHand();
         var canvasArea =  map.background.area;
         var handBeginPoint = canvasManager.getCanvasByName(canvasesName["field_0"]).getCanvasArea().GetVerticalPositionAfterThis();
-        handBeginPoint.x = 0;
-        var q =   canvasManager.getCanvasByName(canvasesName["loading"]).getCanvasArea().beginPoint;
-        handBeginPoint.AddToThis(canvasManager.getCanvasByName(canvasesName["loading"]).getCanvasArea().beginPoint);
+        handBeginPoint = map.background.area.GetVerticalPositionAfterThis();
+        handBeginPoint.AddToThis(canvasManager.getCanvasByName(canvasesName["static"]).getCanvasArea().beginPoint);
 
         var handEndPoint = canvasManager.getCanvasByName(canvasesName["static"]).getCanvasArea().GetVerticalPositionAfterThis();
-        var h =  handEndPoint.y -   handBeginPoint.y;
-
-        var handAreaWidth = map.background.area.width;
-        var w =     canvasManager.getCanvasByName(canvasesName["loading"]).getCanvasArea().height;
-        var handAreaHeight = canvasManager.getCanvasByName(canvasesName["static"]).getCanvasArea().GetVerticalPositionAfterThis().y - handBeginPoint.y;
         var handArea = new Area(handBeginPoint,
             map.background.area.width,
-            canvasManager.getCanvasByName(canvasesName["loading"]).getCanvasArea().height - handBeginPoint.y);
+            handEndPoint.y - handBeginPoint.y);
         playerHand.Init(handArea);
         canvasManager.addEventFunction(
             consts.canvasesName.playerHand,
@@ -173,13 +167,10 @@
 
     function PassCourse(){
         time = 0;
-        var mess =   "change player from "+ activePlayerNumber;
         ++activePlayerNumber;
         if(activePlayerNumber >= playerCount )  {
             activePlayerNumber = 0;
         }
-        mess += " to "+ activePlayerNumber;
-         alert( mess );
         if(activePlayerNumber == firstNumberInRound){
             switch (state){
                 case consts.gameState.gamePlaceCard:
@@ -195,7 +186,6 @@
                         firstNumberInRound = 0;
                     }
                     break;
-                alert( "change state to "+state );
             }
         }
     }

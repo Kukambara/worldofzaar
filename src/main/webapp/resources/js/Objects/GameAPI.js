@@ -1,7 +1,7 @@
 /**
  * Created by Kseon on 17.01.14.
  */
-function GameAPI(){
+(function (){
     //--------------------------------------------------------------
     //--------------------Get Actions-------------------------------
 
@@ -39,6 +39,16 @@ function GameAPI(){
     this.UserIsReady = function (){
         return UserIsReady();
     }
+
+    this.GetCard = function (cardId){
+        return GetCard(cardId);
+
+    }
+
+    this.GetUserCardsInHand = function(){
+        return GetUserCardsInHand();
+    }
+
 
     //----------------------------------------------------------
     //--------------------Send Query----------------------------
@@ -115,6 +125,30 @@ function GameAPI(){
         });
     }
 
+    function GetCard(cardId){
+        $.ajax({
+            url: "/api/game/getCard",
+            dataType: "json",
+            type: "GET",
+            async: false,
+            success: function (data) {
+                return data;
+            }
+        });
+    }
+
+    function GetUserCardsInHand(){
+        $.ajax({
+            url: "/api/game/getUserCardsInHand",
+            dataType: "json",
+            type: "GET",
+            async: false,
+            success: function (data) {
+                return data;
+            }
+        });
+    }
+
     function IsGameReady(){
         $.ajax({
             url: "/api/game/isGameReady",
@@ -139,4 +173,16 @@ function GameAPI(){
         });
     }
 
-}
+    window.GameAPI = {
+         Move:Move
+        , EndMove:EndMove
+        , PutCard:PutCard
+        , GetCard:GetCard
+        , GetUserCardsInHand:GetUserCardsInHand
+        , Skip:Skip
+        , ThrowOff:ThrowOff
+        , GetGame:GetGame
+        , IsGameReady:IsGameReady
+        , UserIsReady:UserIsReady
+    }
+})();

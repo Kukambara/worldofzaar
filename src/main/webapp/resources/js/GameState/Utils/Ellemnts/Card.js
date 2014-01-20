@@ -8,9 +8,6 @@ function Card() {
     this.scale = 1;
 
     Card.prototype.Init = function ( /*Area*/ area) {
-        //var border = this.borderSize * area.width;
-
-        //this.area = area;
         this.area = new Area(area.beginPoint, baseWidth, baseHeight)
 
         this.borderSize = this.borderSize * this.area.width;
@@ -20,7 +17,7 @@ function Card() {
         this.texts["name"] = new AreaText(new Area(new Point(this.images["background"].area.beginPoint.x + this.borderSize, this.images["background"].area.beginPoint.y + this.borderSize),
             this.images["background"].area.width - this.borderSize * 3, this.borderSize), "testName");
         var widthWithOutBorder = this.images["background"].area.width - this.borderSize * 2;
-        this.texts["nergy"] = new AreaText(new Area(this.texts["name"].area.GetHorisontalPositionAfterThis(),
+        this.texts["energy"] = new AreaText(new Area(this.texts["name"].area.GetHorisontalPositionAfterThis(),
             this.borderSize, this.borderSize), "0");
         var freeHeight = this.area.height - this.borderSize*3;
         this.images["image"]= new AreaImage(new Area(this.text["hp"].area.GetVerticalPositionAfterThis(), widthWithOutBorder, freeHeight * 2 / 3));
@@ -28,6 +25,10 @@ function Card() {
         this.texts["info"] = new AreaText(new Area(this.images["image"].area.GetVerticalPositionAfterThis(), widthWithOutBorder, freeHeight * 1 / 3), "testInfo");
 
         this.SetDrawableArea(area);
+    }
+
+    Card.prototype.setCardByID = function(id){
+        var data =  GameAPI.GetCard(id);
     }
 
    /* Card.InitSmall2 = function () {

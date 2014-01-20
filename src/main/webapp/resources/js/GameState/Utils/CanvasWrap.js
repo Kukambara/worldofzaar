@@ -72,6 +72,11 @@ function CanvasWrap() {
 	CanvasWrap.prototype.clear = function () {
 		this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 	}
+
+    CanvasWrap.prototype.setScale = function(newScale){
+        this.scale = newScale;
+        this.context.scale(newScale, newScale);
+    }
 	
 	//this.canvas.addEventListener("click", onClick);
 };

@@ -6,6 +6,7 @@
 </head>
 <script type="text/javascript" src="/resources/js/jquery-2.0.3.js"></script>
 <script type="text/javascript" src="/resources/js/GameState/Utils/Consts.js"></script>
+<script type="text/javascript" src="/resources/js/Objects/GameAPI.js"></script>
 <script type="text/javascript" src="/resources/js/GameState/Utils/Controllers/Observable.js"></script>
 <script type="text/javascript" src="/resources/js/GameState/Utils/CanvasWrap.js"></script>
 <script type="text/javascript" src="/resources/js/GameState/Utils/Text.js"></script>
